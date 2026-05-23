@@ -4,20 +4,21 @@ body{
   background:#f3f4f6;
   display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:flex-start;
   min-height:100vh;
 }
 
 .card{
   position:relative;
   background:white;
-  width:360px;
-  padding:70px 30px 30px;
+  width: 100%;
+  max-width: 420px;
+  padding:70px 20px 30px;
   border-radius:20px;
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
   text-align:center;
-  max-height:90vh;
-  overflow-y:auto;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 h2{

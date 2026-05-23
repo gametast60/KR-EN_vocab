@@ -2,14 +2,22 @@
 // คลังคำศัพท์ TOPIK 1 (หมวดคำนามล้วน ชุดที่ 1)
 // ==========================================================
 window.Vonouns1 = [
-  { word: "한국어", meaning: "ภาษาเกาหลี" },
-  { word: "사과", meaning: "แอปเปิ้ล" },
-  { word: "도서관", meaning: "ห้องสมุด" },
-  { word: "선생님", meaning: "คุณครู" },
-  { word: "친구", meaning: "เพื่อน" },
-  { word: "영화", meaning: "ภาพยนตร์ / หนัง" },
-  { word: "은행", meaning: "ธนาคาร" },
-  { word: "식당", meaning: "ร้านอาหาร" },
+  { word: "가게", meaning: "ร้าน, ร้านค้า" },
+  { word: "가격", meaning: "ราคา" },
+  { word: "가구", meaning: "เฟอร์นิเจอร์" },
   { word: "가방", meaning: "กระเป๋า" },
-  { word: "우유", meaning: "นม" }
+  { word: "가수", meaning: "นักร้อง" },
+  { word: "가운데", meaning: "กลาง" },
+  { word: "가위", meaning: "กรรไกร" },
+  { word: "가을", meaning: "ฤดูใบไม้ร่วง" },
+  { word: "가족", meaning: "ครอบครัว" },
+  { word: "간식", meaning: "อาหารว่าง" },
+  { word: "간호사", meaning: "พยาบาล" },
+  { word: "감기", meaning: "หวัด" },
+  { word: "감사", meaning: "การขอบคุณ" },
+  { word: "감자", meaning: "มันฝรั่ง" },
+  { word: "값", meaning: "ราคา, ค่า" },
+  { word: "강", meaning: "แม่น้ำ" },
+  { word: "강아지", meaning: "ลูกสุนัข" },
+  { word: "개", meaning: "สุนัข, หมา" },
 ];

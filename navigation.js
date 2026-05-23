@@ -90,6 +90,7 @@ function selectFlashcard(targetSet){
   const vocabMap = {
     'Voflash':  window.flashVocabData,
     'nounset1': window.Vonouns1,
+    'nounset2': window.Vonouns2,
     // เพิ่มชุดใหม่ได้ที่นี่ เช่น 'set2': window.Vonouns2
   };
 
