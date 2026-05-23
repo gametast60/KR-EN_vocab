@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TOPIK Trainer</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="manifest.json">
+<script>
+  if("serviceWorker" in navigator)
+    navigator.serviceWorker.register("sw.js");
+</script>
+
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- TOP BUTTONS -->
+  <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">
+    🏠 หน้าหลัก
+  </button>
+  <button id="backButton" class="back-btn hidden" onclick="goBack()">
+    ⬅ กลับ
+  </button>
+
+  <h2>TOPIK Trainer</h2>
+
+  <div id="app">
+
+    <!-- MAIN MENU -->
+    <div id="mainMenu" class="screen">
+      <button class="menu-btn" onclick="goTo('topikMenu')">TOPIK1</button>
+      <button class="menu-btn" onclick="showComingSoon()">TOPIK2</button>
+      <button class="menu-btn" onclick="selectFlashcard('Voflash')">TOPIK1 ทวนคำศัพท์</button>
+      <button class="menu-btn" onclick="showComingSoon()">TOPIK2 ทวนคำศัพท์</button>
+    </div>
+
+    <!-- TOPIK MENU -->
+    <div id="topikMenu" class="screen hidden">
+      <button class="menu-btn" onclick="goTo('vocabMenu')">คำศัพท์</button>
+      <button class="menu-btn" onclick="goTo('grammarMenu')">ไวยากรณ์</button>
+    </div>
+
+    <!-- VOCAB MENU -->
+    <div id="vocabMenu" class="screen hidden">
+      <button class="menu-btn" onclick="goTo('nounMenu')">คำนาม</button>
+      <button class="menu-btn" onclick="goTo('verbMenu')">กริยา</button>
+      <button class="menu-btn" onclick="goTo('adjectiveMenu')">คุณศัพท์</button>
+      <button class="menu-btn" onclick="goTo('adverbMenu')">วิเศษณ์</button>
+      <button class="menu-btn" onclick="showComingSoon()">คุณศัพท์ขยายคำนาม</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำสรรพนาม</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำบอกจำนวน</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำอุทาน</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำศัพท์หมวดต่างๆ</button>
+    </div>
+
+    <!-- NOUN MENU -->
+    <div id="nounMenu" class="screen hidden">
+      <button class="menu-btn" onclick="selectFlashcard('nounset1')">ชุด 1</button>
+      <button class="menu-btn" onclick="selectFlashcard()">ชุด 2</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
+    </div>
+
+    <!-- VERB MENU -->
+    <div id="verbMenu" class="screen hidden">
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
+    </div>
+
+    <!-- ADJECTIVE MENU -->
+    <div id="adjectiveMenu" class="screen hidden">
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
+    </div>
+
+    <!-- ADVERB MENU -->
+    <div id="adverbMenu" class="screen hidden">
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
+      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
+    </div>
+
+    <!-- GRAMMAR MENU -->
+    <div id="grammarMenu" class="screen hidden">
+      <button class="menu-btn" onclick="showComingSoon()">คำลงท้ายประโยค</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำเชื่อมประโยค</button>
+      <button class="menu-btn" onclick="showComingSoon()">คำชี้</button>
+      <button class="menu-btn" onclick="showComingSoon()">รูปขยายคำนาม</button>
+      <button class="menu-btn" onclick="goTo('grammarExtraMenu')">อื่นๆ</button>
+    </div>
+
+    <!-- GRAMMAR EXTRA MENU -->
+    <div id="grammarExtraMenu" class="screen hidden">
+      <button class="menu-btn" onclick="showComingSoon()">รูปแบบโครงสร้างประสม</button>
+      <button class="menu-btn" onclick="showComingSoon()">การผันคำกริยาที่ไม่เป็นไปตามกฎ</button>
+    </div>
+
+    <!-- GAME MENU -->
+    <div id="gameMenu" class="screen hidden">
+      <button class="menu-btn" onclick="startTypingMode()">เติมคำ</button>
+      <button class="menu-btn" onclick="startQuizMode()">จับคู่</button>
+    </div>
+
+    <!-- TYPING GAME -->
+    <div id="typingGame" class="screen hidden">
+      <div class="meaning" id="meaning"></div>
+      <input
+        type="text"
+        id="answerInput"
+        placeholder="พิมพ์คำศัพท์เกาหลี"
+        onkeydown="handleEnter(event)"
+      >
+      <button id="checkBtn" class="check-btn" onclick="checkAnswer()">
+        ตรวจคำตอบ
+      </button>
+      <div class="result" id="result"></div>
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- QUIZ GAME -->
+    <div id="quizGame" class="screen hidden">
+      <div class="word" id="quizWord"></div>
+      <div id="choicesContainer"></div>
+      <div class="result" id="quizResult"></div>
+      <div class="progress" id="quizProgress"></div>
+    </div>
+
+    <!-- FINISH SCREEN -->
+    <div id="finishScreen" class="screen hidden">
+      <div class="finish">🎉 จบแล้ว 🎉</div>
+      <div id="wrongAnswers"></div>
+      <button class="restart-btn" onclick="goTo('gameMenu')">🔄 เล่นใหม่</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="nouns1.js"></script>
+<script src="flashcard.js"></script>
+<script src="game.js"></script>
+<script src="navigation.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
