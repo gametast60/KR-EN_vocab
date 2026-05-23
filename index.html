@@ -13,16 +13,11 @@
 </head>
 
 <body>
-
 <div class="card">
 
   <!-- TOP BUTTONS -->
-  <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">
-    🏠 หน้าหลัก
-  </button>
-  <button id="backButton" class="back-btn hidden" onclick="goBack()">
-    ⬅ กลับ
-  </button>
+  <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">🏠 หน้าหลัก</button>
+  <button id="backButton" class="back-btn hidden" onclick="goBack()">⬅ กลับ</button>
 
   <h2>TOPIK Trainer</h2>
 
@@ -30,98 +25,80 @@
 
     <!-- MAIN MENU -->
     <div id="mainMenu" class="screen">
-      <button class="menu-btn" onclick="goTo('topikMenu')">TOPIK1</button>
-      <button class="menu-btn" onclick="showComingSoon()">TOPIK2</button>
-      <button class="menu-btn" onclick="selectFlashcard('Voflash')">TOPIK1 ทวนคำศัพท์รายวัน</button>
-      <button class="menu-btn" onclick="showComingSoon()">TOPIK2 ทวนคำศัพท์รายวัน</button>
+      <button class="menu-btn menu-topik" onclick="openTopik('topik1')">📘 TOPIK 1</button>
+      <button class="menu-btn menu-topik" onclick="openTopik('topik2')">📗 TOPIK 2</button>
     </div>
 
-    <!-- TOPIK MENU -->
-    <div id="topikMenu" class="screen hidden">
-      <button class="menu-btn" onclick="goTo('vocabMenu')">คำศัพท์</button>
-      <button class="menu-btn" onclick="goTo('grammarMenu')">ไวยากรณ์</button>
+    <!-- SRS DASHBOARD -->
+    <div id="srsDashboard" class="screen hidden">
+      <div class="srs-boxes-row" id="srsBoxRow"></div>
+      <div class="srs-actions" id="srsActions"></div>
     </div>
 
-    <!-- VOCAB MENU -->
-    <div id="vocabMenu" class="screen hidden">
-      <button class="menu-btn" onclick="goTo('nounMenu')">คำนาม</button>
-      <button class="menu-btn" onclick="goTo('verbMenu')">กริยา</button>
-      <button class="menu-btn" onclick="goTo('adjectiveMenu')">คุณศัพท์</button>
-      <button class="menu-btn" onclick="goTo('adverbMenu')">วิเศษณ์</button>
-      <button class="menu-btn" onclick="showComingSoon()">คุณศัพท์ขยายคำนาม</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำสรรพนาม</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำบอกจำนวน</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำอุทาน</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำศัพท์หมวดต่างๆ</button>
+    <!-- SETTINGS PANEL (dropdown) -->
+    <div id="settingsPanel" class="screen hidden">
+      <div class="settings-header">⚙️ ตั้งค่า</div>
+
+      <!-- อัปเดตคำศัพท์ + เคลียร์แคช -->
+      <div class="settings-section">
+        <div class="settings-title">🔄 อัปเดตคำศัพท์</div>
+        <div class="settings-desc">ดึงคำศัพท์ใหม่จากไฟล์ .js และเคลียร์แคชเบราว์เซอร์</div>
+        <button class="settings-btn settings-btn-blue" onclick="syncVocabAndClearCache()">อัปเดตคำศัพท์ & เคลียร์แคช</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- เคลียร์กล่อง -->
+      <div class="settings-section">
+        <div class="settings-title">🗂 เคลียร์กล่อง (รีเซ็ตกลับกล่อง 0)</div>
+        <div class="settings-desc">เลือกกล่องที่ต้องการรีเซ็ต</div>
+        <div class="settings-checkboxes" id="clearBoxChecks">
+          <label><input type="checkbox" value="1"> กล่อง 1 (1วัน)</label>
+          <label><input type="checkbox" value="2"> กล่อง 2 (3วัน)</label>
+          <label><input type="checkbox" value="3"> กล่อง 3 (7วัน)</label>
+          <label><input type="checkbox" value="4"> กล่อง 4 (14วัน)</label>
+          <label><input type="checkbox" value="5"> กล่อง 5 (จำได้✅)</label>
+          <label><input type="checkbox" id="clearWrongBoxCheck"> กล่องคำผิด (❌)</label>
+        </div>
+        <button class="settings-btn settings-btn-red" onclick="clearSelectedBoxes()">รีเซ็ตกล่องที่เลือก</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- ตั้งค่า chunk -->
+      <div class="settings-section">
+        <div class="settings-title">📐 จำนวนคำต่อชุด</div>
+        <div class="srs-settings-row">
+          <label>ทวนวันนี้ทีละ: </label>
+          <input type="number" id="dueChunkInput" min="5" max="50" value="20">
+          <label style="margin-left:12px">คำใหม่/วัน: </label>
+          <input type="number" id="newPerDayInput" min="5" max="50" value="20">
+        </div>
+        <button class="settings-btn settings-btn-blue" onclick="saveSettings()" style="margin-top:8px">บันทึก</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- คืนค่าทั้งหมด -->
+      <div class="settings-section" style="border:2px solid #dc2626;background:#fff5f5">
+        <div class="settings-title" style="color:#dc2626">⛔ คืนค่าทั้งหมด</div>
+        <div class="settings-desc" style="color:#b91c1c">รีเซ็ตทุกกล่องกลับกล่อง 0 พร้อมล้างกล่องคำผิด อัปเดตคำศัพท์ และเคลียร์แคช — ไม่สามารถย้อนกลับได้!</div>
+        <button class="settings-btn settings-btn-red" onclick="resetEverything()">⛔ คืนค่าทั้งหมด</button>
+      </div>
+
+      <button class="settings-btn settings-btn-gray" onclick="goToSRSDashboard()" style="margin-top:8px">← กลับ</button>
     </div>
 
-    <!-- NOUN MENU -->
-    <div id="nounMenu" class="screen hidden">
-      <button class="menu-btn" onclick="selectFlashcard('nounset1')">ชุด 1</button>
-      <button class="menu-btn" onclick="selectFlashcard('nounset2')">ชุด 2</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
-    </div>
-
-    <!-- VERB MENU -->
-    <div id="verbMenu" class="screen hidden">
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
-    </div>
-
-    <!-- ADJECTIVE MENU -->
-    <div id="adjectiveMenu" class="screen hidden">
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 3</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 4</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 5</button>
-    </div>
-
-    <!-- ADVERB MENU -->
-    <div id="adverbMenu" class="screen hidden">
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 1</button>
-      <button class="menu-btn" onclick="showComingSoon()">ชุด 2</button>
-    </div>
-
-    <!-- GRAMMAR MENU -->
-    <div id="grammarMenu" class="screen hidden">
-      <button class="menu-btn" onclick="showComingSoon()">คำลงท้ายประโยค</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำเชื่อมประโยค</button>
-      <button class="menu-btn" onclick="showComingSoon()">คำชี้</button>
-      <button class="menu-btn" onclick="showComingSoon()">รูปขยายคำนาม</button>
-      <button class="menu-btn" onclick="goTo('grammarExtraMenu')">อื่นๆ</button>
-    </div>
-
-    <!-- GRAMMAR EXTRA MENU -->
-    <div id="grammarExtraMenu" class="screen hidden">
-      <button class="menu-btn" onclick="showComingSoon()">รูปแบบโครงสร้างประสม</button>
-      <button class="menu-btn" onclick="showComingSoon()">การผันคำกริยาที่ไม่เป็นไปตามกฎ</button>
-    </div>
-
-    <!-- GAME MENU -->
-    <div id="gameMenu" class="screen hidden">
-      <button class="menu-btn" onclick="startFlashcardMode()">🃏 Flashcard</button>
-      <button class="menu-btn" onclick="startTypingMode()">⌨️ เติมคำ</button>
-      <button class="menu-btn" onclick="startQuizMode()">🔤 จับคู่</button>
-    </div>
-
-    <!-- FLASHCARD GAME -->
+    <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
     <div id="flashcardGame" class="screen hidden">
       <div class="progress" id="flashcardProgress"></div>
 
-      <!-- หน้าการ์ด (ก่อนพลิก) -->
       <div id="flashcardFront">
         <div class="fc-word" id="fcWord"></div>
         <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
         <button class="flip-btn" onclick="flipCard()">👁 ดูความหมาย</button>
       </div>
 
-      <!-- หลังการ์ด (หลังพลิก) -->
       <div id="flashcardBack" class="hidden">
         <div class="fc-word" id="fcWordBack"></div>
         <div class="fc-meaning" id="fcMeaning"></div>
@@ -136,15 +113,8 @@
     <!-- TYPING GAME -->
     <div id="typingGame" class="screen hidden">
       <div class="meaning" id="meaning"></div>
-      <input
-        type="text"
-        id="answerInput"
-        placeholder="พิมพ์คำศัพท์เกาหลี"
-        onkeydown="handleEnter(event)"
-      >
-      <button id="checkBtn" class="check-btn" onclick="checkAnswer()">
-        ตรวจคำตอบ
-      </button>
+      <input type="text" id="answerInput" placeholder="พิมพ์คำศัพท์เกาหลี" onkeydown="handleEnter(event)">
+      <button id="checkBtn" class="check-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
       <div class="result" id="result"></div>
       <div class="progress" id="progress"></div>
     </div>
@@ -158,20 +128,48 @@
       <div class="progress" id="quizProgress"></div>
     </div>
 
-    <!-- FINISH SCREEN -->
+    <!-- FINISH SCREEN (ฝึกหัด / ทวนคำผิด) -->
     <div id="finishScreen" class="screen hidden">
       <div class="finish">🎉 จบแล้ว 🎉</div>
       <div id="wrongAnswers"></div>
-      <button class="restart-btn" onclick="goTo('gameMenu')">🔄 เล่นใหม่</button>
+      <button class="restart-btn" onclick="goToSRSDashboard()">🏠 กลับหน้าหลัก</button>
+    </div>
+
+    <!-- SRS FINISH SCREEN (ทวนวันนี้) -->
+    <div id="srsFinishScreen" class="screen hidden">
+      <div class="finish">🎉 จบชุดนี้แล้ว!</div>
+      <div id="srsWrongAnswers"></div>
+      <button id="srsNextChunkBtn" class="restart-btn" style="background:#2563eb" onclick="continueNextChunk()">▶ ทวนชุดถัดไป</button>
+      <button class="restart-btn" onclick="goToSRSDashboard()">🏠 หน้า SRS</button>
+      <button class="restart-btn" style="background:#7c3aed" onclick="replaySRSSession()">🔄 เล่นชุดนี้ใหม่</button>
+    </div>
+
+    <!-- WRONG BOX GAME MENU (ทวนคำผิด) -->
+    <div id="wrongBoxGameMenu" class="screen hidden">
+      <div class="srs-game-info" id="wrongBoxGameInfo"></div>
+      <button class="menu-btn" onclick="startWrongBoxGame('quiz')">🔤 จับคู่</button>
+      <button class="menu-btn" onclick="startWrongBoxGame('typing')">⌨️ เติมคำ</button>
+    </div>
+
+    <!-- PRACTICE GAME MENU (ฝึกหัด) -->
+    <div id="practiceGameMenu" class="screen hidden">
+      <div class="srs-game-info" id="practiceGameInfo"></div>
+      <button class="menu-btn" onclick="startPracticeGame('quiz')">🔤 จับคู่</button>
+      <button class="menu-btn" onclick="startPracticeGame('typing')">⌨️ เติมคำ</button>
+    </div>
+
+    <!-- SRS STATS SCREEN -->
+    <div id="srsStats" class="screen hidden">
+      <div id="srsStatsContent"></div>
+      <button onclick="goToSRSDashboard()" class="menu-btn" style="margin-top:12px">← กลับ</button>
     </div>
 
   </div>
-
 </div>
 
-<script src="nouns1.js"></script>
-<script src="nouns2.js"></script>
-<script src="flashcard.js"></script>
+<script src="flashcard1.js"></script>
+<script src="flashcard2.js"></script>
+<script src="srs.js"></script>
 <script src="game.js"></script>
 <script src="navigation.js"></script>
 <script src="app.js"></script>

@@ -1,26 +1,3 @@
-1. สร้างไฟล์ใหม่ เช่น nouns2.js
-jswindow.Vonouns2 = [
-  { word: "학교", meaning: "โรงเรียน" },
-  ...
-];
-2. เพิ่มใน vocabMap ใน navigation.js
-jsconst vocabMap = {
-  'Voflash':  window.flashVocabData,
-  'nounset1': window.Vonouns1,
-  'nounset2': window.Vonouns2,  // ← เพิ่มชื่อตัวแปรในไฟล์ .js
-};
-3. เพิ่มปุ่มใน index.html
-html<button class="menu-btn" onclick="selectFlashcard('nounset2')">ชุด 2</button>
-4. โหลดไฟล์ใน index.html
-html<script src="nouns1.js"></script>
-<script src="nouns2.js"></script>  <!-- ← เพิ่ม -->
-<script src="flashcard.js"></script>
-5. เพิ่มชื่อไฟล์ใน sw.js และเพิ่มเลข version
-jsconst CACHE = "topik-v3"; // ← เพิ่มทุกครั้งที่แก้ไฟล์นี้
-const FILES = [
-  "index.html", "style.css",
-  "app.js", "game.js", "navigation.js",
-  "nouns1.js", "nouns2.js",  // ← เพิ่ม
-  "flashcard.js", "manifest.json", "icon-192.png"
-];
-แค่ 5 ขั้นตอนนี้ทุกครั้งเลยครับ
+ช่วยแปลงคำศัพท์เหล่านี้เป็น JavaScript format แบบนี้ให้หน่อย อย่าใส่อะไรนอกจาก format นี้เลย:
+{ word:"한국어", meaning:"ความหมายภาษาไทย" },
+คำศัพท์: [วางคำที่นี่]
