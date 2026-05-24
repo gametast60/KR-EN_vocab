@@ -98,9 +98,45 @@
 
     <!-- MAIN MENU -->
     <div id="mainMenu" class="screen">
-      <button class="menu-btn menu-topik" onclick="openTopik('topik1')">📘 TOPIK 1</button>
-      <button class="menu-btn menu-topik" onclick="openTopik('topik2')">📗 TOPIK 2</button>
-    </div>
+
+  <button class="menu-btn menu-topik" onclick="openTopik('topik1')">
+    📘 TOPIK 1
+  </button>
+
+  <button class="menu-btn menu-topik" onclick="openTopik('topik2')">
+    📗 TOPIK 2
+  </button>
+
+  <!-- SEARCH VOCAB -->
+  <div class="search-box">
+
+    <div class="search-input-wrap">
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="ค้นหาคำศัพท์เกาหลี..."
+    oninput="searchVocabulary()"
+  >
+
+  <button
+    class="clear-search-btn"
+    onclick="clearSearchInput()"
+  >
+    ✕
+  </button>
+
+</div>
+
+    <button class="search-btn" onclick="searchVocabulary()">
+      🔍 ค้นหาคำศัพท์
+    </button>
+
+    <div id="searchResult" class="search-result hidden"></div>
+
+  </div>
+
+</div>
 
     <!-- SRS DASHBOARD -->
     <div id="srsDashboard" class="screen hidden">

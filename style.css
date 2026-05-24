@@ -642,3 +642,173 @@ button:disabled{
   font-size: 15px;
   margin-bottom: 0;
 }
+
+/* =========================
+   SETTINGS PANEL SCROLL
+========================= */
+
+#settingsPanel{
+  max-height:75vh;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+/* scrollbar */
+
+#settingsPanel::-webkit-scrollbar{
+  width:8px;
+}
+
+#settingsPanel::-webkit-scrollbar-thumb{
+  background:#cbd5e1;
+  border-radius:999px;
+}
+
+#settingsPanel::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+/* =========================
+   SEARCH VOCAB
+========================= */
+
+.search-box{
+  margin-top:20px;
+  position:relative;
+  z-index:20;
+}
+
+.search-btn{
+  background:#111827;
+  color:white;
+  font-weight:700;
+}
+
+.search-btn:hover{
+  background:#000;
+}
+
+.search-result{
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+
+  margin-top:8px;
+
+  background:white;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  padding:14px;
+
+  text-align:left;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+  max-height:25vh;
+  overflow-y:auto;
+
+  z-index:999;
+}
+
+.search-result::-webkit-scrollbar{
+  width:8px;
+}
+
+.search-result::-webkit-scrollbar-thumb{
+  background:#cbd5e1;
+  border-radius:999px;
+}
+
+.search-result::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.search-item{
+  padding:10px;
+  border-radius:10px;
+  background:#f9fafb;
+}
+
+.search-word{
+  font-size:24px;
+  font-weight:800;
+  color:#2563eb;
+  margin-bottom:6px;
+}
+
+.search-meaning{
+  font-size:17px;
+  color:#374151;
+  margin-bottom:8px;
+}
+
+.search-level{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  color:white;
+}
+
+.level-topik1{
+  background:#2563eb;
+}
+
+.level-topik2{
+  background:#16a34a;
+}
+
+.search-notfound{
+  text-align:center;
+  color:#dc2626;
+  font-weight:700;
+  padding:10px;
+}
+
+/* =========================
+   SEARCH CLEAR BUTTON
+========================= */
+
+.search-input-wrap{
+  position:relative;
+}
+
+.clear-search-btn{
+  position:absolute;
+
+  top:9px;
+  right:10px;
+
+  width:28px;
+  height:28px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#e5e7eb;
+  color:#374151;
+
+  font-size:14px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  padding:0;
+  margin:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.clear-search-btn:hover{
+  background:#d1d5db;
+}
+
+/* กันข้อความชนปุ่ม X */
+
+#searchInput{
+  padding-right:45px;
+}

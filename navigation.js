@@ -498,3 +498,129 @@ function syncVocabAndClearCache() {
     location.reload();
   });
 }
+
+// =========================
+// SEARCH VOCABULARY
+// =========================
+
+function searchVocabulary() {
+
+  const keyword = document
+    .getElementById("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const resultBox = document.getElementById("searchResult");
+
+  // ยังไม่พิมพ์
+  if (!keyword) {
+    resultBox.classList.add("hidden");
+    resultBox.innerHTML = "";
+    return;
+  }
+
+  const vocab1 = window.flashVocabData1 || [];
+  const vocab2 = window.flashVocabData2 || [];
+
+  let found = [];
+
+  // TOPIK1
+  vocab1.forEach(item => {
+
+    const word = item.word.toLowerCase();
+    const meaning = item.meaning.toLowerCase();
+
+    if (
+      word.includes(keyword) ||
+      meaning.includes(keyword)
+    ) {
+      found.push({
+        word: item.word,
+        meaning: item.meaning,
+        level: "TOPIK1",
+        className: "level-topik1"
+      });
+    }
+
+  });
+
+  // TOPIK2
+  vocab2.forEach(item => {
+
+    const word = item.word.toLowerCase();
+    const meaning = item.meaning.toLowerCase();
+
+    if (
+      word.includes(keyword) ||
+      meaning.includes(keyword)
+    ) {
+      found.push({
+        word: item.word,
+        meaning: item.meaning,
+        level: "TOPIK2",
+        className: "level-topik2"
+      });
+    }
+
+  });
+
+  // ไม่พบ
+  if (found.length === 0) {
+
+    resultBox.innerHTML = `
+      <div class="search-notfound">
+        ❌ ไม่พบคำศัพท์
+      </div>
+    `;
+
+    resultBox.classList.remove("hidden");
+    return;
+  }
+
+  // จำกัดไม่เกิน 10 คำ
+  found = found.slice(0, 10);
+
+  let html = "";
+
+  found.forEach(item => {
+
+    html += `
+      <div class="search-item">
+
+        <div class="search-word">
+          ${item.word}
+        </div>
+
+        <div class="search-meaning">
+          ${item.meaning}
+        </div>
+
+        <div class="search-level ${item.className}">
+          ${item.level}
+        </div>
+
+      </div>
+    `;
+
+  });
+
+  resultBox.innerHTML = html;
+  resultBox.classList.remove("hidden");
+}
+
+// =========================
+// CLEAR SEARCH
+// =========================
+
+function clearSearchInput(){
+
+  document.getElementById("searchInput").value = "";
+
+  const resultBox = document.getElementById("searchResult");
+
+  resultBox.innerHTML = "";
+  resultBox.classList.add("hidden");
+
+  document.getElementById("searchInput").focus();
+}
