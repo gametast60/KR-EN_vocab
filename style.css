@@ -548,6 +548,14 @@ button:disabled{
 /* Next chunk button */
 #srsNextChunkBtn { background: #2563eb; }
 
+/* Switch mode button (finish screen) */
+.switch-mode-btn { background: #7c3aed; }
+.switch-mode-btn:hover { background: #6d28d9; }
+
+/* Home button on finish screen — visually de-emphasised */
+.home-finish-btn { background: #6b7280; }
+.home-finish-btn:hover { background: #4b5563; }
+
 /* =========================
    SETTINGS PANEL
 ========================= */
@@ -762,6 +770,51 @@ div.search-word.level-topik2 {
   color:#dc2626;
   font-weight:700;
   padding:10px;
+}
+
+/* =========================
+   ANSWER INPUT WRAP (typing game)
+========================= */
+
+.answer-input-wrap {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.answer-input-wrap input {
+  padding-right: 45px;
+  margin-bottom: 0;
+}
+
+.clear-answer-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e5e7eb;
+  color: #374151;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-answer-btn:hover {
+  background: #d1d5db;
 }
 
 /* =========================

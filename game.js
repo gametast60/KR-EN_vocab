@@ -96,13 +96,28 @@ function startTypingMode(){
 function showWord(){
   const currentWord = shuffledVocabulary[currentIndex];
   document.getElementById("meaning").textContent = currentWord.meaning;
-  document.getElementById("answerInput").value = "";
-  document.getElementById("answerInput").disabled = false;
+  const input = document.getElementById("answerInput");
+  const clearBtn = document.getElementById("clearAnswerBtn");
+  input.value = "";
+  input.disabled = false;
+  clearBtn.classList.add("hidden");
+  input.oninput = () => {
+    clearBtn.classList.toggle("hidden", input.value.length === 0);
+  };
   document.getElementById("checkBtn").disabled = false;
   document.getElementById("result").textContent = "";
   document.getElementById("progress").textContent =
     `คำที่ ${currentIndex + 1} / ${shuffledVocabulary.length}`;
-  document.getElementById("answerInput").focus();
+  input.focus();
+}
+
+function clearAnswerInput(){
+  const input = document.getElementById("answerInput");
+  input.value = "";
+  document.getElementById("clearAnswerBtn").classList.add("hidden");
+  document.getElementById("result").textContent = "";
+  document.getElementById("result").className = "result";
+  input.focus();
 }
 
 function handleEnter(event){
@@ -134,6 +149,8 @@ function checkAnswer(){
   } else {
     result.textContent = `❌ ${currentWord.word}`;
     result.className = "result wrong";
+    input.value = "";
+    input.focus();
     if(!wrongAnswers.some(item => item.word === currentWord.word)){
       wrongAnswers.push(currentWord);
     }
@@ -219,6 +236,17 @@ function checkQuizAnswer(choice){
 // =========================
 function showFinish(){
   goTo("finishScreen");
+
+  // ตั้งป้ายปุ่ม switch mode
+  const switchBtn = document.getElementById("switchModeBtn");
+  if(switchBtn){
+    if(srsSessionMode === "quiz"){
+      switchBtn.textContent = "⌨️ เล่นชุดนี้แบบเติมคำ";
+    } else {
+      switchBtn.textContent = "🔤 เล่นชุดนี้แบบจับคู่";
+    }
+  }
+
   const wrongContainer = document.getElementById("wrongAnswers");
   if(wrongAnswers.length === 0){
     wrongContainer.innerHTML = `<div class="wrong-list"><h3>🎉 ตอบถูกทั้งหมด ยอดเยี่ยมมาก!</h3></div>`;
@@ -230,4 +258,23 @@ function showFinish(){
   });
   html += `</div>`;
   wrongContainer.innerHTML = html;
+}
+
+function replayCurrentMode(){
+  // เล่นซ้ำโหมดเดิม คำชุดเดิม
+  if(srsSessionType === "wrongbox"){
+    startWrongBoxGame(srsSessionMode);
+  } else {
+    startPracticeGame(srsSessionMode);
+  }
+}
+
+function switchMode(){
+  // สลับโหมด คำชุดเดิม
+  const newMode = srsSessionMode === "quiz" ? "typing" : "quiz";
+  if(srsSessionType === "wrongbox"){
+    startWrongBoxGame(newMode);
+  } else {
+    startPracticeGame(newMode);
+  }
 }

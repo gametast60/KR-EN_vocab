@@ -110,12 +110,33 @@ function initAllVocab() {
     : [];
   const data = loadSRS();
   let changed = false;
+
+  // 1. สร้าง Map หรือ Object ของคำศัพท์ปัจจุบันในไฟล์ .js เพื่อให้เช็คได้เร็วขึ้น
+  const currentVocabMap = {};
+  vocab.forEach(item => {
+    currentVocabMap[item.word] = item.meaning;
+  });
+
+  // 2. ลบคำศัพท์ในคลัง SRS ที่ไม่มีอยู่ในไฟล์ .js ปัจจุบันออก (แก้ไขปัญหายอดเกิน)
+  Object.keys(data).forEach(word => {
+    if (!currentVocabMap[word]) {
+      delete data[word];
+      changed = true;
+    } else if (data[word].meaning !== currentVocabMap[word]) {
+      // แถมให้อีกนิด: ถ้าความหมายในไฟล์เปลี่ยน ให้เปลี่ยนตามด้วย
+      data[word].meaning = currentVocabMap[word];
+      changed = true;
+    }
+  });
+
+  // 3. เพิ่มคำศัพท์ใหม่จากไฟล์ .js เข้าคลัง
   vocab.forEach(item => {
     if (!data[item.word]) {
       data[item.word] = { word: item.word, meaning: item.meaning, box: 0, nextReview: null };
       changed = true;
     }
   });
+
   if (changed) saveSRS(data);
 }
 

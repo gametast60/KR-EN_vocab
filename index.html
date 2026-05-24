@@ -218,7 +218,10 @@
     <!-- TYPING GAME -->
     <div id="typingGame" class="screen hidden">
       <div class="meaning" id="meaning"></div>
-      <input type="text" id="answerInput" placeholder="พิมพ์คำศัพท์เกาหลี" onkeydown="handleEnter(event)">
+      <div class="answer-input-wrap">
+        <input type="text" id="answerInput" placeholder="พิมพ์คำศัพท์เกาหลี" onkeydown="handleEnter(event)">
+        <button class="clear-answer-btn hidden" id="clearAnswerBtn" onclick="clearAnswerInput()">✕</button>
+      </div>
       <button id="checkBtn" class="check-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
       <div class="result" id="result"></div>
       <div class="progress" id="progress"></div>
@@ -237,7 +240,9 @@
     <div id="finishScreen" class="screen hidden">
       <div class="finish">🎉 จบแล้ว 🎉</div>
       <div id="wrongAnswers"></div>
-      <button class="restart-btn" onclick="goToSRSDashboard()">🏠 กลับหน้าหลัก</button>
+      <button class="restart-btn" onclick="replayCurrentMode()">🔄 เล่นชุดนี้อีกครั้ง</button>
+      <button class="restart-btn switch-mode-btn" id="switchModeBtn" onclick="switchMode()"></button>
+      <button class="restart-btn home-finish-btn" onclick="goToSRSDashboard()">🏠 กลับหน้าหลัก</button>
     </div>
 
     <!-- SRS FINISH SCREEN (ทวนวันนี้) -->
