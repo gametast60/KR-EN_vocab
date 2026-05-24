@@ -723,7 +723,6 @@ button:disabled{
 .search-word{
   font-size:24px;
   font-weight:800;
-  color:#2563eb;
   margin-bottom:6px;
 }
 
@@ -742,12 +741,20 @@ button:disabled{
   color:white;
 }
 
-.level-topik1{
-  background:#2563eb;
+.level-topik1 {
+  background: #2563eb; /* สีพื้นหลังป้าย TOPIK1 */
+  color: white;        /* สีตัวอักษรในป้าย TOPIK1 */
+}
+div.search-word.level-topik1 {
+  color: #2563eb;
 }
 
-.level-topik2{
-  background:#16a34a;
+.level-topik2 {
+  background: #dc2626; /* 🟢 เปลี่ยนพื้นหลังป้าย TOPIK2 เป็นสีแดง */
+  color: white;        /* สีตัวอักษรในป้าย TOPIK2 */
+}
+div.search-word.level-topik2 {
+  color: #dc2626;      /* 🟢 เปลี่ยนตัวคำศัพท์หลักเป็นสีแดง */
 }
 
 .search-notfound{
@@ -801,4 +808,36 @@ button:disabled{
 
 #searchInput{
   padding-right:45px;
+}
+
+/* ====================================================
+   แก้ไขส่วนสีข้อความคำศัพท์หลักแยกตามระดับ (เจาะจงเฉพาะสีตัวอักษร)
+====================================================== */
+
+/* สั่งให้ข้อความคำศัพท์ของ TOPIK 1 เป็นตัวอักษรสีฟ้า (ไม่มีพื้นหลัง) */
+div.search-word.level-topik1 {
+  color: #2563eb !important;
+  background: transparent !important; /* บังคับให้พื้นหลังโปร่งแสง */
+}
+
+/* สั่งให้ข้อความคำศัพท์ของ TOPIK 2 เป็นตัวอักษรสีแดง (ไม่มีพื้นหลัง) */
+div.search-word.level-topik2 {
+  color: #dc2626 !important;
+  background: transparent !important; /* บังคับให้พื้นหลังโปร่งแสง */
+}
+
+
+/* ====================================================
+   ส่วนของป้ายกำกับกลมๆ ด้านล่าง (ให้แสดงผลเป็นป้ายเหมือนเดิม)
+====================================================== */
+span.search-level.level-topik1, 
+div.search-level.level-topik1 {
+  background: #2563eb !important;
+  color: white !important;
+}
+
+span.search-level.level-topik2, 
+div.search-level.level-topik2 {
+  background: #dc2626 !important;
+  color: white !important;
 }

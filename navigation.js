@@ -588,7 +588,7 @@ function searchVocabulary() {
     html += `
       <div class="search-item">
 
-        <div class="search-word">
+        <div class="search-word ${item.className}">
           ${item.word}
         </div>
 
