@@ -19,7 +19,6 @@ let currentIndex = 0;
 let quizIndex = 0;
 let fcIndex = 0;
 let fcForgotten = [];
-let isSRSMode = false;
 let isDueMode = false;   // ← true เฉพาะ "ทวนวันนี้"
 
 // =========================
@@ -85,21 +84,6 @@ function fcAnswer(known){
   }
 }
 
-// =========================
-// TYPING MODE
-// =========================
-function startTypingMode(){
-  // ฝึกหัด / ทวนคำผิด เท่านั้น — เรียกผ่าน startWrongBoxGame / startPracticeGame
-  currentMode = "typing";
-  isSRSMode = false;
-  isDueMode = false;
-  shuffledVocabulary = shuffleArray([...currentVocabulary]);
-  currentIndex = 0;
-  wrongAnswers = [];
-  goTo("typingGame");
-  showWord();
-}
-
 function showWord(){
   const currentWord = shuffledVocabulary[currentIndex];
   document.getElementById("meaning").textContent = currentWord.meaning;
@@ -162,21 +146,6 @@ function checkAnswer(){
       wrongAnswers.push(currentWord);
     }
   }
-}
-
-// =========================
-// QUIZ MODE
-// =========================
-function startQuizMode(){
-  // ฝึกหัด / ทวนคำผิด เท่านั้น
-  currentMode = "quiz";
-  isSRSMode = false;
-  isDueMode = false;
-  shuffledVocabulary = shuffleArray([...currentVocabulary]);
-  quizIndex = 0;
-  wrongAnswers = [];
-  goTo("quizGame");
-  showQuiz();
 }
 
 function showQuiz(){

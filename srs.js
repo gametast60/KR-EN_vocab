@@ -183,8 +183,8 @@ function getDueChunk() {
   const newWords = all.filter(item => item.box === 0);
 
   const combined = [
-    ...shuffleArraySRS(due),
-    ...shuffleArraySRS(newWords),
+    ...shuffleArray(due),
+    ...shuffleArray(newWords),
   ];
 
   return combined.slice(0, limit);
@@ -194,25 +194,7 @@ function getDueChunk() {
 function getPracticeWords(limit) {
   const data = loadSRS();
   const all = Object.values(data);
-  return shuffleArraySRS(all).slice(0, limit || 20);
-}
-
-function getMixWords() {
-  const data   = loadSRS();
-  const result = [];
-  for (let box = 1; box <= 5; box++) {
-    const words = Object.values(data).filter(item => item.box === box);
-    result.push(...shuffleArraySRS([...words]).slice(0, 4));
-  }
-  return shuffleArraySRS(result);
-}
-
-function shuffleArraySRS(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+  return shuffleArray(all).slice(0, limit || 20);
 }
 
 function recordAnswer(word, correct) {

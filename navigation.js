@@ -8,7 +8,6 @@ let currentVocabulary = [];
 let srsSessionWords = [];
 let srsSessionMode  = "";
 let srsSessionType  = "";   // "due" | "practice" | "wrongbox"
-let srsWrongList    = [];
 
 const backButton = document.getElementById("backButton");
 const homeButton = document.getElementById("homeButton");
@@ -80,8 +79,6 @@ function getTopikVocab(topik){
 function showHelp()    { document.getElementById("helpModal").classList.remove("hidden"); }
 function closeHelpBtn(){ document.getElementById("helpModal").classList.add("hidden"); }
 function closeHelp(e)  { if(e.target === document.getElementById("helpModal")) closeHelpBtn(); }
-
-function showComingSoon(){ alert("🚀 เจอกันเร็วๆนี้ครับ!"); }
 
 // ============================================================
 // SRS DASHBOARD
@@ -159,7 +156,6 @@ function startDueFlashcard(){
   shuffledVocabulary = [...currentVocabulary];
   fcIndex    = 0;
   fcForgotten = [];
-  isSRSMode  = true;
   isDueMode  = true;
   goTo("flashcardGame");
   showFlashcard();
@@ -190,11 +186,11 @@ function startWrongBoxGame(mode){
   currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
   if(mode === "quiz"){
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    quizIndex = 0; wrongAnswers = []; isSRSMode = false;
+    quizIndex = 0; wrongAnswers = [];
     goTo("quizGame"); showQuiz();
   } else {
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    currentIndex = 0; wrongAnswers = []; isSRSMode = false;
+    currentIndex = 0; wrongAnswers = [];
     goTo("typingGame"); showWord();
   }
 }
@@ -219,11 +215,11 @@ function startPracticeGame(mode){
   currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
   if(mode === "quiz"){
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    quizIndex = 0; wrongAnswers = []; isSRSMode = false;
+    quizIndex = 0; wrongAnswers = [];
     goTo("quizGame"); showQuiz();
   } else {
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    currentIndex = 0; wrongAnswers = []; isSRSMode = false;
+    currentIndex = 0; wrongAnswers = [];
     goTo("typingGame"); showWord();
   }
 }
