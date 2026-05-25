@@ -62,11 +62,19 @@ function saveSRS(data) {
 function loadWrongBox() {
   try {
     const raw = JSON.parse(localStorage.getItem(wrongBoxKey()) || "{}");
-    // รีเซ็ตถ้าวันเปลี่ยน
-    if (raw.date !== todayStr()) return { date: todayStr(), words: [] };
+    if (raw.date !== todayStr()) {
+      const fresh = { date: todayStr(), words: [] };
+      saveWrongBox(fresh);
+      return fresh;
+    }
     return raw;
-  } catch(e) { return { date: todayStr(), words: [] }; }
+  } catch(e) {
+    const fresh = { date: todayStr(), words: [] };
+    saveWrongBox(fresh);
+    return fresh;
+  }
 }
+
 function saveWrongBox(wb) {
   localStorage.setItem(wrongBoxKey(), JSON.stringify(wb));
 }
@@ -92,8 +100,13 @@ function clearWrongBox() {
 // DATE HELPERS
 // ==========================================================
 function todayStr() {
-  return new Date().toISOString().slice(0, 10);
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm   = String(d.getMonth() + 1).padStart(2, "0");
+  const dd   = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
 }
+
 function addDays(dateStr, n) {
   const d = new Date(dateStr);
   d.setDate(d.getDate() + n);
