@@ -108,9 +108,13 @@ function todayStr() {
 }
 
 function addDays(dateStr, n) {
-  const d = new Date(dateStr);
+  const [year, month, day] = dateStr.split("-").map(Number);
+  const d = new Date(year, month - 1, day);
   d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0, 10);
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 // รีเซ็ทคำใหม่รายวัน (counter แยกตาม topik)
