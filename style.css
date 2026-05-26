@@ -77,6 +77,14 @@ button:disabled{
   background:#1d4ed8;
 }
 
+.menu-topik2{
+  background:#16a34a;
+}
+
+.menu-topik2:hover{
+  background:#15803d;
+}
+
 /* =========================
    GAME BUTTONS
 ========================= */
