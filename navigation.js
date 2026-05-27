@@ -21,6 +21,7 @@ function showScreen(screenId){
   if(t) t.classList.remove("hidden");
 }
 
+
 function goTo(screenId){
   const cur = document.querySelector(".screen:not(.hidden)");
   if(cur) screenHistory.push(cur.id);
@@ -32,15 +33,15 @@ function goBack(){
   if(screenHistory.length === 0) return;
   const prevScreen = screenHistory.pop();
   showScreen(prevScreen);
-
-  // ✅ แก้บัค: reset title ให้ตรงกับหน้าที่กลับไป
+  ["flashcardProgress","progress","quizProgress"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
   if(prevScreen === "mainMenu"){
     document.getElementById("appTitle").textContent = "TOPIK Vocab by 톤님";
   } else if(prevScreen === "srsDashboard"){
     document.getElementById("appTitle").textContent =
       currentTopik === "topik1" ? "TOPIK 1 by 톤님" : "TOPIK 2 by 톤님";
   }
-
   updateNavButtons();
 }
 

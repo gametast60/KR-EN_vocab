@@ -988,3 +988,18 @@ div.search-level.level-topik2 {
 .stop-fc-btn:hover {
   background: #b91c1c;
 }
+
+/* =========================
+   PROGRESS BADGE (ใต้ title)
+========================= */
+.progress-badge {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin: 4px auto 8px;
+}
+.progress-badge.hidden { display: none; }

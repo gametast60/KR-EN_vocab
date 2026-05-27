@@ -92,7 +92,10 @@
     </div>
   </div>
 
-  <h2 id="appTitle">TOPIK Vocab by 톤님</h2>
+<h2 id="appTitle">TOPIK Vocab by 톤님</h2>
+<div id="flashcardProgress" class="progress-badge hidden"></div>
+<div id="progress"          class="progress-badge hidden"></div>
+<div id="quizProgress"      class="progress-badge hidden"></div>
 
   <div id="app">
 
@@ -206,7 +209,6 @@
 
     <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
 <div id="flashcardGame" class="screen hidden">
-  <div class="progress" id="flashcardProgress"></div>
   <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
 
       <div id="flashcardFront">
@@ -235,7 +237,6 @@
       </div>
       <button id="checkBtn" class="check-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
       <div class="result" id="result"></div>
-      <div class="progress" id="progress"></div>
     </div>
 
     <!-- QUIZ GAME -->
@@ -244,7 +245,6 @@
       <button class="speak-btn" onclick="speakQuizWord()">🔊 ฟังอีกครั้ง</button>
       <div id="choicesContainer"></div>
       <div class="result" id="quizResult"></div>
-      <div class="progress" id="quizProgress"></div>
     </div>
 
     <!-- FINISH SCREEN (ฝึกหัด / ทวนคำผิด) -->

@@ -47,6 +47,7 @@ function showFlashcard(){
   document.getElementById("fcMeaning").textContent = currentWord.meaning;
   document.getElementById("flashcardProgress").textContent =
     `คำที่ ${fcIndex + 1} / ${shuffledVocabulary.length}`;
+  document.getElementById("flashcardProgress").classList.remove("hidden");
   speak(currentWord.word);
 }
 
@@ -99,6 +100,7 @@ function showWord(){
   document.getElementById("result").textContent = "";
   document.getElementById("progress").textContent =
     `คำที่ ${currentIndex + 1} / ${shuffledVocabulary.length}`;
+  document.getElementById("progress").classList.remove("hidden");
   input.focus();
 }
 
@@ -154,6 +156,7 @@ function showQuiz(){
   document.getElementById("quizResult").textContent = "";
   document.getElementById("quizProgress").textContent =
     `คำที่ ${quizIndex + 1} / ${shuffledVocabulary.length}`;
+  document.getElementById("quizProgress").classList.remove("hidden");
 
   const container = document.getElementById("choicesContainer");
   container.innerHTML = "";
