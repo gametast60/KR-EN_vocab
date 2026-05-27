@@ -54,7 +54,7 @@
         <div class="help-title">🔄 โหมดทวนวันนี้</div>
         <ul>
           <li>ดึงคำที่ถึงเวลาทวนมาให้ ครั้งละ <b>20 คำ</b> (ปรับได้ในตั้งค่า)</li>
-          <li>เล่นแบบ Flashcard — กด ✅ จำได้ / ❌ ยังไม่ได้</li>
+          <li>เล่นแบบ Flashcard — กด ✅ จำได้ / ❌ จำไม่ได้</li>
           <li>คำที่กด ❌ จะถูกเก็บเข้า <b>กล่องคำผิด</b> อัตโนมัติ</li>
           <li>เมื่อกล่องคำผิดเต็ม 30 คำ โหมดนี้จะหยุดทันที — ถือว่าโควต้าวันนี้เต็มแล้ว</li>
         </ul>
@@ -205,8 +205,9 @@
     </div>
 
     <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
-    <div id="flashcardGame" class="screen hidden">
-      <div class="progress" id="flashcardProgress"></div>
+<div id="flashcardGame" class="screen hidden">
+  <div class="progress" id="flashcardProgress"></div>
+  <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
 
       <div id="flashcardFront">
         <div class="fc-word" id="fcWord"></div>
@@ -220,7 +221,7 @@
         <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
         <div class="fc-buttons">
           <button class="fc-know-btn" onclick="fcAnswer(true)">✅ จำได้</button>
-          <button class="fc-forget-btn" onclick="fcAnswer(false)">❌ ยังไม่ได้</button>
+          <button class="fc-forget-btn" onclick="fcAnswer(false)">❌ จำไม่ได้</button>
         </div>
       </div>
     </div>

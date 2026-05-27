@@ -30,16 +30,28 @@ function goTo(screenId){
 
 function goBack(){
   if(screenHistory.length === 0) return;
-  showScreen(screenHistory.pop());
+  const prevScreen = screenHistory.pop();
+  showScreen(prevScreen);
+
+  // ✅ แก้บัค: reset title ให้ตรงกับหน้าที่กลับไป
+  if(prevScreen === "mainMenu"){
+    document.getElementById("appTitle").textContent = "TOPIK Vocab by 톤님";
+  } else if(prevScreen === "srsDashboard"){
+    document.getElementById("appTitle").textContent =
+      currentTopik === "topik1" ? "TOPIK 1 by 톤님" : "TOPIK 2 by 톤님";
+  }
+
   updateNavButtons();
 }
 
 function updateNavButtons(){
   const helpBtn = document.getElementById("helpButton");
   const hidden  = screenHistory.length === 0;
-  backButton.classList.toggle("hidden", hidden);
-  homeButton.classList.toggle("hidden", hidden);
-  helpBtn.classList.toggle("hidden", hidden);
+  const inFlashcard = !document.getElementById("flashcardGame").classList.contains("hidden");
+
+  backButton.classList.toggle("hidden", hidden || inFlashcard);
+  homeButton.classList.toggle("hidden", hidden || inFlashcard);
+  helpBtn.classList.toggle("hidden", hidden || inFlashcard);
 }
 
 // ============================================================
@@ -248,7 +260,7 @@ function showSRSFinish(wrongList){
   if(wrongList.length === 0){
     container.innerHTML = `<div class="wrong-list"><h3>🎉 ยอดเยี่ยม! ตอบถูกทั้งหมด</h3>${statusHtml}</div>`;
   } else {
-    let html = `<div class="wrong-list"><h3>❌ คำที่ยังไม่ได้ (${wrongList.length} คำ)</h3>${statusHtml}`;
+    let html = `<div class="wrong-list"><h3>❌ คำที่ยังจำไม่ได้ (${wrongList.length} คำ)</h3>${statusHtml}`;
     wrongList.forEach((item, i) => {
       html += `<div class="wrong-item">${i+1}. <b>${item.word}</b> = ${item.meaning}</div>`;
     });

@@ -254,3 +254,11 @@ function switchMode(){
     startPracticeGame(newMode);
   }
 }
+
+function stopFlashcard(){
+  if(!confirm("⏹ หยุดเล่นกลางคัน?\n\nคำที่กดไปแล้วจะถูกบันทึก\nคำที่ยังไม่ได้เล่นจะไม่มีผล")) return;
+  speechSynthesis.cancel();
+  goBack();
+  renderSRSHome();
+  updateNavButtons();
+}
