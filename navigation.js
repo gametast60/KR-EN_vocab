@@ -26,6 +26,8 @@ function goTo(screenId){
   const cur = document.querySelector(".screen:not(.hidden)");
   if(cur) screenHistory.push(cur.id);
   showScreen(screenId);
+  const hideTitle = screenId === "typingGame" || screenId === "quizGame";
+  document.getElementById("appTitle").classList.toggle("hidden", hideTitle);
   updateNavButtons();
 }
 
@@ -33,6 +35,7 @@ function goBack(){
   if(screenHistory.length === 0) return;
   const prevScreen = screenHistory.pop();
   showScreen(prevScreen);
+  document.getElementById("appTitle").classList.remove("hidden"); // ← เพิ่มตรงนี้
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
