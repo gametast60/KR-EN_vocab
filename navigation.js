@@ -234,24 +234,26 @@ function startWrongBoxGame(mode){
 // ฝึกหัด (Practice)
 // ============================================================
 function openPractice(){
-  const words = getPracticeWordsByBoxes(getPracticeSelectedBoxes(), getPracticeChunkSize());
-  if(words.length === 0){ alert("ยังไม่มีคำศัพท์ในกล่องที่เลือก\nกรุณากดปุ่ม 📦 เลือกกล่องเล่น แล้วเลือกกล่องก่อนนะครับ"); return; }
-  srsSessionWords   = words;
-  srsSessionType    = "practice";
-  currentVocabulary = words.map(i => ({ word: i.word, meaning: i.meaning }));
-
-  // แสดง label กล่องที่เลือกไว้
   renderPracticeBoxFilterLabel();
-
-  document.getElementById("practiceGameInfo").innerHTML = `
-    <div class="srs-session-label">🎮 ฝึกหัด</div>
-    <div class="srs-session-note">สุ่ม ${words.length} คำ — ไม่มีผลต่อ SRS</div>`;
   goTo("practiceGameMenu");
 }
 
 function startPracticeGame(mode){
+  const words = getPracticeWordsByBoxes(getPracticeSelectedBoxes(), getPracticeChunkSize());
+  if(words.length === 0){
+  srsSessionWords = [];          
+  currentVocabulary = [];
+  shuffledVocabulary = [];        
+  alert("ไม่พบคำศัพท์ในกล่องที่เลือก\nกรุณากด 📦 เลือกกล่องเล่น ก่อนนะครับ");
+  return;
+}
+  srsSessionWords   = words;
+  srsSessionType    = "practice";
   srsSessionMode    = mode;
-  currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
+  currentVocabulary = words.map(i => ({ word: i.word, meaning: i.meaning }));
+  document.getElementById("practiceGameInfo").innerHTML = `
+    <div class="srs-session-label">🎮 ฝึกหัด</div>
+    <div class="srs-session-note">สุ่ม ${words.length} คำ — ไม่มีผลต่อ SRS</div>`;
   if(mode === "quiz"){
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
     quizIndex = 0; wrongAnswers = [];
@@ -278,7 +280,7 @@ function getPracticeSelectedBoxes(){
     const raw = localStorage.getItem(practiceBoxesKey());
     if(raw) return JSON.parse(raw);
   } catch(e) {}
-  return [0,1,2,3,4,5,6];
+  return [0,1,2,3,4,5];
 }
 
 function savePracticeSelectedBoxes(arr){
@@ -288,30 +290,13 @@ function savePracticeSelectedBoxes(arr){
 // ดึงคำจากกล่องที่เลือก (ไม่กระทบ SRS)
 function getPracticeWordsByBoxes(selectedBoxes, limit){
   if(!selectedBoxes || selectedBoxes.length === 0) return [];
-  const data = loadSRS(); // จาก srs.js
-  const wrongBoxWords = getWrongBoxWords(); // กล่อง 6
-
+  const data = loadSRS();
   let pool = [];
-
-  // กล่อง 0-5 ดึงจาก SRS data
-  const srsBoxes = selectedBoxes.filter(b => b >= 0 && b <= 5);
-  if(srsBoxes.length > 0){
-    Object.values(data).forEach(item => {
-      if(srsBoxes.includes(item.box)){
-        pool.push({ word: item.word, meaning: item.meaning });
-      }
-    });
-  }
-
-  // กล่อง 6 = กล่องคำผิดวันนี้
-  if(selectedBoxes.includes(6)){
-    wrongBoxWords.forEach(item => {
-      if(!pool.some(p => p.word === item.word)){
-        pool.push({ word: item.word, meaning: item.meaning });
-      }
-    });
-  }
-
+  Object.values(data).forEach(item => {
+    if(selectedBoxes.includes(item.box)){
+      pool.push({ word: item.word, meaning: item.meaning });
+    }
+  });
   pool = shuffleArray(pool);
   return pool.slice(0, Math.min(limit, pool.length));
 }
@@ -355,7 +340,7 @@ function openPracticeBoxModal(){
   updatePracticeBoxSummary();
 
   // อัปเดต "เลือกทั้งหมด"
-  document.getElementById("practiceSelectAll").checked = selected.length === 6;
+  document.getElementById("practiceSelectAll").checked = selected.filter(b => b <= 5).length === 6;
 
   document.getElementById("practiceBoxModal").classList.remove("hidden");
 }
@@ -371,7 +356,7 @@ function updatePracticeBoxSummary(){
   const counts = getPracticeBoxCounts();
 
   const checkedBoxes = cbs.filter(cb => cb.checked).map(cb => parseInt(cb.value));
-  const totalWords   = checkedBoxes.reduce((sum, b) => sum + counts[b], 0);
+  const totalWords = checkedBoxes.reduce((sum, b) => sum + (counts[b] || 0), 0);
 
   document.getElementById("practiceBoxSummary").textContent =
     checkedBoxes.length === 0
@@ -379,7 +364,7 @@ function updatePracticeBoxSummary(){
       : `เลือก ${checkedBoxes.length} กล่อง — รวม ${totalWords} คำ`;
 
   // sync "เลือกทั้งหมด"
-  document.getElementById("practiceSelectAll").checked = checkedBoxes.length === 7;
+  document.getElementById("practiceSelectAll").checked = checkedBoxes.length === 6;
 }
 
 function togglePracticeSelectAll(checked){
@@ -411,10 +396,21 @@ function renderPracticeBoxFilterLabel(){
   if(!el) return;
   const selected = getPracticeSelectedBoxes();
   const counts   = getPracticeBoxCounts();
-  const total    = selected.reduce((s, b) => s + counts[b], 0);
-  el.textContent = selected.length === 7
-    ? `📦 ทุกกล่อง — ${total} คำ`
-    : `📦 กล่อง ${selected.join(", ")} — ${total} คำ`;
+  const total = selected.reduce((s, b) => s + (counts[b] || 0), 0);
+
+  if(total === 0){
+    el.textContent = "⚠️ กล่องที่เลือกไม่มีคำศัพท์";
+  } else {
+    el.textContent = selected.filter(b => b <= 5).length === 6
+      ? `📦 ทุกกล่อง — ${total} คำ`
+      : `📦 กล่อง ${selected.join(", ")} — ${total} คำ`;
+  }
+  el.style.display = "block";
+
+  document.querySelectorAll("#practiceGameMenu .menu-btn").forEach(btn => {
+  if(btn.id === "practiceBoxSelectBtn") return;
+  btn.disabled = total === 0;
+ });
 }
 
 // ============================================================
