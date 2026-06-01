@@ -334,13 +334,12 @@ function openPracticeBoxModal(){
     "กล่อง 2 — 3 วัน",
     "กล่อง 3 — 7 วัน",
     "กล่อง 4 — 14 วัน",
-    "กล่อง 5 — จำได้ ✅",
-    "กล่อง 6 — ❌ คำผิดวันนี้"
+    "กล่อง 5 — จำได้ ✅"
   ];
-  const BOX_COLORS = ["#6b7280","#3b82f6","#8b5cf6","#f59e0b","#ef4444","#16a34a","#db2777"];
+  const BOX_COLORS = ["#6b7280","#3b82f6","#8b5cf6","#d97706","#ef4444","#16a34a","#db2777"];
 
   let html = "";
-  for(let i = 0; i <= 6; i++){
+  for(let i = 0; i <= 5; i++){
     const checked = selected.includes(i) ? "checked" : "";
     html += `
       <label style="display:flex;align-items:center;gap:10px;font-size:15px;padding:9px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;">
@@ -356,7 +355,7 @@ function openPracticeBoxModal(){
   updatePracticeBoxSummary();
 
   // อัปเดต "เลือกทั้งหมด"
-  document.getElementById("practiceSelectAll").checked = selected.length === 7;
+  document.getElementById("practiceSelectAll").checked = selected.length === 6;
 
   document.getElementById("practiceBoxModal").classList.remove("hidden");
 }
