@@ -293,7 +293,7 @@ function getPracticeWordsByBoxes(selectedBoxes, limit){
   const data = loadSRS();
   let pool = [];
   Object.values(data).forEach(item => {
-    if(selectedBoxes.includes(item.box)){
+    if(selectedBoxes.includes(item.box) && item.word && item.meaning){ // ← เพิ่ม check
       pool.push({ word: item.word, meaning: item.meaning });
     }
   });
@@ -303,7 +303,7 @@ function getPracticeWordsByBoxes(selectedBoxes, limit){
 
 // นับจำนวนคำในแต่ละกล่อง (สำหรับแสดงใน popup)
 function getPracticeBoxCounts(){
-  const counts = getBoxCounts(); // [0,1,2,3,4,5] จาก srs.js
+  return getBoxCounts(); // [0,1,2,3,4,5] จาก srs.js
 }
 
 // เปิด popup
