@@ -234,6 +234,8 @@ function startWrongBoxGame(mode){
 // ฝึกหัด (Practice)
 // ============================================================
 function openPractice(){
+  srsSessionWords = [];
+  srsSessionType  = "";
   renderPracticeBoxFilterLabel();
   document.getElementById("practiceGameInfo").innerHTML = `
     <div class="srs-session-label">🎮 ฝึกหัด</div>
@@ -242,27 +244,54 @@ function openPractice(){
 }
 
 function startPracticeGame(mode){
-  const words = getPracticeWordsByBoxes(getPracticeSelectedBoxes(), getPracticeChunkSize());
-  if(words.length === 0){
-  srsSessionWords = [];          
-  currentVocabulary = [];
-  shuffledVocabulary = [];        
-  alert("ไม่พบคำศัพท์ในกล่องที่เลือก\nกรุณากด 📦 เลือกกล่องเล่น ก่อนนะครับ");
-  return;
-}
-  srsSessionWords   = words;
-  srsSessionType    = "practice";
-  srsSessionMode    = mode;
-  currentVocabulary = words.map(i => ({ word: i.word, meaning: i.meaning }));
+
+  // สร้างชุดคำใหม่เฉพาะตอนเริ่มฝึกหัดครั้งแรก
+  if(srsSessionType !== "practice" || srsSessionWords.length === 0){
+
+    const words = getPracticeWordsByBoxes(
+      getPracticeSelectedBoxes(),
+      getPracticeChunkSize()
+    );
+
+    if(words.length === 0){
+      srsSessionWords = [];
+      currentVocabulary = [];
+      shuffledVocabulary = [];
+
+      alert("ไม่พบคำศัพท์ในกล่องที่เลือก\nกรุณากด 📦 เลือกกล่องเล่น ก่อนนะครับ");
+      return;
+    }
+
+    srsSessionWords = words;
+    srsSessionType = "practice";
+  }
+
+  // ใช้ชุดเดิมเสมอเมื่อสลับโหมด
+  srsSessionMode = mode;
+
+  currentVocabulary = srsSessionWords.map(i => ({
+    word: i.word,
+    meaning: i.meaning
+  }));
+
+  // สับลำดับใหม่ทุกครั้ง
+  shuffledVocabulary = shuffleArray([...currentVocabulary]);
 
   if(mode === "quiz"){
-    shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    quizIndex = 0; wrongAnswers = [];
-    goTo("quizGame"); showQuiz();
+
+    quizIndex = 0;
+    wrongAnswers = [];
+
+    goTo("quizGame");
+    showQuiz();
+
   } else {
-    shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    currentIndex = 0; wrongAnswers = [];
-    goTo("typingGame"); showWord();
+
+    currentIndex = 0;
+    wrongAnswers = [];
+
+    goTo("typingGame");
+    showWord();
   }
 }
 
