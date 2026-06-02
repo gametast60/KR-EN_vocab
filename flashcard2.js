@@ -1346,6 +1346,7 @@ window.flashVocabData2 = [
 { word: "수료식", meaning: "พิธีสำเร็จการศึกษา" },
 { word: "수리", meaning: "การซ่อมแซม" },
 { word: "수리비", meaning: "ค่าซ่อม" },
+{ word: "수리하다", meaning: "ซ่อม" },
 { word: "수면", meaning: "การนอนหลับ" },
 { word: "수면제", meaning: "ยานอนหลับ" },
 { word: "수명", meaning: "อายุขัย" },
