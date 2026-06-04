@@ -280,7 +280,10 @@
 <div id="finishScreen" class="screen hidden">
   <div class="finish">🎉 จบแล้ว 🎉</div>
   <div id="wrongAnswers"></div>
-  <button class="restart-btn switch-mode-btn" id="switchModeBtn" onclick="switchMode()"></button>
+  <div style="display:flex; gap:10px; margin-top:8px;">
+    <button class="restart-btn switch-mode-btn" id="switchModeBtn" style="flex:1; margin:0;" onclick="switchMode()"></button>
+    <button class="restart-btn" id="nextSetOtherModeBtn" style="flex:1; margin:0; background:#7c3aed;" onclick="playNextSetOtherMode()"></button>
+  </div>
   <div style="display:flex; gap:10px; margin-top:8px;">
     <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">🔄 เล่นชุดนี้อีกครั้ง</button>
     <button id="nextSetBtn" class="restart-btn" style="flex:1; margin:0; background:#2563eb;" onclick="playNextSet()">▶ เล่นชุดถัดไป</button>

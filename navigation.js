@@ -837,3 +837,29 @@ function playNextSet() {
   // re-enable หลัง render (setTimeout เล็กน้อย)
   setTimeout(() => { if (btn) btn.disabled = false; }, 500);
 }
+
+function playNextSetOtherMode() {
+  const btn = document.getElementById("nextSetOtherModeBtn");
+  if(btn) btn.disabled = true;
+
+  screenHistory = screenHistory.filter(id => id !== "finishScreen");
+  wrongAnswers = [];
+
+  const otherMode = srsSessionMode === "quiz" ? "typing" : "quiz";
+
+  if(srsSessionType === "wrongbox"){
+    const words = getNextWrongboxSet();
+    if(words.length === 0){ goToSRSDashboard(); return; }
+    srsSessionWords = words;
+    currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
+    startWrongBoxGame(otherMode);
+  } else {
+    const words = getNextPracticeSet();
+    if(words.length === 0){ goToSRSDashboard(); return; }
+    srsSessionWords = words;
+    srsSessionType = "practice";
+    startPracticeGame(otherMode);
+  }
+
+  setTimeout(() => { if(btn) btn.disabled = false; }, 500);
+}

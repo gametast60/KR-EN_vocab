@@ -412,12 +412,14 @@ function showFinish(){
   goTo("finishScreen");
 
   const switchBtn = document.getElementById("switchModeBtn");
-  if(switchBtn){
-    if(srsSessionMode === "quiz"){
-      switchBtn.textContent = "⌨️ เล่นชุดนี้แบบเติมคำ";
-    } else {
-      switchBtn.textContent = "🔤 เล่นชุดนี้แบบจับคู่";
-    }
+  const nextOtherBtn = document.getElementById("nextSetOtherModeBtn");
+
+  if(srsSessionMode === "quiz"){
+    if(switchBtn) switchBtn.textContent = "⌨️ ชุดเดิม + เติมคำ";
+    if(nextOtherBtn) nextOtherBtn.textContent = "▶ ชุดใหม่ + เติมคำ";
+  } else {
+    if(switchBtn) switchBtn.textContent = "🔤 ชุดเดิม + จับคู่";
+    if(nextOtherBtn) nextOtherBtn.textContent = "▶ ชุดใหม่ + จับคู่";
   }
 
   const wrongContainer = document.getElementById("wrongAnswers");
