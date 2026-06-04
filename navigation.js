@@ -90,6 +90,10 @@ function openTopik(topik){
 }
 
 function goToSRSDashboard(){
+  practicePool = [];
+  practiceSourceWords = [];
+  wrongboxPool = [];
+  lastPlayedWords = [];
   screenHistory = screenHistory.filter(id => id !== "srsDashboard");
   goTo("srsDashboard");
   renderSRSHome();
@@ -742,4 +746,94 @@ function openWrongBoxInspector(){
 
 function closeBoxInspector(){
   document.getElementById("boxInspectorModal").classList.add("hidden");
+}
+
+// ============================================================
+// NEXT SET POOL — เก็บคำที่ยังไม่ได้เล่นในรอบนี้
+// ============================================================
+let practicePool = [];      // pool สำหรับ practice
+let wrongboxPool = [];      // pool สำหรับ wrongbox
+let lastPlayedWords = [];   // คำชุดล่าสุด (ใช้ exclude)
+let practiceSourceWords = [];
+
+function getNextPracticeSet() {
+  const chunkSize = getPracticeChunkSize();
+  const selectedBoxes = getPracticeSelectedBoxes();
+
+  // ถ้า pool หมดหรือยังไม่มี → rebuild จาก box ที่เลือก
+  if (practicePool.length === 0) {
+    practiceSourceWords = getPracticeWordsByBoxes(selectedBoxes, 99999);
+    practicePool = shuffleArray([...practiceSourceWords]);
+  }
+
+  // พยายาม exclude lastPlayedWords ก่อน
+  let available = practicePool.filter(w => !lastPlayedWords.some(l => l.word === w.word));
+
+  // ถ้า exclude แล้วเหลือน้อยกว่า chunkSize → ใช้ทั้ง pool (วนรอบใหม่)
+  if (available.length < chunkSize) {
+    practicePool = shuffleArray([...practiceSourceWords]); // rebuild
+    available = practicePool;
+  }
+
+  const chunk = available.slice(0, chunkSize);
+  // ตัดคำที่ใช้ไปออกจาก pool
+  practicePool = practicePool.filter(w => !chunk.some(c => c.word === w.word));
+  lastPlayedWords = chunk;
+  return chunk;
+}
+
+function getNextWrongboxSet() {
+  const chunkSize = getWrongChunkSize();
+  const allWords = getWrongBoxWords();
+
+  if (allWords.length === 0) return [];
+
+  // ถ้า pool หมด → rebuild (วนรอบใหม่ — ตรงกับ requirement)
+  if (wrongboxPool.length === 0) {
+    wrongboxPool = shuffleArray([...allWords]);
+  }
+
+  // พยายาม exclude lastPlayedWords
+  let available = wrongboxPool.filter(w => !lastPlayedWords.some(l => l.word === w.word));
+  if (available.length === 0) {
+    // วนรอบใหม่ทั้งหมด
+    wrongboxPool = shuffleArray([...allWords]);
+    available = wrongboxPool;
+  }
+
+  const chunk = available.slice(0, chunkSize);
+  wrongboxPool = wrongboxPool.filter(w => !chunk.some(c => c.word === w.word));
+  lastPlayedWords = chunk;
+  return chunk;
+}
+
+// ============================================================
+// PLAY NEXT SET — ฟังก์ชันหลัก
+// ============================================================
+function playNextSet() {
+  // ป้องกัน double-click
+  const btn = document.getElementById("nextSetBtn");
+  if (btn) btn.disabled = true;
+
+  // reset history เพื่อไม่ให้ย้อนกลับไปหน้าสรุปเก่า
+  screenHistory = screenHistory.filter(id => id !== "finishScreen");
+  wrongAnswers = [];
+
+  if (srsSessionType === "wrongbox") {
+    const words = getNextWrongboxSet();
+    if (words.length === 0) { goToSRSDashboard(); return; }
+    srsSessionWords = words;
+    currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
+    startWrongBoxGame(srsSessionMode); // ใช้ gameType เดิม
+  } else {
+    // practice
+    const words = getNextPracticeSet();
+    if (words.length === 0) { goToSRSDashboard(); return; }
+    srsSessionWords = words;
+    srsSessionType = "practice"; // set ก่อนเรียก startPracticeGame
+    startPracticeGame(srsSessionMode); // ใช้ gameType เดิม
+  }
+
+  // re-enable หลัง render (setTimeout เล็กน้อย)
+  setTimeout(() => { if (btn) btn.disabled = false; }, 500);
 }

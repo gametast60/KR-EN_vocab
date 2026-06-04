@@ -277,13 +277,16 @@
     </div>
 
     <!-- FINISH SCREEN (ฝึกหัด / ทวนคำผิด) -->
-    <div id="finishScreen" class="screen hidden">
-      <div class="finish">🎉 จบแล้ว 🎉</div>
-      <div id="wrongAnswers"></div>
-      <button class="restart-btn" onclick="replayCurrentMode()">🔄 เล่นชุดนี้อีกครั้ง</button>
-      <button class="restart-btn switch-mode-btn" id="switchModeBtn" onclick="switchMode()"></button>
-      <button class="restart-btn home-finish-btn" onclick="goToSRSDashboard()">🏠 กลับหน้า SRS</button>
-    </div>
+<div id="finishScreen" class="screen hidden">
+  <div class="finish">🎉 จบแล้ว 🎉</div>
+  <div id="wrongAnswers"></div>
+  <button class="restart-btn switch-mode-btn" id="switchModeBtn" onclick="switchMode()"></button>
+  <div style="display:flex; gap:10px; margin-top:8px;">
+    <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">🔄 เล่นชุดนี้อีกครั้ง</button>
+    <button id="nextSetBtn" class="restart-btn" style="flex:1; margin:0; background:#2563eb;" onclick="playNextSet()">▶ เล่นชุดถัดไป</button>
+  </div>
+  <button class="restart-btn home-finish-btn" onclick="goToSRSDashboard()">🏠 กลับหน้า SRS</button>
+</div>
 
     <!-- SRS FINISH SCREEN (ทวนวันนี้) -->
     <div id="srsFinishScreen" class="screen hidden">
