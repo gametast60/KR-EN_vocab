@@ -169,7 +169,7 @@
           <label><input type="checkbox" id="clearWrongBoxCheck"> กล่องคำผิด (❌)</label>
         </div>
         <div style="display:flex;gap:8px;margin-top:8px">
-  <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ตกล่องที่เลือก</button>
+  <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ต</button>
   <button class="settings-btn" style="flex:1;margin-top:0;background:#6b7280;color:white;padding:4px 12px" onclick="document.querySelectorAll('#clearBoxChecks input').forEach(cb=>cb.checked=false)">ลบที่เลือก</button>
 </div>
       </div>
@@ -285,7 +285,7 @@
     <button class="restart-btn" id="nextSetOtherModeBtn" style="flex:1; margin:0; background:#7c3aed;" onclick="playNextSetOtherMode()"></button>
   </div>
   <div style="display:flex; gap:10px; margin-top:8px;">
-    <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">🔄 เล่นชุดนี้อีกครั้ง</button>
+    <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">เล่นชุดนี้อีกครั้ง</button>
     <button id="nextSetBtn" class="restart-btn" style="flex:1; margin:0; background:#2563eb;" onclick="playNextSet()">▶ เล่นชุดถัดไป</button>
   </div>
   <button class="restart-btn home-finish-btn" onclick="goToSRSDashboard()">🏠 กลับหน้า SRS</button>

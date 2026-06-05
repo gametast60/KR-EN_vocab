@@ -415,11 +415,11 @@ function showFinish(){
   const nextOtherBtn = document.getElementById("nextSetOtherModeBtn");
 
   if(srsSessionMode === "quiz"){
-    if(switchBtn) switchBtn.textContent = "⌨️ ชุดเดิม + เติมคำ";
-    if(nextOtherBtn) nextOtherBtn.textContent = "▶ ชุดใหม่ + เติมคำ";
+    if(switchBtn) switchBtn.textContent = "ชุดเดิม + เติมคำ";
+    if(nextOtherBtn) nextOtherBtn.textContent = "ชุดใหม่ + เติมคำ";
   } else {
-    if(switchBtn) switchBtn.textContent = "🔤 ชุดเดิม + จับคู่";
-    if(nextOtherBtn) nextOtherBtn.textContent = "▶ ชุดใหม่ + จับคู่";
+    if(switchBtn) switchBtn.textContent = "ชุดเดิม + จับคู่";
+    if(nextOtherBtn) nextOtherBtn.textContent = "ชุดใหม่ + จับคู่";
   }
 
   const wrongContainer = document.getElementById("wrongAnswers");
