@@ -414,13 +414,13 @@ function showFinish(){
   const switchBtn = document.getElementById("switchModeBtn");
   const nextOtherBtn = document.getElementById("nextSetOtherModeBtn");
 
-  if(srsSessionMode === "quiz"){
-    if(switchBtn) switchBtn.textContent = "ชุดเดิม + เติมคำ";
-    if(nextOtherBtn) nextOtherBtn.textContent = "ชุดใหม่ + เติมคำ";
-  } else {
-    if(switchBtn) switchBtn.textContent = "ชุดเดิม + จับคู่";
-    if(nextOtherBtn) nextOtherBtn.textContent = "ชุดใหม่ + จับคู่";
-  }
+if(srsSessionMode === "quiz"){
+  if(switchBtn){ switchBtn.textContent = "ไปเติมคำ"; switchBtn.style.background = "#7c3aed"; }
+  if(nextOtherBtn){ nextOtherBtn.textContent = "ชุดใหม่ + เติมคำ"; nextOtherBtn.style.background = "#208deb"; }
+} else {
+  if(switchBtn){ switchBtn.textContent = "ชุดเดิม + จับคู่"; switchBtn.style.background = "#208deb"; }
+  if(nextOtherBtn){ nextOtherBtn.textContent = "ไปจับคู่"; nextOtherBtn.style.background = "#7c3aed"; }
+}
 
   const wrongContainer = document.getElementById("wrongAnswers");
   if(wrongAnswers.length === 0){
