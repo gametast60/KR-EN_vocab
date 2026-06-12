@@ -415,11 +415,11 @@ function showFinish(){
   const nextOtherBtn = document.getElementById("nextSetOtherModeBtn");
 
 if(srsSessionMode === "quiz"){
-  if(switchBtn){ switchBtn.textContent = "ไปเติมคำ"; switchBtn.style.background = "#7c3aed"; }
+  if(switchBtn){ switchBtn.textContent = "ไปเติมคำ"; switchBtn.style.background = "#7c3aed"; } //ชุดเดิมจากโหมดจับคู่
   if(nextOtherBtn){ nextOtherBtn.textContent = "ชุดใหม่ + เติมคำ"; nextOtherBtn.style.background = "#208deb"; }
 } else {
   if(switchBtn){ switchBtn.textContent = "ชุดเดิม + จับคู่"; switchBtn.style.background = "#208deb"; }
-  if(nextOtherBtn){ nextOtherBtn.textContent = "ไปจับคู่"; nextOtherBtn.style.background = "#7c3aed"; }
+  if(nextOtherBtn){ nextOtherBtn.textContent = "ไปจับคู่"; nextOtherBtn.style.background = "#7c3aed"; } //สุ่มไพ่ใหม่
 }
 
   const wrongContainer = document.getElementById("wrongAnswers");

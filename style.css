@@ -1256,3 +1256,15 @@ div.search-level.level-topik2 {
 .home-finish-btn{
     background:#f97316;
 }
+
+.app-title-badge {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border: 2px solid #93c5fd;
+  border-radius: 10px;
+  padding: 8px 20px;
+  margin-bottom: 14px;
+}
