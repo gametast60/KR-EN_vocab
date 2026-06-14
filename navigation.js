@@ -630,7 +630,7 @@ localStorage.setItem(srsSettingsKey(), JSON.stringify(s));
 }
 
 function syncVocabAndClearCache(){
-  if(!confirm("จะอัปเดตคำศัพท์ใหม่จากไฟล์ .js และเคลียร์แคชเบราว์เซอร์\nคำเดิมและข้อมูล SRS ไม่หาย — ตกลงไหมครับ?")) return;
+  if(!confirm("ยืนยันการอัพเดทเวอร์ชั่นใหม่?\n'ตกลง' หรือไม่?")) return;
   initAllVocab();
   caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
     alert("✅ อัปเดตเสร็จแล้ว! กำลัง reload...");
@@ -863,6 +863,7 @@ function playNextSetOtherMode() {
   setTimeout(() => { if(btn) btn.disabled = false; }, 500);
 }
 
+/// ซ่อนชื่อ TOPIK 1/2 by 톤님 ในหน้าเล่นเกมส์
 function updateTitleVisibility(){
   const cur = document.querySelector(".screen:not(.hidden)")?.id;
   const hide = ["flashcardGame","quizGame","typingGame", "srsStats"];
