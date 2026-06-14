@@ -14,7 +14,6 @@ function shuffleArray(array){
 // =========================
 let shuffledVocabulary = [];
 let wrongAnswers = [];
-let currentMode = "";
 let currentIndex = 0;
 let quizIndex = 0;
 let fcIndex = 0;
@@ -38,7 +37,6 @@ function speak(text){
   utterance.rate = 0.9;
   speechSynthesis.speak(utterance);
 }
-function speakWord(){ speak(shuffledVocabulary[currentIndex].word); }
 function speakQuizWord(){ speak(shuffledVocabulary[quizIndex].word); }
 function speakFlashcard(){
   if(dueStage === 2){
@@ -63,6 +61,7 @@ function showFlashcard(){
   badge.classList.remove("stage2");
   badge.classList.remove("hidden");
   speak(currentWord.word);
+  updateTitleVisibility();
 }
 
 function flipCard(){
@@ -294,6 +293,7 @@ function showWord(){
     `คำที่ ${currentIndex + 1} / ${shuffledVocabulary.length}`;
   document.getElementById("progress").classList.remove("hidden");
   input.focus();
+  updateTitleVisibility();
 }
 
 function clearAnswerInput(){
@@ -375,6 +375,7 @@ function showQuiz(){
   });
 
   speak(currentWord.word);
+  updateTitleVisibility();
 }
 
 function checkQuizAnswer(choice){

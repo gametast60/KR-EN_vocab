@@ -30,8 +30,7 @@ function goTo(screenId){
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
-  const hideTitle = screenId === "typingGame" || screenId === "quizGame" || screenId === "flashcardGame";
-  document.getElementById("appTitle").classList.toggle("hidden", hideTitle);
+  updateTitleVisibility();
   updateNavButtons();
 }
 
@@ -862,4 +861,10 @@ function playNextSetOtherMode() {
   }
 
   setTimeout(() => { if(btn) btn.disabled = false; }, 500);
+}
+
+function updateTitleVisibility(){
+  const cur = document.querySelector(".screen:not(.hidden)")?.id;
+  const hide = ["flashcardGame","quizGame","typingGame", "srsStats"];
+  document.getElementById("appTitle").classList.toggle("hidden", hide.includes(cur));
 }

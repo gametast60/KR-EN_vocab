@@ -208,13 +208,6 @@ function getDueChunk() {
   return combined.slice(0, limit);
 }
 
-// "ฝึกหัด" — สุ่มจากกล่อง 0-5 ทั้งหมด ไม่มีผล SRS
-function getPracticeWords(limit) {
-  const data = loadSRS();
-  const all = Object.values(data);
-  return shuffleArray(all).slice(0, limit || 20);
-}
-
 function recordAnswer(word, correct) {
   const data  = loadSRS();
   const today = todayStr();

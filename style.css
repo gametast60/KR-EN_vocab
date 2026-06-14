@@ -230,7 +230,7 @@ button:disabled{
    HIDDEN
 ========================= */
 
-.hidden{ display:none; }
+.hidden { display: none !important; }
 
 /* =========================
    FINISH
