@@ -85,6 +85,22 @@ button:disabled{
   background:#15803d;
 }
 
+.lang-korean-btn{
+  background:#f70303;
+}
+
+.lang-korean-btn:hover{
+  background:#f66060;
+}
+
+.lang-english-btn{
+  background:#022bf6;
+}
+
+.lang-english-btn:hover{
+  background:#605bf5;
+}
+
 /* =========================
    GAME BUTTONS
 ========================= */
@@ -1317,3 +1333,27 @@ div.search-level.level-topik2 {
   background: #e5e7eb;
   margin: 12px 0;
 }
+
+/* A1 — เขียว */
+.level-en-a1 { background: #16a34a; color: white; }
+div.search-word.level-en-a1 { color: #16a34a !important; background: transparent !important; }
+span.search-level.level-en-a1,
+div.search-level.level-en-a1 { background: #16a34a !important; color: white !important; }
+
+/* A2 — ฟ้า */
+.level-en-a2 { background: #0891b2; color: white; }
+div.search-word.level-en-a2 { color: #0891b2 !important; background: transparent !important; }
+span.search-level.level-en-a2,
+div.search-level.level-en-a2 { background: #0891b2 !important; color: white !important; }
+
+/* B1 — ม่วง */
+.level-en-b1 { background: #7c3aed; color: white; }
+div.search-word.level-en-b1 { color: #7c3aed !important; background: transparent !important; }
+span.search-level.level-en-b1,
+div.search-level.level-en-b1 { background: #7c3aed !important; color: white !important; }
+
+/* B2 — ส้ม */
+.level-en-b2 { background: #ea580c; color: white; }
+div.search-word.level-en-b2 { color: #ea580c !important; background: transparent !important; }
+span.search-level.level-en-b2,
+div.search-level.level-en-b2 { background: #ea580c !important; color: white !important; }

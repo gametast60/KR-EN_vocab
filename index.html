@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TOPIK Vocab by 톤님</title>
+  <title>Vocab by 톤님</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <script>
@@ -25,7 +25,7 @@
     <div class="help-content">
       <button class="help-close-btn" onclick="closeHelpBtn()">✕</button>
 
-      <h3>วิธีการใช้งาน<br>TOPIK Vocab by 톤님</h3>
+      <h3>วิธีการใช้งาน<br>Vocab by 톤님</h3>
 
       <div class="help-section">
         <div class="help-title">🎯 เป้าหมายของแต่ละวัน</div>
@@ -92,50 +92,56 @@
     </div>
   </div>
 
-<h2 id="appTitle" class="app-title-badge">TOPIK Vocab by 톤님</h2>
+<h2 id="appTitle" class="app-title-badge">Vocab by 톤님</h2>
 <div id="flashcardProgress" class="progress-badge hidden"></div>
 <div id="progress"          class="progress-badge hidden"></div>
 <div id="quizProgress"      class="progress-badge hidden"></div>
 
   <div id="app">
 
-    <!-- MAIN MENU -->
+    <!-- MAIN MENU: เลือกภาษา -->
     <div id="mainMenu" class="screen">
+      <div class="search-box">
+        <div class="search-input-wrap">
+          <input type="text" id="searchInput" placeholder="ค้นหาคำศัพท์..."
+            oninput="searchVocabulary()" onkeydown="handleSearchEnter(event)">
+          <button class="clear-search-btn" onclick="clearSearchInput()">✕</button>
+        </div>
+        <div id="searchResult" class="search-result hidden"></div>
+      </div>
+      <button class="menu-btn menu-topik lang-korean-btn" onclick="openLanguage('korean')">
+        KR ภาษาเกาหลี
+      </button>
+      <button class="menu-btn menu-topik lang-english-btn" onclick="openLanguage('english')">
+        EN ภาษาอังกฤษ
+      </button>
+    </div>
 
-      <!-- SEARCH VOCAB -->
-  <div class="search-box">
+    <!-- KOREAN LEVEL MENU -->
+    <div id="koreanMenu" class="screen hidden">
+      <button class="menu-btn menu-topik" onclick="openTopik('topik1')">
+        📘 TOPIK 1
+      </button>
+      <button class="menu-btn menu-topik menu-topik2" onclick="openTopik('topik2')">
+        📗 TOPIK 2
+      </button>
+    </div>
 
-    <div class="search-input-wrap">
-
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="ค้นหาคำศัพท์..."
-    oninput="searchVocabulary()"
-    onkeydown="handleSearchEnter(event)"
-  >
-
-  <button
-    class="clear-search-btn"
-    onclick="clearSearchInput()"
-  >
-    ✕
-  </button>
-
-  </div>
-    <div id="searchResult" class="search-result hidden"></div>
-
-  </div>
-
-  <button class="menu-btn menu-topik" onclick="openTopik('topik1')">
-    📘 TOPIK 1
-  </button>
-
-  <button class="menu-btn menu-topik menu-topik2" onclick="openTopik('topik2')">
-    📗 TOPIK 2
-  </button>
-
-</div>
+    <!-- ENGLISH LEVEL MENU -->
+    <div id="englishMenu" class="screen hidden">
+      <button class="menu-btn" style="background:#1c54ae;" onclick="openTopik('english_a1')">
+        📗 A1 — Beginner
+      </button>
+      <button class="menu-btn" style="background:#0249b9;" onclick="openTopik('english_a2')">
+        📘 A2 — Elementary
+      </button>
+      <button class="menu-btn" style="background:#33ba2c;" onclick="openTopik('english_b1')">
+        📙 B1 — Intermediate
+      </button>
+      <button class="menu-btn" style="background:#0dc203;" onclick="openTopik('english_b2')">
+        📕 B2 — Upper Intermediate
+      </button>
+    </div>
 
     <!-- SRS DASHBOARD -->
     <div id="srsDashboard" class="screen hidden">
@@ -389,6 +395,10 @@
 
 <script src="flashcard1.js"></script>
 <script src="flashcard2.js"></script>
+<script src="flashcard_en_a1.js"></script>
+<script src="flashcard_en_a2.js"></script>
+<script src="flashcard_en_b1.js"></script>
+<script src="flashcard_en_b2.js"></script>
 <script src="srs.js"></script>
 <script src="game.js"></script>
 <script src="navigation.js"></script>

@@ -30,10 +30,17 @@ let fillCorrectCount = 0;
 // =========================
 // SPEAK
 // =========================
+function getSpeechLang(){
+  if(typeof currentTopik === "string" && currentTopik.startsWith("english_")){
+    return "en-US";
+  }
+  return "ko-KR";
+}
+
 function speak(text){
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "ko-KR";
+  utterance.lang = getSpeechLang();
   utterance.rate = 0.9;
   speechSynthesis.speak(utterance);
 }

@@ -43,11 +43,19 @@ function goBack(){
     document.getElementById(id).classList.add("hidden");
   });
   if(prevScreen === "mainMenu"){
-    document.getElementById("appTitle").textContent = "TOPIK Vocab by 톤님";
+    document.getElementById("appTitle").textContent = "Vocab by 톤님";
+  } else if(prevScreen === "koreanMenu"){
+    document.getElementById("appTitle").textContent = "KR ภาษาเกาหลี";
+  } else if(prevScreen === "englishMenu"){
+    document.getElementById("appTitle").textContent = "EN ภาษาอังกฤษ";
   } else if(prevScreen === "srsDashboard"){
-    document.getElementById("appTitle").textContent =
-      currentTopik === "topik1" ? "TOPIK 1 by 톤님" : "TOPIK 2 by 톤님";
-      renderSRSHome();
+    const TITLES = {
+      topik1:"TOPIK 1", topik2:"TOPIK 2",
+      english_a1:"English A1", english_a2:"English A2",
+      english_b1:"English B1", english_b2:"English B2",
+    };
+    document.getElementById("appTitle").textContent = TITLES[currentTopik] || currentTopik;
+    renderSRSHome();
   }
   updateNavButtons();
 }
@@ -66,12 +74,12 @@ function updateNavButtons(){
 }
 
 // ============================================================
-// MAIN MENU & TOPIK
+// MAIN MENU
 // ============================================================
 function showMainMenu(){
   screenHistory = [];
   currentTopik  = "";
-  document.getElementById("appTitle").textContent = "TOPIK Vocab by 톤님";
+  document.getElementById("appTitle").textContent = "Vocab by 톤님";
   document.getElementById("appTitle").classList.remove("hidden");
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
@@ -80,10 +88,27 @@ function showMainMenu(){
   updateNavButtons();
 }
 
+function openLanguage(lang){
+  if(lang === "korean"){
+    document.getElementById("appTitle").textContent = "KR ภาษาเกาหลี";
+    goTo("koreanMenu");
+  } else {
+    document.getElementById("appTitle").textContent = "EN ภาษาอังกฤษ";
+    goTo("englishMenu");
+  }
+}
+
 function openTopik(topik){
   currentTopik = topik;
-  document.getElementById("appTitle").textContent =
-    topik === "topik1" ? "TOPIK 1 by 톤님" : "TOPIK 2 by 톤님";
+  const TITLES = {
+    topik1:     "TOPIK 1",
+    topik2:     "TOPIK 2",
+    english_a1: "English A1",
+    english_a2: "English A2",
+    english_b1: "English B1",
+    english_b2: "English B2",
+  };
+  document.getElementById("appTitle").textContent = TITLES[topik] || topik;
   goTo("srsDashboard");
   renderSRSHome();
 }
@@ -99,8 +124,12 @@ function goToSRSDashboard(){
 }
 
 function getTopikVocab(topik){
-  if(topik === "topik1") return window.flashVocabData1 || [];
-  if(topik === "topik2") return window.flashVocabData2 || [];
+  if(topik === "topik1")     return window.flashVocabData1      || [];
+  if(topik === "topik2")     return window.flashVocabData2      || [];
+  if(topik === "english_a1") return window.flashVocabDataEnA1   || [];
+  if(topik === "english_a2") return window.flashVocabDataEnA2   || [];
+  if(topik === "english_b1") return window.flashVocabDataEnB1   || [];
+  if(topik === "english_b2") return window.flashVocabDataEnB2   || [];
   return [];
 }
 
@@ -642,18 +671,47 @@ function syncVocabAndClearCache(){
 // BACKUP / RESTORE
 // ============================================================
 
-const BACKUP_FORMAT_VERSION = 1;
+const BACKUP_FORMAT_VERSION = 2;
+
+const BACKUP_TOPIKS = [
+  { id: "topik1", label: "TOPIK 1" },
+  { id: "topik2", label: "TOPIK 2" },
+  { id: "english_a1", label: "English A1" },
+  { id: "english_a2", label: "English A2" },
+  { id: "english_b1", label: "English B1" },
+  { id: "english_b2", label: "English B2" },
+];
 
 // key ทั้งหมดที่ต้อง backup (ไม่รวม date keys)
 function getBackupKeys() {
-  return [
-    "topik_srs_topik1_v1",
-    "topik_srs_topik2_v1",
-    "topik_srs_settings_topik1",
-    "topik_srs_settings_topik2",
-    "topik_practice_boxes_topik1",
-    "topik_practice_boxes_topik2",
-  ];
+  const keys = [];
+  BACKUP_TOPIKS.forEach(({ id }) => {
+    keys.push(
+      `topik_srs_${id}_v1`,
+      `topik_srs_settings_${id}`,
+      `topik_practice_boxes_${id}`,
+    );
+  });
+  return keys;
+}
+
+function getBackupTopikLabel(topikId) {
+  const item = BACKUP_TOPIKS.find(topik => topik.id === topikId);
+  return item ? item.label : topikId;
+}
+
+function getBackupSrsKeys() {
+  return BACKUP_TOPIKS.map(({ id }) => `topik_srs_${id}_v1`);
+}
+
+function getBackupSummary(payload) {
+  return BACKUP_TOPIKS.map(({ id, label }) => {
+    const srsKey = `topik_srs_${id}_v1`;
+    const data = safeParseJSON(payload.localStorage[srsKey], {});
+    const counts = calcBoxCounts(data);
+    const overdue = Object.values(data).filter(item => item.box >= 1 && item.box <= 4 && item.nextReview && item.nextReview <= todayStr()).length;
+    return { id, label, counts, overdue };
+  });
 }
 
 // ---- BACKUP ----
@@ -726,19 +784,11 @@ function showRestorePreview(payload) {
     ? new Date(payload.createdAt).toLocaleString("th-TH", { dateStyle:"medium", timeStyle:"short" })
     : "ไม่ทราบ";
 
-  // แยก parse SRS แต่ละ topik
-  const srs1 = safeParseJSON(payload.localStorage["topik_srs_topik1_v1"], {});
-  const srs2 = safeParseJSON(payload.localStorage["topik_srs_topik2_v1"], {});
-
-  const counts1 = calcBoxCounts(srs1);
-  const counts2 = calcBoxCounts(srs2);
-
-  // คำนวณ "เลยกำหนดแล้ว" ถ้าใช้ตารางเดิม
-  const today = todayStr();
-  const overdue1 = Object.values(srs1).filter(i => i.box >= 1 && i.box <= 4 && i.nextReview && i.nextReview <= today).length;
-  const overdue2 = Object.values(srs2).filter(i => i.box >= 1 && i.box <= 4 && i.nextReview && i.nextReview <= today).length;
+  const summary = getBackupSummary(payload);
+  const totalOverdue = summary.reduce((sum, item) => sum + item.overdue, 0);
 
   // คำนวณ nextReview ถ้าเลือก reset
+  const today = todayStr();
   const resetDates = calcResetDates(today);
 
   const BOX_LABELS = ["ใหม่","1วัน","3วัน","7วัน","14วัน","จำได้✅"];
@@ -759,11 +809,10 @@ function showRestorePreview(payload) {
       <div style="font-size:14px;color:#374151;margin-top:4px">สร้างเมื่อ: <b>${createdAt}</b></div>
     </div>
 
-    <div style="font-weight:800;font-size:15px;color:#111827;margin-bottom:8px">📘 TOPIK 1</div>
-    ${boxTable(counts1)}
-
-    <div style="font-weight:800;font-size:15px;color:#111827;margin:14px 0 8px">📗 TOPIK 2</div>
-    ${boxTable(counts2)}
+    ${summary.map(item => `
+      <div style="font-weight:800;font-size:15px;color:#111827;margin:14px 0 8px">${item.label}</div>
+      ${boxTable(item.counts)}
+    `).join("")}
 
     <div style="margin-top:16px;font-weight:800;font-size:15px;color:#111827">🔄 เลือกวิธีกู้คืน</div>
 
@@ -779,8 +828,8 @@ function showRestorePreview(payload) {
       <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:#6b7280;width:16px;height:16px;flex-shrink:0">
       <div>
         <div style="font-weight:700;color:#374151;font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
-        ${(overdue1 + overdue2) > 0
-          ? `<div style="font-size:12px;color:#dc2626;margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${overdue1 + overdue2} คำ (TOPIK1: ${overdue1}, TOPIK2: ${overdue2})</div>`
+        ${totalOverdue > 0
+          ? `<div style="font-size:12px;color:#dc2626;margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${totalOverdue} คำ</div>`
           : `<div style="font-size:12px;color:#6b7280;margin-top:3px">ยังไม่มีคำเลยกำหนด</div>`}
       </div>
     </label>
@@ -827,7 +876,7 @@ function confirmRestore() {
       if (snap[key] === undefined) return; // ไม่มีใน backup → ข้าม
 
       // SRS data: ถ้าเลือก reset → คำนวณ nextReview ใหม่
-      if (key.startsWith("topik_srs_topik") && _pendingRestoreMode === "reset") {
+      if (key.startsWith("topik_srs_") && key.endsWith("_v1") && _pendingRestoreMode === "reset") {
         const data = safeParseJSON(snap[key], {});
         Object.keys(data).forEach(word => {
           const item = data[word];
@@ -901,18 +950,40 @@ function searchVocabulary(){
   const resultBox = document.getElementById("searchResult");
   if(!keyword){ resultBox.classList.add("hidden"); resultBox.innerHTML = ""; return; }
 
-  const vocab1 = window.flashVocabData1 || [];
-  const vocab2 = window.flashVocabData2 || [];
-  let found = [];
+  const sources = [
+    { data: window.flashVocabData1,    level: "TOPIK1",  className: "level-topik1" },
+    { data: window.flashVocabData2,    level: "TOPIK2",  className: "level-topik2" },
+    { data: window.flashVocabDataEnA1, level: "EN A1",   className: "level-en-a1" },
+    { data: window.flashVocabDataEnA2, level: "EN A2",   className: "level-en-a2" },
+    { data: window.flashVocabDataEnB1, level: "EN B1",   className: "level-en-b1" },
+    { data: window.flashVocabDataEnB2, level: "EN B2",   className: "level-en-b2" },
+  ];
 
-  vocab1.forEach(item => {
-    if(item.word.toLowerCase().includes(keyword) || item.meaning.toLowerCase().includes(keyword))
-      found.push({ word: item.word, meaning: item.meaning, level: "TOPIK1", className: "level-topik1" });
+  const foundBySource = sources.map(({ data, level, className }) => {
+    const matches = [];
+    (data || []).forEach(item => {
+      if(!item || typeof item.word !== "string" || typeof item.meaning !== "string") return;
+      const word = item.word.toLowerCase();
+      const meaning = item.meaning.toLowerCase();
+      if(word.includes(keyword) || meaning.includes(keyword)) {
+        matches.push({ word: item.word, meaning: item.meaning, level, className });
+      }
+    });
+    return matches;
   });
-  vocab2.forEach(item => {
-    if(item.word.toLowerCase().includes(keyword) || item.meaning.toLowerCase().includes(keyword))
-      found.push({ word: item.word, meaning: item.meaning, level: "TOPIK2", className: "level-topik2" });
-  });
+
+  const found = [];
+  let hasMore = true;
+  while(hasMore){
+    hasMore = false;
+    foundBySource.forEach(matches => {
+      const item = matches.shift();
+      if(item){
+        found.push(item);
+        hasMore = true;
+      }
+    });
+  }
 
   if(found.length === 0){
     resultBox.innerHTML = `<div class="search-notfound">❌ ไม่พบคำศัพท์</div>`;
@@ -920,7 +991,6 @@ function searchVocabulary(){
     return;
   }
 
-  found = found.slice(0, 10);
   resultBox.innerHTML = found.map(item => `
     <div class="search-item">
       <div class="search-word ${item.className}">${item.word}</div>
