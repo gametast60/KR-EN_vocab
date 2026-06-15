@@ -184,27 +184,7 @@
 
       <div class="settings-divider"></div>
 
-      <!-- เคลียร์กล่อง -->
-      <div class="settings-section">
-        <div class="settings-title">🗂 เคลียร์กล่อง (รีเซ็ตกลับกล่อง 0)</div>
-        <div class="settings-desc">เลือกกล่องที่ต้องการรีเซ็ต</div>
-        <div class="settings-checkboxes" id="clearBoxChecks">
-          <label><input type="checkbox" value="1"> กล่อง 1 (1วัน)</label>
-          <label><input type="checkbox" value="2"> กล่อง 2 (3วัน)</label>
-          <label><input type="checkbox" value="3"> กล่อง 3 (7วัน)</label>
-          <label><input type="checkbox" value="4"> กล่อง 4 (14วัน)</label>
-          <label><input type="checkbox" value="5"> กล่อง 5 (จำได้✅)</label>
-          <label><input type="checkbox" id="clearWrongBoxCheck"> กล่องคำผิด (❌)</label>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-  <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ต</button>
-  <button class="settings-btn" style="flex:1;margin-top:0;background:#6b7280;color:white;padding:4px 12px" onclick="document.querySelectorAll('#clearBoxChecks input').forEach(cb=>cb.checked=false)">ยกเลิก</button>
-</div>
-      </div>
-
-      <div class="settings-divider"></div>
-
-<!-- ตั้งค่า chunk -->
+      <!-- ตั้งค่า chunk -->
 <div class="settings-section">
   <div class="settings-title">📐 จำนวนคำต่อชุด</div>
   <div class="settings-fields">
@@ -226,6 +206,26 @@
   </div>
   <button class="settings-btn settings-btn-blue" onclick="saveSettings()" style="margin-top:8px">💾 บันทึก</button>
 </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- เคลียร์กล่อง -->
+      <div class="settings-section">
+        <div class="settings-title">🗂 เคลียร์กล่อง (รีเซ็ตกลับกล่อง 0)</div>
+        <div class="settings-desc">เลือกกล่องที่ต้องการรีเซ็ต</div>
+        <div class="settings-checkboxes" id="clearBoxChecks">
+          <label><input type="checkbox" value="1"> กล่อง 1 (1วัน)</label>
+          <label><input type="checkbox" value="2"> กล่อง 2 (3วัน)</label>
+          <label><input type="checkbox" value="3"> กล่อง 3 (7วัน)</label>
+          <label><input type="checkbox" value="4"> กล่อง 4 (14วัน)</label>
+          <label><input type="checkbox" value="5"> กล่อง 5 (จำได้✅)</label>
+          <label><input type="checkbox" id="clearWrongBoxCheck"> กล่องคำผิด (❌)</label>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+  <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ต</button>
+  <button class="settings-btn" style="flex:1;margin-top:0;background:#6b7280;color:white;padding:4px 12px" onclick="document.querySelectorAll('#clearBoxChecks input').forEach(cb=>cb.checked=false)">ยกเลิก</button>
+</div>
+      </div>
 
       <div class="settings-divider"></div>
 
