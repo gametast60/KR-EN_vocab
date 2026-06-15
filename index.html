@@ -17,7 +17,7 @@
 
   <!-- TOP BUTTONS -->
   <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">🏠 หน้าหลัก</button>
-  <button id="backButton" class="back-btn hidden" onclick="goBack()">⬅ กลับ</button>
+  <button id="backButton" class="back-btn hidden" onclick="backToDashboard()">⬅ กลับ</button>
   <button id="trackNavButton" class="track-nav-btn hidden" onclick="openTrackMenu()">หน้า TOPIK</button>
 
 <h2 id="appTitle" class="app-title-badge">Vocab by 톤님</h2>
@@ -200,7 +200,7 @@
           <input type="text" id="fillInput" placeholder="พิมพ์คำศัพท์เกาหลี" onkeydown="handleFillEnter(event)">
           <button class="clear-answer-btn hidden" id="fillClearBtn" onclick="clearFillInput()">✕</button>
         </div>
-        <button id="fillCheckBtn" class="check-btn" onclick="checkFillAnswer()">ตรวจคำตอบ</button>
+        <button id="fillCheckBtn" class="check-answer-btn" onclick="checkFillAnswer()">ตรวจคำตอบ</button>
       </div>
     </div>
 
@@ -226,7 +226,7 @@
     <input type="text" id="answerInput" placeholder="พิมพ์คำศัพท์เกาหลี" onkeydown="handleEnter(event)">
     <button class="clear-answer-btn hidden" id="clearAnswerBtn" onclick="clearAnswerInput()">✕</button>
   </div>
-  <button id="checkBtn" class="check-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
+  <button id="checkBtn" class="check-answer-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
 </div>
 
     <!-- QUIZ GAME -->

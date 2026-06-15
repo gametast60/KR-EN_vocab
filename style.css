@@ -145,6 +145,15 @@ button:disabled{
   background:#6d28d9;
 }
 
+.check-answer-btn{
+  background:#2563eb;
+  color:white;
+}
+
+.check-answer-btn:hover:not(:disabled){
+  background:#1d4ed8;
+}
+
 .restart-btn{
   background:#16a34a;
   color:white;

@@ -86,16 +86,31 @@ function goBack(){
 }
 
 function updateNavButtons(){
-  const currentScreen = getCurrentScreenId();
-  const hidden  = screenHistory.length === 0;
-  const inFlashcard = !document.getElementById("flashcardGame").classList.contains("hidden");
-  const inTyping    = !document.getElementById("typingGame").classList.contains("hidden");
-  const inQuiz      = !document.getElementById("quizGame").classList.contains("hidden");
-  const hideAll = hidden || inFlashcard || inTyping || inQuiz;
 
-  backButton.classList.toggle("hidden", hideAll);
-  homeButton.classList.toggle("hidden", hideAll);
-  updateTrackNavButton(hideAll);
+  const currentScreen = getCurrentScreenId();
+
+  const hideBack = [
+  "mainMenu",
+  "koreanMenu",
+  "englishMenu",
+  "srsDashboard"
+].includes(currentScreen);
+
+  const inFlashcard =
+       !document.getElementById("flashcardGame").classList.contains("hidden");
+
+  const inTyping =
+       !document.getElementById("typingGame").classList.contains("hidden");
+
+  const inQuiz =
+       !document.getElementById("quizGame").classList.contains("hidden");
+
+  const hideAllNav = inFlashcard || inTyping || inQuiz;
+
+  backButton.classList.toggle("hidden", hideBack || hideAllNav);
+  homeButton.classList.toggle("hidden", currentScreen === "mainMenu" || hideAllNav);
+
+  updateTrackNavButton(hideAllNav);
 }
 
 // ============================================================
@@ -146,6 +161,10 @@ function goToSRSDashboard(){
   screenHistory = screenHistory.filter(id => id !== "srsDashboard");
   goTo("srsDashboard");
   renderSRSHome();
+}
+
+function backToDashboard(){
+  goToSRSDashboard();
 }
 
 function getTopikVocab(topik){
@@ -741,9 +760,10 @@ function backupData() {
   });
 
   const payload = {
-    backupFormat: BACKUP_FORMAT_VERSION,
-    createdAt: new Date().toISOString(),
-    localStorage: snapshot,
+   backupFormat: BACKUP_FORMAT_VERSION,
+   createdAt: new Date().toISOString(),
+   backupDate: todayStr(),
+   localStorage: snapshot,
   };
 
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -838,7 +858,6 @@ function showRestorePreview(payload) {
       <input type="radio" name="restoreMode" value="reset" checked style="margin-top:3px;accent-color:#2563eb;width:16px;height:16px;flex-shrink:0">
       <div>
         <div style="font-weight:700;color:#1d4ed8;font-size:14px">🔄 เริ่มนับรอบทวนใหม่จากวันนี้ <span style="background:#dcfce7;color:#15803d;font-size:11px;padding:2px 7px;border-radius:999px;font-weight:700">แนะนำ</span></div>
-        <div style="font-size:12px;color:#6b7280;margin-top:3px">กล่อง 1 → ${resetDates[1]} &nbsp;|&nbsp; กล่อง 2 → ${resetDates[2]} &nbsp;|&nbsp; กล่อง 3 → ${resetDates[3]} &nbsp;|&nbsp; กล่อง 4 → ${resetDates[4]}</div>
       </div>
     </label>
 
@@ -898,9 +917,23 @@ function confirmRestore() {
         const data = safeParseJSON(snap[key], {});
         Object.keys(data).forEach(word => {
           const item = data[word];
-          if (item.box >= 1 && item.box <= 4) {
-            const interval = [0, 1, 3, 7, 14][item.box];
-            item.nextReview = addDays(today, interval);
+          if (item.box >= 1 && item.box <= 4 && item.nextReview) {
+
+           const backupDate =
+             _pendingRestorePayload?.backupDate || today;
+
+           const oldDate = new Date(item.nextReview);
+           const baseDate = new Date(backupDate);
+
+           const diffDays = Math.round(
+             (oldDate - baseDate) / 86400000
+           );
+
+           item.nextReview = addDays(
+            today,
+            Math.max(1, diffDays)
+           );
+
           } else if (item.box === 5) {
             item.nextReview = null;
           }
