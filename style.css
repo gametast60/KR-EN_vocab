@@ -1268,3 +1268,52 @@ div.search-level.level-topik2 {
   padding: 8px 20px;
   margin-bottom: 14px;
 }
+
+/* =========================
+   SETTINGS HEADER
+========================= */
+.settings-header {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.settings-section {
+  margin-bottom: 4px;
+  padding: 14px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.settings-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.settings-desc {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.settings-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.settings-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 12px 0;
+}

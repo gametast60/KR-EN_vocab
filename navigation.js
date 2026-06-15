@@ -639,6 +639,269 @@ function syncVocabAndClearCache(){
 }
 
 // ============================================================
+// BACKUP / RESTORE
+// ============================================================
+
+const BACKUP_FORMAT_VERSION = 1;
+
+// key ทั้งหมดที่ต้อง backup (ไม่รวม date keys)
+function getBackupKeys() {
+  return [
+    "topik_srs_topik1_v1",
+    "topik_srs_topik2_v1",
+    "topik_wrongbox_topik1",
+    "topik_wrongbox_topik2",
+    "topik_srs_settings_topik1",
+    "topik_srs_settings_topik2",
+    "topik_practice_boxes_topik1",
+    "topik_practice_boxes_topik2",
+  ];
+}
+
+// ---- BACKUP ----
+function backupData() {
+  const snapshot = {};
+  getBackupKeys().forEach(key => {
+    const val = localStorage.getItem(key);
+    if (val !== null) snapshot[key] = val; // เก็บเป็น raw string
+  });
+
+  const payload = {
+    backupFormat: BACKUP_FORMAT_VERSION,
+    createdAt: new Date().toISOString(),
+    localStorage: snapshot,
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  const dateStr = new Date().toISOString().slice(0, 10); // "2026-06-15"
+  a.href     = url;
+  a.download = `topik_backup_${dateStr}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ---- RESTORE: Step 1 — รับไฟล์ ----
+let _pendingRestorePayload = null; // เก็บ payload รอยืนยัน
+let _pendingRestoreMode    = "reset"; // "reset" | "keep"
+
+function handleRestoreFile(event) {
+  const file = event.target.files[0];
+  event.target.value = ""; // reset input เพื่อเลือกไฟล์เดิมซ้ำได้
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let payload;
+    try {
+      payload = JSON.parse(e.target.result);
+    } catch(err) {
+      alert("❌ ไฟล์เสียหายหรือไม่ใช่ไฟล์ JSON ที่ถูกต้องครับ");
+      return;
+    }
+
+    // ตรวจ format
+    if (!payload.backupFormat) {
+      alert("❌ ไม่ใช่ไฟล์ Backup ของแอปนี้ครับ");
+      return;
+    }
+    if (payload.backupFormat > BACKUP_FORMAT_VERSION) {
+      alert(`❌ ไฟล์นี้สร้างจากแอปเวอร์ชันใหม่กว่า (format ${payload.backupFormat})\nกรุณาอัปเดตแอปก่อนครับ`);
+      return;
+    }
+    if (!payload.localStorage || typeof payload.localStorage !== "object") {
+      alert("❌ ข้อมูลในไฟล์ไม่สมบูรณ์ครับ");
+      return;
+    }
+
+    _pendingRestorePayload = payload;
+    _pendingRestoreMode    = "reset"; // default = เริ่มนับใหม่ (แนะนำ)
+    showRestorePreview(payload);
+  };
+  reader.readAsText(file);
+}
+
+// ---- RESTORE: Step 2 — แสดง Preview ----
+function showRestorePreview(payload) {
+  const createdAt = payload.createdAt
+    ? new Date(payload.createdAt).toLocaleString("th-TH", { dateStyle:"medium", timeStyle:"short" })
+    : "ไม่ทราบ";
+
+  // แยก parse SRS แต่ละ topik
+  const srs1 = safeParseJSON(payload.localStorage["topik_srs_topik1_v1"], {});
+  const srs2 = safeParseJSON(payload.localStorage["topik_srs_topik2_v1"], {});
+
+  const counts1 = calcBoxCounts(srs1);
+  const counts2 = calcBoxCounts(srs2);
+
+  // คำนวณ "เลยกำหนดแล้ว" ถ้าใช้ตารางเดิม
+  const today = todayStr();
+  const overdue1 = Object.values(srs1).filter(i => i.box >= 1 && i.box <= 4 && i.nextReview && i.nextReview <= today).length;
+  const overdue2 = Object.values(srs2).filter(i => i.box >= 1 && i.box <= 4 && i.nextReview && i.nextReview <= today).length;
+
+  // คำนวณ nextReview ถ้าเลือก reset
+  const resetDates = calcResetDates(today);
+
+  const BOX_LABELS = ["ใหม่","1วัน","3วัน","7วัน","14วัน","จำได้✅"];
+  const BOX_COLORS = ["#6b7280","#3b82f6","#8b5cf6","#d97706","#ef4444","#16a34a"];
+
+  function boxTable(counts) {
+    return counts.map((c, i) =>
+      `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:14px">
+        <span style="color:${BOX_COLORS[i]};font-weight:700">กล่อง ${i} — ${BOX_LABELS[i]}</span>
+        <span style="font-weight:700">${c} คำ</span>
+      </div>`
+    ).join("");
+  }
+
+  document.getElementById("restoreModalBody").innerHTML = `
+    <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px 14px;margin-bottom:14px">
+      <div style="font-size:13px;color:#1d4ed8;font-weight:700">📦 ไฟล์สำรองข้อมูล</div>
+      <div style="font-size:14px;color:#374151;margin-top:4px">สร้างเมื่อ: <b>${createdAt}</b></div>
+    </div>
+
+    <div style="font-weight:800;font-size:15px;color:#111827;margin-bottom:8px">📘 TOPIK 1</div>
+    ${boxTable(counts1)}
+
+    <div style="font-weight:800;font-size:15px;color:#111827;margin:14px 0 8px">📗 TOPIK 2</div>
+    ${boxTable(counts2)}
+
+    <div style="margin-top:16px;font-weight:800;font-size:15px;color:#111827">🔄 เลือกวิธีกู้คืน</div>
+
+    <label id="restoreOptReset" style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:12px;border-radius:10px;border:2px solid #2563eb;background:#eff6ff;cursor:pointer" onclick="setRestoreMode('reset')">
+      <input type="radio" name="restoreMode" value="reset" checked style="margin-top:3px;accent-color:#2563eb;width:16px;height:16px;flex-shrink:0">
+      <div>
+        <div style="font-weight:700;color:#1d4ed8;font-size:14px">🔄 เริ่มนับรอบทวนใหม่จากวันนี้ <span style="background:#dcfce7;color:#15803d;font-size:11px;padding:2px 7px;border-radius:999px;font-weight:700">แนะนำ</span></div>
+        <div style="font-size:12px;color:#6b7280;margin-top:3px">กล่อง 1 → ${resetDates[1]} &nbsp;|&nbsp; กล่อง 2 → ${resetDates[2]} &nbsp;|&nbsp; กล่อง 3 → ${resetDates[3]} &nbsp;|&nbsp; กล่อง 4 → ${resetDates[4]}</div>
+      </div>
+    </label>
+
+    <label id="restoreOptKeep" style="display:flex;align-items:flex-start;gap:10px;margin-top:8px;padding:12px;border-radius:10px;border:2px solid #e5e7eb;background:#f9fafb;cursor:pointer" onclick="setRestoreMode('keep')">
+      <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:#6b7280;width:16px;height:16px;flex-shrink:0">
+      <div>
+        <div style="font-weight:700;color:#374151;font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
+        ${(overdue1 + overdue2) > 0
+          ? `<div style="font-size:12px;color:#dc2626;margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${overdue1 + overdue2} คำ (TOPIK1: ${overdue1}, TOPIK2: ${overdue2})</div>`
+          : `<div style="font-size:12px;color:#6b7280;margin-top:3px">ยังไม่มีคำเลยกำหนด</div>`}
+      </div>
+    </label>
+
+    <div style="margin-top:14px;background:#fef2f2;border:1.5px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:13px;color:#b91c1c">
+      ⚠️ การกู้คืนจะ<b>เขียนทับข้อมูลปัจจุบันทั้งหมด</b> — ไม่สามารถย้อนกลับได้
+    </div>
+  `;
+
+  document.getElementById("restoreModal").classList.remove("hidden");
+}
+
+function setRestoreMode(mode) {
+  _pendingRestoreMode = mode;
+  const resetEl = document.getElementById("restoreOptReset");
+  const keepEl  = document.getElementById("restoreOptKeep");
+  if (mode === "reset") {
+    resetEl.style.border = "2px solid #2563eb";
+    resetEl.style.background = "#eff6ff";
+    keepEl.style.border = "2px solid #e5e7eb";
+    keepEl.style.background = "#f9fafb";
+  } else {
+    keepEl.style.border = "2px solid #6b7280";
+    keepEl.style.background = "#f3f4f6";
+    resetEl.style.border = "2px solid #e5e7eb";
+    resetEl.style.background = "#f9fafb";
+  }
+}
+
+// ---- RESTORE: Step 3 — ยืนยันและเขียน ----
+function confirmRestore() {
+  if (!_pendingRestorePayload) return;
+
+  const btn = document.getElementById("restoreConfirmBtn");
+  btn.disabled = true;
+  btn.textContent = "⏳ กำลังกู้คืน...";
+
+  try {
+    const snap    = _pendingRestorePayload.localStorage;
+    const today   = todayStr();
+    const toWrite = {}; // key → value string ที่จะเขียนจริง
+
+    getBackupKeys().forEach(key => {
+      if (snap[key] === undefined) return; // ไม่มีใน backup → ข้าม
+
+      // Wrong Box: ล้างเสมอ ไม่ว่าจะเลือก mode ไหน
+      if (key.startsWith("topik_wrongbox_")) {
+        toWrite[key] = JSON.stringify({ date: today, words: [] });
+        return;
+      }
+
+      // SRS data: ถ้าเลือก reset → คำนวณ nextReview ใหม่
+      if (key.startsWith("topik_srs_topik") && _pendingRestoreMode === "reset") {
+        const data = safeParseJSON(snap[key], {});
+        Object.keys(data).forEach(word => {
+          const item = data[word];
+          if (item.box >= 1 && item.box <= 4) {
+            const interval = [0, 1, 3, 7, 14][item.box];
+            item.nextReview = addDays(today, interval);
+          } else if (item.box === 5) {
+            item.nextReview = null;
+          }
+          data[word] = item;
+        });
+        toWrite[key] = JSON.stringify(data);
+        return;
+      }
+
+      // อื่นๆ: เขียนตรงๆ
+      toWrite[key] = snap[key];
+    });
+
+    // เขียนลง localStorage
+    Object.entries(toWrite).forEach(([k, v]) => {
+      localStorage.setItem(k, v);
+    });
+
+    _pendingRestorePayload = null;
+    alert("✅ กู้คืนสำเร็จ! กำลัง reload...");
+    location.reload();
+
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = "✅ กู้คืน";
+    alert("❌ เกิดข้อผิดพลาด: " + err.message);
+  }
+}
+
+function closeRestoreModal(event) {
+  if (event.target === document.getElementById("restoreModal")) {
+    document.getElementById("restoreModal").classList.add("hidden");
+  }
+}
+
+// ---- Helper functions ----
+function safeParseJSON(str, fallback) {
+  try { return JSON.parse(str); }
+  catch(e) { return fallback; }
+}
+
+function calcBoxCounts(srsData) {
+  const counts = [0, 0, 0, 0, 0, 0];
+  Object.values(srsData).forEach(item => {
+    counts[Math.min(item.box || 0, 5)]++;
+  });
+  return counts;
+}
+
+function calcResetDates(today) {
+  // คืนค่า nextReview ของแต่ละ box ถ้าเริ่มนับใหม่
+  return {
+    1: addDays(today, 1),
+    2: addDays(today, 3),
+    3: addDays(today, 7),
+    4: addDays(today, 14),
+  };
+}
+
+// ============================================================
 // SEARCH
 // ============================================================
 function searchVocabulary(){

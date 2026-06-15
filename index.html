@@ -147,6 +147,34 @@
     <div id="settingsPanel" class="screen hidden">
       <div class="settings-header">⚙️ ตั้งค่า</div>
 
+      <!-- ☁️ BACKUP / RESTORE -->
+      <div class="settings-section">
+        <div class="settings-title">☁️ สำรองข้อมูล</div>
+        <div class="settings-desc">Backup ข้อมูล SRS ทั้งหมดเพื่อย้ายไปเครื่องใหม่ หรือกู้คืนภายหลัง</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="settings-btn settings-btn-blue" style="flex:1;margin-top:0" onclick="backupData()">📤 Backup</button>
+          <button class="settings-btn" style="flex:1;margin-top:0;background:#16a34a;color:white" onclick="document.getElementById('restoreFileInput').click()">📥 Restore</button>
+        </div>
+        <input type="file" id="restoreFileInput" accept=".json" style="display:none" onchange="handleRestoreFile(event)">
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- RESTORE PREVIEW MODAL -->
+      <div id="restoreModal" class="box-inspector-overlay hidden" onclick="closeRestoreModal(event)">
+        <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto;max-height:85vh;border-radius:20px 20px 0 0">
+          <div class="box-inspector-header">
+            <div class="box-inspector-title" style="color:#2563eb">📥 กู้คืนข้อมูล</div>
+            <button class="box-inspector-close" onclick="document.getElementById('restoreModal').classList.add('hidden')">✕</button>
+          </div>
+          <div id="restoreModalBody" style="overflow-y:auto;padding:16px 18px;flex:1"></div>
+          <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #e5e7eb">
+            <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:#e5e7eb;color:#374151;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
+            <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:#2563eb;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
+          </div>
+        </div>
+      </div>
+
       <!-- อัปเดตคำศัพท์ + เคลียร์แคช -->
       <div class="settings-section">
         <div class="settings-title">🔄 Update</div>
