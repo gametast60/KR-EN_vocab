@@ -942,7 +942,7 @@ function confirmRestore() {
 
            item.nextReview = addDays(
             today,
-            Math.max(1, diffDays)
+            Math.max(0, diffDays) /// แก้วันที่ต้องการทวน 0=ทวนเลยวันนี้, 1=ทวนพรุ้งนี้เป็นต้นไป
            );
 
           } else if (item.box === 5) {
