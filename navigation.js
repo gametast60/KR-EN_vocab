@@ -11,6 +11,31 @@ let srsSessionType  = "";   // "due" | "practice" | "wrongbox"
 
 const backButton = document.getElementById("backButton");
 const homeButton = document.getElementById("homeButton");
+const trackNavButton = document.getElementById("trackNavButton");
+
+function getCurrentScreenId(){
+  return document.querySelector(".screen:not(.hidden)")?.id || "mainMenu";
+}
+
+function getTrackMenuScreenId(){
+  if(currentTopik && currentTopik.startsWith("english_")) return "englishMenu";
+  if(currentTopik && currentTopik.startsWith("topik")) return "koreanMenu";
+  const cur = getCurrentScreenId();
+  if(cur === "englishMenu") return "englishMenu";
+  return "koreanMenu";
+}
+
+function updateTrackNavButton(forceHidden = false){
+  if(!trackNavButton) return;
+  const currentScreen = getCurrentScreenId();
+  const targetScreen = getTrackMenuScreenId();
+  trackNavButton.classList.toggle("hidden", forceHidden || currentScreen === targetScreen);
+  trackNavButton.textContent = targetScreen === "englishMenu" ? "หน้า Level" : "หน้า TOPIK";
+}
+
+function openTrackMenu(){
+  goTo(getTrackMenuScreenId());
+}
 
 // ============================================================
 // SCREEN NAVIGATION
@@ -61,7 +86,7 @@ function goBack(){
 }
 
 function updateNavButtons(){
-  const helpBtn = document.getElementById("helpButton");
+  const currentScreen = getCurrentScreenId();
   const hidden  = screenHistory.length === 0;
   const inFlashcard = !document.getElementById("flashcardGame").classList.contains("hidden");
   const inTyping    = !document.getElementById("typingGame").classList.contains("hidden");
@@ -70,7 +95,7 @@ function updateNavButtons(){
 
   backButton.classList.toggle("hidden", hideAll);
   homeButton.classList.toggle("hidden", hideAll);
-  helpBtn.classList.toggle("hidden", hideAll);
+  updateTrackNavButton(hideAll);
 }
 
 // ============================================================
@@ -132,13 +157,6 @@ function getTopikVocab(topik){
   if(topik === "english_b2") return window.flashVocabDataEnB2   || [];
   return [];
 }
-
-// ============================================================
-// HELP MODAL
-// ============================================================
-function showHelp()    { document.getElementById("helpModal").classList.remove("hidden"); }
-function closeHelpBtn(){ document.getElementById("helpModal").classList.add("hidden"); }
-function closeHelp(e)  { if(e.target === document.getElementById("helpModal")) closeHelpBtn(); }
 
 // ============================================================
 // SRS DASHBOARD

@@ -1,8 +1,8 @@
-const CACHE = "topik-v4";
+const CACHE = "vocab-v3";
 const FILES = [
   "index.html","style.css",
   "app.js","game.js","navigation.js",
-  "flashcard1.js","flashcard2.js",
+  "flashcard1.js","flashcard2.js","flashcard_en_a1.js","flashcard_en_a2.js","flashcard_en_b1.js","flashcard_en_b2.js",
   "srs.js","manifest.json","icon-192.png"
 ];
 self.addEventListener("install", e => {

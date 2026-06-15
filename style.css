@@ -73,41 +73,58 @@ button:disabled{
   color:white;
 }
 
-.menu-btn:hover{
-  background:#1d4ed8;
-}
-
-.menu-topik2{
-  background:#16a34a;
-}
-
-.menu-topik2:hover{
-  background:#15803d;
-}
-
 .lang-korean-btn{
-  background:#f70303;
-}
-
-.lang-korean-btn:hover{
-  background:#f66060;
+  background:#2563eb;
+  color:white;
 }
 
 .lang-english-btn{
-  background:#022bf6;
+  background:#098503;
+  color:white;
 }
 
-.lang-english-btn:hover{
-  background:#605bf5;
-}
-
-/* =========================
-   GAME BUTTONS
-========================= */
-
-.check-btn{
+.topik-1-btn{
   background:#2563eb;
   color:white;
+}
+
+.topik-2-btn{
+  background:#dc2626;
+  color:white;
+}
+
+.english-a1-btn{
+  background:#1c54ae;
+  color:white;
+}
+
+.english-a2-btn{
+  background:#0249b9;
+  color:white;
+}
+
+.english-b1-btn{
+  background:#33ba2c;
+  color:white;
+}
+
+.english-b2-btn{
+  background:#0dc203;
+  color:white;
+}
+
+.lang-korean-btn:hover,
+.topik-1-btn:hover,
+.english-a1-btn:hover{
+  filter: brightness(0.95);
+}
+
+.lang-english-btn:hover,
+.topik-2-btn:hover,
+.english-a2-btn:hover,
+.english-b1-btn:hover,
+.english-b2-btn:hover{
+  filter: brightness(0.95);
 }
 
 .choice-btn{
@@ -1143,130 +1160,24 @@ div.search-level.level-topik2 {
   background: #16a34a;
 }
 
-.help-btn {
+.track-nav-btn {
   position: absolute;
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border-radius: 50%;
+  width: auto;
+  padding: 8px 18px;
+  border-radius: 999px;
   background: #6b7280;
   color: white;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 700;
   margin-top: 0;
   cursor: pointer;
   border: none;
-  line-height: 34px;
+  line-height: 1;
+  white-space: nowrap;
   z-index: 10;
-}
-.help-btn:hover { background: #4b5563; }
-
-/* HELP MODAL OVERLAY */
-.help-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-.help-modal.hidden { display: none; }
-
-/* HELP CONTENT SHEET */
-.help-content {
-  background: white;
-  width: 100%;
-  max-width: 420px;
-  max-height: 80vh;
-  overflow-y: auto;
-  border-radius: 20px 20px 0 0;
-  padding: 24px 20px 40px;
-  position: relative;
-  text-align: left;
-  box-sizing: border-box;
-}
-
-.help-content h3 {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 800;
-  color: #111827;
-  margin: 0 0 20px;
-  line-height: 1.4;
-}
-
-.help-close-btn {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border-radius: 50%;
-  background: #e5e7eb;
-  color: #374151;
-  font-size: 15px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  margin: 0;
-  line-height: 32px;
-}
-.help-close-btn:hover { background: #d1d5db; }
-
-.help-section {
-  margin-bottom: 20px;
-}
-
-.help-title {
-  font-size: 15px;
-  font-weight: 800;
-  color: #1e40af;
-  margin-bottom: 8px;
-}
-
-.help-section p {
-  font-size: 14px;
-  color: #374151;
-  margin: 0 0 8px;
-  line-height: 1.5;
-}
-
-.help-section ul {
-  margin: 0;
-  padding-left: 18px;
-}
-
-.help-section ul li {
-  font-size: 14px;
-  color: #374151;
-  margin-bottom: 6px;
-  line-height: 1.5;
-}
-
-.help-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.help-table th {
-  background: #f3f4f6;
-  color: #374151;
-  padding: 7px 8px;
-  text-align: left;
-  font-weight: 700;
-}
-
-.help-table td {
-  padding: 7px 8px;
-  border-bottom: 1px solid #f3f4f6;
-  color: #374151;
-  vertical-align: top;
 }
 
 .home-finish-btn{

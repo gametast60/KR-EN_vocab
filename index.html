@@ -18,79 +18,7 @@
   <!-- TOP BUTTONS -->
   <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">🏠 หน้าหลัก</button>
   <button id="backButton" class="back-btn hidden" onclick="goBack()">⬅ กลับ</button>
-  <button id="helpButton" class="help-btn hidden" onclick="showHelp()">?</button>
-
-  <!-- HELP MODAL -->
-  <div id="helpModal" class="help-modal hidden" onclick="closeHelp(event)">
-    <div class="help-content">
-      <button class="help-close-btn" onclick="closeHelpBtn()">✕</button>
-
-      <h3>วิธีการใช้งาน<br>Vocab by 톤님</h3>
-
-      <div class="help-section">
-        <div class="help-title">🎯 เป้าหมายของแต่ละวัน</div>
-        <ul>
-          <li>เล่นโหมด <b>"ทวนวันนี้"</b> จนกล่องคำผิดเต็ม 30 คำ</li>
-          <li>เล่นโหมด <b>"ทวนคำผิด"</b> เพื่อฝึกซ้ำคำที่พลาดไป</li>
-          <li>วนซ้ำทุกวัน — ระบบจะดูแลตารางทวนให้เองอัตโนมัติ</li>
-        </ul>
-      </div>
-
-      <div class="help-section">
-        <div class="help-title">📦 ระบบกล่อง SRS</div>
-        <p>คำแต่ละคำจะถูกจัดอยู่ใน "กล่อง" ตามระดับความจำ เมื่อตอบถูกจะเลื่อนขึ้น ตอบผิดจะตกลงมากล่อง 1</p>
-        <table class="help-table">
-          <tr><th>กล่อง</th><th>ระดับ</th><th>ทวนอีกครั้งใน</th></tr>
-          <tr><td>0</td><td>คำใหม่</td><td>รอเรียกใช้</td></tr>
-          <tr><td>1</td><td>เพิ่งเรียน</td><td>1 วัน</td></tr>
-          <tr><td>2</td><td>จำได้นิดหน่อย</td><td>3 วัน</td></tr>
-          <tr><td>3</td><td>จำได้พอสมควร</td><td>7 วัน</td></tr>
-          <tr><td>4</td><td>จำได้ดี</td><td>14 วัน</td></tr>
-          <tr><td>5</td><td>จำได้แล้ว ✅</td><td>ไม่ทวนอีก</td></tr>
-        </table>
-      </div>
-
-      <div class="help-section">
-        <div class="help-title">🔄 โหมดทวนวันนี้</div>
-        <ul>
-          <li>ดึงคำที่ถึงเวลาทวนมาให้ ครั้งละ <b>20 คำ</b> (ปรับได้ในตั้งค่า)</li>
-          <li>เล่นแบบ Flashcard — กด ✅ จำได้ / ❌ จำไม่ได้</li>
-          <li>คำที่กด ❌ จะถูกเก็บเข้า <b>กล่องคำผิด</b> อัตโนมัติ</li>
-          <li>เมื่อกล่องคำผิดเต็ม 30 คำ โหมดนี้จะหยุดทันที — ถือว่าโควต้าวันนี้เต็มแล้ว</li>
-        </ul>
-      </div>
-
-      <div class="help-section">
-        <div class="help-title">❌ กล่องคำผิด</div>
-        <ul>
-          <li>จุได้สูงสุด <b>30 คำ/วัน</b></li>
-          <li>ฝึกได้ 2 โหมด — <b>จับคู่</b> (เลือกความหมาย) หรือ <b>เติมคำ</b> (พิมพ์ภาษาเกาหลี)</li>
-          <li>เล่นซ้ำได้ไม่จำกัดจนถึง 00:00 — จากนั้นรีเซ็ตเป็น 0 อัตโนมัติ</li>
-          <li>ผลการเล่นโหมดนี้ <b>ไม่กระทบกล่อง SRS</b> — เป็นแค่การฝึกซ้ำในวันนั้น</li>
-        </ul>
-      </div>
-
-      <div class="help-section">
-        <div class="help-title">🎮 โหมดฝึกหัด</div>
-        <ul>
-          <li>สุ่มคำจากทุกกล่องมาให้ฝึกได้ตลอด</li>
-          <li>ไม่มีผลต่อ SRS — ใช้อุ่นเครื่องหรือทบทวนได้อิสระ</li>
-        </ul>
-      </div>
-
-      <div class="help-section">
-        <div class="help-title">⚙️ การตั้งค่า</div>
-        <table class="help-table">
-          <tr><th>ตัวเลือก</th><th>ความหมาย</th></tr>
-          <tr><td>จำนวนคำต่อชุด</td><td>คำที่ดึงมาต่อรอบในโหมดทวนวันนี้</td></tr>
-          <tr><td>เคลียร์กล่อง</td><td>รีเซ็ตคำในกล่องที่เลือกกลับไปกล่อง 0</td></tr>
-          <tr><td>รีเซ็ตกล่องคำผิด</td><td>ล้างกล่องคำผิดวันนี้ให้กลับมาเล่นได้ใหม่</td></tr>
-          <tr><td>คืนค่าทั้งหมด ⛔</td><td>รีเซ็ตทุกอย่างกลับจุดเริ่มต้น</td></tr>
-        </table>
-      </div>
-
-    </div>
-  </div>
+  <button id="trackNavButton" class="track-nav-btn hidden" onclick="openTrackMenu()">หน้า TOPIK</button>
 
 <h2 id="appTitle" class="app-title-badge">Vocab by 톤님</h2>
 <div id="flashcardProgress" class="progress-badge hidden"></div>
@@ -109,36 +37,36 @@
         </div>
         <div id="searchResult" class="search-result hidden"></div>
       </div>
-      <button class="menu-btn menu-topik lang-korean-btn" onclick="openLanguage('korean')">
+      <button class="menu-btn lang-korean-btn" onclick="openLanguage('korean')">
         KR ภาษาเกาหลี
       </button>
-      <button class="menu-btn menu-topik lang-english-btn" onclick="openLanguage('english')">
+      <button class="menu-btn lang-english-btn" onclick="openLanguage('english')">
         EN ภาษาอังกฤษ
       </button>
     </div>
 
     <!-- KOREAN LEVEL MENU -->
     <div id="koreanMenu" class="screen hidden">
-      <button class="menu-btn menu-topik" onclick="openTopik('topik1')">
+      <button class="menu-btn topik-1-btn" onclick="openTopik('topik1')">
         📘 TOPIK 1
       </button>
-      <button class="menu-btn menu-topik menu-topik2" onclick="openTopik('topik2')">
+      <button class="menu-btn topik-2-btn" onclick="openTopik('topik2')">
         📗 TOPIK 2
       </button>
     </div>
 
     <!-- ENGLISH LEVEL MENU -->
     <div id="englishMenu" class="screen hidden">
-      <button class="menu-btn" style="background:#1c54ae;" onclick="openTopik('english_a1')">
+      <button class="menu-btn english-a1-btn" onclick="openTopik('english_a1')">
         📗 A1 — Beginner
       </button>
-      <button class="menu-btn" style="background:#0249b9;" onclick="openTopik('english_a2')">
+      <button class="menu-btn english-a2-btn" onclick="openTopik('english_a2')">
         📘 A2 — Elementary
       </button>
-      <button class="menu-btn" style="background:#33ba2c;" onclick="openTopik('english_b1')">
+      <button class="menu-btn english-b1-btn" onclick="openTopik('english_b1')">
         📙 B1 — Intermediate
       </button>
-      <button class="menu-btn" style="background:#0dc203;" onclick="openTopik('english_b2')">
+      <button class="menu-btn english-b2-btn" onclick="openTopik('english_b2')">
         📕 B2 — Upper Intermediate
       </button>
     </div>
