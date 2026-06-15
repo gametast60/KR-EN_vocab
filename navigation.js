@@ -963,6 +963,17 @@ function confirmRestore() {
       localStorage.setItem(k, v);
     });
 
+    // รีเซ็ต Wrong Box ทุกภาษา/ทุก TOPIK
+    BACKUP_TOPIKS.forEach(({ id }) => {
+     localStorage.setItem(
+       `topik_wrongbox_${id}`,
+        JSON.stringify({
+         date: todayStr(),
+         words: []
+       })
+     );
+    });
+
     _pendingRestorePayload = null;
     alert("✅ กู้คืนสำเร็จ! กำลัง reload...");
     location.reload();
