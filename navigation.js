@@ -649,8 +649,6 @@ function getBackupKeys() {
   return [
     "topik_srs_topik1_v1",
     "topik_srs_topik2_v1",
-    "topik_wrongbox_topik1",
-    "topik_wrongbox_topik2",
     "topik_srs_settings_topik1",
     "topik_srs_settings_topik2",
     "topik_practice_boxes_topik1",
@@ -827,12 +825,6 @@ function confirmRestore() {
 
     getBackupKeys().forEach(key => {
       if (snap[key] === undefined) return; // ไม่มีใน backup → ข้าม
-
-      // Wrong Box: ล้างเสมอ ไม่ว่าจะเลือก mode ไหน
-      if (key.startsWith("topik_wrongbox_")) {
-        toWrite[key] = JSON.stringify({ date: today, words: [] });
-        return;
-      }
 
       // SRS data: ถ้าเลือก reset → คำนวณ nextReview ใหม่
       if (key.startsWith("topik_srs_topik") && _pendingRestoreMode === "reset") {
