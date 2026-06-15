@@ -45,7 +45,16 @@ function updateTrackNavButton(forceHidden = false){
 }
 
 function openTrackMenu(){
-  goTo(getTrackMenuScreenId());
+
+  const target = getTrackMenuScreenId();
+
+  if(target === "koreanMenu"){
+    document.getElementById("appTitle").textContent = "KR ภาษาเกาหลี";
+  }else{
+    document.getElementById("appTitle").textContent = "EN ภาษาอังกฤษ";
+  }
+
+  goTo(target);
 }
 
 // ============================================================
