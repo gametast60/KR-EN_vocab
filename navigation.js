@@ -27,10 +27,21 @@ function getTrackMenuScreenId(){
 
 function updateTrackNavButton(forceHidden = false){
   if(!trackNavButton) return;
+
   const currentScreen = getCurrentScreenId();
   const targetScreen = getTrackMenuScreenId();
-  trackNavButton.classList.toggle("hidden", forceHidden || currentScreen === targetScreen);
-  trackNavButton.textContent = targetScreen === "englishMenu" ? "หน้า Level" : "หน้า TOPIK";
+
+  const shouldHide =
+    forceHidden ||
+    currentScreen === "mainMenu" ||
+    currentScreen === targetScreen;
+
+  trackNavButton.classList.toggle("hidden", shouldHide);
+
+  trackNavButton.textContent =
+    targetScreen === "englishMenu"
+      ? "หน้า Level"
+      : "หน้า TOPIK";
 }
 
 function openTrackMenu(){

@@ -202,31 +202,41 @@ function checkFillAnswer(){
   const userAnswer = input.value.trim();
   const word = pendingList[fillIndex];
 
-  if(userAnswer === word.word){
-    // ✅ ถูก → เลื่อนกล่อง, บันทึก SRS
-    result.textContent = "✅ ถูกต้อง!";
-    result.className = "result correct";
-    input.disabled = true;
-    checkBtn.disabled = true;
-    recordAnswer(word.word, true);
-    fillCorrectCount++;
-    setTimeout(() => nextFillCard(), 1000);
-  } else {
-    // ❌ ผิดทันที ไม่ให้แก้ตัว → กลับกล่อง 1, บันทึก SRS
-    result.textContent = `❌ ${word.word}`;
-    result.className = "result wrong";
-    input.disabled = true;
-    checkBtn.disabled = true;
-    recordAnswer(word.word, false);
-    addToWrongBox(word);
-    if(!fcForgotten.some(i => i.word === word.word)){
-      fcForgotten.push(word);
-    }
-    if(!fillWrongList.some(i => i.word === word.word)){
-      fillWrongList.push(word);
-    }
-    setTimeout(() => nextFillCard(), 1200);
+  const isEnglish = currentTopik?.startsWith("english_");
+
+const isCorrect = isEnglish
+  ? userAnswer.toLowerCase() === word.word.toLowerCase()
+  : userAnswer === word.word;
+
+if(isCorrect){
+  // ✅ ถูก → เลื่อนกล่อง, บันทึก SRS
+  result.textContent = "✅ ถูกต้อง!";
+  result.className = "result correct";
+  input.disabled = true;
+  checkBtn.disabled = true;
+  recordAnswer(word.word, true);
+  fillCorrectCount++;
+  setTimeout(() => nextFillCard(), 1000);
+
+} else {
+  // ❌ ผิดทันที ไม่ให้แก้ตัว → กลับกล่อง 1, บันทึก SRS
+  result.textContent = `❌ ${word.word}`;
+  result.className = "result wrong";
+  input.disabled = true;
+  checkBtn.disabled = true;
+  recordAnswer(word.word, false);
+  addToWrongBox(word);
+
+  if(!fcForgotten.some(i => i.word === word.word)){
+    fcForgotten.push(word);
   }
+
+  if(!fillWrongList.some(i => i.word === word.word)){
+    fillWrongList.push(word);
+  }
+
+  setTimeout(() => nextFillCard(), 1200);
+}
 }
 
 function nextFillCard(){
@@ -325,28 +335,37 @@ function checkAnswer(){
   const currentWord = shuffledVocabulary[currentIndex];
   const result = document.getElementById("result");
 
-  if(userAnswer === currentWord.word){
-    result.textContent = "✅ ถูกต้อง!";
-    result.className = "result correct";
-    input.disabled = true;
-    checkBtn.disabled = true;
-    setTimeout(() => {
-      currentIndex++;
-      if(currentIndex >= shuffledVocabulary.length){
-        showFinish();
-      } else {
-        showWord();
-      }
-    }, 1000);
-  } else {
-    result.textContent = `❌ ${currentWord.word}`;
-    result.className = "result wrong";
-    input.value = "";
-    input.focus();
-    if(!wrongAnswers.some(item => item.word === currentWord.word)){
-      wrongAnswers.push(currentWord);
+  const isEnglish = currentTopik?.startsWith("english_");
+
+const isCorrect = isEnglish
+  ? userAnswer.toLowerCase() === currentWord.word.toLowerCase()
+  : userAnswer === currentWord.word;
+
+if(isCorrect){
+  result.textContent = "✅ ถูกต้อง!";
+  result.className = "result correct";
+  input.disabled = true;
+  checkBtn.disabled = true;
+
+  setTimeout(() => {
+    currentIndex++;
+    if(currentIndex >= shuffledVocabulary.length){
+      showFinish();
+    } else {
+      showWord();
     }
+  }, 1000);
+
+} else {
+  result.textContent = `❌ ${currentWord.word}`;
+  result.className = "result wrong";
+  input.value = "";
+  input.focus();
+
+  if(!wrongAnswers.some(item => item.word === currentWord.word)){
+    wrongAnswers.push(currentWord);
   }
+}
 }
 
 // =========================
