@@ -791,7 +791,7 @@ function backupData() {
   const a    = document.createElement("a");
   const dateStr = new Date().toISOString().slice(0, 10); // "2026-06-15"
   a.href     = url;
-  a.download = `topik_backup_${dateStr}.json`;
+  a.download = `EN_KR_Vocab_backup_${dateStr}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
