@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vocab by 톤님</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <script>
@@ -173,22 +176,29 @@
     </div>
 
     <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
-<div id="flashcardGame" class="screen hidden">
-  <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
+    <div id="flashcardGame" class="screen hidden">
+      <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
 
-      <div id="flashcardFront">
-        <div class="fc-word" id="fcWord"></div>
-        <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
-        <button class="flip-btn" onclick="flipCard()">👁 ดูความหมาย</button>
-      </div>
+      <!-- 3D Card Container -->
+      <div id="flashcardContainer">
+        <div id="flashcardInner">
+          <!-- Front Side -->
+          <div id="flashcardFront" class="flashcard-face flashcard-front">
+            <div class="fc-word" id="fcWord"></div>
+            <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
+            <button class="flip-btn" onclick="flipCard()">👁 ดูความหมาย</button>
+          </div>
 
-      <div id="flashcardBack" class="hidden">
-        <div class="fc-word" id="fcWordBack"></div>
-        <div class="fc-meaning" id="fcMeaning"></div>
-        <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
-        <div class="fc-buttons">
-          <button class="fc-know-btn" onclick="fcAnswer(true)">✅ จำได้</button>
-          <button class="fc-forget-btn" onclick="fcAnswer(false)">❌ จำไม่ได้</button>
+          <!-- Back Side -->
+          <div id="flashcardBack" class="flashcard-face flashcard-back">
+            <div class="fc-word" id="fcWordBack"></div>
+            <div class="fc-meaning" id="fcMeaning"></div>
+            <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
+            <div class="fc-buttons">
+              <button class="fc-know-btn" onclick="fcAnswer(true)">✅ จำได้</button>
+              <button class="fc-forget-btn" onclick="fcAnswer(false)">❌ จำไม่ได้</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -265,14 +275,14 @@
     <div id="wrongBoxGameMenu" class="screen hidden">
       <div class="srs-game-info" id="wrongBoxGameInfo"></div>
       <button class="menu-btn" style="background:#16a34a;" onclick="startWrongBoxGame('quiz')">🔤 จับคู่</button>
-      <button class="menu-btn" onclick="startWrongBoxGame('typing')">⌨️ เติมคำ</button>
+      <button class="menu-btn" style="background:#3b82f6;" onclick="startWrongBoxGame('typing')">⌨️ เติมคำ</button>
     </div>
 
     <!-- PRACTICE GAME MENU (ฝึกหัด) -->
     <div id="practiceGameMenu" class="screen hidden">
       <div class="srs-game-info" id="practiceGameInfo"></div>
       <button class="menu-btn" style="background:#16a34a;" onclick="startPracticeGame('quiz')">🔤 จับคู่</button>
-      <button class="menu-btn" onclick="startPracticeGame('typing')">⌨️ เติมคำ</button>
+      <button class="menu-btn" style="background:#3b82f6;" onclick="startPracticeGame('typing')">⌨️ เติมคำ</button>
 <button id="practiceBoxSelectBtn" class="menu-btn" style="background:#0891b2;" onclick="openPracticeBoxModal()">📦 เลือกกล่องเล่น</button>
 <div id="practiceBoxFilterLabel" style="font-size:13px;color:#16a34a;font-weight:700;margin-top:8px;padding:10px;background:#f0fdf4;border-radius:10px;border:2px solid #86efac;min-height:18px;"></div>
     </div>
@@ -280,7 +290,7 @@
     <!-- SRS STATS SCREEN -->
     <div id="srsStats" class="screen hidden">
       <div id="srsStatsContent"></div>
-      <button onclick="goToSRSDashboard()" class="menu-btn" style="margin-top:12px">← กลับ</button>
+      <button onclick="goToSRSDashboard()" class="menu-btn" style="margin-top:12px; background:#6b7280;">← กลับ</button>
     </div>
 
   </div>

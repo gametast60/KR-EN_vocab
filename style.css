@@ -1,328 +1,429 @@
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:100vh;
+/* ==========================================================================
+   Vocab by 톤님 — MODERN & PREMIUM DESIGN SYSTEM
+   ========================================================================== */
+
+/* ─── GOOGLE FONTS ─── */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: 'Prompt', 'Noto Sans Thai', sans-serif;
+  --font-mono: 'Outfit', sans-serif;
+
+  /* ─── COLOR SYSTEM ─── */
+  --bg-app: radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 100%);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: 1px solid rgba(255, 255, 255, 0.7);
+  --card-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.02);
+
+  --primary: #4f46e5;       /* Indigo */
+  --primary-hover: #4338ca;
+  --primary-light: #eff6ff;
+
+  --korean-color: #2563eb;  /* Korean Blue */
+
+  --success: #10b981;       /* Emerald */
+  --success-hover: #059669;
+  --success-light: #ecfdf5;
+
+  --danger: #ef4444;        /* Rose Red */
+  --danger-hover: #dc2626;
+  --danger-light: #fef2f2;
+
+  --warning: #f59e0b;       /* Amber */
+  --warning-hover: #d97706;
+  --warning-light: #fffbeb;
+
+  --text-main: #0f172a;     /* Slate 900 */
+  --text-muted: #475569;    /* Slate 600 */
+  --text-light: #94a3b8;    /* Slate 400 */
+  --border-light: #e2e8f0;  /* Slate 200 */
 }
 
-.card{
-  position:relative;
-  background:white;
-  width:100%;
-  max-width:420px;
-  padding:70px 20px 30px;
-  border-radius:20px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-  text-align:center;
-  min-height:100vh;
-  box-sizing:border-box;
-}
-
-h2{
-  margin-bottom:20px;
-}
-
-.meaning,
-.word{
-  font-size:24px;
-  font-weight:bold;
-  color:#2563eb;
-  margin-bottom:20px;
-  min-height:60px;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  font-size:18px;
-  border-radius:10px;
-  border:2px solid #ccc;
-  box-sizing:border-box;
-  margin-bottom:15px;
-}
-
-input:disabled{
-  background:#f3f4f6;
-  color:#9ca3af;
-}
-
-button{
-  width:100%;
-  padding:12px 16px;
-  border:none;
-  border-radius:10px;
-  font-size:18px;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-button:disabled{
-  opacity:0.5;
-  cursor:not-allowed;
-}
-
-/* =========================
-   MENU BUTTON
-========================= */
-
-.menu-btn{
-  background:#2563eb;
-  color:white;
-}
-
-.lang-korean-btn{
-  background:#2563eb;
-  color:white;
-}
-
-.lang-english-btn{
-  background:#098503;
-  color:white;
-}
-
-.topik-1-btn{
-  background:#2563eb;
-  color:white;
-}
-
-.topik-2-btn{
-  background:#dc2626;
-  color:white;
-}
-
-.english-a1-btn{
-  background:#1c54ae;
-  color:white;
-}
-
-.english-a2-btn{
-  background:#0249b9;
-  color:white;
-}
-
-.english-b1-btn{
-  background:#33ba2c;
-  color:white;
-}
-
-.english-b2-btn{
-  background:#0dc203;
-  color:white;
-}
-
-.lang-korean-btn:hover,
-.topik-1-btn:hover,
-.english-a1-btn:hover{
-  filter: brightness(0.95);
-}
-
-.lang-english-btn:hover,
-.topik-2-btn:hover,
-.english-a2-btn:hover,
-.english-b1-btn:hover,
-.english-b2-btn:hover{
-  filter: brightness(0.95);
-}
-
-.choice-btn{
-  background:#e5e7eb;
-  color:#111827;
-}
-
-.choice-btn:hover:not(:disabled){
-  background:#d1d5db;
-}
-
-.speak-btn{
-  background:#7c3aed;
-  color:white;
-}
-
-.speak-btn:hover{
-  background:#6d28d9;
-}
-
-.check-answer-btn{
-  background:#2563eb;
-  color:white;
-}
-
-.check-answer-btn:hover:not(:disabled){
-  background:#1d4ed8;
-}
-
-.restart-btn{
-  background:#16a34a;
-  color:white;
-  margin-top:20px;
-}
-
-.restart-btn:hover{
-  background:#15803d;
-}
-
-/* =========================
-   FLASHCARD
-========================= */
-
-.fc-word{
-  font-size:36px;
-  font-weight:bold;
-  color:#2563eb;
-  margin:20px 0;
-  min-height:60px;
-}
-
-.fc-meaning{
-  font-size:22px;
-  color:#374151;
-  margin-bottom:20px;
-  padding:15px;
-  background:#f0f9ff;
-  border-radius:12px;
-}
-
-.flip-btn{
-  background:#f59e0b;
-  color:white;
-}
-
-.flip-btn:hover{
-  background:#d97706;
-}
-
-.fc-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-
-.fc-know-btn{
-  background:#16a34a;
-  color:white;
-  flex:1;
-}
-
-.fc-know-btn:hover{
-  background:#15803d;
-}
-
-.fc-forget-btn{
-  background:#dc2626;
-  color:white;
-  flex:1;
-}
-
-.fc-forget-btn:hover{
-  background:#b91c1c;
-}
-
-/* =========================
-   TOP NAV BUTTONS
-========================= */
-
-.back-btn,
-.home-btn{
-  position:absolute;
-  top:15px;
-  width:auto;
-  padding:8px 18px;
-  font-size:14px;
-  color:white;
-  border:none;
-  border-radius:999px;
-  margin-top:0;
-  cursor:pointer;
-}
-
-.back-btn{
-  left:15px;
-  background:#6b7280;
-}
-
-.home-btn{
-  right:15px;
-  background:#6b7280;
-}
-
-.back-btn:hover,
-.home-btn:hover{
-  background:#4b5563;
-}
-
-/* =========================
-   RESULT
-========================= */
-
-.result{
-  margin-top:15px;
-  font-size:18px;
-  font-weight:bold;
-  min-height:40px;
-}
-
-.correct{ color:green; }
-.wrong{ color:red; }
-
-
-/* =========================
-   HIDDEN
-========================= */
-
-.hidden { display: none !important; }
-
-/* =========================
-   FINISH
-========================= */
-
-.finish{
-  font-size:28px;
-  color:#16a34a;
-  font-weight:bold;
-  margin-bottom:20px;
-}
-
-/* =========================
-   WRONG LIST
-========================= */
-
-.wrong-list{
-  text-align:left;
-  margin-top:20px;
-  background:#f9fafb;
-  padding:15px;
-  border-radius:12px;
-}
-
-.wrong-list h3{
-  margin-top:0;
-  color:#dc2626;
-}
-
-.wrong-item{
-  margin-bottom:10px;
-  font-size:16px;
-}
-
-/* =========================
-   SCREEN
-========================= */
-
-.screen{ width:100%; }
-
-/* =========================
-   SRS BOX ROW
-========================= */
-
-.srs-boxes-row {
+/* ─── BASE STYLES ─── */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg-app);
+  color: var(--text-main);
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
   justify-content: center;
-  margin-bottom: 14px;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── CARD CONTAINER (MOBILE FRAMEWORK) ─── */
+.card {
+  position: relative;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  width: 100%;
+  max-width: 425px;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 76px 20px 16px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 426px) {
+  body {
+    padding: 20px 0;
+    height: 100vh;
+  }
+  .card {
+    height: calc(100vh - 40px);
+    max-height: 850px;
+    border-radius: 32px;
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+  }
+}
+
+/* ─── SCROLLABLE CONTENT AREA ─── */
+#app {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  
+  /* ซ่อน scrollbar เพื่อความเป็นระเบียบเหมือนแอพมือถือ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE/Edge */
+}
+
+#app::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* ─── TYPOGRAPHY ─── */
+h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+/* ─── INPUTS ─── */
+input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  border-radius: 14px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+  background: #ffffff;
+}
+
+input:disabled {
+  background: #f1f5f9;
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+/* ─── BUTTONS ─── */
+button {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── MENU BUTTONS ─── */
+.menu-btn {
+  margin-top: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.lang-korean-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.lang-korean-btn:hover {
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.lang-english-btn {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+.lang-english-btn:hover {
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+}
+
+/* KOREAN TOPICS */
+.topik-1-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.topik-1-btn:hover {
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.topik-2-btn {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+.topik-2-btn:hover {
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ENGLISH LEVELS */
+.english-a1-btn { background: linear-gradient(135deg, #10b981, #059669); }
+.english-a2-btn { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.english-b1-btn { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.english-b2-btn { background: linear-gradient(135deg, #ec4899, #d946ef); }
+
+.english-a1-btn:hover, .english-a2-btn:hover, .english-b1-btn:hover, .english-b2-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── APP TITLE BADGE ─── */
+.app-title-badge {
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--primary-light);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 999px;
+  padding: 6px 18px;
+  margin: 0 auto 24px;
+  align-self: center;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.05);
+}
+
+/* ─── TOP NAVIGATION BUTTONS ─── */
+.back-btn, .home-btn, .track-nav-btn {
+  position: absolute;
+  top: 20px;
+  width: auto;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid var(--border-light);
+  background: white;
+  color: var(--text-muted);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-top: 0;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover, .home-btn:hover, .track-nav-btn:hover {
+  background: #f8fafc;
+  color: var(--text-main);
+  border-color: var(--text-light);
+}
+
+.back-btn { left: 20px; }
+.home-btn { right: 20px; }
+
+.track-nav-btn {
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.track-nav-btn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* ─── PROGRESS BADGES ─── */
+.progress-badge {
+  display: inline-flex;
+  background: var(--primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+  font-family: var(--font-mono);
+}
+
+.progress-badge.stage2 {
+  background: var(--success);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+/* ─── SEARCH SECTION ─── */
+.search-box {
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 20;
+}
+
+.search-input-wrap {
+  position: relative;
+}
+
+.search-input-wrap input {
+  padding-right: 48px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+}
+
+.clear-search-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  background: var(--border-light);
+  color: var(--text-main);
+}
+
+.search-result {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15);
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.search-result::-webkit-scrollbar {
+  width: 6px;
+}
+.search-result::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+.search-result::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-item {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  margin-bottom: 8px;
+  border: 1px solid #f1f5f9;
+}
+
+.search-item:last-child {
+  margin-bottom: 0;
+}
+
+.search-word {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  background: transparent !important;
+}
+
+div.search-word.level-topik1 { color: var(--korean-color) !important; }
+div.search-word.level-topik2 { color: var(--danger) !important; }
+div.search-word.level-en-a1 { color: #10b981 !important; }
+div.search-word.level-en-a2 { color: #0891b2 !important; }
+div.search-word.level-en-b1 { color: #7c3aed !important; }
+div.search-word.level-en-b2 { color: #eb03f3 !important; }
+
+.search-meaning {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.search-level {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  color: white !important;
+  margin-top: 4px;
+}
+
+.search-level.level-topik1 { background: var(--korean-color) !important; }
+.search-level.level-topik2 { background: var(--danger) !important; }
+.search-level.level-en-a1 { background: #10b981 !important; }
+.search-level.level-en-a2 { background: #0891b2 !important; }
+.search-level.level-en-b1 { background: #7c3aed !important; }
+.search-level.level-en-b2 { background: #eb03f3 !important; }
+
+.search-notfound {
+  text-align: center;
+  color: var(--danger);
+  font-weight: 700;
+  padding: 16px;
+}
+
+/* ─── SRS DASHBOARD BOXES ─── */
+.srs-boxes-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .srs-box {
@@ -330,44 +431,67 @@ button:disabled{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  min-height: 56px;
-  background: color-mix(in srgb, var(--box-color) 12%, white);
-  border: 2px solid var(--box-color);
-  border-radius: 10px;
-  cursor: default;
-  padding: 4px 2px;
+  background: color-mix(in srgb, var(--box-color) 8%, white);
+  border: 1.5px solid color-mix(in srgb, var(--box-color) 25%, var(--border-light));
+  border-radius: 16px;
+  padding: 10px 4px;
+  min-height: 72px;
+  box-sizing: border-box;
+  position: relative;
 }
-
-.srs-box-mix {
-  cursor: pointer;
-  transition: transform 0.15s;
-}
-.srs-box-mix:hover { transform: scale(1.06); }
 
 .srs-box-count {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--box-color);
+  font-family: var(--font-mono);
   line-height: 1.1;
 }
 
 .srs-box-label {
-  font-size: 10px;
-  color: var(--box-color);
-  font-weight: 600;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
   margin-top: 2px;
 }
 
-/* =========================
-   SRS ACTION BUTTONS
-========================= */
+.srs-box-clickable {
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.srs-box-clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 18px -4px rgba(15, 23, 42, 0.08);
+  border-color: var(--box-color);
+  background: color-mix(in srgb, var(--box-color) 12%, white);
+}
 
+.srs-box-full {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--danger);
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ─── SRS ACTION BUTTONS ─── */
 .srs-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 4px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .srs-action-btn {
@@ -375,545 +499,655 @@ button:disabled{
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 14px 18px;
-  border: none;
-  border-radius: 12px;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
   color: white;
   margin-top: 0;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
-.srs-due-btn  { background: #2563eb; }
-.srs-due-btn:hover { background: #1d4ed8; }
-.srs-new-btn  { background: #16a34a; }
-.srs-new-btn:hover { background: #15803d; }
-.srs-stat-btn { background: #7c3aed; }
-.srs-stat-btn:hover { background: #6d28d9; }
+.srs-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.12);
+}
+
+.srs-due-btn {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+}
+.srs-due-btn:hover {
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+}
+
+.srs-wrongbox-btn {
+  background: linear-gradient(135deg, #db2777, #ec4899);
+}
+.srs-wrongbox-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
+}
+
+.srs-new-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.srs-new-btn:hover {
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+}
+
+.srs-stat-btn {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+.srs-stat-btn:hover {
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+}
+
+.srs-settings-btn {
+  background: linear-gradient(135deg, #475569, #334155);
+}
 
 .srs-badge {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.22);
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: var(--font-mono);
 }
 
 .main-divider {
-  border-top: 1px solid #e5e7eb;
-  margin: 16px 0;
+  border-top: 1.5px dashed var(--border-light);
+  margin: 20px 0;
 }
 
-/* =========================
-   SRS GAME INFO
-========================= */
-
-.srs-session-label {
-  font-size: 20px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 4px;
+/* ─── 3D FLASHCARD SYSTEM ─── */
+#flashcardContainer {
+  perspective: 1000px;
+  width: 100%;
+  height: 260px;
+  margin: 16px 0 24px;
 }
 
-.srs-session-note {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 16px;
+#flashcardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
-.srs-game-info {
-  text-align: center;
-  padding: 10px 0 4px;
+#flashcardInner.flipped {
+  transform: rotateY(180deg);
 }
 
-/* =========================
-   SRS STATS
-========================= */
-
-.stats-header {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 14px;
-  color: #1e1b4b;
-}
-
-.stats-summary {
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  padding: 24px;
+  box-sizing: border-box;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 16px;
+  align-items: center;
+  background: white;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.02);
 }
 
-.stat-chip {
-  background: #f3f4f6;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 13px;
-  text-align: center;
-  min-width: 70px;
+.flashcard-front {
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
 }
 
-.stat-chip b {
-  display: block;
-  font-size: 22px;
-  color: #2563eb;
+.flashcard-back {
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  transform: rotateY(180deg);
 }
 
-.stat-progress-label {
+.fc-word {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+  word-break: break-word;
+}
+
+.fc-meaning {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--primary-light);
+  padding: 12px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(79, 70, 229, 0.08);
+  margin-bottom: 20px;
+  width: 80%;
+  word-break: break-word;
+}
+
+.speak-btn {
+  background: var(--primary-light);
+  color: var(--primary);
+  width: auto;
+  padding: 10px 20px;
   font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 6px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.speak-btn:hover {
+  background: rgba(79, 70, 229, 0.15);
 }
 
-.stat-progress-bar {
-  background: #e5e7eb;
+.flip-btn {
+  background: var(--warning);
+  color: white;
+  width: 80%;
+  margin-top: 12px;
+}
+.flip-btn:hover {
+  background: var(--warning-hover);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2);
+}
+
+.fc-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.fc-know-btn {
+  background: var(--success);
+  color: white;
+  flex: 1;
+}
+.fc-know-btn:hover {
+  background: var(--success-hover);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
+}
+
+.fc-forget-btn {
+  background: var(--danger);
+  color: white;
+  flex: 1;
+}
+.fc-forget-btn:hover {
+  background: var(--danger-hover);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
+}
+
+.stop-fc-btn {
+  background: var(--danger-light);
+  color: var(--danger);
+  width: auto;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 700;
   border-radius: 999px;
-  height: 12px;
-  overflow: hidden;
+  margin: 0 auto 16px;
+  display: block;
+}
+.stop-fc-btn:hover {
+  background: #fee2e2;
+}
+
+/* ─── STAGE 2: FILL BLANK & TYPING GAME ─── */
+#fillCardUI {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  margin-top: 16px;
+}
+
+#fillCardUI .fc-meaning {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 auto 20px;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.meaning {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
   margin-bottom: 20px;
 }
 
-.stat-progress-fill {
-  background: linear-gradient(90deg, #2563eb, #16a34a);
-  height: 100%;
-  border-radius: 999px;
-  transition: width 0.6s ease;
-}
-
-.stat-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.stat-bar-label {
-  font-size: 12px;
-  color: #374151;
-  min-width: 110px;
-  text-align: left;
-}
-
-.stat-bar-wrap {
-  flex: 1;
-  background: #f3f4f6;
-  border-radius: 999px;
-  height: 10px;
-  overflow: hidden;
-}
-
-.stat-bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  min-width: 4px;
-  transition: width 0.5s ease;
-}
-
-.stat-bar-num {
-  font-size: 13px;
-  font-weight: 700;
-  color: #374151;
-  min-width: 28px;
-  text-align: right;
-}
-
-/* =========================
-   SETTINGS FIELDS (แนวตั้ง)
-========================= */
-.settings-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.settings-field-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.settings-field-label {
-  flex: 1;
-  font-size: 14px;
-  color: #374151;
-  text-align: left;
-}
-
-.settings-field-row input {
-  width: 60px;
-  padding: 7px 8px;
-  font-size: 15px;
-  margin-bottom: 0;
-  text-align: center;
-}
-
-.settings-field-unit {
-  font-size: 13px;
-  color: #6b7280;
-  min-width: 20px;
-}
-
-/* =========================
-   SETTINGS PANEL SCROLL
-========================= */
-
-#settingsPanel{
-  max-height:75vh;
-  overflow-y:auto;
-  padding-right:4px;
-}
-
-/* scrollbar */
-
-#settingsPanel::-webkit-scrollbar{
-  width:8px;
-}
-
-#settingsPanel::-webkit-scrollbar-thumb{
-  background:#cbd5e1;
-  border-radius:999px;
-}
-
-#settingsPanel::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-/* =========================
-   SEARCH VOCAB
-========================= */
-
-.search-box{
-  margin-top:20px;
-  position:relative;
-  z-index:20;
-}
-
-.search-result{
-  position:absolute;
-  top:100%;
-  left:0;
-  right:0;
-
-  margin-top:8px;
-
-  background:white;
-  border:2px solid #e5e7eb;
-  border-radius:14px;
-  padding:14px;
-
-  text-align:left;
-
-  box-shadow:0 8px 20px rgba(0,0,0,0.12);
-
-  max-height:60vh;
-  overflow-y:auto;
-
-  z-index:999;
-}
-
-.search-result::-webkit-scrollbar{
-  width:8px;
-}
-
-.search-result::-webkit-scrollbar-thumb{
-  background:#cbd5e1;
-  border-radius:999px;
-}
-
-.search-result::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-.search-item{
-  padding:10px;
-  border-radius:10px;
-  background:#f9fafb;
-}
-
-.search-word{
-  font-size:24px;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-.search-meaning{
-  font-size:17px;
-  color:#374151;
-  margin-bottom:8px;
-}
-
-.search-level{
-  display:inline-block;
-  padding:4px 10px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
-  color:white;
-}
-
-.level-topik1 {
-  background: #2563eb; /* สีพื้นหลังป้าย TOPIK1 */
-  color: white;        /* สีตัวอักษรในป้าย TOPIK1 */
-}
-div.search-word.level-topik1 {
-  color: #2563eb;
-}
-
-.level-topik2 {
-  background: #dc2626; /* 🟢 เปลี่ยนพื้นหลังป้าย TOPIK2 เป็นสีแดง */
-  color: white;        /* สีตัวอักษรในป้าย TOPIK2 */
-}
-div.search-word.level-topik2 {
-  color: #dc2626;      /* 🟢 เปลี่ยนตัวคำศัพท์หลักเป็นสีแดง */
-}
-
-.search-notfound{
-  text-align:center;
-  color:#dc2626;
-  font-weight:700;
-  padding:10px;
-}
-
-/* =========================
-   ANSWER INPUT WRAP (typing game)
-========================= */
-
 .answer-input-wrap {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .answer-input-wrap input {
-  padding-right: 45px;
-  margin-bottom: 0;
+  padding-right: 48px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 16px;
 }
 
 .clear-answer-btn {
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 12px;
   transform: translateY(-50%);
-
-  width: 28px;
-  height: 28px;
-
-  border: none;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-
-  background: #e5e7eb;
-  color: #374151;
-
-  font-size: 14px;
-  font-weight: 700;
-
+  background: #e2e8f0;
+  color: var(--text-muted);
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
-  margin: 0;
+}
 
+.check-answer-btn {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+}
+.check-answer-btn:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+}
+
+.result {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+.result.correct {
+  color: var(--success);
+  background: var(--success-light);
+  border: 1.5px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: inline-flex;
+}
+.result.wrong {
+  color: var(--danger);
+  background: var(--danger-light);
+  border: 1.5px solid rgba(239, 68, 68, 0.25);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: inline-flex;
+  animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* ─── STAGE 2 POPUP OVERLAY ─── */
+.stage2-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 500;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.clear-answer-btn:hover {
-  background: #d1d5db;
+.stage2-sheet {
+  background: white;
+  width: 86%;
+  max-width: 360px;
+  border-radius: 24px;
+  padding: 30px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* =========================
-   SEARCH CLEAR BUTTON
-========================= */
-
-.search-input-wrap{
-  position:relative;
+@keyframes modalPop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-.clear-search-btn{
-  position:absolute;
-
-  top:9px;
-  right:10px;
-
-  width:28px;
-  height:28px;
-
-  border:none;
-  border-radius:50%;
-
-  background:#e5e7eb;
-  color:#374151;
-
-  font-size:14px;
-  font-weight:700;
-
-  cursor:pointer;
-
-  padding:0;
-  margin:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.stage2-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 12px;
 }
 
-.clear-search-btn:hover{
-  background:#d1d5db;
+.stage2-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
 }
 
-/* กันข้อความชนปุ่ม X */
-
-#searchInput{
-  padding-right:45px;
+.stage2-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
 }
 
-/* ====================================================
-   แก้ไขส่วนสีข้อความคำศัพท์หลักแยกตามระดับ (เจาะจงเฉพาะสีตัวอักษร)
-====================================================== */
-
-/* สั่งให้ข้อความคำศัพท์ของ TOPIK 1 เป็นตัวอักษรสีฟ้า (ไม่มีพื้นหลัง) */
-div.search-word.level-topik1 {
-  color: #2563eb !important;
-  background: transparent !important; /* บังคับให้พื้นหลังโปร่งแสง */
+.stage2-desc {
+  font-size: 14px;
+  color: #065f46;
+  line-height: 1.6;
+  background: var(--success-light);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
 }
 
-/* สั่งให้ข้อความคำศัพท์ของ TOPIK 2 เป็นตัวอักษรสีแดง (ไม่มีพื้นหลัง) */
-div.search-word.level-topik2 {
-  color: #dc2626 !important;
-  background: transparent !important; /* บังคับให้พื้นหลังโปร่งแสง */
+.stage2-ok-btn {
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
 }
 
-
-/* ====================================================
-   ส่วนของป้ายกำกับกลมๆ ด้านล่าง (ให้แสดงผลเป็นป้ายเหมือนเดิม)
-====================================================== */
-span.search-level.level-topik1, 
-div.search-level.level-topik1 {
-  background: #2563eb !important;
-  color: white !important;
+/* ─── QUIZ GAME ─── */
+#quizGame .word {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
 }
 
-span.search-level.level-topik2, 
-div.search-level.level-topik2 {
-  background: #dc2626 !important;
-  color: white !important;
+#choicesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-/* ====================================================
-   จำกัดความสูงและเปิดให้ Scroll ได้ ทั้งโหมดทวนวันนี้ และโหมดทวนคำผิด
-====================================================== */
-#srsWrongAnswers .wrong-list, 
-#wrongAnswers .wrong-list {
-  max-height: 240px;       /* จำกัดความสูงสูงสุดของกล่อง */
-  overflow-y: auto;        /* เปิดให้สกรอลล์เลื่อนขึ้น-ลงได้ */
-  padding-right: 8px;      /* เพิ่มช่องว่างด้านขวากันชนแถบสกรอลล์ */
+.choice-btn {
+  background: white;
+  border: 1.5px solid var(--border-light);
+  color: var(--text-main);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  padding: 14px;
+  text-align: center;
 }
 
-/* 💡 แต่งแถบ Scrollbar ของทั้งสองกล่องให้สวยงามมนเข้ากับธีมแอป */
-#srsWrongAnswers .wrong-list::-webkit-scrollbar,
-#wrongAnswers .wrong-list::-webkit-scrollbar {
-  width: 6px;
+.choice-btn:hover:not(:disabled) {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
-#srsWrongAnswers .wrong-list::-webkit-scrollbar-thumb,
-#wrongAnswers .wrong-list::-webkit-scrollbar-thumb {
-  background: #cbd5e1;     /* สีของแถบเลื่อน */
-  border-radius: 999px;    /* ความมนของแถบเลื่อน */
+/* ─── FINISH SCREEN & SUMMARIES ─── */
+.finish {
+  font-size: 28px;
+  color: var(--success);
+  font-weight: 800;
+  margin-bottom: 20px;
 }
 
-#srsWrongAnswers .wrong-list::-webkit-scrollbar-track,
-#wrongAnswers .wrong-list::-webkit-scrollbar-track {
-  background: transparent; /* พื้นหลังโปร่งใส */
+.wrong-list {
+  text-align: left;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  padding: 16px;
+  border-radius: 18px;
+  margin: 16px 0;
 }
 
-/* =========================
-   สีปุ่ม ตั้งค่า / ทวนคำผิด
-========================= */
+.wrong-list h3 {
+  margin-top: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--danger);
+  margin-bottom: 12px;
+}
 
-/* ปุ่ม ตั้งค่า — สีเทาเข้ม */
-.srs-settings-btn { background: #374151; color: white; }
-.srs-settings-btn:hover { background: #1f2937; }
+.wrong-item {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 6px;
+}
+.wrong-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
 
-/* ปุ่ม ทวนคำผิด — สีชมพูแดง */
-.srs-wrongbox-btn { background: #db2777; color: white; }
-.srs-wrongbox-btn:hover:not(:disabled) { background: #be185d; }
-.srs-wrongbox-btn:disabled { opacity: 0.45; cursor: not-allowed; background: #f3f4f6; color: #9ca3af; }
+.wrong-stage-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+.wrong-stage-tag.stage1 {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+.wrong-stage-tag.stage2 {
+  background: var(--warning-light);
+  color: var(--warning);
+}
 
-/* ปุ่มใน settings — เพิ่มความชัดเจน */
-.settings-btn-blue { background: #2563eb; color: white; }
-.settings-btn-blue:hover { background: #1d4ed8; }
-.settings-btn-red  { background: #dc2626; color: white; }
-.settings-btn-red:hover  { background: #b91c1c; }
-.settings-btn-gray { background: #e5e7eb; color: #374151; font-weight: 600; }
-.settings-btn-gray:hover { background: #d1d5db; }
+.restart-btn {
+  background: var(--success);
+  color: white;
+  margin-top: 16px;
+}
+.restart-btn:hover {
+  background: var(--success-hover);
+}
 
-/* =========================
-   SETTINGS CHECKBOXES (แนวตั้ง)
-========================= */
+.home-finish-btn {
+  background: var(--warning);
+}
+.home-finish-btn:hover {
+  background: var(--warning-hover);
+}
+
+.summary-stats {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 4px 0;
+}
+.summary-row b {
+  color: var(--text-main);
+}
+
+.wb-status {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.wb-full-tag {
+  background: var(--danger);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-left: 4px;
+}
+
+/* ─── SETTINGS PANEL ─── */
+.settings-header {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.settings-section {
+  margin-bottom: 12px;
+  padding: 16px;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.settings-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.settings-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.settings-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-field-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.settings-field-row input {
+  width: 64px;
+  padding: 6px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.settings-field-unit {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-left: 6px;
+}
+
 .settings-checkboxes {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 12px;
 }
 
 .settings-checkboxes label {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
+  display: flex;
+  align-items: center;
   gap: 10px;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  text-align: left;
-  width: auto;
+  font-weight: 600;
 }
 
 .settings-checkboxes input[type="checkbox"] {
   width: 18px !important;
   height: 18px !important;
-  min-width: 18px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  border-radius: 4px !important;
-  flex-shrink: 0;
+  accent-color: var(--primary);
   cursor: pointer;
-  accent-color: #2563eb;
-  box-sizing: content-box !important;
 }
 
-/* =========================
-   BOX INSPECTOR POPUP
-========================= */
+.settings-btn {
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: white;
+}
+
+.settings-btn-blue {
+  background: var(--primary);
+}
+.settings-btn-blue:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.settings-btn-red {
+  background: var(--danger);
+}
+.settings-btn-red:hover {
+  background: var(--danger-hover);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.settings-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 16px 0;
+}
+
+/* ─── MODAL OVERLAYS & SHEETS ─── */
 .box-inspector-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
   z-index: 500;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
-.box-inspector-overlay.hidden { display: none; }
 
 .box-inspector-sheet {
   background: white;
   width: 100%;
-  max-width: 420px;
-  height: 70vh;
-  border-radius: 20px 20px 0 0;
+  max-width: 425px;
+  height: 75vh;
+  border-radius: 24px 24px 0 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
 }
 
 .box-inspector-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px 12px;
-  border-bottom: 1px solid #e5e7eb;
-  flex-shrink: 0;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .box-inspector-title {
@@ -925,355 +1159,193 @@ div.search-level.level-topik2 {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e5e7eb;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 700;
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 800;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
-  margin: 0;
-  flex-shrink: 0;
 }
-.box-inspector-close:hover { background: #d1d5db; }
 
 .box-inspector-list {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 16px;
-  text-align: left;
+  padding: 16px;
 }
-
-.box-inspector-list::-webkit-scrollbar { width: 6px; }
-.box-inspector-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
-.box-inspector-list::-webkit-scrollbar-track { background: transparent; }
 
 .box-inspector-item {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f3f4f6;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f8fafc;
 }
 
 .box-inspector-num {
   font-size: 12px;
-  color: #9ca3af;
-  min-width: 24px;
+  color: var(--text-light);
+  font-family: var(--font-mono);
 }
 
 .box-inspector-word {
-  font-size: 17px;
-  font-weight: 700;
-  color: #111827;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main);
 }
 
 .box-inspector-meaning {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-muted);
   flex: 1;
+  margin-left: 4px;
 }
 
 .box-inspector-date {
   font-size: 11px;
-  color: #9ca3af;
-  background: #f3f4f6;
-  padding: 2px 6px;
+  color: var(--text-muted);
+  background: var(--primary-light);
+  padding: 2px 8px;
   border-radius: 6px;
+  font-family: var(--font-mono);
 }
 
 .box-inspector-empty {
   text-align: center;
-  color: #9ca3af;
-  padding: 40px 0;
-  font-size: 15px;
+  color: var(--text-light);
+  padding: 48px 0;
 }
 
-.srs-box-clickable {
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-.srs-box-clickable:hover {
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.switch-mode-btn {
-  background: #2563eb;
-}
-.switch-mode-btn:hover {
-  background: #1d4ed8;
-}
-
-/* =========================
-   STOP FLASHCARD BUTTON
-========================= */
-.stop-fc-btn {
-  background: #ef4444;
-  color: white;
-  width: auto;
-  padding: 8px 28px;
-  font-size: 15px;
-  border-radius: 999px;
-  display: block;
-  margin: 0 auto 8px;
-}
-.stop-fc-btn:hover {
-  background: #b91c1c;
-}
-
-/* =========================
-   PROGRESS BADGE (ใต้ title)
-========================= */
-.progress-badge {
-  display: inline-block;
-  background: #2563eb;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 999px;
-  margin: 4px auto 8px;
-}
-.progress-badge.hidden { display: none; }
-/* =========================
-   STAGE 2 POPUP OVERLAY
-========================= */
-.stage2-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.stage2-overlay.hidden { display: none; }
-
-.stage2-sheet {
-  background: white;
-  width: 88%;
-  max-width: 360px;
-  border-radius: 20px;
-  padding: 28px 24px 24px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-}
-
-.stage2-title {
+/* ─── STATS PAGE ─── */
+.stats-header {
   font-size: 20px;
-  font-weight: 900;
-  color: #1e40af;
+  font-weight: 800;
+  color: var(--text-main);
   margin-bottom: 16px;
 }
 
-.stage2-heading {
-  font-size: 18px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 4px;
-}
-
-.stage2-sub {
-  font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 14px;
-}
-
-.stage2-desc {
-  font-size: 15px;
-  color: #374151;
-  line-height: 1.7;
-  background: #f0fdf4;
-  border: 1.5px solid #16a34a;
-  border-radius: 10px;
-  padding: 12px 14px;
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
   margin-bottom: 20px;
 }
 
-.stage2-ok-btn {
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 40px;
-  font-size: 17px;
-  font-weight: 800;
-  cursor: pointer;
-  width: 100%;
+.stat-chip {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  padding: 10px 6px;
+  font-size: 11px;
+  color: var(--text-muted);
 }
-.stage2-ok-btn:hover { background: #1d4ed8; }
+.stat-chip b {
+  display: block;
+  font-size: 20px;
+  color: var(--primary);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
 
-/* =========================
-   FILL CARD UI (ด่าน 2)
-========================= */
-.fill-label {
+.stat-progress-label {
   font-size: 13px;
-  font-weight: 700;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-}
-
-#fillCardUI .fc-meaning {
-  font-size: 26px;
-  font-weight: 800;
-  color: #2563eb;
-  margin-bottom: 18px;
-  min-height: 60px;
-}
-
-/* =========================
-   SUMMARY STATS (SRS Finish)
-========================= */
-.summary-stats {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin: 12px 0 8px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
   text-align: left;
 }
 
-.summary-row {
-  font-size: 14px;
-  color: #374151;
-  padding: 4px 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-.summary-row:last-child { border-bottom: none; }
-.summary-row b { color: #111827; }
-
-/* WRONG STAGE TAG */
-.wrong-stage-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
+.stat-progress-bar {
+  background: var(--border-light);
   border-radius: 999px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.wrong-stage-tag.stage1 {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-.wrong-stage-tag.stage2 {
-  background: #fef3c7;
-  color: #92400e;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 24px;
 }
 
-/* progress badge ด่าน 2 สีเขียว */
-.progress-badge.stage2 {
-  background: #16a34a;
-}
-
-.track-nav-btn {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  padding: 8px 18px;
+.stat-progress-fill {
+  background: linear-gradient(90deg, var(--primary), var(--success));
+  height: 100%;
   border-radius: 999px;
-  background: #6b7280;
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 0;
-  cursor: pointer;
-  border: none;
-  line-height: 1;
-  white-space: nowrap;
-  z-index: 10;
 }
 
-.home-finish-btn{
-    background:#f97316;
+.stat-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.app-title-badge {
-  display: inline-block;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1d4ed8;
-  background: #eff6ff;
-  border: 2px solid #93c5fd;
-  border-radius: 10px;
-  padding: 8px 20px;
-  margin-bottom: 14px;
+.stat-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* =========================
-   SETTINGS HEADER
-========================= */
-.settings-header {
-  font-size: 18px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 16px;
-  text-align: center;
+.stat-bar-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 90px;
+  text-align: left;
 }
 
-.settings-section {
-  margin-bottom: 4px;
-  padding: 14px;
-  background: #f9fafb;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+.stat-bar-wrap {
+  flex: 1;
+  background: #f1f5f9;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
 }
 
-.settings-title {
-  font-size: 15px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 4px;
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 999px;
 }
 
-.settings-desc {
+.stat-bar-num {
   font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 4px;
-}
-
-.settings-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
   font-weight: 700;
-  cursor: pointer;
-  margin-top: 8px;
+  color: var(--text-main);
+  min-width: 28px;
+  text-align: right;
+  font-family: var(--font-mono);
 }
 
-.settings-divider {
-  height: 1px;
-  background: #e5e7eb;
-  margin: 12px 0;
+/* ─── GAMES MENUS ─── */
+.srs-game-info {
+  margin-bottom: 20px;
 }
 
-/* A1 — เขียว */
-.level-en-a1 { background: #16a34a; color: white; }
-div.search-word.level-en-a1 { color: #16a34a !important; background: transparent !important; }
-span.search-level.level-en-a1,
-div.search-level.level-en-a1 { background: #16a34a !important; color: white !important; }
+.srs-session-label {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-main);
+}
 
-/* A2 — ฟ้า */
-.level-en-a2 { background: #0891b2; color: white; }
-div.search-word.level-en-a2 { color: #0891b2 !important; background: transparent !important; }
-span.search-level.level-en-a2,
-div.search-level.level-en-a2 { background: #0891b2 !important; color: white !important; }
+.srs-session-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
 
-/* B1 — ม่วง */
-.level-en-b1 { background: #7c3aed; color: white; }
-div.search-word.level-en-b1 { color: #7c3aed !important; background: transparent !important; }
-span.search-level.level-en-b1,
-div.search-level.level-en-b1 { background: #7c3aed !important; color: white !important; }
+#practiceBoxFilterLabel {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--success);
+  font-weight: 700;
+  padding: 8px 14px;
+  background: var(--success-light);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  margin-top: 12px;
+}
 
-/* B2 — ส้ม */
-.level-en-b2 { background: #eb03f3; color: white; }
-div.search-word.level-en-b2 { color: #eb03f3 !important; background: transparent !important; }
-span.search-level.level-en-b2,
-div.search-level.level-en-b2 { background: #eb03f3 !important; color: white !important; }
+/* ─── UTILITY ─── */
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  width: 100%;
+}

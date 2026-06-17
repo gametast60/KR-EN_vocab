@@ -58,8 +58,12 @@ function speakFlashcard(){
 // =========================
 function showFlashcard(){
   const currentWord = shuffledVocabulary[fcIndex];
-  document.getElementById("flashcardFront").classList.remove("hidden");
-  document.getElementById("flashcardBack").classList.add("hidden");
+  
+  const inner = document.getElementById("flashcardInner");
+  if(inner) inner.classList.remove("flipped");
+  const container = document.getElementById("flashcardContainer");
+  if(container) container.classList.remove("hidden");
+
   document.getElementById("fcWord").textContent = currentWord.word;
   document.getElementById("fcWordBack").textContent = currentWord.word;
   document.getElementById("fcMeaning").textContent = currentWord.meaning;
@@ -72,8 +76,8 @@ function showFlashcard(){
 }
 
 function flipCard(){
-  document.getElementById("flashcardFront").classList.add("hidden");
-  document.getElementById("flashcardBack").classList.remove("hidden");
+  const inner = document.getElementById("flashcardInner");
+  if(inner) inner.classList.add("flipped");
 }
 
 function fcAnswer(known){
@@ -160,9 +164,9 @@ function showFillCard(){
   badge.classList.add("stage2");
   badge.classList.remove("hidden");
 
-  // ใช้ fillCardUI แทน flashcardFront/Back
-  document.getElementById("flashcardFront").classList.add("hidden");
-  document.getElementById("flashcardBack").classList.add("hidden");
+  // ใช้ fillCardUI แทน 3D Card
+  const container = document.getElementById("flashcardContainer");
+  if(container) container.classList.add("hidden");
   document.getElementById("fillCardUI").classList.remove("hidden");
 
   document.getElementById("fillMeaning").textContent = word.meaning;
@@ -220,7 +224,7 @@ if(isCorrect){
 
 } else {
   // ❌ ผิดทันที ไม่ให้แก้ตัว → กลับกล่อง 1, บันทึก SRS
-  result.textContent = `❌ ${word.word}`;
+  result.innerHTML = `❌ เฉลย: <strong style="margin-left: 6px; font-size: 18px;">${word.word}</strong>`;
   result.className = "result wrong";
   input.disabled = true;
   checkBtn.disabled = true;
@@ -275,7 +279,8 @@ function stopFlashcard(){
 
   // ปิด popup ด่าน 2 ถ้าเปิดอยู่
   document.getElementById("stage2Popup")?.classList.add("hidden");
-  // ซ่อน fillCardUI
+  // ซ่อน 3D Card และ fillCardUI
+  document.getElementById("flashcardContainer")?.classList.add("hidden");
   document.getElementById("fillCardUI")?.classList.add("hidden");
   dueStage = 1;
 
@@ -357,7 +362,7 @@ if(isCorrect){
   }, 1000);
 
 } else {
-  result.textContent = `❌ ${currentWord.word}`;
+  result.innerHTML = `❌ เฉลย: <strong style="margin-left: 6px; font-size: 18px;">${currentWord.word}</strong>`;
   result.className = "result wrong";
   input.value = "";
   input.focus();
@@ -415,7 +420,7 @@ function checkQuizAnswer(choice){
     result.textContent = "✅ ถูกต้อง!";
     result.className = "result correct";
   } else {
-    result.textContent = `❌ ${currentWord.meaning}`;
+    result.innerHTML = `❌ เฉลย: <strong style="margin-left: 6px; font-size: 18px;">${currentWord.meaning}</strong>`;
     result.className = "result wrong";
     if(!wrongAnswers.some(item => item.word === currentWord.word)){
       wrongAnswers.push(currentWord);
