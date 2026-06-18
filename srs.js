@@ -171,7 +171,15 @@ function initAllVocab() {
 function getBoxCounts() {
   const data = loadSRS();
   const counts = [0,0,0,0,0,0];
-  Object.values(data).forEach(item => { counts[Math.min(item.box,5)]++; });
+  const items = Object.values(data);
+  const total = items.length;
+  items.forEach(item => {
+    let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
+    if (box >= 1) {
+      counts[Math.min(box, 5)]++;
+    }
+  });
+  counts[0] = Math.max(0, total - (counts[1] + counts[2] + counts[3] + counts[4] + counts[5]));
   return counts;
 }
 
@@ -230,14 +238,31 @@ function getSRSStats() {
   const data  = loadSRS();
   const today = todayStr();
   const all   = Object.values(data);
+  const total = all.length;
+  const counts = [0,0,0,0,0,0];
+  all.forEach(item => {
+    let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
+    if (box >= 1) {
+      counts[Math.min(box, 5)]++;
+    }
+  });
+  const learned = all.filter(i => {
+    let box = (i.box === undefined || i.box === null) ? 0 : Number(i.box);
+    return box >= 1;
+  }).length;
+  const mastered = counts[5];
+  const dueToday = all.filter(item => {
+    let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
+    return box >= 1 && box <= 4 &&
+           item.nextReview && item.nextReview <= today;
+  }).length;
+  const newLeft = Math.max(0, total - (counts[1] + counts[2] + counts[3] + counts[4] + counts[5]));
+
   return {
-    total:    all.length,
-    learned:  all.filter(i => i.box >= 1).length,
-    mastered: all.filter(i => i.box === 5).length,
-    dueToday: Object.values(loadSRS()).filter(item =>
-  item.box >= 1 && item.box <= 4 &&
-  item.nextReview && item.nextReview <= todayStr()
-).length,
-    newLeft:  all.filter(i => i.box === 0).length,
+    total,
+    learned,
+    mastered,
+    dueToday,
+    newLeft
   };
 }

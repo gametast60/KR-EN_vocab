@@ -20,7 +20,7 @@
 
   <!-- TOP BUTTONS -->
   <button id="homeButton" class="home-btn hidden" onclick="showMainMenu()">🏠 หน้าหลัก</button>
-  <button id="backButton" class="back-btn hidden" onclick="backToDashboard()">⬅ กลับ</button>
+  <button id="backButton" class="back-btn hidden" onclick="backToDashboard()">หน้า SRS</button>
   <button id="trackNavButton" class="track-nav-btn hidden" onclick="openTrackMenu()">หน้า TOPIK</button>
 
 <h2 id="appTitle" class="app-title-badge">Vocab by 톤님</h2>
@@ -135,6 +135,7 @@
     <!-- GLOBAL SETTINGS PANEL -->
     <div id="globalSettingsPanel" class="screen hidden">
       <div class="settings-header">⚙️ ตั้งค่าระบบ</div>
+      <button class="settings-btn" style="background:#6b7280;color:white;margin-top:0px;margin-bottom:16px;" onclick="showMainMenu()">⬅ กลับ</button>
 
       <!-- ☁️ BACKUP / RESTORE -->
       <div class="settings-section">
@@ -159,9 +160,9 @@
       <div class="settings-divider"></div>
 
       <!-- คืนค่าทั้งหมด -->
-      <div class="settings-section" style="border:2px solid #dc2626;background:#fff5f5">
-        <div class="settings-title" style="color:#dc2626">⛔ คืนค่าทั้งหมด</div>
-        <div class="settings-desc" style="color:#b91c1c">รีเซ็ตทุกกล่องกลับกล่อง 0 พร้อมล้างกล่องคำผิด อัปเดตคำศัพท์ และเคลียร์แคช — ไม่สามารถย้อนกลับได้!</div>
+      <div class="settings-section" style="border:2px solid var(--danger);background:var(--danger-light)">
+        <div class="settings-title" style="color:var(--danger)">⛔ คืนค่าทั้งหมด</div>
+        <div class="settings-desc" style="color:var(--text-muted)">รีเซ็ตทุกกล่องกลับกล่อง 0 พร้อมล้างกล่องคำผิด อัปเดตคำศัพท์ และเคลียร์แคช — ไม่สามารถย้อนกลับได้!</div>
         <button class="settings-btn settings-btn-red" onclick="resetEverything()">⛔ คืนค่าทั้งหมด</button>
       </div>
     </div>
@@ -243,26 +244,29 @@
     </div>
 
     <!-- FINISH SCREEN (ฝึกหัด / ทวนคำผิด) -->
-<div id="finishScreen" class="screen hidden">
+<div id="finishScreen" class="screen hidden" style="display:flex;flex-direction:column;height:100%;">
   <div class="finish">🎉 จบแล้ว 🎉</div>
-  <div id="wrongAnswers"></div>
-  <div style="display:flex; gap:10px; margin-top:8px;">
-    <button class="restart-btn switch-mode-btn" id="switchModeBtn" style="flex:1; margin:0;" onclick="switchMode()"></button>
-<button class="restart-btn" id="nextSetOtherModeBtn" style="flex:1; margin:0;" onclick="playNextSetOtherMode()"></button>
+  <div id="wrongAnswers" style="flex:1;min-height:0;"></div>
+  <div style="flex-shrink:0;">
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button class="restart-btn switch-mode-btn" id="switchModeBtn" style="flex:1; margin:0;" onclick="switchMode()"></button>
+      <button class="restart-btn" id="nextSetOtherModeBtn" style="flex:1; margin:0;" onclick="playNextSetOtherMode()"></button>
+    </div>
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">เล่นชุดนี้อีกครั้ง</button>
+      <button id="nextSetBtn" class="restart-btn" style="flex:1; margin:0; background:#208deb;" onclick="playNextSet()">▶ เล่นชุดถัดไป</button>
+    </div>
   </div>
-  <div style="display:flex; gap:10px; margin-top:8px;">
-    <button class="restart-btn" style="flex:1; margin:0;" onclick="replayCurrentMode()">เล่นชุดนี้อีกครั้ง</button>
-    <button id="nextSetBtn" class="restart-btn" style="flex:1; margin:0; background:#208deb;" onclick="playNextSet()">▶ เล่นชุดถัดไป</button>
-  </div>
-  <button class="restart-btn home-finish-btn" onclick="goToSRSDashboard()">🏠 กลับหน้า SRS</button>
 </div>
 
     <!-- SRS FINISH SCREEN (ทวนวันนี้) -->
-    <div id="srsFinishScreen" class="screen hidden">
+    <div id="srsFinishScreen" class="screen hidden" style="display:flex;flex-direction:column;height:100%;">
       <div class="finish">🎉 จบชุดนี้แล้ว!</div>
-      <div id="srsWrongAnswers"></div>
-      <button id="srsNextChunkBtn" class="restart-btn" style="background:#2563eb" onclick="continueNextChunk()">▶ ทวนชุดถัดไป</button>
-      <button class="restart-btn" onclick="goToSRSDashboard()">🏠 หน้า SRS</button>
+      <div id="srsWrongAnswers" style="flex:1;min-height:0;"></div>
+      <div style="flex-shrink:0;">
+        <button id="srsNextChunkBtn" class="restart-btn" style="background:#2563eb" onclick="continueNextChunk()">▶ ทวนชุดถัดไป</button>
+        <button class="restart-btn" onclick="goToSRSDashboard()">🏠 หน้า SRS</button>
+      </div>
     </div>
 
     <!-- WRONG BOX GAME MENU (ทวนคำผิด) -->
@@ -278,7 +282,7 @@
       <button class="menu-btn" style="background:#16a34a;" onclick="startPracticeGame('quiz')">🔤 จับคู่</button>
       <button class="menu-btn" style="background:#3b82f6;" onclick="startPracticeGame('typing')">⌨️ เติมคำ</button>
 <button id="practiceBoxSelectBtn" class="menu-btn" style="background:#0891b2;" onclick="openPracticeBoxModal()">📦 เลือกกล่องเล่น</button>
-<div id="practiceBoxFilterLabel" style="font-size:13px;color:#16a34a;font-weight:700;margin-top:8px;padding:10px;background:#f0fdf4;border-radius:10px;border:2px solid #86efac;min-height:18px;"></div>
+<div id="practiceBoxFilterLabel" style="font-size:13px;color:var(--success);font-weight:700;margin-top:8px;padding:10px;background:var(--success-light);border-radius:10px;border:2px solid rgba(34,197,94,0.3);min-height:18px;"></div>
     </div>
 
     <!-- SRS STATS SCREEN -->
@@ -299,16 +303,16 @@
       <button class="box-inspector-close" onclick="closePracticeBoxModal()">✕</button>
     </div>
     <div style="padding:14px 18px;overflow-y:auto;flex:1;">
-      <label style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;padding:8px 0;border-bottom:2px solid #e5e7eb;margin-bottom:8px;cursor:pointer;">
-        <input type="checkbox" id="practiceSelectAll" style="width:18px;height:18px;accent-color:#16a34a;" onchange="togglePracticeSelectAll(this.checked)">
+      <label style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;padding:8px 0;border-bottom:2px solid var(--border-light);margin-bottom:8px;cursor:pointer;">
+        <input type="checkbox" id="practiceSelectAll" style="width:18px;height:18px;accent-color:var(--success);" onchange="togglePracticeSelectAll(this.checked)">
         เลือกทั้งหมด
       </label>
       <div id="practiceBoxChecklist"></div>
-      <div id="practiceBoxSummary" style="text-align:center;font-size:13px;color:#16a34a;font-weight:700;margin-top:12px;padding:10px;background:#f0fdf4;border-radius:10px;border:2px solid #86efac;"></div>
+      <div id="practiceBoxSummary" style="text-align:center;font-size:13px;color:var(--success);font-weight:700;margin-top:12px;padding:10px;background:var(--success-light);border-radius:10px;border:2px solid rgba(34,197,94,0.3);"></div>
     </div>
-    <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #e5e7eb;">
-      <button onclick="clearPracticeBoxSelection()" style="flex:1;background:#e5e7eb;color:#374151;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0;">ล้าง</button>
-      <button onclick="confirmPracticeBoxSelection()" style="flex:2;background:#16a34a;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0;">ตกลง</button>
+    <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--border-light);">
+      <button onclick="clearPracticeBoxSelection()" style="flex:1;background:var(--border-light);color:var(--text-main);font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0;">ล้าง</button>
+      <button onclick="confirmPracticeBoxSelection()" style="flex:2;background:var(--success);color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0;">ตกลง</button>
     </div>
   </div>
 </div>
@@ -331,9 +335,9 @@
         <button class="box-inspector-close" onclick="document.getElementById('restoreModal').classList.add('hidden')">✕</button>
       </div>
       <div id="restoreModalBody" style="overflow-y:auto;padding:16px 18px;flex:1"></div>
-      <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #e5e7eb">
-        <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:#e5e7eb;color:#374151;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
-        <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:#2563eb;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
+      <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--border-light)">
+        <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:var(--border-light);color:var(--text-main);font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
+        <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:var(--primary);color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
       </div>
     </div>
   </div>

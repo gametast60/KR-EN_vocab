@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -555,11 +555,7 @@ function showSRSFinish(wrongList){
     const promotedCount    = fillCorrectCount;
 
     statusHtml = `
-      <div class="summary-stats">
-        <div class="summary-row">❌ ผิดด่าน 1 (จำไม่ได้): <b>${stage1WrongCount} คำ</b></div>
-        <div class="summary-row">❌ ผิดด่าน 2 (เติมผิด): <b>${stage2WrongCount} คำ</b></div>
-      </div>
-      <div class="wb-status">
+      <div class="wb-status" style="margin-top: 10px;">
         กล่องคำผิด: <b>${wb.length} / ${WRONG_BOX_MAX}</b>
         ${wbFull ? '<span class="wb-full-tag">เต็ม!</span>' : ''}
       </div>`;
@@ -608,10 +604,10 @@ function openSRSStats(){
   const BOX_LABELS = ["กล่อง 0 (ใหม่)","กล่อง 1 (1วัน)","กล่อง 2 (3วัน)","กล่อง 3 (7วัน)","กล่อง 4 (14วัน)","กล่อง 5 (จำได้ ✅)"];
   const BOX_COLORS = ["#6b7280","#3b82f6","#8b5cf6","#f59e0b","#ef4444","#16a34a"];
 
-  const maxCount = Math.max(...counts, 1);
+  const totalWords = stats.total > 0 ? stats.total : 1;
   let barsHtml = "";
   for(let i = 0; i <= 5; i++){
-    const pct = Math.round((counts[i] / maxCount) * 100);
+    const pct = Math.round((counts[i] / totalWords) * 100);
     barsHtml += `
       <div class="stat-bar-row">
         <div class="stat-bar-label">${BOX_LABELS[i]}</div>
@@ -890,7 +886,7 @@ function showRestorePreview(payload) {
 
   function boxTable(counts) {
     return counts.map((c, i) =>
-      `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:14px">
+      `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border-light);font-size:14px">
         <span style="color:${BOX_COLORS[i]};font-weight:700">กล่อง ${i} — ${BOX_LABELS[i]}</span>
         <span style="font-weight:700">${c} คำ</span>
       </div>`
@@ -898,36 +894,36 @@ function showRestorePreview(payload) {
   }
 
   document.getElementById("restoreModalBody").innerHTML = `
-    <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px 14px;margin-bottom:14px">
-      <div style="font-size:13px;color:#1d4ed8;font-weight:700">📦 ไฟล์สำรองข้อมูล</div>
-      <div style="font-size:14px;color:#374151;margin-top:4px">สร้างเมื่อ: <b>${createdAt}</b></div>
+    <div style="background:var(--primary-light);border:1.5px solid var(--border-light);border-radius:10px;padding:12px 14px;margin-bottom:14px">
+      <div style="font-size:13px;color:var(--primary);font-weight:700">📦 ไฟล์สำรองข้อมูล</div>
+      <div style="font-size:14px;color:var(--text-main);margin-top:4px">สร้างเมื่อ: <b>${createdAt}</b></div>
     </div>
 
     ${summary.map(item => `
-      <div style="font-weight:800;font-size:15px;color:#111827;margin:14px 0 8px">${item.label}</div>
+      <div style="font-weight:800;font-size:15px;color:var(--text-main);margin:14px 0 8px">${item.label}</div>
       ${boxTable(item.counts)}
     `).join("")}
 
-    <div style="margin-top:16px;font-weight:800;font-size:15px;color:#111827">🔄 เลือกวิธีกู้คืน</div>
+    <div style="margin-top:16px;font-weight:800;font-size:15px;color:var(--text-main)">🔄 เลือกวิธีกู้คืน</div>
 
-    <label id="restoreOptReset" style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:12px;border-radius:10px;border:2px solid #2563eb;background:#eff6ff;cursor:pointer" onclick="setRestoreMode('reset')">
-      <input type="radio" name="restoreMode" value="reset" checked style="margin-top:3px;accent-color:#2563eb;width:16px;height:16px;flex-shrink:0">
+    <label id="restoreOptReset" style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:12px;border-radius:10px;border:2px solid var(--primary);background:var(--primary-light);cursor:pointer" onclick="setRestoreMode('reset')">
+      <input type="radio" name="restoreMode" value="reset" checked style="margin-top:3px;accent-color:var(--primary);width:16px;height:16px;flex-shrink:0">
       <div>
-        <div style="font-weight:700;color:#1d4ed8;font-size:14px">🔄 เริ่มนับรอบทวนใหม่จากวันนี้ <span style="background:#dcfce7;color:#15803d;font-size:11px;padding:2px 7px;border-radius:999px;font-weight:700">แนะนำ</span></div>
+        <div style="font-weight:700;color:var(--primary);font-size:14px">🔄 เริ่มนับรอบทวนใหม่จากวันนี้ <span style="background:var(--success-light);color:var(--success);font-size:11px;padding:2px 7px;border-radius:999px;font-weight:700">แนะนำ</span></div>
       </div>
     </label>
 
-    <label id="restoreOptKeep" style="display:flex;align-items:flex-start;gap:10px;margin-top:8px;padding:12px;border-radius:10px;border:2px solid #e5e7eb;background:#f9fafb;cursor:pointer" onclick="setRestoreMode('keep')">
-      <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:#6b7280;width:16px;height:16px;flex-shrink:0">
+    <label id="restoreOptKeep" style="display:flex;align-items:flex-start;gap:10px;margin-top:8px;padding:12px;border-radius:10px;border:2px solid var(--border-light);background:var(--card-bg-white);cursor:pointer" onclick="setRestoreMode('keep')">
+      <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:var(--text-muted);width:16px;height:16px;flex-shrink:0">
       <div>
-        <div style="font-weight:700;color:#374151;font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
+        <div style="font-weight:700;color:var(--text-main);font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
         ${totalOverdue > 0
-          ? `<div style="font-size:12px;color:#dc2626;margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${totalOverdue} คำ</div>`
-          : `<div style="font-size:12px;color:#6b7280;margin-top:3px">ยังไม่มีคำเลยกำหนด</div>`}
+          ? `<div style="font-size:12px;color:var(--danger);margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${totalOverdue} คำ</div>`
+          : `<div style="font-size:12px;color:var(--text-muted);margin-top:3px">ยังไม่มีคำเลยกำหนด</div>`}
       </div>
     </label>
 
-    <div style="margin-top:14px;background:#fef2f2;border:1.5px solid #fecaca;border-radius:10px;padding:10px 12px;font-size:13px;color:#b91c1c">
+    <div style="margin-top:14px;background:var(--danger-light);border:1.5px solid var(--border-light);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--danger)">
       ⚠️ การกู้คืนจะ<b>เขียนทับข้อมูลปัจจุบันทั้งหมด</b> — ไม่สามารถย้อนกลับได้
     </div>
   `;
@@ -940,15 +936,15 @@ function setRestoreMode(mode) {
   const resetEl = document.getElementById("restoreOptReset");
   const keepEl  = document.getElementById("restoreOptKeep");
   if (mode === "reset") {
-    resetEl.style.border = "2px solid #2563eb";
-    resetEl.style.background = "#eff6ff";
-    keepEl.style.border = "2px solid #e5e7eb";
-    keepEl.style.background = "#f9fafb";
+    resetEl.style.border = "2px solid var(--primary)";
+    resetEl.style.background = "var(--primary-light)";
+    keepEl.style.border = "2px solid var(--border-light)";
+    keepEl.style.background = "var(--card-bg-white)";
   } else {
-    keepEl.style.border = "2px solid #6b7280";
-    keepEl.style.background = "#f3f4f6";
-    resetEl.style.border = "2px solid #e5e7eb";
-    resetEl.style.background = "#f9fafb";
+    keepEl.style.border = "2px solid var(--primary)";
+    keepEl.style.background = "var(--primary-light)";
+    resetEl.style.border = "2px solid var(--border-light)";
+    resetEl.style.background = "var(--card-bg-white)";
   }
 }
 
@@ -1044,9 +1040,15 @@ function safeParseJSON(str, fallback) {
 
 function calcBoxCounts(srsData) {
   const counts = [0, 0, 0, 0, 0, 0];
-  Object.values(srsData).forEach(item => {
-    counts[Math.min(item.box || 0, 5)]++;
+  const items = Object.values(srsData);
+  const total = items.length;
+  items.forEach(item => {
+    let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
+    if (box >= 1) {
+      counts[Math.min(box, 5)]++;
+    }
   });
+  counts[0] = Math.max(0, total - (counts[1] + counts[2] + counts[3] + counts[4] + counts[5]));
   return counts;
 }
 
