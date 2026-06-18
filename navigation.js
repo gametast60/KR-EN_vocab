@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -648,6 +648,10 @@ function openSRSStats(){
 // ============================================================
 // SETTINGS
 // ============================================================
+function openGlobalSettings(){
+  goTo("globalSettingsPanel");
+}
+
 function openSettings(){
   document.getElementById("dueChunkInput").value  = getDueChunkSize();
   document.getElementById("wrongChunkInput").value  = getWrongChunkSize();
@@ -695,34 +699,66 @@ function clearWrongBoxManual(){
 function resetEverything(){
   if(!confirm(
     "⚠️ คุณต้องการคืนค่าทั้งหมดหรือไม่?\n\n" +
-    "• รีเซ็ตทุกคำกลับกล่อง 0\n• ล้างกล่องคำผิด\n• อัปเดตคำศัพท์ใหม่\n• เคลียร์แคชเบราว์เซอร์\n\n" +
+    "• รีเซ็ตทุกคำกลับกล่อง 0 ทุกภาษา/ระดับ\n• ล้างกล่องคำผิดทั้งหมด\n• อัปเดตคำศัพท์ใหม่\n• เคลียร์แคชเบราว์เซอร์\n\n" +
     "⛔ การกระทำนี้ไม่สามารถย้อนกลับได้!"
   )) return;
 
-  const data = loadSRS();
-  Object.keys(data).forEach(word => { data[word].box = 0; data[word].nextReview = null; });
-  saveSRS(data);
-  clearWrongBox();
+  BACKUP_TOPIKS.forEach(({ id }) => {
+    // Reset SRS key
+    const key = `topik_srs_${id}_v1`;
+    try {
+      const data = JSON.parse(localStorage.getItem(key) || "{}");
+      Object.keys(data).forEach(word => {
+        data[word].box = 0;
+        data[word].nextReview = null;
+      });
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch (e) {}
 
-const s = JSON.parse(localStorage.getItem(srsSettingsKey()) || "{}");
-s[`todayNewWords_${currentTopik}`] = 0;
-localStorage.setItem(srsSettingsKey(), JSON.stringify(s));              
+    // Clear Wrong Box key
+    localStorage.setItem(
+      `topik_wrongbox_${id}`,
+      JSON.stringify({ date: todayStr(), words: [] })
+    );
 
-  initAllVocab();
+    // Reset daily new words counter in settings
+    const settingsKey = `topik_srs_settings_${id}`;
+    try {
+      const s = JSON.parse(localStorage.getItem(settingsKey) || "{}");
+      s[`todayNewWords_${id}`] = 0;
+      localStorage.setItem(settingsKey, JSON.stringify(s));
+    } catch (e) {}
+  });
+
+  // Re-initialize vocabulary for all levels
+  const origTopik = currentTopik;
+  BACKUP_TOPIKS.forEach(({ id }) => {
+    currentTopik = id;
+    initAllVocab();
+  });
+  currentTopik = origTopik;
+
   caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
     alert("✅ คืนค่าทั้งหมดเสร็จแล้ว! กำลัง reload...");
     location.reload();
   });
 }
 
+
 function syncVocabAndClearCache(){
   if(!confirm("ยืนยันการอัพเดทเวอร์ชั่นใหม่?\n'ตกลง' หรือไม่?")) return;
-  initAllVocab();
+  const origTopik = currentTopik;
+  BACKUP_TOPIKS.forEach(({ id }) => {
+    currentTopik = id;
+    initAllVocab();
+  });
+  currentTopik = origTopik;
   caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
     alert("✅ อัปเดตเสร็จแล้ว! กำลัง reload...");
     location.reload();
   });
 }
+
 
 // ============================================================
 // BACKUP / RESTORE

@@ -46,6 +46,9 @@
       <button class="menu-btn lang-english-btn" onclick="openLanguage('english')">
         EN ภาษาอังกฤษ
       </button>
+      <button class="menu-btn" style="background:#6b7280;margin-top:16px" onclick="openGlobalSettings()">
+        ⚙️ ตั้งค่า
+      </button>
     </div>
 
     <!-- KOREAN LEVEL MENU -->
@@ -80,69 +83,33 @@
       <div class="srs-actions" id="srsActions"></div>
     </div>
 
-    <!-- SETTINGS PANEL (dropdown) -->
+    <!-- SETTINGS PANEL (SRS Settings) -->
     <div id="settingsPanel" class="screen hidden">
-      <div class="settings-header">⚙️ ตั้งค่า</div>
-
-      <!-- ☁️ BACKUP / RESTORE -->
-      <div class="settings-section">
-        <div class="settings-title">☁️ สำรองข้อมูล</div>
-        <div class="settings-desc">Backup ข้อมูล SRS ทั้งหมดเพื่อย้ายไปเครื่องใหม่ หรือกู้คืนภายหลัง</div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="settings-btn settings-btn-blue" style="flex:1;margin-top:0" onclick="backupData()">📤 Backup</button>
-          <button class="settings-btn" style="flex:1;margin-top:0;background:#16a34a;color:white" onclick="document.getElementById('restoreFileInput').click()">📥 Restore</button>
-        </div>
-        <input type="file" id="restoreFileInput" accept=".json" style="display:none" onchange="handleRestoreFile(event)">
-      </div>
-
-      <div class="settings-divider"></div>
-
-      <!-- RESTORE PREVIEW MODAL -->
-      <div id="restoreModal" class="box-inspector-overlay hidden" onclick="closeRestoreModal(event)">
-        <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto;max-height:85vh;border-radius:20px 20px 0 0">
-          <div class="box-inspector-header">
-            <div class="box-inspector-title" style="color:#2563eb">📥 กู้คืนข้อมูล</div>
-            <button class="box-inspector-close" onclick="document.getElementById('restoreModal').classList.add('hidden')">✕</button>
-          </div>
-          <div id="restoreModalBody" style="overflow-y:auto;padding:16px 18px;flex:1"></div>
-          <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #e5e7eb">
-            <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:#e5e7eb;color:#374151;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
-            <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:#2563eb;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- อัปเดตคำศัพท์ + เคลียร์แคช -->
-      <div class="settings-section">
-        <div class="settings-title">🔄 Update</div>
-        <div class="settings-desc">Update New Version</div>
-        <button class="settings-btn settings-btn-blue" onclick="syncVocabAndClearCache()">Update</button>
-      </div>
-
-      <div class="settings-divider"></div>
+      <div class="settings-header">⚙️ ตั้งค่า (SRS)</div>
 
       <!-- ตั้งค่า chunk -->
-<div class="settings-section">
-  <div class="settings-title">📐 จำนวนคำต่อชุด</div>
-  <div class="settings-fields">
-    <div class="settings-field-row">
-      <label class="settings-field-label">📅 ทวนวันนี้ทีละ:</label>
-      <input type="number" id="dueChunkInput" min="5" max="50" value="15">
-      <span class="settings-field-unit">คำ</span>
-    </div>
-    <div class="settings-field-row">
-      <label class="settings-field-label">❌ ทวนคำผิดทีละ:</label>
-      <input type="number" id="wrongChunkInput" min="5" max="50" value="30">
-      <span class="settings-field-unit">คำ</span>
-    </div>
-    <div class="settings-field-row">
-      <label class="settings-field-label">🎮 ฝึกหัดทีละ:</label>
-      <input type="number" id="practiceChunkInput" min="5" max="50" value="10">
-      <span class="settings-field-unit">คำ</span>
-    </div>
-  </div>
-  <button class="settings-btn settings-btn-blue" onclick="saveSettings()" style="margin-top:8px">💾 บันทึก</button>
-</div>
+      <div class="settings-section">
+        <div class="settings-title">📐 จำนวนคำต่อชุด</div>
+        <div class="settings-desc">กำหนดจำนวนคำศัพท์สำหรับการทวนในแต่ละรอบ</div>
+        <div class="settings-fields">
+          <div class="settings-field-row">
+            <label class="settings-field-label">📅 ทวนวันนี้ทีละ:</label>
+            <input type="number" id="dueChunkInput" min="5" max="50" value="15">
+            <span class="settings-field-unit">คำ</span>
+          </div>
+          <div class="settings-field-row">
+            <label class="settings-field-label">❌ ทวนคำผิดทีละ:</label>
+            <input type="number" id="wrongChunkInput" min="5" max="50" value="30">
+            <span class="settings-field-unit">คำ</span>
+          </div>
+          <div class="settings-field-row">
+            <label class="settings-field-label">🎮 ฝึกหัดทีละ:</label>
+            <input type="number" id="practiceChunkInput" min="5" max="50" value="10">
+            <span class="settings-field-unit">คำ</span>
+          </div>
+        </div>
+        <button class="settings-btn settings-btn-blue" onclick="saveSettings()" style="margin-top:8px">💾 บันทึก</button>
+      </div>
 
       <div class="settings-divider"></div>
 
@@ -159,9 +126,34 @@
           <label><input type="checkbox" id="clearWrongBoxCheck"> กล่องคำผิด (❌)</label>
         </div>
         <div style="display:flex;gap:8px;margin-top:8px">
-  <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ต</button>
-  <button class="settings-btn" style="flex:1;margin-top:0;background:#6b7280;color:white;padding:4px 12px" onclick="document.querySelectorAll('#clearBoxChecks input').forEach(cb=>cb.checked=false)">ยกเลิก</button>
-</div>
+          <button class="settings-btn settings-btn-red" style="flex:1;margin-top:0;padding:4px 12px" onclick="clearSelectedBoxes()">รีเซ็ต</button>
+          <button class="settings-btn" style="flex:1;margin-top:0;background:#6b7280;color:white;padding:4px 12px" onclick="document.querySelectorAll('#clearBoxChecks input').forEach(cb=>cb.checked=false)">ยกเลิก</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOBAL SETTINGS PANEL -->
+    <div id="globalSettingsPanel" class="screen hidden">
+      <div class="settings-header">⚙️ ตั้งค่าระบบ</div>
+
+      <!-- ☁️ BACKUP / RESTORE -->
+      <div class="settings-section">
+        <div class="settings-title">☁️ สำรองข้อมูล</div>
+        <div class="settings-desc">Backup ข้อมูล SRS ทั้งหมดเพื่อย้ายไปเครื่องใหม่ หรือกู้คืนภายหลัง</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="settings-btn settings-btn-blue" style="flex:1;margin-top:0" onclick="backupData()">📤 Backup</button>
+          <button class="settings-btn" style="flex:1;margin-top:0;background:#16a34a;color:white" onclick="document.getElementById('restoreFileInput').click()">📥 Restore</button>
+        </div>
+        <input type="file" id="restoreFileInput" accept=".json" style="display:none" onchange="handleRestoreFile(event)">
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- อัปเดตคำศัพท์ + เคลียร์แคช -->
+      <div class="settings-section">
+        <div class="settings-title">🔄 Update</div>
+        <div class="settings-desc">Update New Version</div>
+        <button class="settings-btn settings-btn-blue" onclick="syncVocabAndClearCache()">Update</button>
       </div>
 
       <div class="settings-divider"></div>
@@ -172,7 +164,6 @@
         <div class="settings-desc" style="color:#b91c1c">รีเซ็ตทุกกล่องกลับกล่อง 0 พร้อมล้างกล่องคำผิด อัปเดตคำศัพท์ และเคลียร์แคช — ไม่สามารถย้อนกลับได้!</div>
         <button class="settings-btn settings-btn-red" onclick="resetEverything()">⛔ คืนค่าทั้งหมด</button>
       </div>
-
     </div>
 
     <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
@@ -243,7 +234,10 @@
     <div id="quizGame" class="screen hidden">
       <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
       <div class="word" id="quizWord"></div>
-      <button class="speak-btn" onclick="speakQuizWord()">🔊 ฟังอีกครั้ง</button>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 12px;">
+        <button class="speak-btn" style="margin: 0;" onclick="speakQuizWord()">🔊 ฟังอีกครั้ง</button>
+        <button id="quizNextBtn" class="speak-btn hidden" style="margin: 0; background: var(--primary); color: white;" onclick="goToNextQuiz()">ถัดไป ▶</button>
+      </div>
       <div id="choicesContainer"></div>
       <div class="result" id="quizResult"></div>
     </div>
@@ -326,6 +320,21 @@
         <button class="box-inspector-close" onclick="closeBoxInspector()">✕</button>
       </div>
       <div id="boxInspectorList" class="box-inspector-list"></div>
+    </div>
+  </div>
+
+  <!-- RESTORE PREVIEW MODAL -->
+  <div id="restoreModal" class="box-inspector-overlay hidden" onclick="closeRestoreModal(event)">
+    <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto;max-height:85vh;border-radius:20px 20px 0 0">
+      <div class="box-inspector-header">
+        <div id="restoreModalTitle" class="box-inspector-title" style="color:#2563eb">📥 กู้คืนข้อมูล</div>
+        <button class="box-inspector-close" onclick="document.getElementById('restoreModal').classList.add('hidden')">✕</button>
+      </div>
+      <div id="restoreModalBody" style="overflow-y:auto;padding:16px 18px;flex:1"></div>
+      <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #e5e7eb">
+        <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:#e5e7eb;color:#374151;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
+        <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:#2563eb;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
+      </div>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-// =========================
+﻿// =========================
 // SHUFFLE
 // =========================
 function shuffleArray(array){
@@ -19,6 +19,7 @@ let quizIndex = 0;
 let fcIndex = 0;
 let fcForgotten = [];
 let isDueMode = false;   // ← true เฉพาะ "ทวนวันนี้"
+let fcAnimating = false;
 
 // ---- ด่าน 2 (Due Mode) ----
 let pendingList     = [];   // คำที่กด "จำได้" จากด่าน 1 รอตัดสินในด่าน 2
@@ -26,6 +27,7 @@ let dueStage        = 1;    // 1 = Flashcard, 2 = FillBlank
 let fillIndex       = 0;    // index ใน pendingList สำหรับด่าน 2
 let fillWrongList   = [];   // คำที่เติมผิดในด่าน 2
 let fillCorrectCount = 0;
+
 
 // =========================
 // SPEAK
@@ -44,6 +46,14 @@ function speak(text){
   utterance.rate = 0.9;
   speechSynthesis.speak(utterance);
 }
+function speakThai(text){
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "th-TH";
+  utterance.rate = 1.0;
+  speechSynthesis.speak(utterance);
+}
+
 function speakQuizWord(){ speak(shuffledVocabulary[quizIndex].word); }
 function speakFlashcard(){
   if(dueStage === 2){
@@ -57,12 +67,16 @@ function speakFlashcard(){
 // FLASHCARD MODE — ด่าน 1
 // =========================
 function showFlashcard(){
+  fcAnimating = false;
   const currentWord = shuffledVocabulary[fcIndex];
   
   const inner = document.getElementById("flashcardInner");
   if(inner) inner.classList.remove("flipped");
   const container = document.getElementById("flashcardContainer");
-  if(container) container.classList.remove("hidden");
+  if(container) {
+    container.className = "";
+    container.classList.remove("hidden");
+  }
 
   document.getElementById("fcWord").textContent = currentWord.word;
   document.getElementById("fcWordBack").textContent = currentWord.word;
@@ -76,11 +90,19 @@ function showFlashcard(){
 }
 
 function flipCard(){
+  if (fcAnimating) return;
   const inner = document.getElementById("flashcardInner");
-  if(inner) inner.classList.add("flipped");
+  if(inner) {
+    inner.classList.add("flipped");
+    const currentWord = shuffledVocabulary[fcIndex];
+    if (currentWord && currentWord.meaning) {
+      speakThai(currentWord.meaning);
+    }
+  }
 }
 
 function fcAnswer(known){
+  if (fcAnimating) return;
   const currentWord = shuffledVocabulary[fcIndex];
 
   if(isDueMode){
@@ -99,20 +121,56 @@ function fcAnswer(known){
     }
   }
 
-  fcIndex++;
+  const nextIndex = fcIndex + 1;
+  const isFinished = nextIndex >= shuffledVocabulary.length;
+  const isWbFull = isDueMode && isWrongBoxFull();
 
-  // กล่องคำผิดเต็ม → หยุดทันที
-  if(isDueMode && isWrongBoxFull()){
-    finishStage1Early();
+  if(isFinished || isWbFull){
+    fcIndex = nextIndex;
+    if(isWbFull){
+      finishStage1Early();
+    } else {
+      finishStage1();
+    }
     return;
   }
 
-  if(fcIndex >= shuffledVocabulary.length){
-    finishStage1();
-  } else {
-    showFlashcard();
+  // Animate card slide transition
+  fcAnimating = true;
+  const container = document.getElementById("flashcardContainer");
+  if(container) {
+    container.classList.add("slide-out-left");
   }
+
+  setTimeout(() => {
+    fcIndex = nextIndex;
+    const inner = document.getElementById("flashcardInner");
+    if(inner) inner.classList.remove("flipped");
+
+    const nextWord = shuffledVocabulary[fcIndex];
+    document.getElementById("fcWord").textContent = nextWord.word;
+    document.getElementById("fcWordBack").textContent = nextWord.word;
+    document.getElementById("fcMeaning").textContent = nextWord.meaning;
+    const badge = document.getElementById("flashcardProgress");
+    badge.textContent = `ด่าน 1 — คำที่ ${fcIndex + 1} / ${shuffledVocabulary.length}`;
+    badge.classList.remove("stage2");
+    badge.classList.remove("hidden");
+    speak(nextWord.word);
+    updateTitleVisibility();
+
+    if(container) {
+      container.className = "pre-slide-in-right";
+      container.offsetHeight; // trigger reflow
+      container.className = "slide-in-right";
+    }
+
+    setTimeout(() => {
+      if(container) container.className = "";
+      fcAnimating = false;
+    }, 250);
+  }, 250);
 }
+
 
 // ด่าน 1 จบตามปกติ
 function finishStage1(){
@@ -183,7 +241,9 @@ function showFillCard(){
   };
 
   setTimeout(() => document.getElementById("fillInput").focus(), 100);
+  speakThai(word.meaning);
 }
+
 
 function handleFillEnter(event){
   if(event.key === "Enter") checkFillAnswer();
@@ -311,12 +371,15 @@ function showWord(){
   };
   document.getElementById("checkBtn").disabled = false;
   document.getElementById("result").textContent = "";
+  document.getElementById("result").className = "result";
   document.getElementById("progress").textContent =
     `คำที่ ${currentIndex + 1} / ${shuffledVocabulary.length}`;
   document.getElementById("progress").classList.remove("hidden");
   input.focus();
   updateTitleVisibility();
+  speakThai(currentWord.meaning);
 }
+
 
 function clearAnswerInput(){
   const input = document.getElementById("answerInput");
@@ -377,9 +440,16 @@ if(isCorrect){
 // QUIZ GAME
 // =========================
 function showQuiz(){
+  if(document.activeElement){
+    document.activeElement.blur();
+  }
+  const nextBtn = document.getElementById("quizNextBtn");
+  if(nextBtn) nextBtn.classList.add("hidden");
+
   const currentWord = shuffledVocabulary[quizIndex];
   document.getElementById("quizWord").textContent = currentWord.word;
   document.getElementById("quizResult").textContent = "";
+  document.getElementById("quizResult").className = "result";
   document.getElementById("quizProgress").textContent =
     `คำที่ ${quizIndex + 1} / ${shuffledVocabulary.length}`;
   document.getElementById("quizProgress").classList.remove("hidden");
@@ -401,7 +471,7 @@ function showQuiz(){
     const btn = document.createElement("button");
     btn.className = "choice-btn";
     btn.textContent = choice;
-    btn.onclick = () => checkQuizAnswer(choice);
+    btn.onclick = () => checkQuizAnswer(choice, btn);
     container.appendChild(btn);
   });
 
@@ -409,7 +479,7 @@ function showQuiz(){
   updateTitleVisibility();
 }
 
-function checkQuizAnswer(choice){
+function checkQuizAnswer(choice, clickedBtn){
   const currentWord = shuffledVocabulary[quizIndex];
   const result = document.getElementById("quizResult");
   const container = document.getElementById("choicesContainer");
@@ -419,22 +489,45 @@ function checkQuizAnswer(choice){
   if(choice === currentWord.meaning){
     result.textContent = "✅ ถูกต้อง!";
     result.className = "result correct";
+    if(clickedBtn) clickedBtn.classList.add("correct-choice-highlight");
+
+    setTimeout(() => {
+      quizIndex++;
+      if(quizIndex >= shuffledVocabulary.length){
+        showFinish();
+      } else {
+        showQuiz();
+      }
+    }, 1000);
   } else {
     result.innerHTML = `❌ เฉลย: <strong style="margin-left: 6px; font-size: 18px;">${currentWord.meaning}</strong>`;
     result.className = "result wrong";
+    if(clickedBtn) clickedBtn.classList.add("wrong-choice-highlight");
+
+    // Highlight the correct button green
+    container.querySelectorAll(".choice-btn").forEach(btn => {
+      if(btn.textContent === currentWord.meaning){
+        btn.classList.add("correct-choice-highlight");
+      }
+    });
+
     if(!wrongAnswers.some(item => item.word === currentWord.word)){
       wrongAnswers.push(currentWord);
     }
-  }
 
-  setTimeout(() => {
-    quizIndex++;
-    if(quizIndex >= shuffledVocabulary.length){
-      showFinish();
-    } else {
-      showQuiz();
-    }
-  }, 1000);
+    // Show "Next" button instead of transitioning automatically
+    const nextBtn = document.getElementById("quizNextBtn");
+    if(nextBtn) nextBtn.classList.remove("hidden");
+  }
+}
+
+function goToNextQuiz(){
+  quizIndex++;
+  if(quizIndex >= shuffledVocabulary.length){
+    showFinish();
+  } else {
+    showQuiz();
+  }
 }
 
 // =========================
