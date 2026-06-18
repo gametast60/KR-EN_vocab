@@ -563,10 +563,10 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 }
 
 .srs-settings-btn {
-  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  background: linear-gradient(135deg, #6b7280, #4b5563);
 }
 .srs-settings-btn:hover {
-  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 20px rgba(107, 114, 128, 0.3);
 }
 
 .srs-badge {
