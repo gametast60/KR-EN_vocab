@@ -545,6 +545,8 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   flex-direction: column;
   height: 100%;
   min-height: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .srs-top-content {
@@ -565,7 +567,7 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   flex-direction: column;
   gap: 12px;
   padding-top: 16px;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
 }
 
 /* ─── SRS ACTION BUTTON GRID ─── */
