@@ -233,17 +233,23 @@ function renderSRSHome(){
 
   const actions = document.getElementById("srsActions");
   actions.innerHTML = `
-    <button class="srs-action-btn srs-due-btn" onclick="openSRSDue()">
-  📅 ทวนวันนี้
-</button>
-<button class="srs-action-btn srs-wrongbox-btn" onclick="${wrongBox.length === 0 ? 'alertNoWrongWords()' : 'openWrongBox()'}">
-  ❌ ทวนคำผิด <span class="srs-badge">${wrongBox.length} / ${WRONG_BOX_MAX}</span>
-</button>
-<button class="srs-action-btn srs-new-btn" onclick="openPractice()">
-  🎮 ฝึกหัด
-</button>
-    <button class="srs-action-btn srs-stat-btn" onclick="openSRSStats()">📊 สถิติ</button>
-    <button class="srs-action-btn srs-settings-btn" onclick="openSettings()">⚙️ ตั้งค่า</button>`;
+    <div class="srs-action-row">
+      <button class="srs-action-btn srs-due-btn" onclick="openSRSDue()">
+        📅 ทวนวันนี้
+      </button>
+      <button class="srs-action-btn srs-wrongbox-btn" onclick="${wrongBox.length === 0 ? 'alertNoWrongWords()' : 'openWrongBox()'}">
+        ❌ ทวนคำผิด <span class="srs-badge">${wrongBox.length}/${WRONG_BOX_MAX}</span>
+      </button>
+    </div>
+    <div class="srs-action-row single">
+      <button class="srs-action-btn srs-new-btn" onclick="openPractice()">
+        🎮 ฝึกหัด
+      </button>
+    </div>
+    <div class="srs-action-row">
+      <button class="srs-action-btn srs-stat-btn" onclick="openSRSStats()">📊 สถิติ</button>
+      <button class="srs-action-btn srs-settings-btn" onclick="openSettings()">⚙️ ตั้งค่า</button>
+    </div>`;
 }
 
 // ============================================================
@@ -1071,22 +1077,22 @@ function searchVocabulary(){
   if(!keyword){ resultBox.classList.add("hidden"); resultBox.innerHTML = ""; return; }
 
   const sources = [
-    { data: window.flashVocabData1,    level: "TOPIK1",  className: "level-topik1" },
-    { data: window.flashVocabData2,    level: "TOPIK2",  className: "level-topik2" },
-    { data: window.flashVocabDataEnA1, level: "EN A1",   className: "level-en-a1" },
-    { data: window.flashVocabDataEnA2, level: "EN A2",   className: "level-en-a2" },
-    { data: window.flashVocabDataEnB1, level: "EN B1",   className: "level-en-b1" },
-    { data: window.flashVocabDataEnB2, level: "EN B2",   className: "level-en-b2" },
+    { data: window.flashVocabData1,    level: "TOPIK1",  className: "level-topik1", lang: "ko-KR" },
+    { data: window.flashVocabData2,    level: "TOPIK2",  className: "level-topik2", lang: "ko-KR" },
+    { data: window.flashVocabDataEnA1, level: "EN A1",   className: "level-en-a1",   lang: "en-US" },
+    { data: window.flashVocabDataEnA2, level: "EN A2",   className: "level-en-a2",   lang: "en-US" },
+    { data: window.flashVocabDataEnB1, level: "EN B1",   className: "level-en-b1",   lang: "en-US" },
+    { data: window.flashVocabDataEnB2, level: "EN B2",   className: "level-en-b2",   lang: "en-US" },
   ];
 
-  const foundBySource = sources.map(({ data, level, className }) => {
+  const foundBySource = sources.map(({ data, level, className, lang }) => {
     const matches = [];
     (data || []).forEach(item => {
       if(!item || typeof item.word !== "string" || typeof item.meaning !== "string") return;
       const word = item.word.toLowerCase();
       const meaning = item.meaning.toLowerCase();
       if(word.includes(keyword) || meaning.includes(keyword)) {
-        matches.push({ word: item.word, meaning: item.meaning, level, className });
+        matches.push({ word: item.word, meaning: item.meaning, level, className, lang });
       }
     });
     return matches;
@@ -1111,12 +1117,18 @@ function searchVocabulary(){
     return;
   }
 
-  resultBox.innerHTML = found.map(item => `
+  resultBox.innerHTML = found.map(item => {
+    const escapedWord = item.word.replace(/'/g, "\\'");
+    return `
     <div class="search-item">
       <div class="search-word ${item.className}">${item.word}</div>
-      <div class="search-meaning">${item.meaning}</div>
+      <div class="search-meaning-row">
+        <div class="search-meaning">${item.meaning}</div>
+        <button class="search-play-btn" onclick="event.stopPropagation(); speak('${escapedWord}', '${item.lang}')">🔊</button>
+      </div>
       <div class="search-level ${item.className}">${item.level}</div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
   resultBox.classList.remove("hidden");
 }
 

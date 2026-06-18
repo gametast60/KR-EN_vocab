@@ -401,9 +401,16 @@ div.search-word.level-en-a2 { color: #0891b2 !important; }
 div.search-word.level-en-b1 { color: #7c3aed !important; }
 div.search-word.level-en-b2 { color: #eb03f3 !important; }
 
+.search-meaning-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 8px;
+}
+
 .search-meaning {
-  display: block;
-  width: fit-content;
+  flex: 1;
   font-size: 15px;
   font-weight: 700;
   color: #FACC15;
@@ -411,8 +418,33 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   border: 1px solid rgba(234, 179, 8, 0.3);
   border-radius: 10px;
   padding: 6px 12px;
-  margin: 6px 0 8px;
   word-break: break-word;
+}
+
+.search-play-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.search-play-btn:hover {
+  background: rgba(139, 92, 246, 0.15);
+  transform: scale(1.05);
+}
+
+.search-play-btn:active {
+  transform: scale(0.95);
 }
 
 .search-level {
@@ -507,26 +539,66 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   100% { transform: scale(1); }
 }
 
-/* ─── SRS ACTION BUTTONS ─── */
-.srs-actions {
+/* ─── SRS DASHBOARD LAYOUT ─── */
+#srsDashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.srs-top-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.srs-top-content::-webkit-scrollbar {
+  display: none;
+}
+
+.srs-bottom-actions {
+  flex-shrink: 0;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 10px;
+  padding-top: 16px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* ─── SRS ACTION BUTTON GRID ─── */
+.srs-action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.srs-action-row.single {
+  grid-template-columns: 1fr;
+}
+
+/* ─── SRS ACTION BUTTONS ─── */
 .srs-action-btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 6px;
   width: 100%;
-  padding: 16px 20px;
+  min-width: 0;
+  height: 56px;
+  padding: 0 12px;
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--button-text);
   margin-top: 0;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
 .srs-action-btn:hover {
@@ -549,10 +621,10 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 }
 
 .srs-new-btn {
-  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
 }
 .srs-new-btn:hover {
-  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .srs-stat-btn {
@@ -573,9 +645,31 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   background: rgba(255, 255, 255, 0.22);
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+/* ─── SRS DASHBOARD RESPONSIVE ─── */
+@media (max-width: 360px) {
+  .srs-action-btn {
+    font-size: 13px;
+    padding: 0 8px;
+    height: 52px;
+  }
+  .srs-badge {
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+}
+
+@media (orientation: landscape) {
+  .srs-action-row {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .main-divider {

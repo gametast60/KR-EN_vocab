@@ -1,4 +1,4 @@
-﻿// =========================
+// =========================
 // SHUFFLE
 // =========================
 function shuffleArray(array){
@@ -39,10 +39,10 @@ function getSpeechLang(){
   return "ko-KR";
 }
 
-function speak(text){
+function speak(text, langCode){
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = getSpeechLang();
+  utterance.lang = langCode || getSpeechLang();
   utterance.rate = 0.9;
   speechSynthesis.speak(utterance);
 }
