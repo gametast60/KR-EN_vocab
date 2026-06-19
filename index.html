@@ -185,14 +185,28 @@
 
           <!-- Back Side -->
           <div id="flashcardBack" class="flashcard-face flashcard-back">
-            <div class="fc-word" id="fcWordBack"></div>
-            <div class="fc-meaning" id="fcMeaning"></div>
-            <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
-            <div class="fc-buttons">
-              <button class="fc-know-btn" onclick="fcAnswer(true)">✅ จำได้</button>
-              <button class="fc-forget-btn" onclick="fcAnswer(false)">❌ จำไม่ได้</button>
-            </div>
-          </div>
+
+  <div class="fc-content">
+    <div class="fc-word" id="fcWordBack"></div>
+
+    <div class="fc-meaning" id="fcMeaning"></div>
+
+    <button class="speak-btn" onclick="speakFlashcard()">
+      🔊 ฟังเสียง
+    </button>
+  </div>
+
+  <div class="fc-buttons">
+    <button class="fc-know-btn" onclick="fcAnswer(true)">
+      ✅ จำได้
+    </button>
+
+    <button class="fc-forget-btn" onclick="fcAnswer(false)">
+      ❌ จำไม่ได้
+    </button>
+  </div>
+
+</div>
         </div>
       </div>
 
