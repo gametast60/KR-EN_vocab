@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -634,7 +634,7 @@ function openSRSStats(){
       <div class="stat-chip">คำทั้งหมด<br><b>${stats.total}</b></div>
       <div class="stat-chip">เรียนไปแล้ว<br><b>${stats.learned}</b></div>
       <div class="stat-chip">จำได้แล้ว ✅<br><b>${stats.mastered}</b></div>
-      <div class="stat-chip">ทวนวันนี้<br><b>${stats.dueToday}</b></div>
+      <div class="stat-chip stat-chip-due" style="cursor:pointer" onclick="openDueTodayInspector()">ทวนวันนี้<br><b>${stats.dueToday}</b></div>
       <div class="stat-chip">❌คำผิดวันนี้<br><b>${wb.length}/${WRONG_BOX_MAX}</b></div>
     </div>
     <div class="stat-progress-label">ความคืบหน้า ${pct}%</div>
@@ -1241,6 +1241,38 @@ function openBoxInspector(boxNum){
   document.getElementById("boxInspectorModal").classList.remove("hidden");
 }
 
+function openDueTodayInspector(){
+  // ใช้เงื่อนไขเดียวกับ stats.dueToday ใน getSRSStats() เป๊ะๆ:
+  // เฉพาะ box 1-4 ที่ nextReview ถึงกำหนดแล้ว (ไม่รวมคำใหม่ box 0)
+  const data  = loadSRS();
+  const today = todayStr();
+  const words = Object.values(data)
+    .filter(item => {
+      let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
+      return box >= 1 && box <= 4 && item.nextReview && item.nextReview <= today;
+    })
+    .sort((a, b) => (a.nextReview || "").localeCompare(b.nextReview || ""));
+
+  let listHtml = "";
+  if(words.length === 0){
+    listHtml = `<div class="box-inspector-empty">ไม่มีคำให้ทวนวันนี้</div>`;
+  } else {
+    words.forEach((item, i) => {
+      listHtml += `<div class="box-inspector-item">
+        <span class="box-inspector-num">${i+1}.</span>
+        <span class="box-inspector-word">${item.word}</span>
+        <span class="box-inspector-meaning">${item.meaning}</span>
+        <span class="box-inspector-date">กล่อง ${item.box}</span>
+      </div>`;
+    });
+  }
+
+  document.getElementById("boxInspectorTitle").textContent = `📅 ทวนวันนี้ (${words.length} คำ)`;
+  document.getElementById("boxInspectorTitle").style.color = "#FACC15";
+  document.getElementById("boxInspectorList").innerHTML = listHtml;
+  document.getElementById("boxInspectorModal").classList.remove("hidden");
+}
+
 function openWrongBoxInspector(){
   const words = getWrongBoxWords();
   let listHtml = "";
@@ -1458,6 +1490,8 @@ async function syncVocabLibrary() {
   let totalAdded = 0;
   let totalUpdated = 0;
   let totalDeleted = 0;
+  let addedInfoHTML = "";
+  let updatedInfoHTML = "";
   let deletedInfoHTML = "";
 
   BACKUP_TOPIKS.forEach(({ id, label }) => {
@@ -1478,6 +1512,8 @@ async function syncVocabLibrary() {
     let addedCount = 0;
     let updatedCount = 0;
     let deletedWords = [];
+    let addedWords = [];
+    let updatedWords = []; // { word, oldMeaning, newMeaning }
 
     // Clone ข้อมูลเพื่อประมวลผลล่วงหน้า
     const newData = JSON.parse(JSON.stringify(data));
@@ -1487,7 +1523,13 @@ async function syncVocabLibrary() {
       if (!newData[item.word]) {
         newData[item.word] = { word: item.word, meaning: item.meaning, box: 0, nextReview: null };
         addedCount++;
+        addedWords.push(item.word);
       } else if (newData[item.word].meaning !== item.meaning) {
+        updatedWords.push({
+          word: item.word,
+          oldMeaning: newData[item.word].meaning,
+          newMeaning: item.meaning
+        });
         newData[item.word].meaning = item.meaning;
         updatedCount++;
       }
@@ -1511,6 +1553,28 @@ async function syncVocabLibrary() {
     totalUpdated += updatedCount;
     totalDeleted += deletedWords.length;
 
+    if (addedWords.length > 0) {
+      addedInfoHTML += `
+        <div style="margin-top: 10px; font-weight: bold; color: #16a34a;">${label}:</div>
+        <div style="font-size: 13px; color: var(--text-muted); background: var(--success-light); padding: 8px; border-radius: 6px; margin-top: 4px;">
+          ${addedWords.join(", ")}
+        </div>`;
+    }
+
+    if (updatedWords.length > 0) {
+      const rows = updatedWords.map(u =>
+        `<div style="padding:4px 0;border-bottom:1px solid rgba(37,99,235,0.15)">
+          <b>${u.word}</b><br>
+          <span style="text-decoration:line-through;opacity:0.7">${u.oldMeaning}</span> → <span style="color:#2563eb;font-weight:700">${u.newMeaning}</span>
+        </div>`
+      ).join("");
+      updatedInfoHTML += `
+        <div style="margin-top: 10px; font-weight: bold; color: #2563eb;">${label}:</div>
+        <div style="font-size: 13px; color: var(--text-muted); background: rgba(37,99,235,0.08); padding: 8px; border-radius: 6px; margin-top: 4px;">
+          ${rows}
+        </div>`;
+    }
+
     if (deletedWords.length > 0) {
       deletedInfoHTML += `
         <div style="margin-top: 10px; font-weight: bold; color: var(--danger);">${label}:</div>
@@ -1531,6 +1595,32 @@ async function syncVocabLibrary() {
       <div>🗑️ คำศัพท์ที่ไม่มีอยู่ในไฟล์แล้ว: <span style="font-weight:bold;color:var(--danger)">${totalDeleted} คำ</span></div>
     </div>
   `;
+
+  if (totalAdded > 0) {
+    bodyHTML += `
+      <div style="margin-bottom: 16px; border: 1px solid rgba(34,197,94,0.25); padding: 12px; border-radius: 10px; background: var(--success-light);">
+        <div style="font-weight: 700; color: #16a34a; display:flex; align-items:center; gap:6px;">
+          ➕ คำใหม่ที่จะเพิ่มเข้าคลัง
+        </div>
+        <div style="max-height: 120px; overflow-y: auto; margin-top: 10px; border-top: 1px solid rgba(34,197,94,0.2); padding-top: 8px;">
+          ${addedInfoHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  if (totalUpdated > 0) {
+    bodyHTML += `
+      <div style="margin-bottom: 16px; border: 1px solid rgba(37,99,235,0.25); padding: 12px; border-radius: 10px; background: rgba(37,99,235,0.06);">
+        <div style="font-weight: 700; color: #2563eb; display:flex; align-items:center; gap:6px;">
+          🔄 คำที่ความหมายถูกปรับปรุง
+        </div>
+        <div style="max-height: 160px; overflow-y: auto; margin-top: 10px; border-top: 1px solid rgba(37,99,235,0.2); padding-top: 8px;">
+          ${updatedInfoHTML}
+        </div>
+      </div>
+    `;
+  }
 
   if (totalDeleted > 0) {
     bodyHTML += `
