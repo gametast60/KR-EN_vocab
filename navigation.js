@@ -747,18 +747,79 @@ function resetEverything(){
 }
 
 
-function syncVocabAndClearCache(){
-  if(!confirm("ยืนยันการอัพเดทเวอร์ชั่นใหม่?\n'ตกลง' หรือไม่?")) return;
-  const origTopik = currentTopik;
-  BACKUP_TOPIKS.forEach(({ id }) => {
-    currentTopik = id;
-    initAllVocab();
-  });
-  currentTopik = origTopik;
-  caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
+async function syncVocabAndClearCache(){
+  if(!confirm("ยืนยันการอัปเดตเวอร์ชันใหม่?\nระบบจะทำการสำรองข้อมูล (Backup) ล่าสุดของคุณลงเครื่องโดยอัตโนมัติก่อนเริ่มการอัปเดต")) return;
+
+  const updateBtn = document.getElementById("updateAppBtn");
+  if (updateBtn) {
+    updateBtn.disabled = true;
+    updateBtn.innerText = "กำลังสำรองข้อมูล...";
+  }
+
+  try {
+    // 1. เรียกใช้งาน backupData() เพื่อแปลงข้อมูลเป็นไฟล์และเริ่มกระบวนการดาวน์โหลดทันที
+    backupData();
+  } catch (err) {
+    console.error("Backup failed:", err);
+    alert("❌ ไม่สามารถสร้างไฟล์สำรองข้อมูลได้: " + err.message + "\nยกเลิกการอัปเดตเพื่อป้องกันข้อมูลสูญหาย");
+    if (updateBtn) {
+      updateBtn.disabled = false;
+      updateBtn.innerText = "Update";
+    }
+    return;
+  }
+
+  // 2. หน่วงเวลาสั้น ๆ 1 วินาทีเพื่อให้ Browser จัดการคิวเรียกดาวน์โหลด
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  // 3. ตรวจสอบการดาวน์โหลดผ่านผู้ใช้ (เนื่องจาก JS ไม่สามารถตรวจสถานะการเขียนไฟล์สำเร็จผ่าน Sandbox ได้)
+  if (!confirm("ระบบได้ทำการดาวน์โหลดไฟล์สำรองข้อมูล (Backup) เรียบร้อยแล้ว\n\nกรุณาตรวจสอบว่ามีไฟล์ดาวน์โหลดขึ้นที่เบราว์เซอร์ของคุณหรือไม่?\n\n- กด 'ตกลง' (OK) เพื่อดำเนินการล้างแคชและอัปเดตระบบต่อทันที\n- กด 'ยกเลิก' (Cancel) เพื่อยกเลิกการอัปเดตหากดาวน์โหลดไม่สำเร็จ")) {
+    alert("ยกเลิกการอัปเดตแล้ว");
+    if (updateBtn) {
+      updateBtn.disabled = false;
+      updateBtn.innerText = "Update";
+    }
+    return;
+  }
+
+  if (updateBtn) {
+    updateBtn.innerText = "กำลังอัปเดต...";
+  }
+
+  try {
+    // 4. ล้างแคชและทำการอัปเดตตาม Logic เดิมของแอป
+    const origTopik = currentTopik;
+    BACKUP_TOPIKS.forEach(({ id }) => {
+      currentTopik = id;
+      initAllVocab();
+    });
+    currentTopik = origTopik;
+
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+
+    // ลองสั่ง Update Service Worker ด้วยหากมี
+    if ("serviceWorker" in navigator) {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (const registration of registrations) {
+          await registration.update();
+        }
+      } catch (swErr) {
+        console.warn("ServiceWorker update warning:", swErr);
+      }
+    }
+
     alert("✅ อัปเดตเสร็จแล้ว! กำลัง reload...");
     location.reload();
-  });
+  } catch (err) {
+    console.error("Update failed:", err);
+    alert("❌ เกิดข้อผิดพลาดระหว่างการอัปเดต: " + err.message);
+    if (updateBtn) {
+      updateBtn.disabled = false;
+      updateBtn.innerText = "Update";
+    }
+  }
 }
 
 
