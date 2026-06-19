@@ -139,6 +139,15 @@
       <div class="settings-header">⚙️ ตั้งค่าระบบ</div>
       <button class="settings-btn" style="background:#6b7280;color:white;margin-top:0px;margin-bottom:16px;" onclick="showMainMenu()">⬅ กลับ</button>
 
+      <!-- 🧹 SYNC VOCAB -->
+      <div class="settings-section">
+        <div class="settings-title">🧹 ซิงก์คลังคำศัพท์</div>
+        <div class="settings-desc">เพิ่มคำศัพท์ใหม่ อัปเดตความหมาย หรือตรวจสอบลบคำศัพท์เก่าโดยไม่เสียประวัติทวนเดิม</div>
+        <button id="syncVocabBtn" class="settings-btn" style="margin-top:8px;background:#0891b2;color:white;" onclick="syncVocabLibrary()">🧹 ซิงก์คลังคำศัพท์</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
       <!-- ☁️ BACKUP / RESTORE -->
       <div class="settings-section">
         <div class="settings-title">☁️ สำรองข้อมูล</div>
@@ -354,6 +363,21 @@
       <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--border-light)">
         <button onclick="document.getElementById('restoreModal').classList.add('hidden')" style="flex:1;background:var(--border-light);color:var(--text-main);font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
         <button id="restoreConfirmBtn" onclick="confirmRestore()" style="flex:2;background:var(--primary);color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ กู้คืน</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNC PREVIEW MODAL -->
+  <div id="syncModal" class="box-inspector-overlay hidden" onclick="closeSyncModal(event)">
+    <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto;max-height:85vh;border-radius:20px 20px 0 0">
+      <div class="box-inspector-header">
+        <div id="syncModalTitle" class="box-inspector-title" style="color:#0891b2">🧹 ซิงก์คลังคำศัพท์</div>
+        <button class="box-inspector-close" onclick="closeSyncModal()">✕</button>
+      </div>
+      <div id="syncModalBody" style="overflow-y:auto;padding:16px 18px;flex:1;font-size:14px;line-height:1.6;"></div>
+      <div style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--border-light)">
+        <button onclick="closeSyncModal()" style="flex:1;background:var(--border-light);color:var(--text-main);font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
+        <button id="syncConfirmBtn" onclick="executeSyncVocab()" style="flex:2;background:#0891b2;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ เริ่มซิงก์</button>
       </div>
     </div>
   </div>

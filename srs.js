@@ -136,31 +136,23 @@ function initAllVocab() {
   const vocab = (typeof getTopikVocab === "function")
     ? getTopikVocab(currentTopik)
     : [];
+
+  // ป้องกันกรณีไฟล์ข้อมูลไม่โหลดหรือเกิดความผิดพลาดในการดึงข้อมูล
+  if (!Array.isArray(vocab) || vocab.length === 0) {
+    console.warn("Vocab not loaded for current topik:", currentTopik);
+    return;
+  }
+
   const data = loadSRS();
   let changed = false;
 
-  // 1. สร้าง Map หรือ Object ของคำศัพท์ปัจจุบันในไฟล์ .js เพื่อให้เช็คได้เร็วขึ้น
-  const currentVocabMap = {};
-  vocab.forEach(item => {
-    currentVocabMap[item.word] = item.meaning;
-  });
-
-  // 2. ลบคำศัพท์ในคลัง SRS ที่ไม่มีอยู่ในไฟล์ .js ปัจจุบันออก (แก้ไขปัญหายอดเกิน)
-  Object.keys(data).forEach(word => {
-    if (!currentVocabMap[word]) {
-      delete data[word];
-      changed = true;
-    } else if (data[word].meaning !== currentVocabMap[word]) {
-      // แถมให้อีกนิด: ถ้าความหมายในไฟล์เปลี่ยน ให้เปลี่ยนตามด้วย
-      data[word].meaning = currentVocabMap[word];
-      changed = true;
-    }
-  });
-
-  // 3. เพิ่มคำศัพท์ใหม่จากไฟล์ .js เข้าคลัง
+  // 1. เพิ่มคำศัพท์ใหม่ หรืออัปเดตความหมายใหม่โดยไม่มีการลบคำเก่าอัติโนมัติ
   vocab.forEach(item => {
     if (!data[item.word]) {
       data[item.word] = { word: item.word, meaning: item.meaning, box: 0, nextReview: null };
+      changed = true;
+    } else if (data[item.word].meaning !== item.meaning) {
+      data[item.word].meaning = item.meaning;
       changed = true;
     }
   });

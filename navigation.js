@@ -888,7 +888,7 @@ function backupData() {
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement("a");
-  const dateStr = new Date().toISOString().slice(0, 10); // "2026-06-15"
+  const dateStr = todayStr();
   a.href     = url;
   a.download = `EN_KR_Vocab_backup_${dateStr}.json`;
   a.click();
@@ -1386,4 +1386,232 @@ function updateTitleVisibility(){
   const cur = document.querySelector(".screen:not(.hidden)")?.id;
   const hide = ["flashcardGame","quizGame","typingGame", "srsStats"];
   document.getElementById("appTitle").classList.toggle("hidden", hide.includes(cur));
+}
+
+
+// ============================================================
+// VOCABULARY LIBRARY SYNC TOOL
+// ============================================================
+let _pendingSyncData = null;
+
+async function syncVocabLibrary() {
+  if (!confirm("ยืนยันการเริ่มซิงก์คลังคำศัพท์?\n\nระบบจะทำการสำรองข้อมูล (Backup) ข้อมูลล่าสุดของคุณลงเครื่องโดยอัตโนมัติก่อน เพื่อความปลอดภัยสูงสุด")) {
+    return;
+  }
+
+  const syncBtn = document.getElementById("syncVocabBtn");
+  if (syncBtn) {
+    syncBtn.disabled = true;
+    syncBtn.innerText = "กำลังสำรองข้อมูล...";
+  }
+
+  try {
+    // 1. เรียกดาวน์โหลดข้อมูล
+    backupData();
+  } catch (err) {
+    console.error("Backup failed during sync setup:", err);
+    alert("❌ ไม่สามารถสร้างไฟล์สำรองข้อมูลได้: " + err.message + "\nยกเลิกการซิงก์ข้อมูลคลังเพื่อความปลอดภัย");
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.innerText = "🧹 ซิงก์คลังคำศัพท์";
+    }
+    return;
+  }
+
+  // หน่วงเวลาสั้น ๆ ให้บราวเซอร์รับเรื่อง
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  // 2. ให้ผู้ใช้ยืนยันการมีอยู่ของไฟล์ดาวน์โหลดจริง
+  if (!confirm("ระบบได้ทำการทริกเกอร์ดาวน์โหลดไฟล์สำรองข้อมูล (Backup) แล้ว\n\nกรุณาตรวจสอบว่ามีไฟล์ดาวน์โหลดขึ้นที่เบราว์เซอร์ของคุณหรือไม่?\n\n- กด 'ตกลง' (OK) เพื่อเริ่มการคำนวณซิงก์คลังคำศัพท์\n- กด 'ยกเลิก' (Cancel) เพื่อยกเลิกกระบวนการซิงก์ข้อมูล")) {
+    alert("ยกเลิกการซิงก์ข้อมูลเรียบร้อยแล้ว");
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.innerText = "🧹 ซิงก์คลังคำศัพท์";
+    }
+    return;
+  }
+
+  if (syncBtn) {
+    syncBtn.innerText = "กำลังสแกนคลังคำศัพท์...";
+  }
+
+  // 3. ตรวจสอบว่าไฟล์ข้อมูลคำศัพท์ทั้งหมดโหลดเข้าแอปเรียบร้อยและไม่ใช่ค่าว่าง
+  const failedTopiks = [];
+  BACKUP_TOPIKS.forEach(({ id, label }) => {
+    const vocab = getTopikVocab(id);
+    if (!Array.isArray(vocab) || vocab.length === 0) {
+      failedTopiks.push(label);
+    }
+  });
+
+  if (failedTopiks.length > 0) {
+    alert(`❌ การซิงก์ล้มเหลว: ไม่สามารถดึงคลังข้อมูลคำศัพท์ของ [${failedTopiks.join(", ")}] ได้ในขณะนี้ กรุณารีโหลดหน้าเว็บใหม่และตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้งครับ`);
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.innerText = "🧹 ซิงก์คลังคำศัพท์";
+    }
+    return;
+  }
+
+  // 4. คำนวณความแตกต่าง (Dry-run Scan)
+  _pendingSyncData = {};
+  let totalAdded = 0;
+  let totalUpdated = 0;
+  let totalDeleted = 0;
+  let deletedInfoHTML = "";
+
+  BACKUP_TOPIKS.forEach(({ id, label }) => {
+    const vocab = getTopikVocab(id);
+    const srsKeyName = `topik_srs_${id}_v1`;
+    let data = {};
+    try {
+      data = JSON.parse(localStorage.getItem(srsKeyName) || "{}");
+    } catch (e) {
+      data = {};
+    }
+
+    const currentVocabMap = {};
+    vocab.forEach(item => {
+      currentVocabMap[item.word] = item.meaning;
+    });
+
+    let addedCount = 0;
+    let updatedCount = 0;
+    let deletedWords = [];
+
+    // Clone ข้อมูลเพื่อประมวลผลล่วงหน้า
+    const newData = JSON.parse(JSON.stringify(data));
+
+    // ตรวจสอบการเพิ่มคำศัพท์ใหม่ หรืออัปเดตคำศัพท์เก่า
+    vocab.forEach(item => {
+      if (!newData[item.word]) {
+        newData[item.word] = { word: item.word, meaning: item.meaning, box: 0, nextReview: null };
+        addedCount++;
+      } else if (newData[item.word].meaning !== item.meaning) {
+        newData[item.word].meaning = item.meaning;
+        updatedCount++;
+      }
+    });
+
+    // ตรวจสอบคำที่มีอยู่ใน SRS แต่ไม่มีในไฟล์ JS แล้ว
+    Object.keys(data).forEach(word => {
+      if (!currentVocabMap[word]) {
+        deletedWords.push(word);
+      }
+    });
+
+    _pendingSyncData[id] = {
+      newData: newData,
+      addedCount: addedCount,
+      updatedCount: updatedCount,
+      deletedWords: deletedWords
+    };
+
+    totalAdded += addedCount;
+    totalUpdated += updatedCount;
+    totalDeleted += deletedWords.length;
+
+    if (deletedWords.length > 0) {
+      deletedInfoHTML += `
+        <div style="margin-top: 10px; font-weight: bold; color: var(--danger);">${label}:</div>
+        <div style="font-size: 13px; color: var(--text-muted); background: #fee2e2; padding: 8px; border-radius: 6px; margin-top: 4px;">
+          ${deletedWords.join(", ")}
+        </div>`;
+    }
+  });
+
+  // 5. เรนเดอร์ลงใน Modal และแจ้งพรีวิว
+  let bodyHTML = `
+    <div style="font-weight: 700; font-size: 16px; margin-bottom: 12px; color: var(--text-main);">
+      📊 รายการปรับปรุงคลังคำศัพท์หลังสแกน:
+    </div>
+    <div style="background: var(--border-light); padding: 12px; border-radius: 10px; margin-bottom: 16px;">
+      <div>➕ เพิ่มคำใหม่เข้าคลัง: <span style="font-weight:bold;color:#16a34a">${totalAdded} คำ</span></div>
+      <div>🔄 ปรับปรุงความหมาย/ข้อมูล: <span style="font-weight:bold;color:#2563eb">${totalUpdated} คำ</span></div>
+      <div>🗑️ คำศัพท์ที่ไม่มีอยู่ในไฟล์แล้ว: <span style="font-weight:bold;color:var(--danger)">${totalDeleted} คำ</span></div>
+    </div>
+  `;
+
+  if (totalDeleted > 0) {
+    bodyHTML += `
+      <div style="margin-bottom: 16px; border: 1px solid #fee2e2; padding: 12px; border-radius: 10px; background: #fff5f5;">
+        <label style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--danger); cursor: pointer;">
+          <input type="checkbox" id="syncDeleteCheckbox" style="width: 18px; height: 18px; accent-color: var(--danger);">
+          ลบคำที่ไม่มีในไฟล์แล้วออกจากประวัติ SRS
+        </label>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+          * หากไม่ติ๊กเลือก คำเหล่านี้จะคงอยู่ในระบบ SRS ของท่านตามปกติโดยไม่มีคำใดถูกลบออก
+        </div>
+        <div style="max-height: 120px; overflow-y: auto; margin-top: 10px; border-top: 1px solid #fecaca; padding-top: 8px;">
+          ${deletedInfoHTML}
+        </div>
+      </div>
+    `;
+  } else {
+    bodyHTML += `
+      <div style="color: var(--success); font-weight: bold; background: var(--success-light); padding: 10px; border-radius: 8px; font-size: 13px; text-align: center; border: 1px solid rgba(34,197,94,0.2);">
+        ✨ คลังคำศัพท์ตรงกับไฟล์ข้อมูลเรียบร้อยแล้ว ไม่มีคำศัพท์ที่ถูกลบออกจากไฟล์หลัก
+      </div>
+    `;
+  }
+
+  bodyHTML += `
+    <div style="font-size: 13px; color: var(--text-muted); text-align: center; margin-top: 12px;">
+      * หมายเหตุ: ประวัติการทวนเดิมของคำอื่น ๆ (กล่องทวน, วันทวน, คะแนนผิด) จะคงอยู่ครบถ้วน 100%
+    </div>
+  `;
+
+  document.getElementById("syncModalBody").innerHTML = bodyHTML;
+  document.getElementById("syncModal").classList.remove("hidden");
+}
+
+function closeSyncModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById("syncModal").classList.add("hidden");
+
+  const syncBtn = document.getElementById("syncVocabBtn");
+  if (syncBtn) {
+    syncBtn.disabled = false;
+    syncBtn.innerText = "🧹 ซิงก์คลังคำศัพท์";
+  }
+}
+
+function executeSyncVocab() {
+  const deleteCheckbox = document.getElementById("syncDeleteCheckbox");
+  const shouldDelete = deleteCheckbox ? deleteCheckbox.checked : false;
+
+  let actualDeletedCount = 0;
+  let actualAddedCount = 0;
+  let actualUpdatedCount = 0;
+
+  for (const topikId in _pendingSyncData) {
+    const srsKeyName = `topik_srs_${topikId}_v1`;
+    const syncInfo = _pendingSyncData[topikId];
+    const dataToSave = syncInfo.newData;
+
+    actualAddedCount += syncInfo.addedCount;
+    actualUpdatedCount += syncInfo.updatedCount;
+
+    if (shouldDelete && syncInfo.deletedWords.length > 0) {
+      syncInfo.deletedWords.forEach(word => {
+        delete dataToSave[word];
+        actualDeletedCount++;
+      });
+    }
+
+    localStorage.setItem(srsKeyName, JSON.stringify(dataToSave));
+  }
+
+  closeSyncModal();
+
+  // เรียกใช้ initAllVocab เพื่อทวนสอบและรีเฟรชข้อมูลหน้าจอ SRS ทั้งหมด
+  const origTopik = currentTopik;
+  BACKUP_TOPIKS.forEach(({ id }) => {
+    currentTopik = id;
+    initAllVocab();
+  });
+  currentTopik = origTopik;
+
+  alert(`🧹 ซิงก์คลังคำศัพท์เสร็จสมบูรณ์!\n\n- เพิ่มคำใหม่เข้าระบบ: ${actualAddedCount} คำ\n- อัปเดตข้อมูลความหมาย: ${actualUpdatedCount} คำ\n- ลบคำศัพท์เก่าออก: ${shouldDelete ? actualDeletedCount : 0} คำ\n\nระบบจะทำการโหลดหน้าจอใหม่...`);
+  location.reload();
 }
