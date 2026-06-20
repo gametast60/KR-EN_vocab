@@ -1694,14 +1694,13 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 2px 20px 32px;
   border: 1.5px dashed var(--border-light);
   border-radius: 20px;
   background: rgba(34, 197, 94, 0.03);
   color: var(--success);
-  margin: auto 0;
-  min-height: 160px; /* กันไม่ให้ถูกบีบจนหายตอน parent flex คำนวณ height ผิดช่วงแรกที่เปิดแอพบนมือถือ */
-  flex-shrink: 0;
+  flex: 1;
+  min-height: 160px;
 }
 
 .home-empty-emoji {

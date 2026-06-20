@@ -207,6 +207,9 @@ function renderHomeDueHub() {
 
   if (totalDueCount === 0) {
     html = `
+      <div class="home-due-header">
+        📅 คำที่ต้องทวนวันนี้
+      </div>
       <div class="home-due-empty">
         <div class="home-empty-emoji">🎉</div>
         <div class="home-empty-text">คุณเคลียร์คำที่ต้องทวนหมดแล้ว</div>
