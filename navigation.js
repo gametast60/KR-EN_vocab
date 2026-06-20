@@ -29,11 +29,13 @@ function updateTrackNavButton(forceHidden = false){
   if(!trackNavButton) return;
 
   const currentScreen = getCurrentScreenId();
+  const hideGlobalSettings = currentScreen === "globalSettingsPanel";
   const targetScreen = getTrackMenuScreenId();
 
   const shouldHide =
     forceHidden ||
     currentScreen === "mainMenu" ||
+    currentScreen === "globalSettingsPanel" ||
     currentScreen === targetScreen;
 
   trackNavButton.classList.toggle("hidden", shouldHide);
@@ -71,7 +73,10 @@ function goTo(screenId){
   const cur = document.querySelector(".screen:not(.hidden)");
   if(cur) screenHistory.push(cur.id);
   showScreen(screenId);
-  // ซ่อน badge ทุกตัวก่อนเสมอ แล้วค่อยให้เกม set ใหม่
+  document.getElementById("appTitle").classList.toggle(
+  "hidden",
+  screenId === "globalSettingsPanel"
+  );
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
@@ -83,12 +88,13 @@ function goBack(){
   if(screenHistory.length === 0) return;
   const prevScreen = screenHistory.pop();
   showScreen(prevScreen);
-  document.getElementById("appTitle").classList.remove("hidden"); // ← เพิ่มตรงนี้
+  document.getElementById("appTitle").classList.remove("hidden");
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
   if(prevScreen === "mainMenu"){
     document.getElementById("appTitle").textContent = "Vocab by 톤님";
+    renderHomeDueHub();
   } else if(prevScreen === "koreanMenu"){
     document.getElementById("appTitle").textContent = "KR ภาษาเกาหลี";
   } else if(prevScreen === "englishMenu"){
@@ -108,6 +114,7 @@ function goBack(){
 function updateNavButtons(){
 
   const currentScreen = getCurrentScreenId();
+  const hideGlobalSettings = currentScreen === "globalSettingsPanel";
 
   const hideBack = [
   "mainMenu",
@@ -127,8 +134,8 @@ function updateNavButtons(){
 
   const hideAllNav = inFlashcard || inTyping || inQuiz;
 
-  backButton.classList.toggle("hidden", hideBack || hideAllNav);
-  homeButton.classList.toggle("hidden", currentScreen === "mainMenu" || hideAllNav);
+  backButton.classList.toggle("hidden", hideBack || hideAllNav || hideGlobalSettings);
+  homeButton.classList.toggle("hidden", currentScreen === "mainMenu" || hideAllNav || hideGlobalSettings);
 
   updateTrackNavButton(hideAllNav);
 }
@@ -146,6 +153,96 @@ function showMainMenu(){
   });
   showScreen("mainMenu");
   updateNavButtons();
+  renderHomeDueHub();
+}
+
+function getHomeDueCount(topikId) {
+  const origTopik = currentTopik;
+  currentTopik = topikId;
+  try {
+    checkDailyReset();
+    initAllVocab();
+    return getSRSStats().dueToday;
+  } catch (e) {
+    console.error("Error getting due count for " + topikId, e);
+    return 0;
+  } finally {
+    currentTopik = origTopik;
+  }
+}
+
+function renderHomeDueHub() {
+  const container = document.getElementById("homeDueHub");
+  if (!container) return;
+
+  const HOME_DUE_TOPIKS = [
+    { id: "topik1", label: "TOPIK 1", icon: "📘" },
+    { id: "topik2", label: "TOPIK 2", icon: "📗" },
+    { id: "english_a1", label: "English A1", icon: "📗" },
+    { id: "english_a2", label: "English A2", icon: "📘" },
+    { id: "english_b1", label: "English B1", icon: "📙" },
+    { id: "english_b2", label: "English B2", icon: "📕" }
+  ];
+
+  let html = "";
+  let totalDueCount = 0;
+  let cardsHtml = "";
+
+  HOME_DUE_TOPIKS.forEach(item => {
+    const dueCount = getHomeDueCount(item.id);
+    if (dueCount > 0) {
+      totalDueCount += dueCount;
+      cardsHtml += `
+        <div class="home-due-card">
+          <div class="home-due-info">
+            <span class="home-due-icon">${item.icon}</span>
+            <span class="home-due-label">${item.label}</span>
+            <span class="home-due-count">${dueCount} คำ</span>
+          </div>
+          <button class="home-due-action-btn" onclick="startHomeDue('${item.id}')">ทวนเลย</button>
+        </div>
+      `;
+    }
+  });
+
+  if (totalDueCount === 0) {
+    html = `
+      <div class="home-due-empty">
+        <div class="home-empty-emoji">🎉</div>
+        <div class="home-empty-text">คุณเคลียร์คำที่ต้องทวนหมดแล้ว</div>
+      </div>
+    `;
+  } else {
+    html = `
+      <div class="home-due-header">
+        📅 คำที่ต้องทวนวันนี้
+      </div>
+      ${cardsHtml}
+    `;
+  }
+
+  container.innerHTML = html;
+}
+
+function startHomeDue(topikId) {
+  practicePool = [];
+  practiceSourceWords = [];
+  wrongboxPool = [];
+  lastPlayedWords = [];
+  
+  currentTopik = topikId;
+  
+  const TITLES = {
+    topik1:     "TOPIK 1",
+    topik2:     "TOPIK 2",
+    english_a1: "English A1",
+    english_a2: "English A2",
+    english_b1: "English B1",
+    english_b2: "English B2",
+  };
+  document.getElementById("appTitle").textContent = TITLES[topikId] || topikId;
+
+  openSRSDue();
 }
 
 function openLanguage(lang){
@@ -1413,11 +1510,19 @@ function playNextSetOtherMode() {
   setTimeout(() => { if(btn) btn.disabled = false; }, 500);
 }
 
-/// ซ่อนชื่อ TOPIK 1/2 by 톤님 ในหน้าเล่นเกมส์
 function updateTitleVisibility(){
   const cur = document.querySelector(".screen:not(.hidden)")?.id;
-  const hide = ["flashcardGame","quizGame","typingGame", "srsStats"];
-  document.getElementById("appTitle").classList.toggle("hidden", hide.includes(cur));
+
+  const hide = [
+    "flashcardGame",
+    "quizGame",
+    "typingGame",
+    "srsStats",
+    "globalSettingsPanel"
+  ];
+
+  document.getElementById("appTitle")
+    .classList.toggle("hidden", hide.includes(cur));
 }
 
 
