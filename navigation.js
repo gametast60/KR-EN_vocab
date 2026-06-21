@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -205,11 +205,21 @@ function renderHomeDueHub() {
     }
   });
 
+  const headerHtml = `
+    <div class="home-due-header">
+      <div class="home-due-header-left">
+        📅 คำที่ต้องทวนวันนี้ <span class="home-due-date">${todayStr()}</span>
+      </div>
+      <div class="home-due-header-right">
+        <span class="home-due-divider">|</span>
+        <button class="home-due-refresh-btn" onclick="renderHomeDueHub()">🔄 Refresh</button>
+      </div>
+    </div>
+  `;
+
   if (totalDueCount === 0) {
     html = `
-      <div class="home-due-header">
-        📅 คำที่ต้องทวนวันนี้
-      </div>
+      ${headerHtml}
       <div class="home-due-empty">
         <div class="home-empty-emoji">🎉</div>
         <div class="home-empty-text">คุณเคลียร์คำที่ต้องทวนหมดแล้ว</div>
@@ -217,9 +227,7 @@ function renderHomeDueHub() {
     `;
   } else {
     html = `
-      <div class="home-due-header">
-        📅 คำที่ต้องทวนวันนี้
-      </div>
+      ${headerHtml}
       ${cardsHtml}
     `;
   }

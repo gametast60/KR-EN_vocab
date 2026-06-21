@@ -1614,11 +1614,62 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   font-size: 14px;
   font-weight: 800;
   color: var(--text-secondary);
-  text-align: left;
   z-index: 10;
   border-bottom: 1.5px dashed var(--border-light);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-due-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.home-due-header-right {
+  display: flex;
+  align-items: center;
+  padding-right: 4px; /* ปรับระยะห่างปุ่มจากขวาสุดของขอบการ์ดได้ที่นี่ (สามารถเพิ่ม/ลดตามใจชอบ) */
+}
+
+.home-due-date {
+  margin-left: 10px; /* เว้นระยะห่างต่อท้ายประมาณ 2 ช่องตัวอักษร */
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.home-due-divider {
+  margin: 0 10px;
+  color: #9E9E9E;
+  font-weight: 300;
+}
+
+.home-due-refresh-btn {
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.home-due-refresh-btn:hover {
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.35);
+}
+
+.home-due-refresh-btn:active {
+  transform: scale(0.95);
 }
 
 .home-due-card {
