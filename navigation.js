@@ -212,7 +212,7 @@ function renderHomeDueHub() {
       </div>
       <div class="home-due-header-right">
         <span class="home-due-divider">|</span>
-        <button class="home-due-refresh-btn" onclick="renderHomeDueHub()">🔄 Refresh</button>
+        <button class="home-due-refresh-btn" onclick="triggerRefreshWithLoading()">🔄 Refresh</button>
       </div>
     </div>
   `;
@@ -233,6 +233,51 @@ function renderHomeDueHub() {
   }
 
   container.innerHTML = html;
+}
+
+function triggerRefreshWithLoading() {
+  const popup = document.getElementById("refreshLoadingPopup");
+  const bar = document.getElementById("refLoadBar");
+  const btn = document.getElementById("refLoadConfirmBtn");
+  const title = popup ? popup.querySelector(".ref-load-title") : null;
+
+  if (!popup || !bar || !btn || !title) return;
+
+  // 1. Reset state
+  bar.style.transition = "none";
+  bar.style.width = "0%";
+  title.textContent = "Loading....";
+  btn.classList.add("ref-load-btn-hidden");
+  btn.classList.remove("ref-load-btn-visible");
+
+  // 2. Open popup
+  popup.classList.add("ref-load-show");
+
+  // 3. Trigger transition for the loading bar
+  // Force a reflow to reset width
+  void bar.offsetWidth;
+
+  // Set transition and width (2 seconds)
+  bar.style.transition = "width 2s linear";
+  bar.style.width = "100%";
+
+  // 4. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
+  setTimeout(() => {
+    title.textContent = "เสร็จสิ้น";
+    btn.classList.remove("ref-load-btn-hidden");
+    btn.classList.add("ref-load-btn-visible");
+  }, 2000);
+}
+
+function confirmRefreshPopup() {
+  const popup = document.getElementById("refreshLoadingPopup");
+  if (!popup) return;
+
+  // Delay for a short duration (e.g. 300ms) before closing and refreshing
+  setTimeout(() => {
+    popup.classList.remove("ref-load-show");
+    renderHomeDueHub();
+  }, 300);
 }
 
 function startHomeDue(topikId) {

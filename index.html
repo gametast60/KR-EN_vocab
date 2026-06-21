@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="refresh-loading.css">
   <link rel="manifest" href="manifest.json">
   <script>
     if("serviceWorker" in navigator)
@@ -392,6 +393,17 @@
         <button onclick="closeSyncModal()" style="flex:1;background:var(--border-light);color:var(--text-main);font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">ยกเลิก</button>
         <button id="syncConfirmBtn" onclick="executeSyncVocab()" style="flex:2;background:#0891b2;color:white;font-size:15px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;margin:0">✅ เริ่มซิงก์</button>
       </div>
+    </div>
+  </div>
+
+  <!-- REFRESH LOADING POPUP -->
+  <div id="refreshLoadingPopup" class="ref-load-overlay">
+    <div class="ref-load-sheet">
+      <div class="ref-load-title">Loading....</div>
+      <div class="ref-load-bar-container">
+        <div id="refLoadBar" class="ref-load-bar"></div>
+      </div>
+      <button id="refLoadConfirmBtn" class="ref-load-btn ref-load-btn-hidden" onclick="confirmRefreshPopup()">ตกลง</button>
     </div>
   </div>
 
