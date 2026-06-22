@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -66,6 +66,11 @@ function showScreen(screenId){
   document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
   const t = document.getElementById(screenId);
   if(t) t.classList.remove("hidden");
+  // Reset scroll ทุกครั้งที่เปลี่ยนหน้า
+  // ป้องกัน #app.scrollTop ค้างจาก scroll chaining ของ homeDueHub
+  // ซึ่งทำให้ตำแหน่ง click target ไม่ตรงกับตำแหน่งที่ตาเห็น
+  const app = document.getElementById("app");
+  if(app) app.scrollTop = 0;
 }
 
 

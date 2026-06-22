@@ -20,6 +20,7 @@ let fcIndex = 0;
 let fcForgotten = [];
 let isDueMode = false;   // ← true เฉพาะ "ทวนวันนี้"
 let fcAnimating = false;
+let isFlipped = false;   // ← true เมื่อการ์ดพลิกแสดงด้านหลังแล้ว
 
 // ---- ด่าน 2 (Due Mode) ----
 let pendingList     = [];   // คำที่กด "จำได้" จากด่าน 1 รอตัดสินในด่าน 2
@@ -68,6 +69,7 @@ function speakFlashcard(){
 // =========================
 function showFlashcard(){
   fcAnimating = false;
+  isFlipped = false;
   const currentWord = shuffledVocabulary[fcIndex];
   
   const inner = document.getElementById("flashcardInner");
@@ -90,7 +92,9 @@ function showFlashcard(){
 }
 
 function flipCard(){
-  if (fcAnimating) return;
+  // ถ้าการ์ดพลิกไปแล้ว หรือกำลัง animate เปลี่ยนการ์ด → ไม่ทำซ้ำ
+  if (isFlipped || fcAnimating) return;
+  isFlipped = true;
   const inner = document.getElementById("flashcardInner");
   if(inner) {
     inner.classList.add("flipped");
@@ -144,6 +148,7 @@ function fcAnswer(known){
 
   setTimeout(() => {
     fcIndex = nextIndex;
+    isFlipped = false;
     const inner = document.getElementById("flashcardInner");
     if(inner) inner.classList.remove("flipped");
 

@@ -176,6 +176,8 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  touch-action: manipulation; /* ป้องกัน mobile browser รอ double-tap หรือ scroll-gesture ก่อน fire click */
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:active {
@@ -1588,6 +1590,7 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   flex: 1;
   min-height: 0; /* จำเป็นสำหรับ flex child ที่มี overflow-y: auto ไม่งั้นบางเบราว์เซอร์มือถือจะคำนวณ height ผิดตอน reflow ครั้งแรก */
   overflow-y: auto;
+  overscroll-behavior: contain; /* ป้องกัน scroll inertia หลุดขึ้นไปทำให้ #app scroll (scroll chaining bug) */
   margin: 12px 0;
   padding: 12px;
   display: flex;
