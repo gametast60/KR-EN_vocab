@@ -160,7 +160,7 @@ function autoRefreshHomeDueIfNeeded() {
     // รีเซ็ตข้อมูล SRS ประจำวัน
     checkDailyReset();
 
-    // รีเฟรชหน้าแรก
+    // อัปเดตข้อมูลหน้า Home
     renderHomeDueHub();
 
     // ถ้าอยู่หน้า Dashboard อยู่ให้รีเฟรชด้วย
@@ -169,6 +169,19 @@ function autoRefreshHomeDueIfNeeded() {
     }
 
     console.log("Auto refresh daily data");
+
+    const currentScreen = getCurrentScreenId();
+
+    const inGame = [
+      "flashcardGame",
+      "typingGame",
+      "quizGame"
+    ].includes(currentScreen);
+
+    // ไม่แสดง Popup ถ้ากำลังเล่นเกมอยู่
+    if (!inGame) {
+      showNewDayPopup();
+    }
   }
 }
 
@@ -1918,3 +1931,20 @@ document.addEventListener("visibilitychange", () => {
 });
 
 setInterval(autoRefreshHomeDueIfNeeded, 60000);
+
+function showNewDayPopup(){
+  document
+    .getElementById("newDayPopup")
+    ?.classList.remove("hidden");
+}
+
+function closeNewDayPopup(){
+  document
+    .getElementById("newDayPopup")
+    ?.classList.add("hidden");
+}
+
+function goHomeFromNewDayPopup(){
+  closeNewDayPopup();
+  showMainMenu();
+}

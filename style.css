@@ -1868,3 +1868,72 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   background: linear-gradient(135deg, #06b6d4, #0891b2);
   color: white;
 }
+ 
+
+.new-day-popup{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.new-day-popup.hidden{
+  display:none;
+}
+
+.new-day-card{
+  width:min(90%,360px);
+  background:#fff;
+  border-radius:24px;
+  padding:28px 24px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.new-day-icon{
+  font-size:48px;
+  margin-bottom:14px;
+}
+
+.new-day-title{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:10px;
+  color: #FACC15;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  font-family: var(--font-mono);
+}
+
+.new-day-text{
+  color:#fafafa;
+  line-height:1.6;
+  margin-bottom:24px;
+}
+
+.new-day-actions{
+  display:flex;
+  gap:10px;
+}
+
+.new-day-btn{
+  flex:1;
+  border:none;
+  border-radius:14px;
+  padding:13px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.new-day-btn.cancel{
+  background:linear-gradient(135deg, #6b7280, #4b5563);;
+}
+
+.new-day-btn.confirm{
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  color:white;
+}
