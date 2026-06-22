@@ -250,7 +250,7 @@ function triggerRefreshWithLoading() {
   // 1. Reset state
   bar.style.transition = "none";
   bar.style.width = "0%";
-  title.textContent = "Loading....";
+  title.innerHTML = "Loading....";
   btn.classList.add("ref-load-btn-hidden");
   btn.classList.remove("ref-load-btn-visible");
 
@@ -267,7 +267,7 @@ function triggerRefreshWithLoading() {
 
   // 4. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
   setTimeout(() => {
-    title.textContent = "เสร็จสิ้น";
+    title.innerHTML = 'เสร็จสิ้น<br><span class="ref-load-subtitle">ปัดแอพทิ้งแล้วเข้าใหม่</span>';
     btn.classList.remove("ref-load-btn-hidden");
     btn.classList.add("ref-load-btn-visible");
   }, 2000);
