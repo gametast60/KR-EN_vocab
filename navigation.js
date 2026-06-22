@@ -181,12 +181,12 @@ function renderHomeDueHub() {
   if (!container) return;
 
   const HOME_DUE_TOPIKS = [
-    { id: "topik1", label: "TOPIK 1", icon: "📘" },
-    { id: "topik2", label: "TOPIK 2", icon: "📗" },
-    { id: "english_a1", label: "English A1", icon: "📗" },
-    { id: "english_a2", label: "English A2", icon: "📘" },
-    { id: "english_b1", label: "English B1", icon: "📙" },
-    { id: "english_b2", label: "English B2", icon: "📕" }
+    { id: "topik1", label: "TOPIK1" },
+    { id: "topik2", label: "TOPIK2" },
+    { id: "english_a1", label: "English A1" },
+    { id: "english_a2", label: "English A2" },
+    { id: "english_b1", label: "English B1" },
+    { id: "english_b2", label: "English B2" }
   ];
 
   let html = "";
@@ -200,11 +200,10 @@ function renderHomeDueHub() {
       cardsHtml += `
         <div class="home-due-card">
           <div class="home-due-info">
-            <span class="home-due-icon">${item.icon}</span>
             <span class="home-due-label">${item.label}</span>
             <span class="home-due-count">${dueCount} คำ</span>
           </div>
-          <button class="home-due-action-btn" onclick="startHomeDue('${item.id}')">ทวนเลย</button>
+          <button class="home-due-action-btn" onclick="startHomeDue('${item.id}')">Go!</button>
         </div>
       `;
     }
@@ -213,7 +212,7 @@ function renderHomeDueHub() {
   const headerHtml = `
     <div class="home-due-header">
       <div class="home-due-header-left">
-       📅ทวนวันนี้ <span class="home-due-date">${todayStr()}</span>
+       📅 ทวนวันนี้ <span class="home-due-date">${todayStr()}</span>
       </div>
       <div class="home-due-header-right">
         <span class="home-due-divider">|</span>
