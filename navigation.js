@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -265,43 +265,12 @@ function triggerRefreshWithLoading() {
   bar.style.transition = "width 2s linear";
   bar.style.width = "100%";
 
-  // 4. ปลุก speechSynthesis engine ที่อาจค้างจากตอนเช้า/หลังอัพเดทแพตช์
-  warmUpSpeechEngine();
-
-  // 5. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
+  // 4. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
   setTimeout(() => {
     title.textContent = "เสร็จสิ้น";
     btn.classList.remove("ref-load-btn-hidden");
     btn.classList.add("ref-load-btn-visible");
   }, 2000);
-}
-
-function warmUpSpeechEngine() {
-  const MAX_ATTEMPTS  = 6;    // ลองสูงสุด 6 ครั้ง กันไม่ให้ยิงไม่หยุดถ้า engine พังจริง
-  const RETRY_DELAY_MS = 400; // เว้นช่วงสั้นๆ ระหว่างแต่ละครั้ง
-
-  function attempt(count) {
-    try {
-      speechSynthesis.cancel();
-      const warmup = new SpeechSynthesisUtterance(" ");
-      warmup.volume = 0;
-      warmup.rate = 10;
-      speechSynthesis.speak(warmup);
-    } catch (e) {
-      console.warn("Speech warm-up failed:", e);
-      return; // engine error จริงๆ ไม่มีประโยชน์จะลองต่อ
-    }
-
-    if (count >= MAX_ATTEMPTS) return;
-
-    setTimeout(() => {
-      // ถ้า engine ตื่นแล้ว (กำลังพูด หรือมีคิวค้างอยู่) → ถือว่าใช้ได้ หยุดลองต่อ
-      if (speechSynthesis.speaking || speechSynthesis.pending) return;
-      attempt(count + 1);
-    }, RETRY_DELAY_MS);
-  }
-
-  attempt(1);
 }
 
 function confirmRefreshPopup() {
@@ -311,7 +280,7 @@ function confirmRefreshPopup() {
   // Delay for a short duration (e.g. 300ms) before closing and refreshing
   setTimeout(() => {
     popup.classList.remove("ref-load-show");
-    renderHomeDueHub();
+    location.reload();
   }, 300);
 }
 

@@ -1,4 +1,4 @@
-const CACHE = "vocab-v3-refresh-v2";
+const CACHE = "vocab-v3-refresh-v3";
 const FILES = [
   "index.html","style.css","refresh-loading.css",
   "app.js","game.js","navigation.js",
