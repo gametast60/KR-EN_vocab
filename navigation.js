@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -8,6 +8,7 @@ let currentVocabulary = [];
 let srsSessionWords = [];
 let srsSessionMode  = "";
 let srsSessionType  = "";   // "due" | "practice" | "wrongbox"
+let lastRenderedDate = todayStr();
 
 const backButton = document.getElementById("backButton");
 const homeButton = document.getElementById("homeButton");
@@ -145,6 +146,33 @@ function updateNavButtons(){
   updateTrackNavButton(hideAllNav);
 }
 
+///==========================================
+/// ตรวจสอบวันที่อัตโนมัติ
+///==========================================
+function autoRefreshHomeDueIfNeeded() {
+
+  const currentDate = todayStr();
+
+  if (currentDate !== lastRenderedDate) {
+
+    lastRenderedDate = currentDate;
+
+    // รีเซ็ตข้อมูล SRS ประจำวัน
+    checkDailyReset();
+
+    // รีเฟรชหน้าแรก
+    renderHomeDueHub();
+
+    // ถ้าอยู่หน้า Dashboard อยู่ให้รีเฟรชด้วย
+    if (getCurrentScreenId() === "srsDashboard") {
+      renderSRSHome();
+    }
+
+    console.log("Auto refresh daily data");
+  }
+}
+
+
 // ============================================================
 // MAIN MENU
 // ============================================================
@@ -158,6 +186,7 @@ function showMainMenu(){
   });
   showScreen("mainMenu");
   updateNavButtons();
+  lastRenderedDate = todayStr();
   renderHomeDueHub();
 }
 
@@ -1878,3 +1907,14 @@ function executeSyncVocab() {
   alert(`🧹 ซิงก์คลังคำศัพท์เสร็จสมบูรณ์!\n\n- เพิ่มคำใหม่เข้าระบบ: ${actualAddedCount} คำ\n- อัปเดตข้อมูลความหมาย: ${actualUpdatedCount} คำ\n- ลบคำศัพท์เก่าออก: ${shouldDelete ? actualDeletedCount : 0} คำ\n\nระบบจะทำการโหลดหน้าจอใหม่...`);
   location.reload();
 }
+
+document.addEventListener("visibilitychange", () => {
+
+  // เมื่อผู้ใช้กลับเข้าแอพ
+  if (!document.hidden) {
+    autoRefreshHomeDueIfNeeded();
+  }
+
+});
+
+setInterval(autoRefreshHomeDueIfNeeded, 60000);
