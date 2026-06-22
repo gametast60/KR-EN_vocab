@@ -261,12 +261,43 @@ function triggerRefreshWithLoading() {
   bar.style.transition = "width 2s linear";
   bar.style.width = "100%";
 
-  // 4. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
+  // 4. ปลุก speechSynthesis engine ที่อาจค้างจากตอนเช้า/หลังอัพเดทแพตช์
+  warmUpSpeechEngine();
+
+  // 5. Wait 2 seconds (2000ms) for the bar to be full, then change title and fade-in the confirm button
   setTimeout(() => {
     title.textContent = "เสร็จสิ้น";
     btn.classList.remove("ref-load-btn-hidden");
     btn.classList.add("ref-load-btn-visible");
   }, 2000);
+}
+
+function warmUpSpeechEngine() {
+  const MAX_ATTEMPTS  = 6;    // ลองสูงสุด 6 ครั้ง กันไม่ให้ยิงไม่หยุดถ้า engine พังจริง
+  const RETRY_DELAY_MS = 400; // เว้นช่วงสั้นๆ ระหว่างแต่ละครั้ง
+
+  function attempt(count) {
+    try {
+      speechSynthesis.cancel();
+      const warmup = new SpeechSynthesisUtterance(" ");
+      warmup.volume = 0;
+      warmup.rate = 10;
+      speechSynthesis.speak(warmup);
+    } catch (e) {
+      console.warn("Speech warm-up failed:", e);
+      return; // engine error จริงๆ ไม่มีประโยชน์จะลองต่อ
+    }
+
+    if (count >= MAX_ATTEMPTS) return;
+
+    setTimeout(() => {
+      // ถ้า engine ตื่นแล้ว (กำลังพูด หรือมีคิวค้างอยู่) → ถือว่าใช้ได้ หยุดลองต่อ
+      if (speechSynthesis.speaking || speechSynthesis.pending) return;
+      attempt(count + 1);
+    }, RETRY_DELAY_MS);
+  }
+
+  attempt(1);
 }
 
 function confirmRefreshPopup() {
@@ -1014,12 +1045,18 @@ function getBackupSrsKeys() {
 }
 
 function getBackupSummary(payload) {
+  const backupDate = payload?.backupDate || todayStr();
+  const today = todayStr();
   return BACKUP_TOPIKS.map(({ id, label }) => {
     const srsKey = `topik_srs_${id}_v1`;
     const data = safeParseJSON(payload.localStorage[srsKey], {});
     const counts = calcBoxCounts(data);
-    const overdue = Object.values(data).filter(item => item.box >= 1 && item.box <= 4 && item.nextReview && item.nextReview <= todayStr()).length;
-    return { id, label, counts, overdue };
+    const isReviewable = item => item.box >= 1 && item.box <= 4 && item.nextReview;
+    // เลยกำหนด ณ ตอนที่สร้างไฟล์ backup
+    const overdueAtBackup = Object.values(data).filter(item => isReviewable(item) && item.nextReview <= backupDate).length;
+    // เลยกำหนด ถ้านำมากู้คืนตอนนี้แบบ "คงตารางเดิม" (keep)
+    const overdueNow = Object.values(data).filter(item => isReviewable(item) && item.nextReview <= today).length;
+    return { id, label, counts, overdueAtBackup, overdueNow };
   });
 }
 
@@ -1095,7 +1132,8 @@ function showRestorePreview(payload) {
     : "ไม่ทราบ";
 
   const summary = getBackupSummary(payload);
-  const totalOverdue = summary.reduce((sum, item) => sum + item.overdue, 0);
+  const totalOverdueAtBackup = summary.reduce((sum, item) => sum + item.overdueAtBackup, 0);
+  const totalOverdueNow      = summary.reduce((sum, item) => sum + item.overdueNow, 0);
 
   // คำนวณ nextReview ถ้าเลือก reset
   const today = todayStr();
@@ -1137,9 +1175,10 @@ function showRestorePreview(payload) {
       <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:var(--text-muted);width:16px;height:16px;flex-shrink:0">
       <div>
         <div style="font-weight:700;color:var(--text-main);font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
-        ${totalOverdue > 0
-          ? `<div style="font-size:12px;color:var(--danger);margin-top:3px">⚠️ มีคำเลยกำหนดแล้ว ${totalOverdue} คำ</div>`
-          : `<div style="font-size:12px;color:var(--text-muted);margin-top:3px">ยังไม่มีคำเลยกำหนด</div>`}
+        <div style="font-size:12px;color:var(--text-muted);margin-top:3px">ตอน backup เลยกำหนดอยู่ <b style="color:${totalOverdueAtBackup > 0 ? 'var(--danger)' : 'var(--text-muted)'}">${totalOverdueAtBackup} คำ</b></div>
+        ${totalOverdueNow > 0
+          ? `<div style="font-size:12px;color:var(--danger);margin-top:2px">⚠️ ถ้ากู้คืนตอนนี้ จะเลยกำหนดทันที <b>${totalOverdueNow} คำ</b></div>`
+          : `<div style="font-size:12px;color:var(--text-muted);margin-top:2px">ถ้ากู้คืนตอนนี้ จะยังไม่มีคำเลยกำหนด</div>`}
       </div>
     </label>
 
