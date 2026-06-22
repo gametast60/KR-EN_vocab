@@ -1870,70 +1870,99 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 }
  
 
+/* ============================================================
+   NEW DAY POPUP
+============================================================ */
+
 .new-day-popup{
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.55);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
 }
 
 .new-day-popup.hidden{
-  display:none;
+  display: none;
 }
 
 .new-day-card{
-  width:min(90%,360px);
-  background:#fff;
-  border-radius:24px;
-  padding:28px 24px;
-  text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.2);
+  width: min(90%, 360px);
+  background: linear-gradient(135deg, #1f2937, #111827);
+  border: 2px solid rgba(255,255,255,.08);
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(0,0,0,.45);
+  animation: popupFadeIn .25s ease;
 }
 
 .new-day-icon{
-  font-size:48px;
-  margin-bottom:14px;
+  font-size: 48px;
+  margin-bottom: 14px;
 }
 
 .new-day-title{
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:10px;
-  color: #FACC15;
-  background: rgba(234, 179, 8, 0.1);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
 .new-day-text{
-  color:#fafafa;
-  line-height:1.6;
-  margin-bottom:24px;
+  font-size: .95rem;
+  color: #ef4444;
+  line-height: 1.6;
+  margin-bottom: 24px;
 }
 
 .new-day-actions{
-  display:flex;
-  gap:10px;
+  display: flex;
+  gap: 10px;
 }
 
 .new-day-btn{
-  flex:1;
-  border:none;
-  border-radius:14px;
-  padding:13px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+  flex: 1;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.new-day-btn.cancel{
-  background:linear-gradient(135deg, #6b7280, #4b5563);;
+.new-day-btn:hover{
+  transform: translateY(-2px);
 }
+
+.new-day-btn:active{
+  transform: scale(.98);
+}
+
+/* ปุ่มปิด */
+
+.new-day-btn.cancel{
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+/* ปุ่มไปหน้าแรก */
 
 .new-day-btn.confirm{
   background: linear-gradient(135deg, #8B5CF6, #A78BFA);
-  color:white;
+}
+
+@keyframes popupFadeIn{
+  from{
+    opacity: 0;
+    transform: scale(.92);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
 }
