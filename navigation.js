@@ -650,8 +650,8 @@ function openPracticeBoxModal(){
     const checked = selected.includes(i) ? "checked" : "";
     html += `
       <label style="display:flex;align-items:center;gap:10px;font-size:15px;padding:9px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;">
-        <input type="checkbox" class="practice-box-cb" value="${i}" ${checked}
-          style="width:18px;height:18px;accent-color:${BOX_COLORS[i]};flex-shrink:0;"
+        <input type="checkbox" class="practice-box-cb practice-checkbox" value="${i}" ${checked}
+          style="accent-color:${BOX_COLORS[i]};"
           onchange="updatePracticeBoxSummary()">
         <span style="color:${BOX_COLORS[i]};font-weight:700;">${BOX_LABELS[i]}</span>
         <span style="margin-left:auto;background:${BOX_COLORS[i]};color:white;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;">${counts[i]}</span>
@@ -1180,14 +1180,14 @@ function showRestorePreview(payload) {
     <div style="margin-top:16px;font-weight:800;font-size:15px;color:var(--text-main)">🔄 เลือกวิธีกู้คืน</div>
 
     <label id="restoreOptReset" style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;padding:12px;border-radius:10px;border:2px solid var(--primary);background:var(--primary-light);cursor:pointer" onclick="setRestoreMode('reset')">
-      <input type="radio" name="restoreMode" value="reset" checked style="margin-top:3px;accent-color:var(--primary);width:16px;height:16px;flex-shrink:0">
+      <input type="radio" name="restoreMode" value="reset" checked class="no-jitter-input" style="margin-top:3px;accent-color:var(--primary);width:16px;height:16px;">
       <div>
         <div style="font-weight:700;color:var(--primary);font-size:14px">🔄 เริ่มนับรอบทวนใหม่จากวันนี้ <span style="background:var(--success-light);color:var(--success);font-size:11px;padding:2px 7px;border-radius:999px;font-weight:700">แนะนำ</span></div>
       </div>
     </label>
 
     <label id="restoreOptKeep" style="display:flex;align-items:flex-start;gap:10px;margin-top:8px;padding:12px;border-radius:10px;border:2px solid var(--border-light);background:var(--card-bg-white);cursor:pointer" onclick="setRestoreMode('keep')">
-      <input type="radio" name="restoreMode" value="keep" style="margin-top:3px;accent-color:var(--text-muted);width:16px;height:16px;flex-shrink:0">
+      <input type="radio" name="restoreMode" value="keep" class="no-jitter-input" style="margin-top:3px;accent-color:var(--text-muted);width:16px;height:16px;">
       <div>
         <div style="font-weight:700;color:var(--text-main);font-size:14px">📅 กู้คืนตามตารางทวนเดิม</div>
         <div style="font-size:12px;color:var(--text-muted);margin-top:3px">ตอน backup เลยกำหนดอยู่ <b style="color:${totalOverdueAtBackup > 0 ? 'var(--danger)' : 'var(--text-muted)'}">${totalOverdueAtBackup} คำ</b></div>
@@ -1841,7 +1841,7 @@ async function syncVocabLibrary() {
     bodyHTML += `
       <div style="margin-bottom: 16px; border: 1px solid #fee2e2; padding: 12px; border-radius: 10px; background: #fff5f5;">
         <label style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--danger); cursor: pointer;">
-          <input type="checkbox" id="syncDeleteCheckbox" style="width: 18px; height: 18px; accent-color: var(--danger);">
+          <input type="checkbox" id="syncDeleteCheckbox" class="practice-checkbox" style="accent-color: var(--danger);">
           ลบคำที่ไม่มีในไฟล์แล้วออกจากประวัติ SRS
         </label>
         <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">

@@ -133,7 +133,7 @@ h2 {
 }
 
 /* ─── INPUTS ─── */
-input {
+input:not([type="checkbox"]):not([type="radio"]) {
   width: 100%;
   padding: 14px 16px;
   font-size: 16px;
@@ -147,17 +147,33 @@ input {
   outline: none;
 }
 
-input:focus {
+input:not([type="checkbox"]):not([type="radio"]):focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
   background: var(--input-bg-white);
 }
 
-input:disabled {
+input:not([type="checkbox"]):not([type="radio"]):disabled {
   background: var(--input-bg-white);
   color: var(--text-light);
   cursor: not-allowed;
   opacity: 0.85;
+}
+/* ─── CHECKBOX / RADIO BASELINE ───
+   ตัด property จาก global input ทิ้งตั้งแต่ต้นทาง กัน reflow/transition เพี้ยน
+   ครอบคลุม checkbox และ radio ทุกตัวในแอป ไม่ต้องไล่แก้ทีละจุดที่เพิ่มใหม่ในอนาคต */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: content-box;
+  transition: none;
+  outline: none;
+  cursor: pointer;
 }
 
 /* ─── BUTTONS ─── */
@@ -1288,6 +1304,27 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   box-sizing: content-box;
   transition: none;
   accent-color: var(--primary);
+  cursor: pointer;
+}
+.practice-checkbox {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: content-box;
+  transition: none;
+  cursor: pointer;
+}
+
+.no-jitter-input {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: content-box;
+  transition: none;
   cursor: pointer;
 }
 
