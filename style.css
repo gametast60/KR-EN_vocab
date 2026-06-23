@@ -1281,6 +1281,12 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 .settings-checkboxes input[type="checkbox"] {
   width: 18px !important;
   height: 18px !important;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-sizing: content-box;
+  transition: none;
   accent-color: var(--primary);
   cursor: pointer;
 }
