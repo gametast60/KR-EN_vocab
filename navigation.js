@@ -1448,6 +1448,7 @@ function searchVocabulary(){
       <div class="search-word ${item.className}">${item.word}</div>
       <div class="search-meaning-row">
         <div class="search-meaning">${item.meaning}</div>
+        <button class="search-example-btn" onclick="event.stopPropagation(); showExamplePopup('${escapedWord}', '${item.level}')">📄</button>
         <button class="search-play-btn" onclick="event.stopPropagation(); speak('${escapedWord}', '${item.lang}')">🔊</button>
       </div>
       <div class="search-level ${item.className}">${item.level}</div>
@@ -2004,4 +2005,115 @@ function closeNewDayPopup(){
 function goHomeFromNewDayPopup(){
   closeNewDayPopup();
   showMainMenu();
+}
+
+// ============================================================
+// EXAMPLE SENTENCE POPUP FUNCTIONS
+// ============================================================
+function getWordDetails(word, levelOrTopik) {
+  let list = null;
+  const key = String(levelOrTopik || "").toLowerCase().replace(/\s+/g, "");
+  
+  if (key === "topik1") {
+    list = window.flashVocabData1;
+  } else if (key === "topik2") {
+    list = window.flashVocabData2;
+  } else if (key === "ena1" || key === "english_a1") {
+    list = window.flashVocabDataEnA1;
+  } else if (key === "ena2" || key === "english_a2") {
+    list = window.flashVocabDataEnA2;
+  } else if (key === "enb1" || key === "english_b1") {
+    list = window.flashVocabDataEnB1;
+  } else if (key === "enb2" || key === "english_b2") {
+    list = window.flashVocabDataEnB2;
+  }
+  
+  if (list) {
+    const found = list.find(item => item && item.word === word);
+    if (found) return found;
+  }
+  
+  // Fallback: search in all arrays
+  const allLists = [
+    window.flashVocabData1,
+    window.flashVocabData2,
+    window.flashVocabDataEnA1,
+    window.flashVocabDataEnA2,
+    window.flashVocabDataEnB1,
+    window.flashVocabDataEnB2
+  ];
+  for (const fallbackList of allLists) {
+    if (!fallbackList) continue;
+    const found = fallbackList.find(item => item && item.word === word);
+    if (found) return found;
+  }
+  
+  return null;
+}
+
+function showExamplePopup(word, levelOrTopik) {
+  const details = getWordDetails(word, levelOrTopik);
+  const popup = document.getElementById("examplePopup");
+  const body = document.getElementById("exampleModalBody");
+  if (!popup || !body) return;
+
+  const meaning = details ? details.meaning : "";
+  // Check both 'sentense' (spelling from request) and 'sentence'
+  const sentence = details ? (details.sentense || details.sentence) : "";
+  const translate = details ? details.translate : "";
+
+  let contentHtml = `
+    <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 12px;">
+      <div style="font-size: 24px; font-weight: 800; color: #FACC15; margin-bottom: 4px;">${word}</div>
+      <div style="font-size: 16px; color: var(--text-secondary);">${meaning}</div>
+    </div>
+  `;
+
+  if (sentence && sentence.trim()) {
+    contentHtml += `
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px; font-weight: 600;">ตัวอย่างประโยค:</div>
+          <div style="font-size: 17px; font-weight: 700; color: #FFFFFF; line-height: 1.5; word-break: break-word;">${sentence}</div>
+        </div>
+        <div>
+          <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px; font-weight: 600;">คำแปล:</div>
+          <div style="font-size: 15px; color: #EAB308; line-height: 1.5; word-break: break-word;">${translate || '-'}</div>
+        </div>
+      </div>
+    `;
+  } else {
+    contentHtml += `
+      <div style="text-align: center; color: var(--text-secondary); padding: 24px 0; font-size: 15px; font-weight: 500;">
+        ยังไม่มีตัวอย่างประโยค
+      </div>
+    `;
+  }
+
+  body.innerHTML = contentHtml;
+  popup.classList.remove("hidden");
+}
+
+function closeExamplePopup(event) {
+  if (event) {
+    if (event.target !== event.currentTarget) return;
+  }
+  const popup = document.getElementById("examplePopup");
+  if (popup) popup.classList.add("hidden");
+}
+
+function showFlashcardExample() {
+  let word = "";
+  if (typeof dueStage !== "undefined" && dueStage === 2) {
+    if (typeof pendingList !== "undefined" && typeof fillIndex !== "undefined") {
+      word = pendingList[fillIndex]?.word;
+    }
+  } else {
+    if (typeof shuffledVocabulary !== "undefined" && typeof fcIndex !== "undefined") {
+      word = shuffledVocabulary[fcIndex]?.word;
+    }
+  }
+  if (word) {
+    showExamplePopup(word, typeof currentTopik !== "undefined" ? currentTopik : "");
+  }
 }
