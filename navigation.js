@@ -326,7 +326,7 @@ function startHomeDue(topikId) {
   practicePool = [];
   practiceSourceWords = [];
   wrongboxPool = [];
-  lastPlayedWords = [];
+  wrongboxSourceWords = [];
   
   currentTopik = topikId;
   
@@ -372,7 +372,8 @@ function goToSRSDashboard(){
   practicePool = [];
   practiceSourceWords = [];
   wrongboxPool = [];
-  lastPlayedWords = [];
+  wrongboxSourceWords = [];
+
   screenHistory = screenHistory.filter(id => id !== "srsDashboard");
   goTo("srsDashboard");
   renderSRSHome();
@@ -535,13 +536,10 @@ function openPractice(){
 
 function startPracticeGame(mode){
 
-  // สร้างชุดคำใหม่เฉพาะตอนเริ่มฝึกหัดครั้งแรก
+  // สร้างชุดคำใหม่เฉพาะตอนเริ่มฝึกหัดครั้งแรก (ใช้ FIFO Queue)
   if(srsSessionType !== "practice" || srsSessionWords.length === 0){
 
-    const words = getPracticeWordsByBoxes(
-      getPracticeSelectedBoxes(),
-      getPracticeChunkSize()
-    );
+    const words = getNextPracticeChunk();
 
     if(words.length === 0){
       srsSessionWords = [];
@@ -1562,62 +1560,79 @@ function closeBoxInspector(){
 }
 
 // ============================================================
-// NEXT SET POOL — เก็บคำที่ยังไม่ได้เล่นในรอบนี้
+// NEXT SET POOL — เก็บคำที่ยังไม่ได้เล่นในรอบนี้ (FIFO Queue)
+// Logic: shuffle ครั้งเดียวตอนเริ่ม Session แล้วดึงออกทีละ chunk
+//        พอ pool หมด → shuffle ใหม่ทั้งก้อน (รอบใหม่)
+//        ถ้า pool เหลือน้อยกว่า chunkSize → เอาที่เหลือ + เติมจากรอบใหม่
 // ============================================================
-let practicePool = [];      // pool สำหรับ practice
-let wrongboxPool = [];      // pool สำหรับ wrongbox
-let lastPlayedWords = [];   // คำชุดล่าสุด (ใช้ exclude)
-let practiceSourceWords = [];
+let practicePool = [];      // queue คำที่ยังไม่ได้เล่นในรอบนี้ (practice)
+let wrongboxPool = [];      // queue คำที่ยังไม่ได้เล่นในรอบนี้ (wrongbox)
+let practiceSourceWords = []; // คำทั้งหมดที่เลือกไว้ใน session
+let wrongboxSourceWords = []; // คำทั้งหมดในกล่องคำผิด
 
-function getNextPracticeSet() {
+/**
+ * ดึง chunk ถัดไปจาก practicePool แบบ FIFO
+ * - ถ้า pool มีพอ → splice ออก chunkSize คำ
+ * - ถ้า pool เหลือน้อยกว่า chunkSize → เอาที่เหลือก่อน
+ *   แล้ว shuffle ใหม่ทั้งก้อน เติมให้ครบ
+ * - ถ้า pool หมดพอดี → shuffle ใหม่รอบหน้า
+ */
+function getNextPracticeChunk() {
   const chunkSize = getPracticeChunkSize();
   const selectedBoxes = getPracticeSelectedBoxes();
 
-  // ถ้า pool หมดหรือยังไม่มี → rebuild จาก box ที่เลือก
-  if (practicePool.length === 0) {
+  // ถ้ายังไม่มี source (เช่นกด Next Set ครั้งแรกหลังเริ่ม) → สร้าง pool
+  if (practiceSourceWords.length === 0) {
     practiceSourceWords = getPracticeWordsByBoxes(selectedBoxes, 99999);
+    if (practiceSourceWords.length === 0) return [];
     practicePool = shuffleArray([...practiceSourceWords]);
   }
 
-  // พยายาม exclude lastPlayedWords ก่อน
-  let available = practicePool.filter(w => !lastPlayedWords.some(l => l.word === w.word));
+  let result = [];
 
-  // ถ้า exclude แล้วเหลือน้อยกว่า chunkSize → ใช้ทั้ง pool (วนรอบใหม่)
-  if (available.length < chunkSize) {
-    practicePool = shuffleArray([...practiceSourceWords]); // rebuild
-    available = practicePool;
+  while (result.length < chunkSize) {
+    if (practicePool.length === 0) {
+      // จบรอบ → shuffle ใหม่ทั้งก้อนสำหรับรอบหน้า
+      practicePool = shuffleArray([...practiceSourceWords]);
+    }
+    result.push(practicePool.shift());
   }
 
-  const chunk = available.slice(0, chunkSize);
-  // ตัดคำที่ใช้ไปออกจาก pool
-  practicePool = practicePool.filter(w => !chunk.some(c => c.word === w.word));
-  lastPlayedWords = chunk;
-  return chunk;
+  return result;
 }
 
+// ฟังก์ชันเดิม (ใช้สำหรับชุดแรก ตอน startPracticeGame เรียกครั้งแรก)
+function getNextPracticeSet() {
+  return getNextPracticeChunk();
+}
+
+/**
+ * ดึง chunk ถัดไปจาก wrongboxPool แบบ FIFO (logic เดียวกัน)
+ */
 function getNextWrongboxSet() {
   const chunkSize = getWrongChunkSize();
-  const allWords = getWrongBoxWords();
+  const allWords  = getWrongBoxWords();
 
   if (allWords.length === 0) return [];
 
-  // ถ้า pool หมด → rebuild (วนรอบใหม่ — ตรงกับ requirement)
-  if (wrongboxPool.length === 0) {
-    wrongboxPool = shuffleArray([...allWords]);
+  // ตรวจว่า source เปลี่ยนไปไหม (เช่นคำผิดเพิ่ม/ลด)
+  // ถ้า source เปลี่ยน หรือ pool ยังไม่ถูกสร้าง → rebuild
+  if (wrongboxSourceWords.length === 0) {
+    wrongboxSourceWords = [...allWords];
+    wrongboxPool = shuffleArray([...wrongboxSourceWords]);
   }
 
-  // พยายาม exclude lastPlayedWords
-  let available = wrongboxPool.filter(w => !lastPlayedWords.some(l => l.word === w.word));
-  if (available.length === 0) {
-    // วนรอบใหม่ทั้งหมด
-    wrongboxPool = shuffleArray([...allWords]);
-    available = wrongboxPool;
+  let result = [];
+
+  while (result.length < chunkSize) {
+    if (wrongboxPool.length === 0) {
+      // จบรอบ → shuffle ใหม่
+      wrongboxPool = shuffleArray([...wrongboxSourceWords]);
+    }
+    result.push(wrongboxPool.shift());
   }
 
-  const chunk = available.slice(0, chunkSize);
-  wrongboxPool = wrongboxPool.filter(w => !chunk.some(c => c.word === w.word));
-  lastPlayedWords = chunk;
-  return chunk;
+  return result;
 }
 
 // ============================================================
