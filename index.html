@@ -217,7 +217,7 @@
           <div id="flashcardFront" class="flashcard-face flashcard-front">
             <div class="fc-word" id="fcWord"></div>
             <button class="speak-btn" onclick="speakFlashcard()">🔊 ฟังเสียง</button>
-            <button class="flip-btn" onclick="flipCard()">👁 ดูความหมาย</button>
+            <button class="flip-btn" onclick="flipCard()">ดูความหมาย</button>
           </div>
 
           <!-- Back Side -->
@@ -288,12 +288,15 @@
     <div id="quizGame" class="screen hidden">
       <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
       <div class="word" id="quizWord"></div>
-      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 12px;">
-        <button class="speak-btn" style="margin: 0;" onclick="speakQuizWord()">🔊 ฟังอีกครั้ง</button>
+      <div class="quiz-controls-row">
+        <button class="quiz-mode-btn" id="quizModeHide" onclick="setQuizWordMode('hide')">ปิดคำศัพท์</button>
+        <button class="quiz-speak-btn" id="quizSpeakBtn" onclick="speakQuizWord()">🔊 ฟัง</button>
+        <button class="quiz-mode-btn active" id="quizModeShow" onclick="setQuizWordMode('show')">โชว์คำศัพท์</button>
+      </div>
+      <div style="display: flex; justify-content: center; margin-bottom: 12px;">
         <button id="quizNextBtn" class="speak-btn hidden" style="margin: 0; background: var(--primary); color: white;" onclick="goToNextQuiz()">ถัดไป ▶</button>
       </div>
       <div id="choicesContainer"></div>
-      <div class="result" id="quizResult"></div>
     </div>
 
     <!-- FINISH SCREEN (ฝึกหัด / ทวนคำผิด) -->

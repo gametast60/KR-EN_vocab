@@ -1129,6 +1129,79 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 }
 
 /* ─── QUIZ GAME ─── */
+
+/* Quiz Word Visibility & Sound Controls */
+.quiz-controls-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 14px auto;
+  max-width: 380px;
+}
+
+.quiz-mode-btn,
+.quiz-speak-btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--border-light);
+  background: var(--card-bg-white);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.25s ease;
+  flex: 1;
+  text-align: center;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.quiz-speak-btn {
+  border-color: #8B5CF6;
+}
+
+.quiz-mode-btn.active {
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  color: white;
+  border-color: #8B5CF6;
+  box-shadow: 0 3px 12px rgba(139, 92, 246, 0.35);
+}
+
+.quiz-mode-btn:not(.active):hover,
+.quiz-speak-btn:hover {
+  border-color: #8B5CF6;
+  color: #A78BFA;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* Quiz Word Hidden State */
+.quiz-word-hidden {
+  font-size: 48px !important;
+  opacity: 0.5;
+  animation: quizPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes quizPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* Quiz Word Reveal Animation */
+.quiz-word-reveal {
+  animation: quizReveal 0.4s ease-out;
+}
+
+@keyframes quizReveal {
+  0% { opacity: 0; transform: scale(0.7); }
+  60% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 #quizGame .word {
   font-size: 36px;
   font-weight: 800;

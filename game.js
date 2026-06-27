@@ -21,6 +21,7 @@ let fcForgotten = [];
 let isDueMode = false;   // ← true เฉพาะ "ทวนวันนี้"
 let fcAnimating = false;
 let isFlipped = false;   // ← true เมื่อการ์ดพลิกแสดงด้านหลังแล้ว
+let quizShowWord = true; // ← true = โชว์คำศัพท์ในQuiz, false = ปิดคำศัพท์
 
 // ---- ด่าน 2 (Due Mode) ----
 let pendingList     = [];   // คำที่กด "จำได้" จากด่าน 1 รอตัดสินในด่าน 2
@@ -451,10 +452,22 @@ function showQuiz(){
   const nextBtn = document.getElementById("quizNextBtn");
   if(nextBtn) nextBtn.classList.add("hidden");
 
+  // อัปเดต toggle button state
+  const hideBtn = document.getElementById("quizModeHide");
+  const showBtn = document.getElementById("quizModeShow");
+  if(hideBtn) hideBtn.classList.toggle("active", !quizShowWord);
+  if(showBtn) showBtn.classList.toggle("active", quizShowWord);
+
   const currentWord = shuffledVocabulary[quizIndex];
-  document.getElementById("quizWord").textContent = currentWord.word;
-  document.getElementById("quizResult").textContent = "";
-  document.getElementById("quizResult").className = "result";
+  const wordEl = document.getElementById("quizWord");
+  wordEl.classList.remove("quiz-word-reveal");
+  if(quizShowWord){
+    wordEl.textContent = currentWord.word;
+    wordEl.classList.remove("quiz-word-hidden");
+  } else {
+    wordEl.textContent = "🔊";
+    wordEl.classList.add("quiz-word-hidden");
+  }
   document.getElementById("quizProgress").textContent =
     `คำที่ ${quizIndex + 1} / ${shuffledVocabulary.length}`;
   document.getElementById("quizProgress").classList.remove("hidden");
@@ -484,16 +497,38 @@ function showQuiz(){
   updateTitleVisibility();
 }
 
+function setQuizWordMode(mode){
+  quizShowWord = (mode === "show");
+  document.getElementById("quizModeHide").classList.toggle("active", !quizShowWord);
+  document.getElementById("quizModeShow").classList.toggle("active", quizShowWord);
+
+  const wordEl = document.getElementById("quizWord");
+  const currentWord = shuffledVocabulary[quizIndex];
+  if(quizShowWord){
+    wordEl.textContent = currentWord.word;
+    wordEl.classList.remove("quiz-word-hidden");
+  } else {
+    wordEl.textContent = "🔊";
+    wordEl.classList.add("quiz-word-hidden");
+  }
+  speakQuizWord();
+}
+
 function checkQuizAnswer(choice, clickedBtn){
   const currentWord = shuffledVocabulary[quizIndex];
-  const result = document.getElementById("quizResult");
   const container = document.getElementById("choicesContainer");
 
   container.querySelectorAll(".choice-btn").forEach(btn => { btn.disabled = true; });
 
+  // เผยคำศัพท์หลังตอบ (กรณีปิดคำศัพท์อยู่)
+  if(!quizShowWord){
+    const wordEl = document.getElementById("quizWord");
+    wordEl.textContent = currentWord.word;
+    wordEl.classList.remove("quiz-word-hidden");
+    wordEl.classList.add("quiz-word-reveal");
+  }
+
   if(choice === currentWord.meaning){
-    result.textContent = "✅ ถูกต้อง!";
-    result.className = "result correct";
     if(clickedBtn) clickedBtn.classList.add("correct-choice-highlight");
 
     setTimeout(() => {
@@ -505,8 +540,6 @@ function checkQuizAnswer(choice, clickedBtn){
       }
     }, 1000);
   } else {
-    result.innerHTML = `❌ เฉลย: <strong style="margin-left: 6px; font-size: 18px;">${currentWord.meaning}</strong>`;
-    result.className = "result wrong";
     if(clickedBtn) clickedBtn.classList.add("wrong-choice-highlight");
 
     // Highlight the correct button green
