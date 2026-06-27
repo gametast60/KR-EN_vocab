@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // VARIABLES
 // ============================================================
 let screenHistory  = [];
@@ -79,10 +79,6 @@ function goTo(screenId){
   const cur = document.querySelector(".screen:not(.hidden)");
   if(cur) screenHistory.push(cur.id);
   showScreen(screenId);
-  document.getElementById("appTitle").classList.toggle(
-  "hidden",
-  screenId === "globalSettingsPanel"
-  );
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
@@ -94,7 +90,6 @@ function goBack(){
   if(screenHistory.length === 0) return;
   const prevScreen = screenHistory.pop();
   showScreen(prevScreen);
-  document.getElementById("appTitle").classList.remove("hidden");
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
@@ -114,6 +109,7 @@ function goBack(){
     document.getElementById("appTitle").textContent = TITLES[currentTopik] || currentTopik;
     renderSRSHome();
   }
+  updateTitleVisibility();
   updateNavButtons();
 }
 
@@ -193,11 +189,11 @@ function showMainMenu(){
   screenHistory = [];
   currentTopik  = "";
   document.getElementById("appTitle").textContent = "Vocab by 톤님";
-  document.getElementById("appTitle").classList.remove("hidden");
   ["flashcardProgress","progress","quizProgress"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
   showScreen("mainMenu");
+  updateTitleVisibility();
   updateNavButtons();
   lastRenderedDate = todayStr();
   renderHomeDueHub();
@@ -1339,12 +1335,70 @@ function calcResetDates(today) {
 // ============================================================
 // SEARCH
 // ============================================================
+function getActiveSearchLangs() {
+  const krCb = document.getElementById("searchFilterKR");
+  const enCb = document.getElementById("searchFilterEN");
+  const langs = [];
+  if (krCb && krCb.checked) langs.push("ko-KR");
+  if (enCb && enCb.checked) langs.push("en-US");
+  return langs;
+}
+
+function syncSearchFilterChipStyles() {
+  const allCb = document.getElementById("searchFilterAll");
+  const krCb = document.getElementById("searchFilterKR");
+  const enCb = document.getElementById("searchFilterEN");
+
+  document.getElementById("searchFilterChipAll")?.classList.toggle("active", !!(allCb && allCb.checked));
+  document.getElementById("searchFilterChipKR")?.classList.toggle("active", !!(krCb && krCb.checked));
+  document.getElementById("searchFilterChipEN")?.classList.toggle("active", !!(enCb && enCb.checked));
+}
+
+function onSearchFilterAllChange() {
+  const allCb = document.getElementById("searchFilterAll");
+  const krCb = document.getElementById("searchFilterKR");
+  const enCb = document.getElementById("searchFilterEN");
+
+  if (allCb) {
+    const checked = allCb.checked;
+    if (krCb) krCb.checked = checked;
+    if (enCb) enCb.checked = checked;
+  }
+
+  syncSearchFilterChipStyles();
+  searchVocabulary();
+}
+
+function onSearchFilterLangChange() {
+  const allCb = document.getElementById("searchFilterAll");
+  const krCb = document.getElementById("searchFilterKR");
+  const enCb = document.getElementById("searchFilterEN");
+
+  if (krCb && enCb && allCb) {
+    if (krCb.checked && enCb.checked) {
+      allCb.checked = true;
+    } else {
+      allCb.checked = false;
+    }
+  }
+
+  syncSearchFilterChipStyles();
+  searchVocabulary();
+}
+
 function searchVocabulary(){
   const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
   const resultBox = document.getElementById("searchResult");
   if(!keyword){ resultBox.classList.add("hidden"); resultBox.innerHTML = ""; return; }
 
-  const sources = [
+  const activeLangs = getActiveSearchLangs();
+  if(activeLangs.length === 0){
+    resultBox.innerHTML = `<div class="search-notfound">⚠️ กรุณาเลือกอย่างน้อย 1 ภาษา</div>`;
+    resultBox.classList.remove("hidden");
+    return;
+  }
+
+  const allSources = [
     { data: window.flashVocabData1,    level: "TOPIK1",  className: "level-topik1", lang: "ko-KR" },
     { data: window.flashVocabData2,    level: "TOPIK2",  className: "level-topik2", lang: "ko-KR" },
     { data: window.flashVocabDataEnA1, level: "EN A1",   className: "level-en-a1",   lang: "en-US" },
@@ -1352,6 +1406,8 @@ function searchVocabulary(){
     { data: window.flashVocabDataEnB1, level: "EN B1",   className: "level-en-b1",   lang: "en-US" },
     { data: window.flashVocabDataEnB2, level: "EN B2",   className: "level-en-b2",   lang: "en-US" },
   ];
+
+  const sources = allSources.filter(src => activeLangs.includes(src.lang));
 
   const foundBySource = sources.map(({ data, level, className, lang }) => {
     const matches = [];
@@ -1624,6 +1680,7 @@ function updateTitleVisibility(){
   const cur = document.querySelector(".screen:not(.hidden)")?.id;
 
   const hide = [
+    "mainMenu",
     "flashcardGame",
     "quizGame",
     "typingGame",

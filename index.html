@@ -36,6 +36,20 @@
     <div id="mainMenu" class="screen home-screen">
       <!-- TOP: ช่องค้นหา -->
       <div class="search-box">
+        <div class="search-filter-row">
+          <label class="search-filter-chip active" id="searchFilterChipAll">
+            <input type="checkbox" id="searchFilterAll" checked onchange="onSearchFilterAllChange()">
+            <span>ALL</span>
+          </label>
+          <label class="search-filter-chip active" id="searchFilterChipKR">
+            <input type="checkbox" id="searchFilterKR" checked onchange="onSearchFilterLangChange()">
+            <span>KR</span>
+          </label>
+          <label class="search-filter-chip active" id="searchFilterChipEN">
+            <input type="checkbox" id="searchFilterEN" checked onchange="onSearchFilterLangChange()">
+            <span>EN</span>
+          </label>
+        </div>
         <div class="search-input-wrap">
           <input type="text" id="searchInput" placeholder="ค้นหาคำศัพท์..."
             oninput="searchVocabulary()" onkeydown="handleSearchEnter(event)">

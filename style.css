@@ -333,6 +333,88 @@ button:disabled {
   z-index: 20;
 }
 
+/* ─── SEARCH FILTER CHIPS ─── */
+.search-filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  justify-content: flex-start;
+}
+
+.search-filter-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  background: var(--card-bg-white, #303030);
+  border: 1px solid var(--border-light, #3a3a3a);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted, #A0A0A0);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.search-filter-chip input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Color styles for specific chips when active */
+#searchFilterChipAll:has(input:checked),
+#searchFilterChipAll.active {
+  background: #FACC15;
+  border-color: #FACC15;
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+}
+
+#searchFilterChipAll:has(input:checked):hover,
+#searchFilterChipAll.active:hover {
+  background: #EAB308;
+  border-color: #EAB308;
+  color: #000000;
+}
+
+#searchFilterChipKR:has(input:checked),
+#searchFilterChipKR.active {
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+#searchFilterChipKR:has(input:checked):hover,
+#searchFilterChipKR.active:hover {
+  filter: brightness(1.1);
+  color: #ffffff;
+}
+
+#searchFilterChipEN:has(input:checked),
+#searchFilterChipEN.active {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+#searchFilterChipEN:has(input:checked):hover,
+#searchFilterChipEN.active:hover {
+  filter: brightness(1.1);
+  color: #ffffff;
+}
+
+.search-filter-chip:hover {
+  border-color: var(--primary-hover, #A78BFA);
+  color: var(--text-main, #FFFFFF);
+}
+
 .search-input-wrap {
   position: relative;
 }
