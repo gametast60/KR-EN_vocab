@@ -1039,6 +1039,8 @@ function getBackupKeys() {
       `topik_srs_${id}_v1`,
       `topik_srs_settings_${id}`,
       `topik_practice_boxes_${id}`,
+      `topik_box5_queue_${id}`,    // Box5 Queue
+      `topik_box5_pointer_${id}`,  // Box5 Pointer
     );
   });
   return keys;
@@ -1255,7 +1257,7 @@ function confirmRestore() {
            );
 
           } else if (item.box === 5) {
-            item.nextReview = null;
+            item.nextReview = addDays(today, BOX5_INTERVAL); // Box5: +30 วัน
           }
           data[word] = item;
         });
@@ -1505,15 +1507,20 @@ function openBoxInspector(boxNum){
 
 function openDueTodayInspector(){
   // ใช้เงื่อนไขเดียวกับ stats.dueToday ใน getSRSStats() เป๊ะๆ:
-  // เฉพาะ box 1-4 ที่ nextReview ถึงกำหนดแล้ว (ไม่รวมคำใหม่ box 0)
+  // เฉพาะ box 1-5 ที่ nextReview ถึงกำหนดแล้ว (ไม่รวมคำใหม่ box 0)
   const data  = loadSRS();
   const today = todayStr();
   const words = Object.values(data)
     .filter(item => {
       let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
-      return box >= 1 && box <= 4 && item.nextReview && item.nextReview <= today;
+      return box >= 1 && box <= 5 && item.nextReview && item.nextReview <= today;
     })
-    .sort((a, b) => (a.nextReview || "").localeCompare(b.nextReview || ""));
+    .sort((a, b) => {
+      if ((a.nextReview || "") !== (b.nextReview || "")) {
+        return (a.nextReview || "").localeCompare(b.nextReview || "");
+      }
+      return a.box - b.box;
+    });
 
   let listHtml = "";
   if(words.length === 0){

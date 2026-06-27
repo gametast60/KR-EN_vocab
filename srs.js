@@ -1,6 +1,8 @@
 
-const SRS_DATE     = "topik_srs_date";
-const BOX_INTERVALS = [0, 1, 3, 7, 14, Infinity];
+const SRS_DATE      = "topik_srs_date";
+const BOX_INTERVALS  = [0, 1, 3, 7, 14, Infinity];
+const BOX5_CHUNK_SIZE = 30;   // คำ/วัน จากกล่อง 5
+const BOX5_INTERVAL   = 30;   // วันก่อนทวนซ้ำหลังตอบถูก
 
 // key สำหรับ settings แยกตาม topik
 function srsSettingsKey() {
@@ -18,6 +20,9 @@ function srsKey() {
 function wrongBoxKey() {
   return `topik_wrongbox_${currentTopik || "topik1"}`;
 }
+// key สำหรับ Box 5 Queue (2 keys)
+function box5QueueKey()   { return `topik_box5_queue_${currentTopik || "topik1"}`; }
+function box5PointerKey() { return `topik_box5_pointer_${currentTopik || "topik1"}`; }
 
 function getDueChunkSize() {
   const s = JSON.parse(localStorage.getItem(srsSettingsKey()) || "{}");
@@ -98,6 +103,84 @@ function clearWrongBox() {
 }
 
 // ==========================================================
+// BOX 5 QUEUE — ทวนระยะยาว 30 วัน/รอบ
+// ==========================================================
+
+/**
+ * Migration: สร้าง Queue กล่อง 5 ครั้งแรก (guard ป้องกันรันซ้ำ)
+ * เรียกจาก initAllVocab() — ทำครั้งเดียวต่อ topik
+ */
+function initBox5Queue() {
+  // Guard: ถ้ามี queue อยู่แล้ว → ออกเลย
+  if (localStorage.getItem(box5QueueKey()) !== null) return;
+
+  const data      = loadSRS();
+  const today     = todayStr();
+  const box5words = Object.values(data).filter(i => i.box === 5).map(i => i.word);
+  if (box5words.length === 0) return;
+
+  const shuffled   = shuffleArray([...box5words]);
+  const firstBatch = shuffled.slice(0, BOX5_CHUNK_SIZE);
+  firstBatch.forEach(word => { if (data[word]) data[word].nextReview = today; });
+  saveSRS(data);
+
+  localStorage.setItem(box5QueueKey(),   JSON.stringify(shuffled));
+  localStorage.setItem(box5PointerKey(), String(firstBatch.length));
+}
+
+/**
+ * เรียกทุกวันเมื่อวันเปลี่ยน — ดึง 30 คำถัดไปจาก Queue
+ * Anti-accumulate (แบบ B): ถ้ายังมีคำ Box5 due ค้าง → skip
+ */
+function processDailyBox5Queue() {
+  const data  = loadSRS();
+  const today = todayStr();
+
+  // ① ป้องกัน accumulate: ถ้ายังมี box5 ที่ due แต่ยังไม่ทวน → skip
+  const existingDue = Object.values(data).filter(i =>
+    i.box === 5 && i.nextReview && i.nextReview <= today
+  );
+  if (existingDue.length > 0) return;
+
+  // ② โหลด queue + pointer (ถ้าไม่มี → migration)
+  const raw = localStorage.getItem(box5QueueKey());
+  if (raw === null) { initBox5Queue(); return; }
+  let queue   = JSON.parse(raw);
+  let pointer = parseInt(localStorage.getItem(box5PointerKey()) || "0", 10);
+
+  // ③ Ghost filter: เฉพาะคำที่ยังอยู่ใน box 5
+  queue = queue.filter(w => data[w] && data[w].box === 5);
+
+  // ④ Rebuild queue เมื่อ pointer ครบรอบ — สร้างจากคำ box5 ปัจจุบันทั้งหมด
+  if (pointer >= queue.length) {
+    const allBox5 = Object.values(data).filter(i => i.box === 5).map(i => i.word);
+    if (allBox5.length === 0) return;
+    queue   = shuffleArray([...allBox5]);
+    pointer = 0;
+  }
+
+  // ⑤ ดึง 30 คำถัดไป → nextReview = วันนี้
+  const batch = queue.slice(pointer, pointer + BOX5_CHUNK_SIZE);
+  batch.forEach(word => { if (data[word]) data[word].nextReview = today; });
+  pointer += batch.length;
+
+  saveSRS(data);
+  localStorage.setItem(box5QueueKey(),   JSON.stringify(queue));
+  localStorage.setItem(box5PointerKey(), String(pointer));
+}
+
+/**
+ * ลบคำออกจาก Box5 Queue ทันที (เรียกตอนตอบผิด → box 1)
+ * Queue สั้นลงเอง pointer ยังคงเดินต่อได้
+ */
+function removeWordFromBox5Queue(word) {
+  const raw = localStorage.getItem(box5QueueKey());
+  if (raw === null) return;
+  const queue = JSON.parse(raw).filter(w => w !== word);
+  localStorage.setItem(box5QueueKey(), JSON.stringify(queue));
+}
+
+// ==========================================================
 // DATE HELPERS
 // ==========================================================
 function todayStr() {
@@ -127,6 +210,7 @@ function checkDailyReset() {
     const countKey = `todayNewWords_${currentTopik}`;
     s[countKey] = 0;
     localStorage.setItem(srsSettingsKey(), JSON.stringify(s));
+    processDailyBox5Queue();                          // ← Box5 Queue รายวัน
     localStorage.setItem(dateKey, today);
   }
 }
@@ -158,6 +242,7 @@ function initAllVocab() {
   });
 
   if (changed) saveSRS(data);
+  initBox5Queue(); // Migration: สร้าง Queue กล่อง 5 ครั้งแรก (guard อยู่ในฟังก์ชัน)
 }
 
 function getBoxCounts() {
@@ -175,13 +260,13 @@ function getBoxCounts() {
   return counts;
 }
 
-// คำที่ถึงเวลาทวน (box 1-4)
+// คำที่ถึงเวลาทวน (box 1-5)
 function getDueWords() {
   const data  = loadSRS();
   const today = todayStr();
   return Object.values(data).filter(item => {
     if (item.box === 0) return true;
-    if (item.box >= 1 && item.box <= 4)
+    if (item.box >= 1 && item.box <= 5)               // ← รวม box 5
       return item.nextReview && item.nextReview <= today;
     return false;
   });
@@ -194,7 +279,7 @@ function getDueChunk() {
   const limit = getDueChunkSize();
 
   const due = all.filter(item =>
-    item.box >= 1 && item.box <= 4 &&
+    item.box >= 1 && item.box <= 5 &&               // ← รวม box 5
     item.nextReview && item.nextReview <= today
   );
 
@@ -214,13 +299,30 @@ function recordAnswer(word, correct) {
   const item  = data[word];
   if (!item) return;
 
-  if (correct) {
-    item.box = Math.min(item.box + 1, 5);
-    const interval = BOX_INTERVALS[item.box];
-    item.nextReview = interval === Infinity ? null : addDays(today, interval);
+  if (item.box === 5) {
+    // กล่อง 5: ระบบทวนระยะยาว
+    if (correct) {
+      item.box        = 5;
+      item.nextReview = addDays(today, BOX5_INTERVAL); // คงกล่อง 5, +30 วัน
+    } else {
+      item.box        = 1;
+      item.nextReview = addDays(today, 1);             // กลับกล่อง 1, พรุ่งนี้
+      removeWordFromBox5Queue(word);                   // ลบออก Queue ทันที
+    }
   } else {
-    item.box = 1;
-    item.nextReview = addDays(today, 1);
+    // กล่อง 0-4: SRS ปกติ
+    if (correct) {
+      item.box = Math.min(item.box + 1, 5);
+      if (item.box === 5) {
+        // เพิ่งเข้า box 5 (จาก box 4) → ใช้ interval 30 วัน
+        item.nextReview = addDays(today, BOX5_INTERVAL);
+      } else {
+        item.nextReview = addDays(today, BOX_INTERVALS[item.box]);
+      }
+    } else {
+      item.box        = 1;
+      item.nextReview = addDays(today, 1);
+    }
   }
   data[word] = item;
   saveSRS(data);
@@ -245,7 +347,7 @@ function getSRSStats() {
   const mastered = counts[5];
   const dueToday = all.filter(item => {
     let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
-    return box >= 1 && box <= 4 &&
+    return box >= 1 && box <= 5 &&                    // ← รวม box 5
            item.nextReview && item.nextReview <= today;
   }).length;
   const newLeft = Math.max(0, total - (counts[1] + counts[2] + counts[3] + counts[4] + counts[5]));
