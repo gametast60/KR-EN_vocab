@@ -2240,3 +2240,27 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   animation: popupFadeIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
+
+.popup-speak-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #70663e;
+  color: var(--primary);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.popup-speak-btn:hover {
+  background: rgba(139, 92, 246, 0.15);
+  transform: scale(1.05);
+}
+.popup-speak-btn:active {
+  transform: scale(0.95);
+}

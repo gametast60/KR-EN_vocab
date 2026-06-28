@@ -186,6 +186,14 @@ function autoRefreshHomeDueIfNeeded() {
 // MAIN MENU
 // ============================================================
 function showMainMenu(){
+  practicePool = [];
+  practiceSourceWords = [];
+  wrongboxPool = [];
+  wrongboxSourceWords = [];
+  srsSessionWords = [];
+  srsSessionMode = "";
+  srsSessionType = "";
+
   screenHistory = [];
   currentTopik  = "";
   document.getElementById("appTitle").textContent = "Vocab by 톤님";
@@ -354,6 +362,14 @@ function openLanguage(lang){
 }
 
 function openTopik(topik){
+  practicePool = [];
+  practiceSourceWords = [];
+  wrongboxPool = [];
+  wrongboxSourceWords = [];
+  srsSessionWords = [];
+  srsSessionMode = "";
+  srsSessionType = "";
+
   currentTopik = topik;
   const TITLES = {
     topik1:     "TOPIK 1",
@@ -507,16 +523,18 @@ srsSessionWords   = shuffleArray([...words]).slice(0, wChunk);
   goTo("wrongBoxGameMenu");
 }
 
-function startWrongBoxGame(mode){
+function startWrongBoxGame(mode, isStage2 = false){
   srsSessionMode    = mode;
   currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
   if(mode === "quiz"){
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    quizIndex = 0; wrongAnswers = [];
+    quizIndex = 0;
+    if(!isStage2) wrongAnswers = [];
     goTo("quizGame"); showQuiz();
   } else {
     shuffledVocabulary = shuffleArray([...currentVocabulary]);
-    currentIndex = 0; wrongAnswers = [];
+    currentIndex = 0;
+    if(!isStage2) wrongAnswers = [];
     goTo("typingGame"); showWord();
   }
 }
@@ -534,7 +552,7 @@ function openPractice(){
   goTo("practiceGameMenu");
 }
 
-function startPracticeGame(mode){
+function startPracticeGame(mode, isStage2 = false){
 
   // สร้างชุดคำใหม่เฉพาะตอนเริ่มฝึกหัดครั้งแรก (ใช้ FIFO Queue)
   if(srsSessionType !== "practice" || srsSessionWords.length === 0){
@@ -568,7 +586,7 @@ function startPracticeGame(mode){
   if(mode === "quiz"){
 
     quizIndex = 0;
-    wrongAnswers = [];
+    if(!isStage2) wrongAnswers = [];
 
     goTo("quizGame");
     showQuiz();
@@ -576,7 +594,7 @@ function startPracticeGame(mode){
   } else {
 
     currentIndex = 0;
-    wrongAnswers = [];
+    if(!isStage2) wrongAnswers = [];
 
     goTo("typingGame");
     showWord();
@@ -923,6 +941,9 @@ function resetEverything(){
       s[`todayNewWords_${id}`] = 0;
       localStorage.setItem(settingsKey, JSON.stringify(s));
     } catch (e) {}
+
+    // Reset migration flag for box5
+    localStorage.removeItem(`topik_box5_migrated_v3_${id}`);
   });
 
   // Re-initialize vocabulary for all levels
@@ -1039,8 +1060,6 @@ function getBackupKeys() {
       `topik_srs_${id}_v1`,
       `topik_srs_settings_${id}`,
       `topik_practice_boxes_${id}`,
-      `topik_box5_queue_${id}`,    // Box5 Queue
-      `topik_box5_pointer_${id}`,  // Box5 Pointer
     );
   });
   return keys;
@@ -1274,16 +1293,17 @@ function confirmRestore() {
       localStorage.setItem(k, v);
     });
 
-    // รีเซ็ต Wrong Box ทุกภาษา/ทุก TOPIK
-    BACKUP_TOPIKS.forEach(({ id }) => {
-     localStorage.setItem(
-       `topik_wrongbox_${id}`,
-        JSON.stringify({
-         date: todayStr(),
-         words: []
-       })
-     );
-    });
+     // รีเซ็ต Wrong Box ทุกภาษา/ทุก TOPIK และลบ flag migration เพื่อให้รันเติมคำวันแรกของไฟล์ใหม่ทันที
+     BACKUP_TOPIKS.forEach(({ id }) => {
+      localStorage.setItem(
+        `topik_wrongbox_${id}`,
+         JSON.stringify({
+          date: todayStr(),
+          words: []
+        })
+      );
+      localStorage.removeItem(`topik_box5_migrated_v3_${id}`);
+     });
 
     _pendingRestorePayload = null;
     alert("✅ กู้คืนสำเร็จ! กำลัง reload...");
@@ -1513,7 +1533,8 @@ function openDueTodayInspector(){
   const words = Object.values(data)
     .filter(item => {
       let box = (item.box === undefined || item.box === null) ? 0 : Number(item.box);
-      return box >= 1 && box <= 5 && item.nextReview && item.nextReview <= today;
+      return (box >= 1 && box <= 4 && item.nextReview && item.nextReview <= today) ||
+             (box === 5 && ((item.nextReview && item.nextReview <= today) || item.borrowedFor === today));
     })
     .sort((a, b) => {
       if ((a.nextReview || "") !== (b.nextReview || "")) {
@@ -1659,14 +1680,14 @@ function playNextSet() {
     if (words.length === 0) { goToSRSDashboard(); return; }
     srsSessionWords = words;
     currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
-    startWrongBoxGame(srsSessionMode); // ใช้ gameType เดิม
+    startWrongBoxGame("quiz"); // เริ่มต้นด้วยด่าน 1: จับคู่ (quiz)
   } else {
     // practice
     const words = getNextPracticeSet();
     if (words.length === 0) { goToSRSDashboard(); return; }
     srsSessionWords = words;
     srsSessionType = "practice"; // set ก่อนเรียก startPracticeGame
-    startPracticeGame(srsSessionMode); // ใช้ gameType เดิม
+    startPracticeGame("quiz"); // เริ่มต้นด้วยด่าน 1: จับคู่ (quiz)
   }
 
   // re-enable หลัง render (setTimeout เล็กน้อย)
@@ -2073,6 +2094,14 @@ function getWordDetails(word, levelOrTopik) {
   return null;
 }
 
+function detectLanguage(levelOrTopik) {
+  const key = String(levelOrTopik || "").toLowerCase();
+  if (key.includes("en") || key.includes("english")) {
+    return "en-US";
+  }
+  return "ko-KR";
+}
+
 function showExamplePopup(word, levelOrTopik) {
   const details = getWordDetails(word, levelOrTopik);
   const popup = document.getElementById("examplePopup");
@@ -2092,10 +2121,15 @@ function showExamplePopup(word, levelOrTopik) {
   `;
 
   if (sentence && sentence.trim()) {
+    const escapedSentence = sentence.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    const lang = detectLanguage(levelOrTopik);
     contentHtml += `
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <div>
-          <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px; font-weight: 600;">ตัวอย่างประโยค:</div>
+          <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            <span>ตัวอย่างประโยค:</span>
+            <button class="popup-speak-btn" onclick="speak('${escapedSentence}', '${lang}')">🔊</button>
+          </div>
           <div style="font-size: 17px; font-weight: 700; color: #FFFFFF; line-height: 1.5; word-break: break-word;">${sentence}</div>
         </div>
         <div>

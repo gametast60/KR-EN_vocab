@@ -532,12 +532,7 @@ function checkQuizAnswer(choice, clickedBtn){
     if(clickedBtn) clickedBtn.classList.add("correct-choice-highlight");
 
     setTimeout(() => {
-      quizIndex++;
-      if(quizIndex >= shuffledVocabulary.length){
-        showFinish();
-      } else {
-        showQuiz();
-      }
+      advanceQuiz();
     }, 1000);
   } else {
     if(clickedBtn) clickedBtn.classList.add("wrong-choice-highlight");
@@ -559,13 +554,49 @@ function checkQuizAnswer(choice, clickedBtn){
   }
 }
 
-function goToNextQuiz(){
+function advanceQuiz(){
   quizIndex++;
   if(quizIndex >= shuffledVocabulary.length){
-    showFinish();
+    handleQuizFinished();
   } else {
     showQuiz();
   }
+}
+
+function handleQuizFinished(){
+  if (srsSessionType === "practice" || srsSessionType === "wrongbox") {
+    showStage2TransitionPopup();
+  } else {
+    showFinish();
+  }
+}
+
+function showStage2TransitionPopup(){
+  const popup = document.getElementById("stage2TransitionPopup");
+  if(popup){
+    popup.classList.remove("hidden");
+  } else {
+    confirmPracticeStage2();
+  }
+}
+
+function confirmPracticeStage2(){
+  const popup = document.getElementById("stage2TransitionPopup");
+  if(popup) popup.classList.add("hidden");
+
+  if (srsSessionType === "wrongbox") {
+    startWrongBoxGame("typing", true);
+    return;
+  }
+  if (srsSessionType === "practice") {
+    startPracticeGame("typing", true);
+    return;
+  }
+  console.warn("Unknown Stage2 session:", srsSessionType);
+}
+
+function goToNextQuiz(){
+  advanceQuiz();
 }
 
 // =========================
@@ -574,16 +605,10 @@ function goToNextQuiz(){
 function showFinish(){
   goTo("finishScreen");
 
-  const switchBtn = document.getElementById("switchModeBtn");
-  const nextOtherBtn = document.getElementById("nextSetOtherModeBtn");
-
-if(srsSessionMode === "quiz"){
-  if(switchBtn){ switchBtn.textContent = "ไปเติมคำ"; switchBtn.style.background = "#7c3aed"; } //ชุดเดิมจากโหมดจับคู่
-  if(nextOtherBtn){ nextOtherBtn.textContent = "ชุดใหม่ + เติมคำ"; nextOtherBtn.style.background = "#208deb"; }
-} else {
-  if(switchBtn){ switchBtn.textContent = "ชุดเดิม + จับคู่"; switchBtn.style.background = "#208deb"; }
-  if(nextOtherBtn){ nextOtherBtn.textContent = "ไปจับคู่"; nextOtherBtn.style.background = "#7c3aed"; } //สุ่มไพ่ใหม่
-}
+  const switchRow = document.getElementById("finishModeSwitchContainer");
+  if (switchRow) switchRow.classList.add("hidden");
+  const replayBtn = document.getElementById("replaySetBtn");
+  if (replayBtn) replayBtn.classList.add("hidden");
 
   const wrongContainer = document.getElementById("wrongAnswers");
   if(wrongAnswers.length === 0){
