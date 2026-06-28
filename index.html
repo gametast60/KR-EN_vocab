@@ -141,6 +141,18 @@
 
       <div class="settings-divider"></div>
 
+      <!-- จัดการคำศัพท์ (Edit/Add Vocab) -->
+      <div class="settings-section">
+        <div class="settings-title">📝 จัดการคำศัพท์</div>
+        <div class="settings-desc">เพิ่มคำศัพท์ใหม่ หรือส่งออกคำศัพท์เพื่อส่งให้ AI แก้ไข</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="settings-btn settings-btn-blue" style="flex:1;margin-top:0;background:#10b981;color:white" onclick="openAddVocabPopup()">➕ เพิ่มคำศัพท์</button>
+          <button class="settings-btn" style="flex:1;margin-top:0;background:#2563eb;color:white" onclick="exportVocabEdits()">📤 ส่งออกคำศัพท์</button>
+        </div>
+      </div>
+
+      <div class="settings-divider"></div>
+
       <!-- เคลียร์กล่อง -->
       <div class="settings-section">
         <div class="settings-title">🗂 เคลียร์กล่อง (รีเซ็ตกลับกล่อง 0)</div>
@@ -208,7 +220,10 @@
 
     <!-- FLASHCARD GAME (ทวนวันนี้ — SRS เท่านั้น) -->
     <div id="flashcardGame" class="screen hidden">
-      <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
+      <div class="game-top-bar">
+        <button class="stop-fc-btn" onclick="stopFlashcard()">⏹ หยุดเล่น</button>
+        <button class="edit-vocab-btn" onclick="openEditCurrentWordPopup()">!</button>
+      </div>
 
       <!-- 3D Card Container -->
       <div id="flashcardContainer">
@@ -290,7 +305,10 @@
 
     <!-- TYPING GAME -->
 <div id="typingGame" class="screen hidden">
-  <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
+  <div class="game-top-bar">
+    <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
+    <button class="edit-vocab-btn" onclick="openEditCurrentWordPopup()">!</button>
+  </div>
   <div class="meaning" id="meaning"></div>
   <div class="result" id="result"></div>
   <div class="answer-input-wrap">
@@ -302,7 +320,10 @@
 
     <!-- QUIZ GAME -->
     <div id="quizGame" class="screen hidden">
-      <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
+      <div class="game-top-bar">
+        <button class="stop-fc-btn" onclick="stopWrongBoxGame()">⏹ หยุดเล่น</button>
+        <button class="edit-vocab-btn" onclick="openEditCurrentWordPopup()">!</button>
+      </div>
       <div class="word" id="quizWord"></div>
       <div class="quiz-controls-row">
         <button class="quiz-mode-btn" id="quizModeHide" onclick="setQuizWordMode('hide')">ปิดคำศัพท์</button>
@@ -486,6 +507,73 @@
   </div>
 </div>
 
+</div>
+
+<!-- EDIT VOCAB MODAL -->
+<div id="editVocabModal" class="box-inspector-overlay hidden" onclick="closeEditVocabModal(event)">
+  <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto; max-height:85vh; border-radius:20px 20px 0 0; margin-bottom: 0;">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title" style="color:var(--warning-hover)">✏️ แก้ไขคำแปล</div>
+      <button class="box-inspector-close" onclick="closeEditVocabModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px; overflow-y:auto; display:flex; flex-direction:column; gap:16px; text-align:left;">
+      <div>
+        <label style="font-size:13px; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">คำศัพท์</label>
+        <input type="text" id="editVocabWord" readonly style="background:var(--border-light); cursor:not-allowed;" />
+      </div>
+      <div>
+        <label style="font-size:13px; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">ความหมายปัจจุบัน</label>
+        <input type="text" id="editVocabMeaning" placeholder="ป้อนความหมายใหม่ที่นี่..." />
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; padding:14px 20px; border-top:1px solid var(--border-light)">
+      <button onclick="closeEditVocabModal()" style="flex:1; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ยกเลิก</button>
+      <button onclick="saveVocabEdit()" style="flex:2; background:var(--warning-hover); color:var(--color-black); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ตกลง</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD VOCAB MODAL -->
+<div id="addVocabModal" class="box-inspector-overlay hidden" onclick="closeAddVocabModal(event)">
+  <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto; max-height:85vh; border-radius:20px 20px 0 0; margin-bottom: 0;">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title" style="color:var(--success)">➕ เพิ่มคำศัพท์ใหม่</div>
+      <button class="box-inspector-close" onclick="closeAddVocabModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px; overflow-y:auto; display:flex; flex-direction:column; gap:16px; text-align:left;">
+      <div>
+        <label style="font-size:13px; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">คำศัพท์</label>
+        <input type="text" id="addVocabWord" placeholder="พิมพ์คำศัพท์..." />
+      </div>
+      <div>
+        <label style="font-size:13px; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">ความหมาย</label>
+        <input type="text" id="addVocabMeaning" placeholder="พิมพ์ความหมาย..." />
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; padding:14px 20px; border-top:1px solid var(--border-light)">
+      <button onclick="closeAddVocabModal()" style="flex:1; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ยกเลิก</button>
+      <button onclick="saveVocabAdd()" style="flex:2; background:var(--success); color:white; font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ตกลง</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT CONFIRM MODAL -->
+<div id="exportConfirmModal" class="box-inspector-overlay hidden" onclick="closeExportConfirmModal(event)">
+  <div class="box-inspector-sheet" onclick="event.stopPropagation()" style="height:auto; max-height:85vh; border-radius:20px 20px 0 0; margin-bottom: 0;">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title" style="color:var(--danger)">📥 ดาวน์โหลดเรียบร้อยแล้วหรือไม่?</div>
+      <button class="box-inspector-close" onclick="closeExportConfirmModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px; text-align:center; font-size:15px; color:var(--text-main); line-height:1.6;">
+      ดาวน์โหลดไฟล์เรียบร้อยแล้วหรือไม่? หากเสร็จสิ้นแล้วระบบจะล้างรายการรอแก้ไขของระดับนี้
+    </div>
+    <div style="display:flex; gap:10px; padding:14px 20px; border-top:1px solid var(--border-light)">
+      <button onclick="closeExportConfirmModal()" style="flex:1; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ยังไม่</button>
+      <button onclick="confirmClearEdits()" style="flex:2; background:var(--danger); color:white; font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ใช่ ลบข้อมูล</button>
+    </div>
+  </div>
+</div>
+
 <script src="flashcard1.js"></script>
 <script src="flashcard2.js"></script>
 <script src="flashcard_en_a1.js"></script>
@@ -495,6 +583,7 @@
 <script src="srs.js"></script>
 <script src="game.js"></script>
 <script src="navigation.js"></script>
+<script src="vocab_editor.js"></script>
 <script src="app.js"></script>
 
 </body>

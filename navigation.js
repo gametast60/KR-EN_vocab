@@ -1463,12 +1463,14 @@ function searchVocabulary(){
 
   resultBox.innerHTML = found.map(item => {
     const escapedWord = item.word.replace(/'/g, "\\'");
+    const escapedMeaning = item.meaning.replace(/'/g, "\\'").replace(/"/g, "&quot;");
     return `
     <div class="search-item">
       <div class="search-word ${item.className}">${item.word}</div>
       <div class="search-meaning-row">
         <div class="search-meaning">${item.meaning}</div>
         <button class="search-example-btn" onclick="event.stopPropagation(); showExamplePopup('${escapedWord}', '${item.level}')">📄</button>
+        <button class="search-edit-btn" onclick="event.stopPropagation(); openEditPopup('${escapedWord}', '${escapedMeaning}', mapLevelToId('${item.level}'))">!</button>
         <button class="search-play-btn" onclick="event.stopPropagation(); speak('${escapedWord}', '${item.lang}')">🔊</button>
       </div>
       <div class="search-level ${item.className}">${item.level}</div>
