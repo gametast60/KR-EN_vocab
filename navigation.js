@@ -1041,7 +1041,7 @@ async function syncVocabAndClearCache(){
 // BACKUP / RESTORE
 // ============================================================
 
-const BACKUP_FORMAT_VERSION = 2;
+const BACKUP_FORMAT_VERSION = 3;
 
 const BACKUP_TOPIKS = [
   { id: "topik1", label: "TOPIK 1" },
@@ -1098,11 +1098,30 @@ function backupData() {
     if (val !== null) snapshot[key] = val; // เก็บเป็น raw string
   });
 
+  const vocabEdits = {};
+  const levels = (typeof LEVEL_ORDER !== "undefined")
+    ? LEVEL_ORDER
+    : ["topik1", "topik2", "english_a1", "english_a2", "english_b1", "english_b2"];
+
+  levels.forEach(levelId => {
+    vocabEdits[levelId] = (typeof getVocabEditsList === "function")
+      ? getVocabEditsList(levelId)
+      : (function() {
+          try {
+            const raw = localStorage.getItem(`${levelId}_vocab_edits`);
+            return raw ? JSON.parse(raw) : [];
+          } catch (e) {
+            return [];
+          }
+        })();
+  });
+
   const payload = {
    backupFormat: BACKUP_FORMAT_VERSION,
    createdAt: new Date().toISOString(),
    backupDate: todayStr(),
    localStorage: snapshot,
+   vocabEdits: vocabEdits,
   };
 
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -1288,6 +1307,15 @@ function confirmRestore() {
       toWrite[key] = snap[key];
     });
 
+    // ล้างข้อมูล vocabEdits เดิมออกให้หมดก่อน (Clean snapshot)
+    const levels = (typeof LEVEL_ORDER !== "undefined")
+      ? LEVEL_ORDER
+      : ["topik1", "topik2", "english_a1", "english_a2", "english_b1", "english_b2"];
+
+    levels.forEach(levelId => {
+      localStorage.removeItem(`${levelId}_vocab_edits`);
+    });
+
     // เขียนลง localStorage
     Object.entries(toWrite).forEach(([k, v]) => {
       localStorage.setItem(k, v);
@@ -1304,6 +1332,24 @@ function confirmRestore() {
       );
       localStorage.removeItem(`topik_box5_migrated_v3_${id}`);
      });
+
+    // Restore vocabEdits ถ้ามีใน backup และข้อมูลเป็น Array
+    if (_pendingRestorePayload.vocabEdits) {
+      Object.entries(_pendingRestorePayload.vocabEdits).forEach(([levelId, edits]) => {
+        if (Array.isArray(edits)) {
+          if (typeof saveVocabEditsList === "function") {
+            saveVocabEditsList(levelId, edits);
+          } else {
+            localStorage.setItem(`${levelId}_vocab_edits`, JSON.stringify(edits));
+          }
+        }
+      });
+    }
+
+    // อัปเดต badge แจ้งเตือนทันที
+    if (typeof updateNotificationBadge === "function") {
+      updateNotificationBadge();
+    }
 
     _pendingRestorePayload = null;
     alert("✅ กู้คืนสำเร็จ! กำลัง reload...");
