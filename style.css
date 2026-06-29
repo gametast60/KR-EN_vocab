@@ -492,10 +492,17 @@ button:disabled {
   margin-bottom: 0;
 }
 
+.search-word-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
 .search-word {
   font-size: 22px;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   background: transparent !important;
 }
 
@@ -552,6 +559,13 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   transform: scale(0.95);
 }
 
+.search-level-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
 .search-level {
   display: inline-block;
   padding: 3px 10px;
@@ -559,7 +573,7 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   font-size: 11px;
   font-weight: 800;
   color: white !important;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .search-level.level-topik1 { background: var(--korean-color) !important; }
@@ -2330,7 +2344,10 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 /* Centering Edit, Add, and Export Confirm Modals */
 #editVocabModal,
 #addVocabModal,
-#exportConfirmModal {
+#exportConfirmModal,
+#searchAddLevelModal,
+#notifCenterModal,
+#vocabDetailsModal {
   align-items: center;
 }
 
@@ -2343,4 +2360,230 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
   max-width: 380px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   animation: popupFadeIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* New vocab-center-modal class for search-add, notif-center, details */
+.vocab-center-modal {
+  border-radius: 24px !important;
+  margin: 16px !important;
+  width: calc(100% - 32px) !important;
+  max-width: 420px !important;
+  height: auto !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  animation: popupFadeIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- NOTIFICATION BELL ---- */
+.search-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notif-bell-btn {
+  margin-left: auto;
+  flex: 0 0 auto;
+  width: auto;
+  position: relative;
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  border: 1px solid var(--border-light, #3a3a3a);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted, #A0A0A0);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.notif-bell-btn:hover {
+  filter: brightness(1.15);
+}
+
+.notif-badge {
+  background: #ef4444;
+  color: white;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ---- NOTIFICATION CENTER ---- */
+.notif-level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.notif-level-row:last-child {
+  border-bottom: none;
+}
+
+.notif-level-info {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.notif-level-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.notif-level-count {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.notif-level-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.notif-detail-btn {
+  background: var(--border-light);
+  color: var(--text-main);
+  border: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.notif-detail-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.notif-export-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.notif-export-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+/* ---- VOCAB DETAILS ---- */
+.details-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.details-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  background: var(--primary-light);
+  border-radius: 10px;
+}
+
+.details-word {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.details-arrow {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.details-meaning {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.details-divider {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 8px 0;
+}
+
+/* ---- LEVEL RADIO ROWS (search-add level selector) ---- */
+.level-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--primary-light);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all 0.2s;
+  border: 1.5px solid transparent;
+}
+
+.level-radio-row:hover {
+  border-color: var(--primary);
+}
+
+.level-radio-row input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ---- SEARCH ADD BUTTON (not-found state) ---- */
+.search-add-from-notfound {
+  display: flex;
+  justify-content: center;
+  padding: 12px 16px 4px;
+}
+
+.search-add-notfound-btn {
+  background: linear-gradient(135deg, var(--success, #22c55e), #16a34a);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.search-add-notfound-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.search-add-notfound-btn:active {
+  transform: scale(0.97);
 }

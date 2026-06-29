@@ -1456,7 +1456,10 @@ function searchVocabulary(){
   }
 
   if(found.length === 0){
-    resultBox.innerHTML = `<div class="search-notfound">❌ ไม่พบคำศัพท์</div>`;
+    const rawQuery = document.getElementById("searchInput") ? document.getElementById("searchInput").value.trim() : "";
+    const escapedQuery = rawQuery.replace(/'/g, "\\'");
+    resultBox.innerHTML = `<div class="search-notfound">❌ ไม่พบคำศัพท์</div>` +
+      (rawQuery ? `<div class="search-add-from-notfound"><button class="search-add-notfound-btn" onclick="openSearchAddLevelSelectPopup('${escapedQuery}')">➕ เพิ่มคำศัพท์นี้</button></div>` : "");
     resultBox.classList.remove("hidden");
     return;
   }
@@ -1466,14 +1469,18 @@ function searchVocabulary(){
     const escapedMeaning = item.meaning.replace(/'/g, "\\'").replace(/"/g, "&quot;");
     return `
     <div class="search-item">
-      <div class="search-word ${item.className}">${item.word}</div>
+      <div class="search-word-row">
+        <div class="search-word ${item.className}">${item.word}</div>
+        <button class="search-play-btn" onclick="event.stopPropagation(); speak('${escapedWord}', '${item.lang}')">🔊</button>
+      </div>
       <div class="search-meaning-row">
         <div class="search-meaning">${item.meaning}</div>
         <button class="search-example-btn" onclick="event.stopPropagation(); showExamplePopup('${escapedWord}', '${item.level}')">📄</button>
-        <button class="search-edit-btn" onclick="event.stopPropagation(); openEditPopup('${escapedWord}', '${escapedMeaning}', mapLevelToId('${item.level}'))">!</button>
-        <button class="search-play-btn" onclick="event.stopPropagation(); speak('${escapedWord}', '${item.lang}')">🔊</button>
       </div>
-      <div class="search-level ${item.className}">${item.level}</div>
+      <div class="search-level-row">
+        <div class="search-level ${item.className}">${item.level}</div>
+        <button class="search-edit-btn" onclick="event.stopPropagation(); openEditPopup('${escapedWord}', '${escapedMeaning}', mapLevelToId('${item.level}'))">!</button>
+      </div>
     </div>`;
   }).join("");
   resultBox.classList.remove("hidden");

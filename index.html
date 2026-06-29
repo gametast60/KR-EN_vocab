@@ -49,6 +49,9 @@
             <input type="checkbox" id="searchFilterEN" checked onchange="onSearchFilterLangChange()">
             <span>EN</span>
           </label>
+          <button class="notif-bell-btn" id="notifBellBtn" onclick="openNotifCenter()">
+            🔔<span class="notif-badge" id="notifBadge">0</span>
+          </button>
         </div>
         <div class="search-input-wrap">
           <input type="text" id="searchInput" placeholder="ค้นหาคำศัพท์..."
@@ -541,6 +544,7 @@
       <button class="box-inspector-close" onclick="closeAddVocabModal()">✕</button>
     </div>
     <div style="padding:20px 24px; overflow-y:auto; display:flex; flex-direction:column; gap:16px; text-align:left;">
+      <input type="hidden" id="addVocabLevelId" value="" />
       <div>
         <label style="font-size:13px; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">คำศัพท์</label>
         <input type="text" id="addVocabWord" placeholder="พิมพ์คำศัพท์..." />
@@ -564,12 +568,62 @@
       <div class="box-inspector-title" style="color:var(--danger)">📥 ดาวน์โหลดเรียบร้อยแล้วหรือไม่?</div>
       <button class="box-inspector-close" onclick="closeExportConfirmModal()">✕</button>
     </div>
-    <div style="padding:20px 24px; text-align:center; font-size:15px; color:var(--text-main); line-height:1.6;">
+    <div id="exportConfirmText" style="padding:20px 24px; text-align:center; font-size:15px; color:var(--text-main); line-height:1.6; white-space:pre-line;">
       ดาวน์โหลดไฟล์เรียบร้อยแล้วหรือไม่? หากเสร็จสิ้นแล้วระบบจะล้างรายการรอแก้ไขของระดับนี้
     </div>
     <div style="display:flex; gap:10px; padding:14px 20px; border-top:1px solid var(--border-light)">
       <button onclick="closeExportConfirmModal()" style="flex:1; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ยังไม่</button>
       <button onclick="confirmClearEdits()" style="flex:2; background:var(--danger); color:white; font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ใช่ ลบข้อมูล</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH ADD LEVEL SELECT MODAL -->
+<div id="searchAddLevelModal" class="box-inspector-overlay hidden" onclick="closeSearchAddLevelModal(event)">
+  <div class="box-inspector-sheet vocab-center-modal" onclick="event.stopPropagation()">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title">เลือกระดับคำศัพท์</div>
+      <button class="box-inspector-close" onclick="closeSearchAddLevelModal()">✕</button>
+    </div>
+    <div style="padding:20px 24px; display:flex; flex-direction:column; gap:12px;">
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="topik1"> <span>TOPIK 1</span></label>
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="topik2"> <span>TOPIK 2</span></label>
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="english_a1"> <span>EN A1</span></label>
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="english_a2"> <span>EN A2</span></label>
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="english_b1"> <span>EN B1</span></label>
+      <label class="level-radio-row"><input type="radio" name="searchAddLevel" value="english_b2"> <span>EN B2</span></label>
+    </div>
+    <div style="display:flex; gap:10px; padding:14px 20px; border-top:1px solid var(--border-light)">
+      <button onclick="closeSearchAddLevelModal()" style="flex:1; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ยกเลิก</button>
+      <button onclick="confirmSearchAddLevel()" style="flex:2; background:var(--primary); color:white; font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer; margin:0">ถัดไป →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION CENTER MODAL -->
+<div id="notifCenterModal" class="box-inspector-overlay hidden" onclick="closeNotifCenter(event)">
+  <div class="box-inspector-sheet vocab-center-modal" onclick="event.stopPropagation()">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title">🔔 คำศัพท์รอส่งออก</div>
+      <button class="box-inspector-close" onclick="closeNotifCenter()">✕</button>
+    </div>
+    <div id="notifCenterBody" style="padding:16px 20px; display:flex; flex-direction:column; gap:12px; max-height:60vh; overflow-y:auto;"></div>
+    <div style="padding:14px 20px; border-top:1px solid var(--border-light);">
+      <button id="notifExportAllBtn" onclick="exportAllVocabEdits()" style="width:100%; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:white; font-size:15px; font-weight:700; padding:13px; border-radius:12px; border:none; cursor:pointer; display:none;">📦 ส่งออกทั้งหมด</button>
+    </div>
+  </div>
+</div>
+
+<!-- VOCAB DETAILS MODAL -->
+<div id="vocabDetailsModal" class="box-inspector-overlay hidden" onclick="closeVocabDetails(event)">
+  <div class="box-inspector-sheet vocab-center-modal" onclick="event.stopPropagation()">
+    <div class="box-inspector-header">
+      <div class="box-inspector-title" id="vocabDetailsTitle">รายละเอียด</div>
+      <button class="box-inspector-close" onclick="closeVocabDetails()">✕</button>
+    </div>
+    <div id="vocabDetailsBody" style="padding:16px 20px; display:flex; flex-direction:column; gap:8px; max-height:65vh; overflow-y:auto;"></div>
+    <div style="padding:14px 20px; border-top:1px solid var(--border-light);">
+      <button onclick="closeVocabDetails()" style="width:100%; background:var(--border-light); color:var(--text-main); font-size:15px; font-weight:700; padding:12px; border-radius:10px; border:none; cursor:pointer;">ปิด</button>
     </div>
   </div>
 </div>
