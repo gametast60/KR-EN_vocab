@@ -511,10 +511,18 @@ function alertNoWrongWords(){
 }
 
 function openWrongBox(){
-  const words = getWrongBoxWords();
-  if(words.length === 0){ alert("ยังไม่มีคำผิดวันนี้"); return; }
+  // รีเซ็ต Queue ทุกครั้งที่เข้าเมนูทวนคำผิด
+  // เพื่อให้เห็นคำผิดล่าสุดเสมอ และเริ่ม FIFO ใหม่จากต้น
+  wrongboxPool = [];
+  wrongboxSourceWords = [];
+
+  const chunk = getNextWrongboxSet();
+
+  if(chunk.length === 0){ alert("ยังไม่มีคำผิดวันนี้"); return; }
+
   const wChunk = getWrongChunkSize();
-srsSessionWords   = shuffleArray([...words]).slice(0, wChunk);
+
+  srsSessionWords   = chunk;
   srsSessionType    = "wrongbox";
   currentVocabulary = srsSessionWords.map(i => ({ word: i.word, meaning: i.meaning }));
   document.getElementById("wrongBoxGameInfo").innerHTML = `
@@ -1698,9 +1706,12 @@ function getNextWrongboxSet() {
 
   if (allWords.length === 0) return [];
 
-  // ตรวจว่า source เปลี่ยนไปไหม (เช่นคำผิดเพิ่ม/ลด)
-  // ถ้า source เปลี่ยน หรือ pool ยังไม่ถูกสร้าง → rebuild
-  if (wrongboxSourceWords.length === 0) {
+  // ตรวจว่า source ยังไม่ถูกสร้าง หรือจำนวนคำผิดเปลี่ยนไป (เพิ่ม/ลดระหว่างวัน)
+  // → rebuild source + pool ใหม่ทั้งชุด
+  if (
+    wrongboxSourceWords.length === 0 ||
+    wrongboxSourceWords.length !== allWords.length
+  ) {
     wrongboxSourceWords = [...allWords];
     wrongboxPool = shuffleArray([...wrongboxSourceWords]);
   }
