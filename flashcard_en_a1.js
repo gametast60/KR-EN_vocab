@@ -545,7 +545,7 @@ window.flashVocabDataEnA1 = [
 { word:"oh", meaning:"โอ้" },
 { word:"OK", meaning:"ตกลง, ใช้ได้" },
 { word:"old", meaning:"เก่า, แก่" },
-{ word:"on", meaning:"บน, เปิด" },
+{ word:"on", meaning:"บน" },
 { word:"once", meaning:"ครั้งหนึ่ง, เมื่อก่อน" },
 { word:"one", meaning:"หนึ่ง" },
 { word:"onion", meaning:"หัวหอม" },
