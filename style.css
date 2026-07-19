@@ -1672,8 +1672,8 @@ div.search-word.level-en-b2 { color: #eb03f3 !important; }
 
 .stat-chip-due {
   background: linear-gradient(135deg, #8B5CF6, #A78BFA);
-  border: 1.5px solid #E91E63;
-  color: #FFEB3B;
+  border: 1.5px solid #A78BFA;
+  color: #FFFFFF;
 }
 .stat-chip-due:hover {
   border-color: var(--primary) !important;
