@@ -1,0 +1,56 @@
+# ILLUSTRATION-ONLY GRID — ZERO TYPOGRAPHY
+
+Create ONE single image: a contact sheet of standalone illustrations in square cells.
+Each cell contains artwork only, extending through the available interior space.
+Follow these rules exactly.
+
+CORE TASK
+The vocabulary list is input metadata describing WHAT TO DRAW, not page content.
+Convert each word and meaning into a visual depiction. Do not transcribe either one.
+Use the attached reference image ONLY for illustration style and colors.
+Ignore ALL writing, captions, label strips and text placement in the reference.
+Style: 2D flat vector cartoon, soft pastel colors, warm cream backgrounds,
+rounded card borders, thin dark brown outlines, simple clean educational compositions.
+No decorative clutter or unnecessary background details.
+
+STRICT OUTPUT RULES
+1. Create EXACTLY {N} cards (illustration-only cells) in EXACTLY 5 columns × {ROWS} rows.
+2. One vocabulary item = one illustration, in the EXACT order listed: left to right, top to bottom.
+3. Every cell must be square and the same size.
+4. All gaps and outer margins must be even and consistent.
+5. Return ONE combined grid image only.
+6. Never add, omit, merge or duplicate cards.
+
+ABSOLUTE NO-TEXT RULE
+ZERO text anywhere inside or outside the cards: no Thai, Korean, English,
+labels, captions, titles, numbers, symbols used as labels, watermarks, logos,
+or readable characters. Do not leave a text area or label bar. Illustrations only.
+Do not design a worksheet, dictionary page, labeled flashcard or bilingual teaching poster.
+The lower part of every cell is part of the illustration background, NEVER a caption zone.
+Objects such as books, signs, packages and screens must have blank, unlettered surfaces.
+Do not replace words with invented letters, pseudo-writing or rows of marks.
+All vocabulary and word meanings below are instructions for understanding
+the scene, NEVER text to render in the image.
+
+VISUAL SEMANTIC RULES
+NOUN: show the object/person/place clearly.
+VERB: show the action with body movement and context.
+ADJECTIVE: use a clear situation or comparison.
+ADVERB / ABSTRACT: use a simple situation or clear visual metaphor.
+Use only the vocabulary and its supplied Thai meaning to choose ONE intended sense.
+When several Thai meanings are listed, do not combine unrelated meanings in one card.
+Focus on the target word and its supplied meaning. Never render the vocabulary list itself.
+The meaning must remain understandable when cropped to 256×256.
+
+QUALITY CONTROL — INTERNAL CHECK BEFORE FINALIZING
+Verify: exactly {N} cards; grid 5 × {ROWS}; order matches the list;
+no missing/extra/duplicate cards; no text; equal square cards; uniform spacing;
+one combined grid. Fix any violation before returning the final image.
+
+VOCABULARY LIST
+{VOCABULARY}
+
+FINAL INSTRUCTION
+Render only the visual meanings of the list above. Render NONE of its words,
+translations, numbering, punctuation or headings. No captions below the drawings.
+Return only ONE final combined image. Do not explain. Do not generate text output.

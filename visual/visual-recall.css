@@ -1,0 +1,56 @@
+/* Visual Recall shares the app's dark surfaces, purple actions and gold words. */
+.home-visual-btn { background: linear-gradient(135deg,var(--primary),var(--primary-hover)); }
+#visualRecall { text-align:left; padding-bottom:18px; }
+#visualRecall .vr-note { color:var(--text-secondary); font-size:12px; line-height:1.65; margin:8px 0; }
+#visualRecall h3 { font-size:18px; margin:0 0 8px; }
+#visualRecall label { display:block; margin:14px 0 8px; font-size:13px; font-weight:600; color:var(--text-secondary); }
+#visualRecall select, #visualRecall input { width:100%; min-width:0; box-sizing:border-box; padding:13px 14px; border:1px solid var(--border-light); border-radius:14px; background:var(--input-bg-white); color:var(--text-primary); font:inherit; }
+#visualRecall select { color-scheme:dark; }
+#visualRecall input { text-align:center; font-size:21px; }
+#visualRecall button { min-height:44px; margin-top:10px; background:linear-gradient(135deg,var(--primary),var(--primary-hover)); color:var(--button-text); font-size:14px; padding:12px 14px; }
+#visualRecall button:disabled { opacity:.5; cursor:default; }
+#visualRecall .vr-secondary, #visualRecall #vrSkip, #visualRecall #vrAgain { background:var(--card-bg-white); color:var(--text-secondary); border:1px solid var(--border-light); box-shadow:none; }
+#visualRecall #vrKnown { background:var(--success-light); color:var(--success); border:1px solid var(--success); }
+#visualRecall #vrUnknown { background:var(--danger-light); color:var(--danger); border:1px solid var(--danger); }
+#visualRecall #vrSpeak { width:auto; margin:8px auto 0; padding:8px 18px; border-radius:24px; background:var(--primary-light); border:1px solid var(--primary-hover); color:var(--primary-hover); font-size:13px; }
+#visualRecall .vr-audio-toggle { width:auto; min-height:36px; padding:6px 12px; margin:0; border-radius:20px; font-size:12px; background:var(--primary-light); color:var(--primary-hover); border:1px solid var(--primary-hover); }
+#visualRecall .vr-audio-toggle[aria-pressed="false"] { border-color:var(--border-light); color:var(--text-secondary); }
+#visualRecall .vr-actions { display:flex; gap:8px; flex-wrap:wrap; }
+#visualRecall .vr-actions button { flex:1 1 110px; }
+#visualRecall .vr-study-card { text-align:center; background:linear-gradient(135deg,var(--card-bg-white),var(--card-bg)); border:1px solid var(--border-light); border-radius:24px; padding:18px 14px; margin:14px 0; box-shadow:0 12px 24px -12px rgba(0,0,0,.5); }
+#visualRecall .vr-word { font-size:clamp(28px,8vw,38px); font-weight:800; color:var(--warning-hover); margin:8px 0; line-height:1.35; overflow-wrap:anywhere; }
+#vrMeaning { font-size:18px; line-height:1.6; margin:8px 0; }
+#visualRecall .vr-sentence { font-size:clamp(19px,5vw,24px); line-height:1.8; margin:12px 0; color:var(--warning-hover); overflow-wrap:anywhere; }
+#vrWord:empty, #vrMeaning:empty, #vrSentence:empty, #vrAudioNotice:empty, #vrFeedback:empty { display:none; }
+#visualRecall progress { width:100%; display:block; height:6px; border:0; border-radius:8px; overflow:hidden; background:var(--border-light); accent-color:var(--primary); }
+#visualRecall progress::-webkit-progress-bar { background:var(--border-light); border-radius:8px; }
+#visualRecall progress::-webkit-progress-value { background:linear-gradient(90deg,var(--primary),var(--primary-hover)); border-radius:8px; }
+#visualRecall progress::-moz-progress-bar { background:var(--primary); border-radius:8px; }
+#vrOverall { margin:12px 0 18px; }
+#vrOverallText { color:var(--text-secondary); font-size:12px; margin:0 0 8px; }
+#vrProgress { display:inline-block; background:var(--primary-light); border:1px solid var(--border-light); border-radius:20px; padding:5px 12px; font-size:12px; color:var(--primary-hover); margin:4px 0 10px; }
+#vrImageWrap { text-align:center; margin:0 0 8px; }
+#vrImage { display:block; width:min(210px,100%); height:auto; aspect-ratio:1; object-fit:contain; margin:auto; border-radius:18px; }
+#vrFeedback { padding:12px 14px; border:1px solid var(--border-light); border-radius:14px; background:var(--card-bg-white); font-size:14px; line-height:1.65; overflow-wrap:anywhere; }
+#vrFeedback[data-result="correct"], #vrFeedback[data-result="known"] { background:var(--success-light); color:var(--success); border-color:var(--success); }
+#vrFeedback[data-result="incorrect"], #vrFeedback[data-result="unknown"] { background:var(--danger-light); color:var(--danger); border-color:var(--danger); }
+#visualRecall ul { padding:0; list-style:none; }
+#visualRecall li { margin-bottom:8px; overflow-wrap:anywhere; }
+#vrScores li, #vrReview li { padding:12px; background:var(--card-bg-white); border:1px solid var(--border-light); border-radius:14px; font-size:13px; line-height:1.7; }
+#visualRecall :focus-visible { outline:2px solid var(--primary-hover); outline-offset:3px; }
+#visualRecall .vr-steps { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:5px; list-style:none; padding:0; margin:14px 0; }
+#visualRecall .vr-conjugation { font-size:22px; line-height:1.7; overflow-wrap:anywhere; color:var(--text-secondary); }
+#vrInflectedWord { color:var(--warning-hover); }
+#vrSentence mark { background:var(--warning-light); color:var(--warning-hover); border-radius:5px; padding:2px 4px; font-weight:800; }
+#visualRecall .vr-steps li { border:1px solid var(--border-light); border-radius:12px; padding:10px 4px; font-size:11px; line-height:1.6; text-align:center; margin:0; color:var(--text-secondary); background:var(--card-bg-white); }
+#visualRecall .vr-steps .is-current { border-color:var(--primary-hover); background:var(--primary); color:var(--button-text); font-weight:700; }
+#visualRecall .vr-steps .is-done { border-color:var(--success); color:var(--success); background:var(--success-light); }
+#visualRecall .vr-steps .is-unavailable { opacity:.5; }
+#vrSetup, #vrTransition, #vrSummary { background:linear-gradient(135deg,var(--card-bg-white),var(--card-bg)); border:1px solid var(--border-light); border-radius:24px; padding:18px; }
+#vrAvailable, #vrCoverage, #vrTransitionResult { padding:12px; background:var(--primary-light); color:var(--primary-hover); border-radius:12px; font-size:13px; line-height:1.8; }
+#vrSetup > p, #vrTransitionHint { font-size:13px; color:var(--text-secondary); line-height:1.8; }
+#visualRecall .vr-extra { margin-top:18px; font-size:12px; color:var(--text-secondary); border-top:1px solid var(--border-light); }
+#visualRecall .vr-extra summary { cursor:pointer; padding:14px 0 4px; }
+@media (max-width:360px) { #visualRecall .vr-steps { grid-template-columns:repeat(2,minmax(0,1fr)); } #vrSetup, #vrTransition, #vrSummary { padding:14px; } }
+@media (max-height:740px) { #vrImage { width:min(170px,100%); } }
+@media (prefers-reduced-motion:reduce) { #visualRecall button { transition:none; } }

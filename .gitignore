@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+
+VocabularyStudio/data/backups/
+VocabularyStudio/data/cutter_settings.json
+VocabularyStudio/data/last_ai_request.json
+VocabularyStudio/data/latest.json
+VocabularyStudio/data/review_queue.json

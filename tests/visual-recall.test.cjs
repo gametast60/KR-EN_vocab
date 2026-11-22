@@ -1,0 +1,260 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const root = path.resolve(__dirname, '..');
+function setup(real = false) {
+  const elements = new Map();
+  function el(id) {
+    if (!elements.has(id)) {
+      const classes = new Set();
+      elements.set(id, { value: id === 'vrLevel' ? 'topik1' : id === 'vrLimit' ? '20' : '',
+        textContent: '', disabled: false, events: {}, children: [],
+        classList: { toggle(name, value) { if (value) classes.add(name); else classes.delete(name); }, contains: name => classes.has(name) },
+        addEventListener(name, fn) { this.events[name] = fn; }, focus() {},
+        setAttribute(name, value) { this[name] = value; }, removeAttribute(name) { delete this[name]; },
+        replaceChildren(...children) { this.children = children; }, appendChild(child) { this.children.push(child); }
+      });
+    }
+    return elements.get(id);
+  }
+  const audio = { calls: [], cancelled: 0 };
+  const window = { speechSynthesis: { cancel() { audio.cancelled++; } } };
+  const context = vm.createContext({ window, document: { getElementById: el, createElement: () => ({}) },
+    goTo() {}, speak(text, language) { audio.calls.push({ text, language }); }, recordAnswer() { throw Error('SRS write'); },
+    speakSequence(texts, language) { for (const text of texts) audio.calls.push({ text, language }); },
+    localStorage: new Proxy({}, { get() { throw Error('Storage access'); } }) });
+  const levels = { topik1: 'flashVocabData1', topik2: 'flashVocabData2', english_a1: 'flashVocabDataEnA1',
+    english_a2: 'flashVocabDataEnA2', english_b1: 'flashVocabDataEnB1', english_b2: 'flashVocabDataEnB2' };
+  for (const file of fs.readdirSync(root).filter(file => /^flashcard.*\.js$/.test(file))) {
+    vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context);
+  }
+  if(!real) Object.assign(window, JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/vocabulary.json'),'utf8')));
+  for (const file of ['vocabulary-catalog.js', 'sentence-engine.js', 'visual/visual-engine.js']) {
+    vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context);
+  }
+  context.getTopikVocab = level => window[levels[level]];
+  context.VisualEngine = window.VisualEngine; context.SentenceEngine = window.SentenceEngine;
+  vm.runInContext(fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8'), context);
+  const fire = (id, type = 'click', extra = {}) => el(id).events[type]({ preventDefault() {}, ...extra });
+  window.VisualRecall.open();
+  return { el, fire, window, context, audio };
+}
+
+test('real images share exact vocabulary bindings with ready KR/EN exercises', () => {
+  const { window: w, context } = setup(true);
+  assert.ok(w.visualImageMap.length >= 20);
+  assert.ok(w.visualImageMap.reduce((n, image) => n + image.bindings.length, 0) >= 40);
+  for (const image of w.visualImageMap) {
+    const bytes = fs.readFileSync(path.join(root, image.file));
+    assert.equal(bytes.subarray(8, 12).toString(), 'WEBP');
+    for (const binding of image.bindings) {
+      const cards = w.VisualEngine.getCards(binding.levelId, context.getTopikVocab(binding.levelId), w.visualImageMap, w.sentenceExercises);
+      const card = cards.find(card => card.word === binding.word);
+      assert.ok(card); assert.equal(card.file, image.file);
+      const reviewed = w.sentenceExercises.some(row => row.levelId === binding.levelId && row.word === binding.word);
+      assert.equal(card.exercise.status, reviewed ? 'ready' : 'unavailable');
+    }
+  }
+  const cards = w.VisualEngine.getCards('english_a2', context.getTopikVocab('english_a2'), w.visualImageMap, w.sentenceExercises);
+  const light = cards.find(card => card.word === 'light (not heavy)');
+  assert.equal(w.VisualEngine.checkWord(light, ' LIGHT ').status, 'correct');
+  assert.equal(w.VisualEngine.checkWord(light, 'light (from the sun/a lamp)').status, 'incorrect');
+});
+
+test('full Korean five-stage round learns sentence forms before testing and counts each response once', () => {
+  const { el, fire, window: w } = setup();
+  fire('vrStart');
+  for (let i = 0; i < 20; i++) fire('vrNext');
+  assert.equal(el('vrTransition').classList.contains('hidden'), false);
+  assert.equal(el('vrOverallMeter').value, 20);
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 2/);
+  assert.equal(el('vrMeaning').textContent, '');
+  assert.ok(el('vrImageWrap').classList.contains('hidden'));
+  for (let i = 0; i < 20; i++) { fire('vrReveal'); fire('vrKnown'); fire('vrNext'); }
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 3/);
+  assert.equal(el('vrWord').textContent, '');
+  assert.ok(el('vrSpeak').classList.contains('hidden'));
+  fire('vrForm', 'submit'); assert.match(el('vrFeedback').textContent, /พิมพ์คำตอบก่อน/);
+  for (const record of w.sentenceExercises.filter(row => row.levelId === 'topik1')) {
+    el('vrAnswer').value = record.word; fire('vrForm', 'submit'); fire('vrForm', 'submit'); fire('vrNext');
+  }
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 4/);
+  assert.ok(el('vrForm').classList.contains('hidden'));
+  assert.ok(el('vrReveal').classList.contains('hidden'));
+  for (const record of w.sentenceExercises.filter(row => row.levelId === 'topik1')) {
+    assert.equal(el('vrBaseWord').textContent, record.word);
+    assert.equal(el('vrInflectedWord').textContent, record.targetAnswer);
+    assert.equal(el('vrSentence').children.map(child => child.textContent).join(''), record.sourceSentence);
+    assert.equal(el('vrSentence').children[1].textContent, record.targetAnswer);
+    fire('vrForm', 'submit'); // Hidden submit cannot score learning as a test.
+    fire('vrNext');
+  }
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 5/);
+  assert.ok(el('vrConjugation').classList.contains('hidden'));
+  assert.equal(el('vrInflectedWord').textContent, '');
+  for (const record of w.sentenceExercises.filter(row => row.levelId === 'topik1')) {
+    el('vrAnswer').value = record.targetAnswer; fire('vrForm', 'submit'); fire('vrNext');
+  }
+  fire('vrContinue');
+  assert.equal(el('vrSummary').classList.contains('hidden'), false);
+  assert.match(el('vrScores').children[2].textContent, /ถูก 20 · ผิด 0/);
+  assert.match(el('vrScores').children[3].textContent, /เรียนแล้ว 20\/20 ประโยค/);
+  assert.match(el('vrScores').children[4].textContent, /ถูก 20 · ผิด 0/);
+  assert.equal(el('vrOverallMeter').value, 100);
+  assert.equal(el('vrSummaryTitle').textContent, 'เรียนครบทั้งรอบแล้ว');
+  assert.ok(el('vrRetry').classList.contains('hidden'));
+});
+
+test('English completes without sentence stage; skip/reveal/wrong and early finish remain separate', () => {
+  const { el, fire, window: w } = setup();
+  // Explicit no-sentence fixture keeps this behavior covered as production grows.
+  w.flashVocabDataEnA2 = w.flashVocabDataEnA2.filter(row => ['furniture', 'light (not heavy)', 'middle'].includes(row.word)).map(row => ({ word: row.word, meaning: row.meaning, imageId: row.imageId, displayWord: row.displayWord }));
+  w.VocabularyCatalog.refresh();
+  el('vrLevel').value = 'english_a2'; fire('vrLevel', 'change'); fire('vrStart');
+  for (let i = 0; i < 3; i++) fire('vrNext');
+  fire('vrContinue');
+  for (let i = 0; i < 3; i++) { fire('vrSkip'); fire('vrNext'); }
+  fire('vrContinue');
+  el('vrAnswer').value = 'wrong'; fire('vrForm', 'submit'); fire('vrNext');
+  fire('vrReveal'); fire('vrNext'); fire('vrSkip'); fire('vrNext');
+  assert.match(el('vrTransitionHint').textContent, /ข้าม Stage 4/);
+  fire('vrContinue');
+  assert.equal(el('vrSummary').classList.contains('hidden'), false);
+  assert.match(el('vrCoverage').textContent, /Stage 4–5 พร้อม 0/);
+  assert.match(el('vrScores').children[2].textContent, /ถูก 0 · ผิด 1 · เฉลย 1 · ข้าม 1/);
+  fire('vrAgain'); el('vrLevel').value = 'topik2'; fire('vrLevel', 'change');
+  assert.equal(el('vrStart').disabled, true);
+  fire('vrStart'); assert.ok(el('vrPlay').classList.contains('hidden'));
+  el('vrLevel').value = 'topik1'; fire('vrLevel', 'change'); fire('vrStart'); fire('vrFinish');
+  assert.match(el('vrScores').children[0].textContent, /เรียนแล้ว 0\/20/);
+});
+
+test('image failure recovery and IME composition are handled', () => {
+  const { el, fire } = setup(); fire('vrStart'); fire('vrImage', 'error');
+  assert.equal(el('vrImageError').classList.contains('hidden'), false);
+  fire('vrImage', 'load'); assert.equal(el('vrImageError').classList.contains('hidden'), true);
+  let prevented = false;
+  fire('vrAnswer', 'keydown', { key: 'Enter', isComposing: true, preventDefault() { prevented = true; } });
+  assert.ok(prevented);
+});
+
+test('automatic speech teaches Stage 4 then protects Stage 5 answers', () => {
+  const { el, fire, window: w, audio } = setup();
+  el('vrLimit').value = '5'; fire('vrLimit', 'change'); fire('vrStart');
+  assert.deepEqual(audio.calls.at(-1), { text: '가게', language: 'ko-KR' });
+  fire('vrNext'); assert.equal(audio.calls.at(-1).text, '가격');
+  for (let i = 1; i < 5; i++) fire('vrNext');
+  fire('vrContinue'); assert.equal(audio.calls.at(-1).text, '가게');
+  for (let i = 0; i < 5; i++) { fire('vrReveal'); fire('vrKnown'); fire('vrNext'); }
+  const beforeRecall = audio.calls.length;
+  fire('vrContinue'); fire('vrSpeak');
+  assert.equal(audio.calls.length, beforeRecall);
+  for (let i = 0; i < 5; i++) {
+    el('vrAnswer').value = w.sentenceExercises[i].word; fire('vrForm', 'submit');
+    assert.equal(audio.calls.at(-1).text, w.sentenceExercises[i].word);
+    fire('vrNext');
+  }
+  fire('vrContinue');
+  assert.deepEqual(audio.calls.slice(-3).map(call => call.text), ['가게', '가게', '가게에서 우유를 샀어요.']);
+  for (let i = 0; i < 5; i++) fire('vrNext');
+  const beforeSentence = audio.calls.length;
+  fire('vrContinue'); fire('vrSpeak'); assert.equal(audio.calls.length, beforeSentence);
+  for (let i = 0; i < 4; i++) { fire('vrReveal'); fire('vrNext'); }
+  assert.equal(audio.calls.at(-2).text, '가까워요');
+  assert.equal(audio.calls.at(-1).text, '우리 집은 역에서 가까워요.');
+  assert.equal(audio.calls.at(-1).language, 'ko-KR');
+  const cancelled = audio.cancelled; w.VisualRecall.stopAudio();
+  assert.equal(audio.cancelled, cancelled + 1);
+});
+
+test('automatic speech can be disabled while manual replay remains usable; unsupported speech is nonfatal', () => {
+  const { el, fire, window: w, audio, context } = setup();
+  const expected = w.VisualEngine.getCards('english_a2', context.getTopikVocab('english_a2'), w.visualImageMap, w.sentenceExercises);
+  el('vrLevel').value = 'english_a2'; fire('vrLevel', 'change'); fire('vrStart');
+  assert.deepEqual(audio.calls.at(-1), { text: expected[0].displayWord, language: 'en-US' });
+  fire('vrAutoSpeak');
+  assert.equal(el('vrAutoSpeak')['aria-pressed'], 'false');
+  const count = audio.calls.length; fire('vrNext'); assert.equal(audio.calls.length, count);
+  fire('vrSpeak'); assert.equal(audio.calls.at(-1).text, expected[1].displayWord);
+  delete w.speechSynthesis; fire('vrSpeak');
+  assert.match(el('vrAudioNotice').textContent, /ยังไม่รองรับ/);
+});
+
+test('English sentence learning uses the same form in Stage 5 and preserves guarded audio', () => {
+  const { el, fire, window: w, audio } = setup();
+  // Test fixture only: no English sentences are added to the production vocabulary.
+  w.flashVocabDataEnA1 = [{ word: 'go', meaning: 'ไป', imageId: '0006',
+    sentence: 'I went home.', translate: 'ฉันกลับบ้าน', sentenceAnswer: 'went' }];
+  w.VocabularyCatalog.refresh();
+  el('vrLevel').value = 'english_a1'; fire('vrLevel', 'change'); fire('vrStart');
+  fire('vrNext'); fire('vrContinue');
+  fire('vrReveal'); fire('vrKnown'); fire('vrNext'); fire('vrContinue');
+  el('vrAnswer').value = 'go'; fire('vrForm', 'submit'); fire('vrNext'); fire('vrContinue');
+  assert.equal(el('vrBaseWord').textContent, 'go');
+  assert.equal(el('vrInflectedWord').textContent, 'went');
+  assert.deepEqual(audio.calls.slice(-3).map(row => row.text), ['go', 'went', 'I went home.']);
+  assert.ok(audio.calls.slice(-3).every(row => row.language === 'en-US'));
+  fire('vrAutoSpeak'); const count = audio.calls.length;
+  fire('vrNext'); fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 5/);
+  assert.equal(el('vrSentence').textContent, 'I _____ home.');
+  assert.equal(el('vrBaseWord').textContent, '');
+  el('vrAnswer').value = 'go'; fire('vrForm', 'submit');
+  assert.match(el('vrFeedback').textContent, /ยังไม่ตรงกับรูปที่เรียน/);
+  assert.equal(audio.calls.length, count);
+  fire('vrSpeak'); assert.deepEqual(audio.calls.slice(-2).map(row => row.text), ['went', 'I went home.']);
+  fire('vrNext'); fire('vrContinue');
+  assert.equal(el('vrScores').children.length, 5);
+  assert.equal(el('vrOverallMeter').value, 5);
+  assert.match(el('vrScores').children[3].textContent, /เรียนแล้ว 1\/1 ประโยค/);
+  assert.match(el('vrScores').children[4].textContent, /ผิด 1/);
+});
+
+test('transition waits for continuation and retry deduplicates words across stages', () => {
+  const { el, fire, window: w } = setup();
+  el('vrLimit').value = '5'; fire('vrLimit', 'change'); fire('vrStart');
+  for (let i = 0; i < 5; i++) fire('vrNext');
+  assert.equal(el('vrOverallMeter').value, 5);
+  fire('vrNext'); // Hidden old next action cannot bypass the transition.
+  assert.equal(el('vrOverallMeter').value, 5);
+  fire('vrContinue'); fire('vrContinue');
+  assert.match(el('vrProgress').textContent, /คำที่ 1 \/ 5/);
+  for (let i = 0; i < 5; i++) {
+    fire('vrReveal'); fire(i === 0 ? 'vrUnknown' : 'vrKnown'); fire('vrNext');
+  }
+  fire('vrContinue');
+  for (let i = 0; i < 5; i++) {
+    el('vrAnswer').value = i === 0 ? 'wrong' : w.sentenceExercises[i].word;
+    fire('vrForm', 'submit'); fire('vrNext');
+  }
+  fire('vrTransitionFinish');
+  assert.equal(el('vrSummaryTitle').textContent, 'สรุปผลก่อนจบรอบ');
+  assert.equal(el('vrRetry').textContent, 'ฝึกซ้ำ 1 คำที่ยังติดขัด');
+  fire('vrRetry');
+  assert.match(el('vrStage').textContent, /Stage 1/);
+  assert.equal(el('vrProgress').textContent, 'คำที่ 1 / 1');
+  assert.equal(el('vrOverallMeter').value, 0);
+  assert.equal(el('vrOverallMeter').max, 5);
+  assert.equal(el('vrWord').textContent, '가게');
+  fire('vrFinish'); fire('vrAgain');
+  assert.ok(el('vrOverall').classList.contains('hidden'));
+  assert.ok(el('vrTransition').classList.contains('hidden'));
+});
+
+test('all referenced UI IDs and precached files exist', () => {
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
+  for (const [, id] of js.matchAll(/(?:el|show)\('(vr\w+)'/g)) assert.ok(html.includes(`id="${id}"`), id);
+  const context = vm.createContext({ self: { addEventListener() {} } });
+  context.importScripts = (...files) => { for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context); };
+  vm.runInContext(fs.readFileSync(path.join(root, 'sw.js'), 'utf8') + '\nglobalThis.files = FILES;', context);
+  for (const file of context.files) assert.ok(fs.existsSync(path.join(root, file)), file);
+  const { window: w } = setup();
+  for (const image of w.visualImageMap) assert.ok(context.files.includes(image.file));
+});

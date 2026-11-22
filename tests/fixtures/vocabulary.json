@@ -1,0 +1,391 @@
+{
+  "flashVocabData1": [
+    {
+      "word": "가게",
+      "meaning": "ร้านค้า",
+      "sentense": "가게에서 우유를 샀어요.",
+      "translate": "ฉันซื้อนมที่ร้านค้า",
+      "imageId": "0001",
+      "sentenceAnswer": "가게"
+    },
+    {
+      "word": "가격",
+      "meaning": "ราคา",
+      "sentense": "이 가방의 가격은 얼마예요?",
+      "translate": "กระเป๋าใบนี้ราคาเท่าไหร่ครับ",
+      "imageId": "0002",
+      "sentenceAnswer": "가격"
+    },
+    {
+      "word": "가구",
+      "meaning": "เฟอร์นิเจอร์",
+      "sentense": "방에 새 가구를 놓았어요.",
+      "translate": "ฉันวางเฟอร์นิเจอร์ใหม่ไว้ในห้อง",
+      "imageId": "0003",
+      "sentenceAnswer": "가구"
+    },
+    {
+      "word": "가깝다",
+      "meaning": "ใกล้",
+      "sentense": "우리 집은 역에서 가까워요.",
+      "translate": "บ้านของฉันอยู่ใกล้กับสถานี",
+      "imageId": "0004",
+      "sentenceAnswer": "가까워요"
+    },
+    {
+      "word": "가끔",
+      "meaning": "บางครั้ง",
+      "sentense": "주말에는 가끔 영화를 봐요.",
+      "translate": "ในวันหยุดสุดสัปดาห์บางครั้งก็ดูหนัง",
+      "imageId": "0005",
+      "sentenceAnswer": "가끔"
+    },
+    {
+      "word": "가다",
+      "meaning": "ไป",
+      "sentense": "저는 내일 학교에 갑니다.",
+      "translate": "พรุ่งนี้ฉันไปโรงเรียน",
+      "imageId": "0006",
+      "sentenceAnswer": "갑니다"
+    },
+    {
+      "word": "가르치다",
+      "meaning": "สอน",
+      "sentense": "선생님이 한국어를 가르쳐요.",
+      "translate": "คุณครูสอนภาษาเกาหลี",
+      "imageId": "0007",
+      "sentenceAnswer": "가르쳐요"
+    },
+    {
+      "word": "가방",
+      "meaning": "กระเป๋า",
+      "sentense": "책을 가방에 넣었어요.",
+      "translate": "ฉันใส่หนังสือลงในกระเป๋า",
+      "imageId": "0008",
+      "sentenceAnswer": "가방"
+    },
+    {
+      "word": "가볍다",
+      "meaning": "เบา",
+      "sentense": "이 노트북은 아주 가벼워요.",
+      "translate": "โน้ตบุ๊กเครื่องนี้เบามาก",
+      "imageId": "0009",
+      "sentenceAnswer": "가벼워요"
+    },
+    {
+      "word": "가수",
+      "meaning": "นักร้อง",
+      "sentense": "제가 좋아하는 가수를 만났어요.",
+      "translate": "ฉันได้เจอนักร้องที่ฉันชอบ",
+      "imageId": "0010",
+      "sentenceAnswer": "가수"
+    },
+    {
+      "word": "가슴",
+      "meaning": "อก, หน้าอก",
+      "sentense": "갑자기 가슴이 아파요.",
+      "translate": "อยู่ ๆ ก็เจ็บหน้าอกขึ้นมา",
+      "imageId": "0011",
+      "sentenceAnswer": "가슴"
+    },
+    {
+      "word": "가요",
+      "meaning": "เพลง",
+      "sentense": "한국 가요를 자주 들어요.",
+      "translate": "ฉันฟังเพลงเกาหลีบ่อย ๆ",
+      "imageId": "0012",
+      "sentenceAnswer": "가요"
+    },
+    {
+      "word": "가운데",
+      "meaning": "ตรงกลาง",
+      "sentense": "방 가운데에 테이블이 있어요.",
+      "translate": "มีโต๊ะอยู่ตรงกลางห้อง",
+      "imageId": "0013",
+      "sentenceAnswer": "가운데"
+    },
+    {
+      "word": "가위",
+      "meaning": "กรรไกร",
+      "sentense": "가위로 종이를 잘랐어요.",
+      "translate": "ฉันใช้กรรไกรตัดกระดาษ",
+      "imageId": "0014",
+      "sentenceAnswer": "가위"
+    },
+    {
+      "word": "가을",
+      "meaning": "ฤดูใบไม้ร่วง",
+      "sentense": "가을에는 단풍이 예뻐요.",
+      "translate": "ในฤดูใบไม้ร่วงใบไม้เปลี่ยนสีสวยมาก",
+      "imageId": "0015",
+      "sentenceAnswer": "가을"
+    },
+    {
+      "word": "가장",
+      "meaning": "ที่สุด, มากที่สุด",
+      "sentense": "수박을 가장 좋아해요.",
+      "translate": "ชอบแตงโมมากที่สุด",
+      "imageId": "0016",
+      "sentenceAnswer": "가장"
+    },
+    {
+      "word": "가져가다",
+      "meaning": "เอาไป",
+      "sentense": "우산을 꼭 가져가세요.",
+      "translate": "อย่าลืมเอาร่มไปด้วยนะคะ",
+      "imageId": "0017",
+      "sentenceAnswer": "가져가세요"
+    },
+    {
+      "word": "가져오다",
+      "meaning": "เอามา",
+      "sentense": "숙제를 안 가져왔어요.",
+      "translate": "ไม่ได้เอาการบ้านมาครับ",
+      "imageId": "0018",
+      "sentenceAnswer": "가져왔어요"
+    },
+    {
+      "word": "가족",
+      "meaning": "ครอบครัว",
+      "sentense": "우리 가족은 모두 네 명이에요.",
+      "translate": "ครอบครัวของฉันมีทั้งหมดสี่คน",
+      "imageId": "0019",
+      "sentenceAnswer": "가족"
+    },
+    {
+      "word": "가지",
+      "meaning": "ชนิด, ประเภท",
+      "sentense": "여러 가지 과일을 샀어요.",
+      "translate": "ฉันซื้อผลไม้หลายชนิด",
+      "imageId": "0020",
+      "sentenceAnswer": "가지"
+    }
+  ],
+  "flashVocabData2": [],
+  "flashVocabDataEnA1": [
+    {
+      "word": "autumn",
+      "meaning": "ฤดูใบไม้ร่วง",
+      "imageId": "0015",
+      "sentence": "The leaves turn yellow in autumn.",
+      "translate": "ใบไม้เปลี่ยนเป็นสีเหลืองในฤดูใบไม้ร่วง",
+      "sentenceAnswer": "autumn"
+    },
+    {
+      "word": "bag",
+      "meaning": "กระเป๋า, ถุง",
+      "imageId": "0008",
+      "sentence": "I put my keys in my bag.",
+      "translate": "ฉันใส่กุญแจไว้ในกระเป๋าของฉัน",
+      "sentenceAnswer": "bag"
+    },
+    {
+      "word": "bring",
+      "meaning": "นำมา, พามา",
+      "imageId": "0018",
+      "sentence": "Please bring your book to class.",
+      "translate": "กรุณานำหนังสือของคุณมาเข้าชั้นเรียนด้วย",
+      "sentenceAnswer": "bring"
+    },
+    {
+      "word": "fall",
+      "meaning": "ตก, ร่วง, ฤดูใบไม้ร่วง",
+      "imageId": "0015",
+      "sentence": "The leaves change color in the fall.",
+      "translate": "ใบไม้เปลี่ยนสีในฤดูใบไม้ร่วง",
+      "sentenceAnswer": "fall"
+    },
+    {
+      "word": "family",
+      "meaning": "ครอบครัว",
+      "imageId": "0019",
+      "sentence": "I have dinner with my family every evening.",
+      "translate": "ฉันกินอาหารเย็นกับครอบครัวทุกเย็น",
+      "sentenceAnswer": "family"
+    },
+    {
+      "word": "go",
+      "meaning": "ไป",
+      "imageId": "0006",
+      "sentence": "I go to school by bus.",
+      "translate": "ฉันไปโรงเรียนโดยรถประจำทาง",
+      "sentenceAnswer": "go"
+    },
+    {
+      "word": "kind (type)",
+      "meaning": "ชนิด, ประเภท",
+      "imageId": "0020",
+      "displayWord": "kind",
+      "sentence": "What kind of fruit do you like?",
+      "translate": "คุณชอบผลไม้ชนิดไหน",
+      "sentenceAnswer": "kind"
+    },
+    {
+      "word": "most",
+      "meaning": "มากที่สุด",
+      "imageId": "0016",
+      "sentence": "I like watermelon the most.",
+      "translate": "ฉันชอบแตงโมมากที่สุด",
+      "sentenceAnswer": "most"
+    },
+    {
+      "word": "near",
+      "meaning": "ใกล้",
+      "imageId": "0004",
+      "sentence": "My house is near the station.",
+      "translate": "บ้านของฉันอยู่ใกล้สถานี",
+      "sentenceAnswer": "near"
+    },
+    {
+      "word": "price",
+      "meaning": "ราคา",
+      "imageId": "0002",
+      "sentence": "What is the price of this bag?",
+      "translate": "กระเป๋าใบนี้ราคาเท่าไหร่",
+      "sentenceAnswer": "price"
+    },
+    {
+      "word": "shop",
+      "meaning": "ร้านค้า",
+      "imageId": "0001",
+      "sentence": "I buy milk at this shop.",
+      "translate": "ฉันซื้อนมที่ร้านนี้",
+      "sentenceAnswer": "shop"
+    },
+    {
+      "word": "singer",
+      "meaning": "นักร้อง",
+      "imageId": "0010",
+      "sentence": "My sister wants to be a singer.",
+      "translate": "พี่สาวของฉันอยากเป็นนักร้อง",
+      "sentenceAnswer": "singer"
+    },
+    {
+      "word": "sometimes",
+      "meaning": "บางครั้ง",
+      "imageId": "0005",
+      "sentence": "I sometimes walk to work.",
+      "translate": "บางครั้งฉันเดินไปทำงาน",
+      "sentenceAnswer": "sometimes"
+    },
+    {
+      "word": "song",
+      "meaning": "เพลง",
+      "imageId": "0012",
+      "sentence": "I listen to this song every morning.",
+      "translate": "ฉันฟังเพลงนี้ทุกเช้า",
+      "sentenceAnswer": "song"
+    },
+    {
+      "word": "take",
+      "meaning": "เอาไป, พาไป",
+      "imageId": "0017",
+      "sentence": "Please take an umbrella with you.",
+      "translate": "กรุณาเอาร่มไปด้วย",
+      "sentenceAnswer": "take"
+    },
+    {
+      "word": "teach",
+      "meaning": "สอน",
+      "imageId": "0007",
+      "sentence": "She teaches English at our school.",
+      "translate": "เธอสอนภาษาอังกฤษที่โรงเรียนของเรา",
+      "sentenceAnswer": "teaches"
+    },
+    {
+      "word": "type",
+      "meaning": "ประเภท, พิมพ์",
+      "imageId": "0020",
+      "sentence": "What type of fruit is this?",
+      "translate": "นี่คือผลไม้ประเภทไหน",
+      "sentenceAnswer": "type"
+    }
+  ],
+  "flashVocabDataEnA2": [
+    {
+      "word": "furniture",
+      "meaning": "เฟอร์นิเจอร์",
+      "imageId": "0003",
+      "sentence": "We need some furniture for our new home.",
+      "translate": "เราต้องการเฟอร์นิเจอร์สำหรับบ้านใหม่ของเรา",
+      "sentenceAnswer": "furniture"
+    },
+    {
+      "word": "light (not heavy)",
+      "meaning": "เบา",
+      "imageId": "0009",
+      "displayWord": "light",
+      "sentence": "This bag is light enough to carry.",
+      "translate": "กระเป๋าใบนี้เบาพอที่จะถือได้",
+      "sentenceAnswer": "light"
+    },
+    {
+      "word": "middle",
+      "meaning": "กลาง",
+      "imageId": "0013",
+      "sentence": "Put the bowl in the middle of the table.",
+      "translate": "วางชามไว้ตรงกลางโต๊ะ",
+      "sentenceAnswer": "middle"
+    },
+    {
+      "word": "store",
+      "meaning": "ร้านค้า, เก็บ",
+      "imageId": "0001",
+      "sentence": "There is a small store near my house.",
+      "translate": "มีร้านเล็ก ๆ อยู่ใกล้บ้านของฉัน",
+      "sentenceAnswer": "store"
+    },
+    {
+      "word": "scissors",
+      "meaning": "กรรไกร",
+      "imageId": "0014",
+      "sentence": "Can I borrow your scissors?",
+      "translate": "ฉันขอยืมกรรไกรของคุณได้ไหม",
+      "sentenceAnswer": "scissors"
+    }
+  ],
+  "flashVocabDataEnB1": [
+    {
+      "word": "chest",
+      "meaning": "หน้าอก, หีบ",
+      "imageId": "0011",
+      "sentence": "Put your hand on your chest.",
+      "translate": "วางมือบนหน้าอกของคุณ",
+      "sentenceAnswer": "chest"
+    },
+    {
+      "word": "go",
+      "meaning": "ไป",
+      "imageId": "0006",
+      "sentence": "I go to school by bus.",
+      "translate": "ฉันไปโรงเรียนโดยรถประจำทาง",
+      "sentenceAnswer": "go"
+    },
+    {
+      "word": "store",
+      "meaning": "ร้านค้า, จัดเก็บ",
+      "imageId": "0001",
+      "sentence": "There is a small store near my house.",
+      "translate": "มีร้านเล็ก ๆ อยู่ใกล้บ้านของฉัน",
+      "sentenceAnswer": "store"
+    },
+    {
+      "word": "type",
+      "meaning": "ประเภท, พิมพ์",
+      "imageId": "0020",
+      "sentence": "What type of fruit is this?",
+      "translate": "นี่คือผลไม้ประเภทไหน",
+      "sentenceAnswer": "type"
+    }
+  ],
+  "flashVocabDataEnB2": [
+    {
+      "word": "price",
+      "meaning": "ราคา",
+      "imageId": "0002",
+      "sentence": "What is the price of this bag?",
+      "translate": "กระเป๋าใบนี้ราคาเท่าไหร่",
+      "sentenceAnswer": "price"
+    }
+  ]
+}
