@@ -133,7 +133,7 @@
           <option value="english_b1">English B1</option><option value="english_b2">English B2</option>
         </select>
         <label for="vrLimit">จำนวนคำต่อรอบ</label>
-        <input id="vrLimit" type="number" min="1" max="20" value="20" inputmode="numeric">
+        <input id="vrLimit" type="number" min="1" max="20" value="10" inputmode="numeric">
         <p id="vrAvailable" role="status"></p>
         <button id="vrStart" type="button">เริ่มเรียน</button>
       </div>
@@ -166,7 +166,7 @@
           <button id="vrKnown" type="button" class="hidden">นึกออก</button>
           <button id="vrUnknown" type="button" class="hidden">ยังนึกไม่ออก</button>
           <button id="vrSkip" type="button">ข้าม</button>
-          <button id="vrNext" type="button">ต่อไป</button>
+          <button id="vrNextLearn" type="button" class="hidden">คำถัดไป</button>
         </div>
         <button id="vrFinish" type="button" class="vr-secondary">จบรอบและดูผล</button>
       </div>

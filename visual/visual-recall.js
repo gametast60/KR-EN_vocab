@@ -12,10 +12,26 @@
   let available = [], cards = [], queue = [], results = [], stage = 0, index = 0, phase = 'setup';
   let retryCards = [], nextStage = 0;
   let previousStageFirstId = null;
+  let advanceTimer = null;
   const current = () => queue[index];
   let autoSpeak = true;
   function setAppTitleHidden(hidden) {
     el('appTitle').classList.toggle('hidden', hidden);
+  }
+  function cancelAutoAdvance() {
+    if (advanceTimer !== null) {
+      clearTimeout(advanceTimer);
+      advanceTimer = null;
+    }
+  }
+  function advanceCard(delay) {
+    cancelAutoAdvance();
+    advanceTimer = setTimeout(() => {
+      advanceTimer = null;
+      if (phase !== 'review') return;
+      index++;
+      if (index === queue.length) stageComplete(); else render();
+    }, delay);
   }
   function shuffleArray(array) {
     const shuffled = array.slice();
@@ -30,7 +46,9 @@
     if (!Number.isFinite(raw) || raw <= 0) return 0;
     return Math.min(Math.floor(raw), availableCount);
   }
-  function stopAudio() { window.speechSynthesis?.cancel(); }
+  function stopAudio() {
+    window.speechSynthesis?.cancel();
+  }
   function readCurrent() {
     if (!current() || !['learn', 'answer', 'recognition', 'review'].includes(phase) ||
         (stage >= 3 && phase === 'answer')) return;
@@ -76,6 +94,7 @@
   }
 
   function prepare() {
+    cancelAutoAdvance();
     stopAudio();
     setAppTitleHidden(false);
     phase = 'setup'; stage = 0;
@@ -104,6 +123,7 @@
   }
 
   function startStage(next) {
+    cancelAutoAdvance();
     setAppTitleHidden(true);
     stage = next; index = 0;
     const stageCards = stage >= 4
@@ -121,6 +141,7 @@
   }
 
   function render() {
+    cancelAutoAdvance();
     stopAudio();
     const card = current(); phase = stage === 1 || stage === 4 ? 'learn' : 'answer';
     show('vrSetup', false); show('vrSummary', false); show('vrPlay', true);
@@ -157,10 +178,11 @@
     el('vrSpeak').textContent = stage === 5 ? '🔊 ฟังคำตอบและประโยคอีกครั้ง' : '🔊 ฟังอีกครั้ง';
     if (stage === 4) el('vrSpeak').textContent = '🔊 ฟังคำฐาน รูปคำ และประโยค';
     show('vrReveal', phase === 'answer'); show('vrSkip', phase === 'answer');
-    show('vrKnown', false); show('vrUnknown', false); show('vrNext', phase === 'learn');
-    el('vrNext').textContent = index + 1 === queue.length ? `สรุป Stage ${stage}` : 'คำถัดไป';
+    show('vrKnown', false); show('vrUnknown', false);
+    show('vrNextLearn', phase === 'learn');
+    el('vrNextLearn').textContent = index + 1 === queue.length ? `สรุป Stage ${stage}` : 'คำถัดไป';
     updateJourney();
-    if (stage === 3 || stage === 5) el('vrAnswer').focus(); else el(phase === 'learn' ? 'vrNext' : 'vrReveal').focus();
+    if (stage === 3 || stage === 5) el('vrAnswer').focus(); else el(phase === 'learn' ? 'vrNextLearn' : 'vrReveal').focus();
     if (autoSpeak && (stage <= 2 || stage === 4)) readCurrent();
   }
 
@@ -184,12 +206,15 @@
     el('vrFeedback').setAttribute('data-result', status);
     revealContent(); el('vrAnswer').disabled = true; el('vrCheck').disabled = true;
     for (const id of ['vrReveal', 'vrSkip', 'vrKnown', 'vrUnknown']) show(id, false);
-    el('vrMeter').value = index + 1; show('vrNext', true); el('vrNext').focus();
+    el('vrMeter').value = index + 1;
     updateJourney();
     if (autoSpeak && stage >= 3) readCurrent();
+    if (stage === 2) advanceCard(1500);
+    if (stage === 3 || stage === 5) advanceCard(3000);
   }
 
   function finish() {
+    cancelAutoAdvance();
     stopAudio();
     setAppTitleHidden(true);
     phase = 'summary';
@@ -232,7 +257,7 @@
     if (!limit) return;
     cards = available.slice(0, limit); results = []; startStage(1);
   });
-  el('vrNext').addEventListener('click', () => {
+  el('vrNextLearn').addEventListener('click', () => {
     if (phase !== 'learn' && phase !== 'review') return;
     if (phase === 'learn') results.push({ stage, card: current(), status: 'learned' });
     index++;

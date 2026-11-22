@@ -6,10 +6,12 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 function setup(real = false, random = () => 0.999999) {
   const elements = new Map();
+  const timers = new Map();
+  let timerId = 0;
   function el(id) {
     if (!elements.has(id)) {
       const classes = new Set();
-      elements.set(id, { value: id === 'vrLevel' ? 'topik1' : id === 'vrLimit' ? '20' : '',
+      elements.set(id, { value: id === 'vrLevel' ? 'topik1' : id === 'vrLimit' ? '10' : '',
         textContent: '', disabled: false, events: {}, children: [],
         classList: { toggle(name, value) { if (value) classes.add(name); else classes.delete(name); }, contains: name => classes.has(name) },
         addEventListener(name, fn) { this.events[name] = fn; }, focus() {},
@@ -24,6 +26,8 @@ function setup(real = false, random = () => 0.999999) {
   const math = Object.create(Math);
   math.random = random;
   const context = vm.createContext({ Math: math, window, document: { getElementById: el, createElement: () => ({}) },
+    setTimeout(fn, delay) { const id = ++timerId; timers.set(id, { fn, delay }); return id; },
+    clearTimeout(id) { timers.delete(id); },
     goTo() {}, speak(text, language) { audio.calls.push({ text, language }); }, recordAnswer() { throw Error('SRS write'); },
     speakSequence(texts, language) { for (const text of texts) audio.calls.push({ text, language }); },
     localStorage: new Proxy({}, { get() { throw Error('Storage access'); } }) });
@@ -39,9 +43,22 @@ function setup(real = false, random = () => 0.999999) {
   context.getTopikVocab = level => window[levels[level]];
   context.VisualEngine = window.VisualEngine; context.SentenceEngine = window.SentenceEngine;
   vm.runInContext(fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8'), context);
-  const fire = (id, type = 'click', extra = {}) => el(id).events[type]({ preventDefault() {}, ...extra });
+  const fire = (id, type = 'click', extra = {}) => {
+    if (id === 'vrNext') {
+      if (/Stage (1|4)/.test(el('vrStage').textContent)) {
+        id = 'vrNextLearn';
+      } else {
+        const pending = [...timers.values()];
+        timers.clear();
+        pending.forEach(timer => timer.fn());
+        return;
+      }
+    }
+    el(id).events[type]?.({ preventDefault() {}, ...extra });
+  };
   window.VisualRecall.open();
-  return { el, fire, window, context, audio };
+  const runTimers = () => { const pending = [...timers.values()]; timers.clear(); pending.forEach(timer => timer.fn()); return pending.map(timer => timer.delay); };
+  return { el, fire, window, context, audio, runTimers, timers };
 }
 
 test('real images share exact vocabulary bindings with ready KR/EN exercises', () => {
@@ -67,6 +84,8 @@ test('real images share exact vocabulary bindings with ready KR/EN exercises', (
 
 test('full Korean five-stage round learns sentence forms before testing and counts each response once', () => {
   const { el, fire, window: w } = setup();
+  el('vrLimit').value = '20';
+  fire('vrLimit', 'change');
   fire('vrStart');
   for (let i = 0; i < 20; i++) fire('vrNext');
   assert.equal(el('vrTransition').classList.contains('hidden'), false);
@@ -138,7 +157,7 @@ test('English completes without sentence stage; skip/reveal/wrong and early fini
   assert.equal(el('vrStart').disabled, true);
   fire('vrStart'); assert.ok(el('vrPlay').classList.contains('hidden'));
   el('vrLevel').value = 'topik1'; fire('vrLevel', 'change'); fire('vrStart'); fire('vrFinish');
-  assert.match(el('vrScores').children[0].textContent, /เรียนแล้ว 0\/20/);
+  assert.match(el('vrScores').children[0].textContent, /เรียนแล้ว 0\/10/);
 });
 
 test('Visual Recall randomly shuffles the selected card pool', () => {
@@ -178,6 +197,33 @@ test('Visual Recall accepts a custom number of cards', () => {
   fire('vrLimit', 'input');
   fire('vrStart');
   assert.equal(el('vrProgress').textContent, 'คำที่ 1 / 7');
+});
+
+test('Stage 2 advances after 1.5 seconds and Stage 3/5 advance after 3 seconds', () => {
+  const { el, fire, runTimers } = setup();
+  el('vrLimit').value = '3';
+  fire('vrLimit', 'input');
+  fire('vrStart');
+  for (let i = 0; i < 3; i++) fire('vrNextLearn');
+  fire('vrContinue');
+  fire('vrReveal');
+  fire('vrKnown');
+  assert.deepEqual(runTimers(), [1500]);
+  assert.match(el('vrProgress').textContent, /คำที่ 2 \/ 3/);
+
+  for (let i = 1; i < 3; i++) {
+    fire('vrReveal');
+    fire('vrKnown');
+    runTimers();
+  }
+  fire('vrContinue');
+  el('vrAnswer').value = el('vrMeaning').textContent;
+  fire('vrForm', 'submit');
+  assert.deepEqual(runTimers(), [3000]);
+
+  const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
+  assert.match(js, /if \(stage === 2\) advanceCard\(1500\)/);
+  assert.match(js, /if \(stage === 3 \|\| stage === 5\) advanceCard\(3000\)/);
 });
 
 test('image failure recovery and IME composition are handled', () => {
