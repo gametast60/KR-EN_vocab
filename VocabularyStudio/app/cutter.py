@@ -5,8 +5,8 @@ from pathlib import Path
 import io, zipfile, threading, queue, re, csv, json, os, subprocess, sys
 
 class Cutter:
-    def __init__(self, root, host=None, on_export=None):
-        self.root=root;self.on_export=on_export
+    def __init__(self, root, host=None, on_export=None, prepare_direct=None, on_direct=None):
+        self.root=root;self.on_export=on_export;self.prepare_direct=prepare_direct;self.on_direct=on_direct
         parent=host if host is not None else root
         if host is None:root.title('Vocabulary Studio — Cutter');root.geometry('1220x790')
         self.image=None; self.photo=None; self.xs=[]; self.ys=[]; self.drag=None; self.scale=1; self.x0=0; self.y0=0
@@ -23,7 +23,7 @@ class Cutter:
             ttk.Label(top,text=label).pack(side='left',padx=(10,2));ttk.Entry(top,textvariable=var,width=width).pack(side='left')
         ttk.Button(top,text='Auto Grid / Reset',command=self.auto_grid).pack(side='left',padx=12)
         ttk.Checkbutton(top,text='Transparent outside card',variable=self.transparent).pack(side='left',padx=8)
-        self.export_btn=ttk.Button(top,text='Export ZIP',command=self.export);self.export_btn.pack(side='right',padx=8)
+        self.export_btn=ttk.Button(top,text='บันทึกภาพและไปตรวจคำศัพท์' if prepare_direct else 'Export ZIP',command=self.export);self.export_btn.pack(side='right',padx=8)
         middle=ttk.Frame(parent,padding=6);middle.pack(fill='both',expand=True)
         self.canvas=tk.Canvas(middle,bg='#42464b',highlightthickness=0);self.canvas.pack(side='left',fill='both',expand=True)
         sidebar=ttk.Frame(middle,padding=9);sidebar.pack(side='right',fill='y')
@@ -84,6 +84,16 @@ class Cutter:
         self.image=None;self.photo=None;self.xs=[];self.ys=[];self.canvas.delete('all');self.progress.set(0);self.phase.set('Ready');self.pct.set('0%')
         self.start.set(self.load_start())
         self.status.set(f'ล้างภาพแล้ว • ตรวจ ID ล่าสุดแล้ว • ชุดถัดไปเริ่ม {self.start.get()}.webp')
+    def reset_completed(self):
+        if self.busy:return
+        reserved=self.start.get()
+        self.clear_image();self.words.delete('1.0','end')
+        self.columns.set(5);self.rows.set(5);self.size.set(256);self.transparent.set(True)
+        if reserved.isdigit() and int(reserved)>int(self.start.get()):self.start.set(reserved)
+        self.drag=None;self.scale=1;self.x0=0;self.y0=0
+        self.last_export=None;self.openfolder.configure(state='disabled')
+        self.status.set(f'พร้อมชุดใหม่ • เริ่ม {self.start.get()}.webp')
+
     def auto_grid(self):
         if self.busy or self.image is None:return
         try:
@@ -196,11 +206,41 @@ class Cutter:
             if len(entries)!=total:raise ValueError(f'{len(entries)} vocabulary entries vs {total} grid cards. Paste exactly {total} words.')
             size=int(self.size.get());assert 32<=size<=2048
         except Exception as e:messagebox.showerror('Check before export',str(e));return
+        if self.prepare_direct:
+            try:
+                if prefix:raise ValueError('ใช้ ID ตัวเลขเท่านั้น เช่น 0146')
+                job=self.prepare_direct(entries,first,width)
+                if job is None:return
+            except Exception as exc:
+                messagebox.showerror('ตรวจชุดก่อนบันทึก',str(exc));return
+            self.set_busy(True);self.show_progress(total)
+            args=(job,self.image.copy(),list(self.xs),list(self.ys),size,self.transparent.get())
+            threading.Thread(target=self.direct_worker,args=args,daemon=True).start();self.root.after(60,self.poll)
+            return
         file=filedialog.asksaveasfilename(defaultextension='.zip',filetypes=[('ZIP','*.zip')],initialfile='vocabulary_cards.zip')
         if not file:return
         self.set_busy(True);self.show_progress(total)
         args=(file,self.image.copy(),list(self.xs),list(self.ys),size,self.transparent.get(),prefix,first,width,entries)
         threading.Thread(target=self.worker,args=args,daemon=True).start();self.root.after(60,self.poll)
+    def direct_worker(self,job,source,xs,ys,size,transparent):
+        try:
+            from image_export import commit_images
+            images={};total=len(job['ids'])
+            for index,image_id in enumerate(job['ids']):
+                row,col=divmod(index,len(xs)-1)
+                crop=source.crop(tuple(round(v) for v in (xs[col],ys[row],xs[col+1],ys[row+1])))
+                if transparent:crop=self.remove_background(crop)
+                crop.thumbnail((size,size),Image.Resampling.LANCZOS)
+                out=Image.new('RGBA' if transparent else 'RGB',(size,size),(0,0,0,0) if transparent else (255,250,240))
+                out.paste(crop,((size-crop.width)//2,(size-crop.height)//2))
+                buff=io.BytesIO();out.save(buff,'WEBP',quality=88,method=6)
+                images[f'visual/images/{image_id}.webp']=buff.getvalue()
+                self.messages.put(('progress',70*(index+1)/total,f'เตรียมภาพ {index+1}/{total}'))
+            job['repo'].ensure_current()
+            batch=commit_images(job['root'],images,job['entries'],job['expected'],lambda n,t:self.messages.put(('progress',n,t)))
+            self.messages.put(('direct_done',batch,str(max(map(int,job['ids']))+1).zfill(4)))
+        except Exception as exc:self.messages.put(('error',str(exc)))
+
     def worker(self,file,source,xs,ys,size,transparent,prefix,first,width,entries):
         total=len(entries);names=[f'{prefix}{first+i:0{width}d}.webp' for i in range(total)]
         temp=file+'.partial'
@@ -242,13 +282,27 @@ class Cutter:
                 event,*values=self.messages.get_nowait()
                 if event=='progress':
                     percent,label=values;self.progress.set(min(99,percent));self.pct.set(f'{min(99,int(percent))}%');self.phase.set(label)
+                elif event=='direct_done':
+                    batch,next_start=values
+                    self.hide_progress();self.set_busy(False)
+                    self.start.set(next_start);self.save_start(next_start)
+                    try:
+                        self.on_direct(batch)
+                        self.reset_completed()
+                    except Exception as exc:
+                        messagebox.showerror('เปิดหน้าตรวจไม่สำเร็จ',str(exc)+'\nภาพและชุดงานถูกเก็บไว้ เปิดงานภาพค้างเพื่อทำต่อได้')
+                    return
                 elif event=='done':
                     file,next_start,total=values;self.hide_progress();self.set_busy(False);self.progress.set(100);self.pct.set('100%');self.phase.set(f'Complete: {total} images')
                     self.last_export=file;self.start.set(next_start);self.save_start(next_start);self.openfolder.configure(state='normal')
                     self.status.set(f'Saved {total} WebPs + MD + CSV to {file}')
                     if self.on_export:
-                        try:self.on_export(file)
-                        finally:self.open_folder()
+                        try:
+                            transferred=self.on_export(file)
+                            opened=self.open_folder()
+                            if transferred is not False and opened is True:self.reset_completed()
+                        except Exception as exc:
+                            messagebox.showerror('ส่งต่อชุดภาพไม่สำเร็จ',str(exc))
                     elif messagebox.askyesno('Export complete',f'Exported {total} images successfully.\nOpen folder?'):self.open_folder()
                     return
                 elif event=='error':
@@ -264,7 +318,9 @@ class Cutter:
             if sys.platform=='win32':os.startfile(folder)
             elif sys.platform=='darwin':subprocess.Popen(['open',folder])
             else:subprocess.Popen(['xdg-open',folder])
-        except Exception as e:messagebox.showerror('Folder',str(e))
+            return True
+        except Exception as e:
+            messagebox.showerror('Folder',str(e));return False
 
 if __name__=='__main__':
     root=tk.Tk();Cutter(root);root.mainloop()

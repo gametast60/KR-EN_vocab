@@ -6,3 +6,5 @@ VocabularyStudio/data/cutter_settings.json
 VocabularyStudio/data/last_ai_request.json
 VocabularyStudio/data/latest.json
 VocabularyStudio/data/review_queue.json
+VocabularyStudio/data/pending_images.json
+VocabularyStudio/data/image_backups/

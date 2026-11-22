@@ -173,6 +173,7 @@ def parse_response(text, repo, request):
                     raise ValueError(f'{word}: คำใหม่ต้องมี meaning')
                 entry = dict(row, level=level, word=word, source_meaning=meaning.strip(), is_new=True,
                              sentence='', translate='', answer='', occurrence=1, confirmed=False, sense_confirmed=False)
+                entry['meaning'] = meaning.strip()
                 notices.append(f'คำใหม่ {level}:{word} — {meaning}')
             else:
                 target_row = dict(row, ko='', en='')

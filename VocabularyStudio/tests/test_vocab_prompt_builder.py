@@ -55,8 +55,13 @@ class PromptTests(unittest.TestCase):
         self.assertEqual([row[0] for row in parsed], [entry['word'] for entry in entries])
         self.assertEqual(len(parsed), 25)
         new_entries = [e for e in catalog['topik1'] if not e.get('imageId')][:25]
-        _, new_output = builder.make_outputs(new_entries)
-        self.assertEqual(len(cutter.Cutter.parse_words(new_output)), 25)
+        # Live data can advance to entries containing delimiter characters.
+        # Such batches must fail closed rather than silently splitting a word.
+        if any('/' in e['word'] for e in new_entries):
+            with self.assertRaises(ValueError):builder.make_outputs(new_entries)
+        else:
+            _, new_output = builder.make_outputs(new_entries)
+            self.assertEqual(len(cutter.Cutter.parse_words(new_output)), 25)
 
 
 if __name__ == '__main__':

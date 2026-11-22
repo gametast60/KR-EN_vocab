@@ -88,7 +88,7 @@ def patch_object(raw, changes):
     for key, value in changes.items():
         if value is REMOVE:
             continue
-        if key not in KNOWN or key in {'word', 'meaning'}:
+        if key not in KNOWN:
             raise ValueError(f'ไม่อนุญาตแก้ {key}')
         if key in data and data[key] == value:
             continue
@@ -146,6 +146,7 @@ class Repository:
         self.original = {name: (self.root / name).read_bytes() for name in FILES.values()}
         self.queue_path = 'VocabularyStudio/data/review_queue.json'
         self.queue_bytes = self.read_optional(self.queue_path)
+        self.pending_bytes = self.read_optional('VocabularyStudio/data/pending_images.json')
         self.records = {}
         for level, name in FILES.items():
             source = self.original[name].decode('utf-8-sig')
@@ -169,12 +170,14 @@ class Repository:
     def entry_data(self, entry):
         if entry.get('is_new'):
             return {'word': entry['word'], 'meaning': entry['source_meaning']}
-        return self.unique(entry['level'], entry['word'])['data']
+        return self.unique(entry['level'], entry.get('original_word', entry['word']))['data']
 
     def ensure_current(self):
         for name, original in self.original.items():
             if self.read_optional(name) != original:
                 raise ValueError(f'{name} ถูกแก้จากภายนอก กรุณาโหลดชุดใหม่ก่อนบันทึก')
+        if self.read_optional('VocabularyStudio/data/pending_images.json') != self.pending_bytes:
+            raise ValueError('ชุดภาพค้างเปลี่ยนแล้ว กรุณาเปิดใหม่')
         if self.read_optional(self.queue_path) != self.queue_bytes:
             raise ValueError('คิวงานภาษาเปลี่ยนแล้ว กรุณาโหลดชุดใหม่')
 
@@ -210,7 +213,7 @@ class Repository:
                     proposal = data.get('displayWord') or word
                     if len(positions(sentence, proposal, level.startswith('english'))) == 1:
                         answer = proposal
-                entry.update(sentence=sentence, translate=data.get('translate', ''), answer=answer, occurrence=data.get('sentenceOccurrence', 1),
+                entry.update(original_word=word, meaning=data['meaning'], sentence=sentence, translate=data.get('translate', ''), answer=answer, occurrence=data.get('sentenceOccurrence', 1),
                              confirmed=confirmed, sense_confirmed=False)
                 prepared.append(entry)
         return prepared
@@ -233,8 +236,15 @@ class Repository:
         queue.update((item['key'], item) for item in existing_queue)
         per_file, additions = {}, {}
         image_senses = {}
+        source_bindings=set()
         for entry in entries:
-            level, word = entry['level'], entry['word']
+            level, word = entry['level'], entry['word'].strip()
+            original_word = entry.get('original_word', word)
+            identity=(level,original_word)
+            if identity in source_bindings:raise ValueError('รายการต้นฉบับซ้ำในชุด')
+            source_bindings.add(identity)
+            if word != original_word and any(l == level and w.casefold() == word.casefold() for l, w in self.records):
+                raise ValueError(f'{level}:{word}: มีคำนี้ในคลังแล้ว ไม่เขียนทับ')
             if (level, word) in bindings:
                 raise ValueError(f'รายการซ้ำในชุด: {level}:{word}')
             bindings.add((level, word))
@@ -251,7 +261,7 @@ class Repository:
                 data = self.entry_data(entry)
                 record = {'file': FILES[level], 'raw': json.dumps(data, ensure_ascii=False)}
             else:
-                record = self.unique(level, word)
+                record = self.unique(level, original_word)
                 data = record['data']
             image_id, extension = entry['image_id'], entry['extension']
             if not re.fullmatch(r'\d{4,}', image_id) or extension not in {'webp', 'png'}:
@@ -282,6 +292,9 @@ class Repository:
                 reasons.append('review_image_sense')
                 # Do not activate an unconfirmed sense: preserve metadata and queue it.
                 update = {}
+            update.update(word=word, meaning=meaning)
+            if original_word != word:
+                queue.pop(f'{level}:{original_word}', None)
             original_sentence = data.get('sentense') or data.get('sentence') or ''
             sentence = entry.get('sentence', original_sentence).strip()
             translation = entry.get('translate', data.get('translate', '')).strip()
@@ -384,7 +397,9 @@ class Repository:
                 raise ValueError(result.stderr or result.stdout)
             return result.stdout.strip()
 
-    def commit(self, changes, kind='batch'):
+    def commit(self, changes, kind='batch', progress=None):
+        report = progress or (lambda value, message: None)
+        report(5, 'ตรวจข้อมูลก่อนบันทึก')
         latest_path = self.root / 'VocabularyStudio/data/latest.json'
         if latest_path.exists():
             latest = json.loads(latest_path.read_text())['folder']
@@ -398,6 +413,7 @@ class Repository:
         self.ensure_current()
         if not changes:
             return 'ไม่มีข้อมูลเปลี่ยนแปลง', validation
+        report(35, 'สำรองต้นฉบับ')
         folder = self.root / 'VocabularyStudio/data/backups' / uuid.uuid4().hex
         folder.mkdir(parents=True)
         manifest = {'state': 'prepared', 'kind': kind, 'files': []}
@@ -414,7 +430,8 @@ class Repository:
         write_atomic(self.root / 'VocabularyStudio/data/latest.json', json.dumps({'folder': folder.name}).encode())
         written = []
         try:
-            for item in manifest['files']:
+            for index, item in enumerate(manifest['files']):
+                report(50 + int(40 * index / len(manifest['files'])), 'บันทึก ' + item['path'])
                 target = safe_target(self.root, item['path'])
                 before = target.read_bytes() if target.exists() else None
                 if (digest(before) if before is not None else None) != item['before']:
@@ -423,16 +440,18 @@ class Repository:
             manifest['state'] = 'committed'
             write_atomic(journal, json.dumps(manifest).encode())
         except Exception:
+            report(90, 'เกิดข้อผิดพลาด กำลังคืนข้อมูลเดิม')
             for item in reversed(written):
                 restore_file(self.root, folder, item)
             manifest['state'] = 'rolled_back'
             write_atomic(journal, json.dumps(manifest).encode())
             raise
+        report(95, 'บันทึกไฟล์ครบแล้ว')
         return folder.name, validation
 
 
 def safe_target(root, name):
-    allowed = name in FILES.values() or name == 'VocabularyStudio/data/review_queue.json' or re.fullmatch(r'visual/images/\d{4,}\.(webp|png)', name)
+    allowed = name in FILES.values() or name in {'VocabularyStudio/data/review_queue.json', 'VocabularyStudio/data/pending_images.json'} or re.fullmatch(r'visual/images/\d{4,}\.(webp|png)', name)
     path = (root / name).resolve()
     if not allowed or not path.is_relative_to(root.resolve()):
         raise ValueError('ตำแหน่งไฟล์ไม่ปลอดภัย')

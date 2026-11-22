@@ -26,6 +26,17 @@ class StudioTests(unittest.TestCase):
             word=properties(raw)[1].get('word')
             if word in fixture:source=source[:start]+json.dumps(fixture[word],ensure_ascii=False)+source[end:]
         path.write_text(source,encoding='utf-8')
+        # Later user imports may already link English words to pilot images.
+        # Keep those bindings out of this frozen import scenario.
+        for level,name in FILES.items():
+            if not level.startswith('english'):continue
+            p=self.root/name;source=p.read_text(encoding='utf-8-sig')
+            for start,end,raw in reversed(list(objects(source))):
+                data=properties(raw)[1]
+                if '0021'<=data.get('imageId','')<='0045':
+                    data.pop('imageId',None)
+                    source=source[:start]+json.dumps(data,ensure_ascii=False)+source[end:]
+            p.write_text(source,encoding='utf-8')
         (self.root/'VocabularyStudio/app').mkdir(parents=True);shutil.copy2(ROOT/'VocabularyStudio/app/validate-vocab-studio.cjs',self.root/'VocabularyStudio/app/validate-vocab-studio.cjs')
         (self.root/'visual/images').mkdir(parents=True)
         for image in (ROOT/'visual/images').glob('*.webp'):shutil.copy2(image,self.root/'visual/images'/image.name)
@@ -256,10 +267,158 @@ class StudioTests(unittest.TestCase):
             self.assertEqual((self.root/'flashcard1.js').read_bytes(),before)
             with patch.object(studio.messagebox,'askyesno',return_value=True),patch.object(studio.messagebox,'showinfo'):
                 app.save()
+            self.assertEqual(app.entries,[])
+            self.assertEqual(app.answer.get(),'')
+            self.assertEqual(app.sentence.get('1.0','end-1c'),'')
+            self.assertEqual(app.tree.get_children(),())
             data=Repository(self.root).unique('topik1','간식')['data']
             self.assertEqual(data['sentenceAnswer'],'간식')
             self.assertEqual(set(data),{'word','meaning','sentense','translate','imageId','sentenceAnswer'})
         finally:root.destroy()
+
+    def test_grouped_cards_live_answer_and_edit_identity(self):
+        import vocab_studio as studio
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            app=studio.Studio(root,self.root)
+            row=dict(self.maps[1],en='english_a1:each',meaning='do not overwrite meaning')
+            app.set_batch([row]);root.update()
+            self.assertEqual(len(app.tree.groups),1)
+            self.assertEqual(len(app.tree.get_children()),2)
+            self.assertEqual(app.entries[1]['meaning'],app.repo.unique('english_a1','each')['data']['meaning'])
+            app.answer.set('각')
+            self.assertEqual(app.tree.item('0','values')[4],'각')
+            self.assertIn('ยังไม่บันทึก',app.tree.item('0','values')[5])
+            app.word.set('각-test');app.meaning.set('ความหมายแก้แล้ว')
+            app.answer_ok.set(True);app.sense_ok.set(True)
+            with patch.object(studio.messagebox,'askyesno',return_value=True),patch.object(studio.messagebox,'showinfo'):
+                app.save(True)
+            saved=Repository(self.root)
+            self.assertNotIn(('topik1','각'),saved.records)
+            self.assertEqual(saved.unique('topik1','각-test')['data']['meaning'],'ความหมายแก้แล้ว')
+            self.assertEqual(app.entries[0]['original_word'],'각-test')
+            self.assertFalse(app.saving)
+            # Saving the renamed entry again must address its new identity.
+            changes,_=app.repo.plan([app.entries[0]])
+            self.assertEqual(changes,{})
+            undo_latest(self.root)
+            self.assertIn(('topik1','각'),Repository(self.root).records)
+        finally:root.destroy()
+
+    def test_rename_rejects_collision_and_moves_queue_key(self):
+        entry=self.entries[0];entry['word']='각'
+        with self.assertRaises(ValueError):self.repo.plan([entry])
+        entry['word']='가지다-test'
+        changes,queue=self.repo.plan([entry])
+        self.assertIn('topik1:가지다-test',{q['key'] for q in queue})
+        self.assertNotIn('topik1:가지다',{q['key'] for q in queue})
+
+    def test_save_progress_keeps_ui_responsive_and_unlocks_on_failure(self):
+        import time
+        import vocab_studio as studio
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            app=studio.Studio(root,self.root);app.set_batch(self.maps[:1]);root.update()
+            observed=[]
+            def fail(changes,progress):
+                progress(35,'สำรองต้นฉบับ')
+                time.sleep(.15)
+                raise ValueError('test validation failure')
+            root.after(60,lambda:observed.append(app.saving))
+            with patch.object(studio.messagebox,'askyesno',return_value=True),patch.object(app.repo,'commit',side_effect=fail):
+                with self.assertRaisesRegex(ValueError,'test validation failure'):app.save()
+            self.assertEqual(observed,[True])
+            self.assertFalse(app.saving)
+            self.assertIsNone(root.grab_current())
+            self.assertEqual(len(app.entries),1)
+            self.assertFalse((self.root/'VocabularyStudio/data/latest.json').exists())
+        finally:root.destroy()
+
+    def test_direct_images_backup_rollback_and_collision_checks(self):
+        import image_export as direct
+        from vocab_studio_data import digest
+        name='visual/images/0021.webp';old=(self.root/name).read_bytes()
+        expected={name:digest(old)}
+        with self.assertRaises(ValueError):direct.commit_images(self.root,{name:b'new'},self.entries,{name:None})
+        original_write=direct.write_atomic
+        def fail_pending(path,content):
+            if path.name=='pending_images.json':raise OSError('disk test')
+            return original_write(path,content)
+        with patch.object(direct,'write_atomic',side_effect=fail_pending):
+            with self.assertRaises(OSError):direct.commit_images(self.root,{name:b'new'},self.entries,expected)
+        self.assertEqual((self.root/name).read_bytes(),old)
+        self.assertIsNone(direct.pending_batch(self.root))
+        batch=direct.commit_images(self.root,{name:b'new'},self.entries,expected)
+        self.assertEqual((self.root/name).read_bytes(),b'new')
+        self.assertEqual(direct.pending_batch(self.root)['id'],batch['id'])
+        with self.assertRaises(ValueError):direct.commit_images(self.root,{name:b'again'},self.entries,{name:digest(b'new')})
+        # Simulate a crash before the journal's committed marker.
+        journal=self.root/'VocabularyStudio/data/image_backups'/batch['id']/'manifest.json'
+        manifest=json.loads(journal.read_text());manifest['state']='prepared';journal.write_text(json.dumps(manifest))
+        direct.recover_images(self.root)
+        self.assertEqual((self.root/name).read_bytes(),old)
+        self.assertIsNone(direct.pending_batch(self.root))
+
+    def test_export_dialog_new_range_and_next_destination(self):
+        import vocab_studio as studio
+        from image_export import occupied_ids
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            app=studio.Studio(root,self.root)
+            app.cutter.image=studio.Image.new('RGB',(100,100),'white')
+            app.cutter.xs=[0,50,100];app.cutter.ys=[0,100]
+            def find(widget,label):
+                for child in widget.winfo_children():
+                    if isinstance(child,studio.ttk.Button) and child.cget('text')==label:return child
+                    result=find(child,label)
+                    if result:return result
+            root.after(100,lambda:find(root,'ใช้เลขว่างชุดใหม่ (แนะนำ)').invoke())
+            ids=app.resolve_image_conflicts(app.repo,['0021','0022'],['0021','0022'])
+            used=occupied_ids(app.repo)
+            self.assertTrue(all(int(i) not in used for i in ids))
+            self.assertEqual(int(ids[1]),int(ids[0])+1)
+            app.choose_next_step(7);root.update()
+            find(root,'ทำคิวงานต่อ → หน้า 4 (7 งานค้าง)').invoke()
+            self.assertEqual(app.tabs.select(),str(app.queue_tab))
+            app.choose_next_step(0);root.update()
+            find(root,'เริ่มชุดใหม่ → หน้า 1').invoke()
+            self.assertEqual(app.tabs.select(),str(app.prepare_tab))
+        finally:root.destroy()
+
+    def test_direct_export_to_review_save_and_resume(self):
+        import vocab_studio as studio
+        from image_export import pending_batch
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            app=studio.Studio(root,self.root)
+            words=[(row['ko'].split(':')[-1],'',row['meaning']) for row in self.maps]
+            with patch.object(app,'resolve_image_conflicts',side_effect=lambda repo,ids,collisions:ids):
+                job=app.prepare_direct_export(words,21,4)
+            app.cutter.save_start=lambda value:None
+            app.cutter.direct_worker(job,studio.Image.new('RGB',(100,100),'white'),[0,20,40,60,80,100],[0,20,40,60,80,100],32,False)
+            app.cutter.poll();root.update()
+            self.assertEqual(len(app.entries),25)
+            self.assertIsNotNone(pending_batch(self.root))
+            self.assertIsNone(app.cutter.image)
+            self.assertEqual(list(self.root.rglob('*.zip')),[])
+            self.assertFalse((self.root/'VocabularyStudio/data/vocabulary_map.md').exists())
+            app.answer.set('가지고');app.store_edit()
+            # Closing persists the in-progress editor, then startup resumes it.
+            app.close()
+            root=studio.tk.Tk();root.withdraw();app=studio.Studio(root,self.root);root.update()
+            self.assertEqual(app.answer.get(),'가지고')
+            for entry in app.entries:entry['sense_confirmed']=True
+            app.sense_ok.set(True)
+            with patch.object(studio.messagebox,'askyesno',return_value=True),patch.object(app,'choose_next_step') as destination:
+                app.save()
+                destination.assert_called_once()
+            self.assertEqual(app.entries,[])
+            self.assertIsNone(pending_batch(self.root))
+            self.assertTrue((self.root/'visual/images/0021.webp').exists())
+            undo_latest(self.root)
+            self.assertIsNotNone(pending_batch(self.root))
+        finally:
+            if root.winfo_exists():root.destroy()
 
     def test_gui_pilot_and_cutter_bridge(self):
         import vocab_studio as studio
@@ -272,6 +431,9 @@ class StudioTests(unittest.TestCase):
             self.assertTrue(app.entries[0]['sense_confirmed'])
             app.code.insert('1.0','\n'.join(json.dumps(app.repo.unique(e['level'],e['word'])['data'],ensure_ascii=False)+',' for e in self.entries))
             app.send_to_cutter()
+            self.assertEqual(app.code.get('1.0','end-1c'),'')
+            self.assertEqual(app.prompt.get('1.0','end-1c'),'')
+            self.assertEqual(len(app.cutter_entries),25)
             self.assertEqual(len(app.cutter.parse_words(app.cutter.words.get('1.0','end'))),25)
             self.assertEqual(app.cutter.rows.get(),5)
             # Export a synthetic 5x5 sheet and import its real ZIP into review.
@@ -282,6 +444,46 @@ class StudioTests(unittest.TestCase):
             app.load_zip(output,True)
             self.assertEqual(len(app.assets),25)
             self.assertEqual(app.entries[-1]['image_id'],'0045')
+        finally:root.destroy()
+
+    def test_reset_cutter_only_after_successful_handoff_and_folder(self):
+        import vocab_studio as studio
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            c=studio.cutter_module.Cutter(root,on_export=lambda file:True)
+            c.save_start=lambda value:None
+            c.image=studio.Image.new('RGB',(50,50));c.words.insert('1.0','keep me')
+            c.open_folder=lambda:False
+            c.messages.put(('done','example.zip','9999',25));c.poll()
+            self.assertIsNotNone(c.image)
+            self.assertEqual(c.words.get('1.0','end-1c'),'keep me')
+            c.on_export=lambda file:(_ for _ in ()).throw(ValueError('handoff failed'))
+            with patch.object(studio.messagebox,'showerror'):
+                c.messages.put(('done','example.zip','9999',25));c.poll()
+            self.assertIsNotNone(c.image)
+            c.on_export=lambda file:True;c.open_folder=lambda:True
+            c.messages.put(('done','example.zip','9999',25));c.poll()
+            self.assertIsNone(c.image)
+            self.assertEqual(c.words.get('1.0','end-1c'),'')
+            self.assertEqual((c.columns.get(),c.rows.get()),(5,5))
+            self.assertEqual(c.start.get(),'9999')
+        finally:root.destroy()
+
+    def test_missing_count_live_and_wheel_from_editor(self):
+        import vocab_studio as studio
+        from types import SimpleNamespace
+        root=studio.tk.Tk();root.withdraw()
+        try:
+            app=studio.Studio(root,self.root);app.set_batch(self.maps[:1]);root.update()
+            self.assertIn('ยังไม่มีคำตอบ 1 ข้อ',app.batch_summary.get())
+            app.answer.set('가지고')
+            self.assertIn('ยังไม่มีคำตอบ 0 ข้อ',app.batch_summary.get())
+            with patch.object(app.tree,'wheel',return_value='break') as wheel:
+                self.assertEqual(app.scroll_review(SimpleNamespace(widget=app.sentence,delta=-120)),'break')
+                wheel.assert_called_once()
+                app.tabs.select(app.prepare_tab)
+                app.scroll_review(SimpleNamespace(widget=app.code,delta=-120))
+                wheel.assert_called_once()
         finally:root.destroy()
 
 
