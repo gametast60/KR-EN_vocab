@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
-function setup(real = false, random = () => 0.999999) {
+function setup(real = false, random = () => 0.999999, nativeSpeech = false) {
   const elements = new Map();
   const timers = new Map();
   let timerId = 0;
@@ -15,14 +15,21 @@ function setup(real = false, random = () => 0.999999) {
         textContent: '', disabled: false, events: {}, children: [],
         classList: { toggle(name, value) { if (value) classes.add(name); else classes.delete(name); }, contains: name => classes.has(name) },
         addEventListener(name, fn) { this.events[name] = fn; }, focus() {},
-        setAttribute(name, value) { this[name] = value; }, removeAttribute(name) { delete this[name]; },
+        setAttribute(name, value) { this[name] = value; }, getAttribute(name) { return this[name] ?? null; },
+        removeAttribute(name) { delete this[name]; },
         replaceChildren(...children) { this.children = children; }, appendChild(child) { this.children.push(child); }
       });
     }
     return elements.get(id);
   }
-  const audio = { calls: [], cancelled: 0 };
-  const window = { speechSynthesis: { cancel() { audio.cancelled++; } } };
+  const audio = { calls: [], cancelled: 0, utterances: [] };
+  const window = { speechSynthesis: {
+    cancel() { audio.cancelled++; },
+    speak(utterance) { audio.utterances.push(utterance); }
+  } };
+  if (nativeSpeech) {
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+  }
   const math = Object.create(Math);
   math.random = random;
   const context = vm.createContext({ Math: math, window, document: { getElementById: el, createElement: () => ({}) },
@@ -100,8 +107,9 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   assert.ok(el('vrSpeak').classList.contains('hidden'));
   fire('vrForm', 'submit');
   for (let i = 0; i < 20; i++) {
-    const vocab = w.flashVocabData1.find(row => row.meaning === el('vrMeaning').textContent);
-    el('vrAnswer').value = vocab.word;
+    const stage3Card = w.VisualEngine.getCards('topik1', w.flashVocabData1, w.visualImageMap, w.sentenceExercises)
+      .find(card => card.meaning === el('vrMeaning').textContent);
+    el('vrAnswer').value = stage3Card.displayWord;
     fire('vrForm', 'submit'); fire('vrForm', 'submit'); fire('vrNext');
   }
   fire('vrContinue');
@@ -209,7 +217,72 @@ test('Visual Recall disables stage controls during speech and removes feedback t
   assert.match(js, /playSpeechSequence\(\[current\(\)\.exercise\.targetAnswer, current\(\)\.exercise\.sentence\]/);
 });
 
-test('Stage 2 advances after 1.5 seconds and Stage 3/5 advance after 3 seconds', () => {
+test('answer tint and finish button respect speech and auto-advance timing', () => {
+  const { el, fire, window: w, audio, runTimers } = setup(false, () => 0.999999, true);
+  el('vrLimit').value = '1';
+  fire('vrLimit', 'input');
+  fire('vrStart');
+
+  assert.equal(el('vrNextLearn').disabled, true);
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  audio.utterances.shift().onend();
+  assert.equal(el('vrNextLearn').disabled, false);
+  fire('vrNextLearn');
+
+  fire('vrContinue');
+  assert.equal(el('vrReveal').disabled, true);
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  audio.utterances.shift().onend();
+  assert.equal(el('vrReveal').disabled, false);
+  fire('vrReveal');
+  fire('vrKnown');
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  assert.deepEqual(runTimers(), [1500]);
+
+  fire('vrContinue');
+  const stage3Card = w.VisualEngine.getCards('topik1', w.flashVocabData1, w.visualImageMap, w.sentenceExercises)
+    .find(card => card.meaning === el('vrMeaning').textContent);
+  el('vrAnswer').value = stage3Card.displayWord;
+  fire('vrForm', 'submit');
+  assert.equal(el('vrAnswer').getAttribute('data-result'), 'correct');
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  audio.utterances.shift().onend();
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  audio.utterances.shift().onend();
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  assert.deepEqual(runTimers(), [2000]);
+
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 4/);
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  for (let i = 0; i < 3; i++) audio.utterances.shift().onend();
+  assert.equal(el('vrNextLearn').disabled, false);
+  fire('vrNextLearn');
+
+  fire('vrContinue');
+  assert.match(el('vrStage').textContent, /Stage 5/);
+  const stage5Card = w.VisualEngine.getCards('topik1', w.flashVocabData1, w.visualImageMap, w.sentenceExercises)
+    .find(card => card.exercise.status === 'ready' && card.exercise.translation === el('vrMeaning').textContent);
+  assert.ok(stage5Card.exercise.sentence);
+  const exercise = stage5Card.exercise;
+  el('vrAnswer').value = exercise.targetAnswer;
+  fire('vrForm', 'submit');
+  assert.deepEqual(audio.utterances.map(utterance => utterance.text), [exercise.targetAnswer]);
+  const targetUtterance = audio.utterances.shift();
+  assert.equal(targetUtterance.text, exercise.targetAnswer);
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  targetUtterance.onend();
+  assert.equal(el('vrFinish').classList.contains('hidden'), true);
+  assert.deepEqual(audio.utterances.map(utterance => utterance.text), [exercise.sentence]);
+  audio.utterances.shift().onend();
+  assert.deepEqual(runTimers(), [2000]);
+
+  const css = fs.readFileSync(path.join(root, 'visual/visual-recall.css'), 'utf8');
+  assert.match(css, /#vrAnswer\[data-result="correct"\].*var\(--success-light\)/);
+  assert.match(css, /#vrAnswer\[data-result="incorrect"\].*var\(--danger-light\)/);
+});
+
+test('Stage 2 advances after 1.5 seconds and Stage 3/5 wait 2 seconds after speech', () => {
   const { el, fire, runTimers } = setup();
   el('vrLimit').value = '3';
   fire('vrLimit', 'input');
@@ -229,7 +302,7 @@ test('Stage 2 advances after 1.5 seconds and Stage 3/5 advance after 3 seconds',
   fire('vrContinue');
   el('vrAnswer').value = el('vrMeaning').textContent;
   fire('vrForm', 'submit');
-  assert.deepEqual(runTimers(), [3000]);
+  assert.deepEqual(runTimers(), [2000]);
 
   const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
   assert.match(js, /if \(stage === 2\) advanceCard\(1500\)/);

@@ -28,6 +28,7 @@
   }
   function advanceCard(delay) {
     cancelAutoAdvance();
+    show('vrFinish', false);
     advanceTimer = setTimeout(() => {
       advanceTimer = null;
       if (phase !== 'review') return;
@@ -54,6 +55,7 @@
   }
   function setSpeechBusy(busy) {
     speechBusy = busy;
+    show('vrFinish', !busy && advanceTimer === null);
     if (stage === 1 || stage === 4) el('vrNextLearn').disabled = busy;
     if (stage === 2) el('vrReveal').disabled = busy;
   }
@@ -238,6 +240,7 @@
     show('vrForm', stage === 3 || stage === 5);
     el('vrAnswerLabel').textContent = stage === 5 ? 'เติมรูปคำตามประโยคที่เรียน' : 'พิมพ์คำศัพท์จากภาพและความหมาย';
     el('vrAnswer').value = ''; el('vrAnswer').disabled = false; el('vrAnswer').lang = card.language;
+    el('vrAnswer').removeAttribute('data-result');
     el('vrCheck').disabled = false;
     el('vrAudioNotice').textContent = '';
     el('vrSpeak').textContent = stage === 5 ? '🔊 ฟังคำตอบและประโยคอีกครั้ง' : '🔊 ฟังอีกครั้ง';
@@ -245,6 +248,7 @@
     show('vrReveal', phase === 'answer'); show('vrSkip', phase === 'answer');
     show('vrKnown', false); show('vrUnknown', false);
     show('vrNextLearn', phase === 'learn');
+    show('vrFinish', true);
     el('vrNextLearn').textContent = index + 1 === queue.length ? `สรุป Stage ${stage}` : 'คำถัดไป';
     el('vrNextLearn').disabled = autoSpeak && (stage === 1 || stage === 4);
     el('vrReveal').disabled = autoSpeak && stage === 2;
@@ -264,16 +268,18 @@
 
   function settle(status, answer = '') {
     if (!['answer', 'recognition'].includes(phase)) return;
+    cancelAutoAdvance();
     phase = 'review';
     const card = current(); results.push({ stage, card, status, answer });
+    if (stage === 3) el('vrAnswer').setAttribute('data-result', status);
     revealContent(); el('vrAnswer').disabled = true; el('vrCheck').disabled = true;
     for (const id of ['vrReveal', 'vrSkip', 'vrKnown', 'vrUnknown']) show(id, false);
     el('vrMeter').value = index + 1;
     updateJourney();
     if (stage === 2) advanceCard(1500);
     if (stage === 3 || stage === 5) {
-      if (autoSpeak) readCurrent(() => advanceCard(3000));
-      else advanceCard(3000);
+      if (autoSpeak) readCurrent(() => advanceCard(2000));
+      else advanceCard(2000);
     }
   }
 
@@ -359,10 +365,18 @@
   el('vrAnswer').addEventListener('keydown', event => {
     if (event.key === 'Enter' && (event.isComposing || event.keyCode === 229)) event.preventDefault();
   });
-  el('vrSpeak').addEventListener('click', () => readCurrent());
+  el('vrSpeak').addEventListener('click', () => {
+    if ((stage === 3 || stage === 5) && phase === 'review') {
+      cancelAutoAdvance();
+      readCurrent(() => advanceCard(2000));
+    } else readCurrent();
+  });
   el('vrImage').addEventListener('error', () => { show('vrImage', false); show('vrImageError', true); });
   el('vrImage').addEventListener('load', () => { show('vrImage', true); show('vrImageError', false); });
-  el('vrFinish').addEventListener('click', finish);
+  el('vrFinish').addEventListener('click', () => {
+    if (speechBusy || advanceTimer !== null) return;
+    finish();
+  });
   el('vrAgain').addEventListener('click', prepare);
   window.VisualRecall = Object.freeze({ open, stopAudio });
 })();
