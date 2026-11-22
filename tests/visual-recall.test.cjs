@@ -435,6 +435,7 @@ test('all referenced UI IDs and precached files exist', () => {
   assert.match(html, /<div class="vr-answer-actions">\s*<button id="vrCheck"[^>]*>ตรวจคำตอบ<\/button>\s*<button id="vrAnswerReveal"[^>]*>ดูเลย<\/button>/);
   assert.match(css, /#visualRecall #vrForm \{ width:100%; min-width:0; \}/);
   assert.match(css, /#visualRecall #vrAnswer \{[^}]*max-width:100%;[^}]*box-sizing:border-box/);
+  assert.match(css, /#visualRecall #vrAnswer:focus \{ box-shadow:inset 0 0 0 1px var\(--primary-hover\); \}/);
   for (const [, id] of js.matchAll(/(?:el|show)\('(vr\w+)'/g)) assert.ok(html.includes(`id="${id}"`), id);
   const context = vm.createContext({ self: { addEventListener() {} } });
   context.importScripts = (...files) => { for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context); };
