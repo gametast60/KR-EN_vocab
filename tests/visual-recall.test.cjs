@@ -172,6 +172,14 @@ test('Visual Recall reshuffles the same card pool whenever a stage starts', () =
   assert.match(el('vrStage').textContent, /Stage 2/);
 });
 
+test('Visual Recall accepts a custom number of cards', () => {
+  const { el, fire } = setup();
+  el('vrLimit').value = '7';
+  fire('vrLimit', 'input');
+  fire('vrStart');
+  assert.equal(el('vrProgress').textContent, 'คำที่ 1 / 7');
+});
+
 test('image failure recovery and IME composition are handled', () => {
   const { el, fire } = setup(); fire('vrStart'); fire('vrImage', 'error');
   assert.equal(el('vrImageError').classList.contains('hidden'), false);
@@ -220,14 +228,13 @@ test('automatic speech teaches Stage 4 then protects Stage 5 answers', () => {
   assert.equal(audio.cancelled, cancelled + 1);
 });
 
-test('automatic speech can be disabled while manual replay remains usable; unsupported speech is nonfatal', () => {
+test('automatic speech remains enabled while manual replay and unsupported speech stay usable', () => {
   const { el, fire, window: w, audio, context } = setup();
   const expected = w.VisualEngine.getCards('english_a2', context.getTopikVocab('english_a2'), w.visualImageMap, w.sentenceExercises);
   el('vrLevel').value = 'english_a2'; fire('vrLevel', 'change'); fire('vrStart');
   assert.deepEqual(audio.calls.at(-1), { text: expected[0].displayWord, language: 'en-US' });
-  fire('vrAutoSpeak');
-  assert.equal(el('vrAutoSpeak')['aria-pressed'], 'false');
-  const count = audio.calls.length; fire('vrNext'); assert.equal(audio.calls.length, count);
+  const count = audio.calls.length; fire('vrNext');
+  assert.equal(audio.calls.at(-1).text, expected[1].displayWord);
   fire('vrSpeak'); assert.equal(audio.calls.at(-1).text, expected[1].displayWord);
   delete w.speechSynthesis; fire('vrSpeak');
   assert.match(el('vrAudioNotice').textContent, /ยังไม่รองรับ/);
@@ -247,13 +254,13 @@ test('English sentence learning uses the same form in Stage 5 and preserves guar
   assert.equal(el('vrInflectedWord').textContent, 'went');
   assert.deepEqual(audio.calls.slice(-3).map(row => row.text), ['go', 'went', 'I went home.']);
   assert.ok(audio.calls.slice(-3).every(row => row.language === 'en-US'));
-  fire('vrAutoSpeak'); const count = audio.calls.length;
   fire('vrNext'); fire('vrContinue');
   assert.match(el('vrStage').textContent, /Stage 5/);
   assert.equal(el('vrSentence').textContent, 'I _____ home.');
   assert.equal(el('vrBaseWord').textContent, '');
   el('vrAnswer').value = 'go'; fire('vrForm', 'submit');
   assert.match(el('vrFeedback').textContent, /ยังไม่ตรงกับรูปที่เรียน/);
+  const count = audio.calls.length;
   assert.equal(audio.calls.length, count);
   fire('vrSpeak'); assert.deepEqual(audio.calls.slice(-2).map(row => row.text), ['went', 'I went home.']);
   fire('vrNext'); fire('vrContinue');

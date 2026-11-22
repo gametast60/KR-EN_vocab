@@ -124,13 +124,7 @@
     </section>
 
     <section id="visualRecall" class="screen hidden" aria-label="เรียนศัพท์ด้วยภาพ">
-      <p class="vr-note">ภาพ → ความหมาย → คำศัพท์ → ประโยค · ฝึกแยกจาก SRS</p>
-      <button id="vrAutoSpeak" class="vr-audio-toggle" type="button" aria-pressed="true">🔊 อ่านอัตโนมัติ: เปิด</button>
       <p id="vrAudioNotice" class="vr-note" role="status"></p>
-      <ol class="vr-steps" aria-label="เส้นทางการเรียน">
-        <li id="vrStep1">1 · เรียนรู้</li><li id="vrStep2">2 · นึกความหมาย</li>
-        <li id="vrStep3">3 · พิมพ์คำ</li><li id="vrStep4">4 · เรียนประโยค</li><li id="vrStep5">5 · เติมประโยค</li>
-      </ol>
       <div id="vrOverall" class="hidden">
         <p id="vrOverallText" role="status"></p>
         <progress id="vrOverallMeter" max="1" value="0" aria-label="ความคืบหน้าทั้งรอบ"></progress>
@@ -143,14 +137,9 @@
           <option value="english_b1">English B1</option><option value="english_b2">English B2</option>
         </select>
         <label for="vrLimit">จำนวนคำต่อรอบ</label>
-        <select id="vrLimit"><option value="5">5 คำ</option><option value="10">10 คำ</option><option value="20">20 คำ</option></select>
+        <input id="vrLimit" type="number" min="1" max="20" value="20" inputmode="numeric">
         <p id="vrAvailable" role="status"></p>
-        <p>เรียนรู้ภาพและฟังเสียง → นึกความหมาย → พิมพ์คำศัพท์ → เรียนรู้รูปคำในประโยค → เติมคำตามประโยคที่เรียน</p>
         <button id="vrStart" type="button">เริ่มเรียน</button>
-        <details class="vr-extra"><summary>ฝึกเติมประโยคแยกเฉพาะ Stage 5</summary>
-          <p>ใช้เมื่อต้องการทบทวนประโยคอย่างเดียว โดยไม่เริ่มรอบเรียนด้วยภาพ</p>
-          <button type="button" onclick="SentencePractice.open()">เปิดแบบฝึกประโยค</button>
-        </details>
       </div>
       <div id="vrTransition" class="hidden" tabindex="-1">
         <h3 id="vrTransitionTitle"></h3><p id="vrTransitionResult"></p>
@@ -193,7 +182,6 @@
         <button id="vrRetry" type="button" class="hidden">ฝึกซ้ำคำที่ยังติดขัด</button>
         <button id="vrAgain" type="button">เลือกชุดเรียนใหม่</button>
       </div>
-      <button type="button" class="vr-secondary" onclick="showMainMenu()">กลับหน้าหลัก</button>
     </section>
 
     <!-- KOREAN LEVEL MENU -->

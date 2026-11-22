@@ -22,6 +22,11 @@
     }
     return shuffled;
   }
+  function getLimit(availableCount) {
+    const raw = Number(el('vrLimit').value);
+    if (!Number.isFinite(raw) || raw <= 0) return 0;
+    return Math.min(Math.floor(raw), availableCount);
+  }
   function stopAudio() { window.speechSynthesis?.cancel(); }
   function readCurrent() {
     if (!current() || !['learn', 'answer', 'recognition', 'review'].includes(phase) ||
@@ -45,16 +50,6 @@
     show('vrOverall', phase !== 'setup');
     el('vrOverallText').textContent = `ทำแล้ว ${results.length} / ${total} ข้อ · ${total ? Math.round(results.length / total * 100) : 0}% ของรอบ`;
     el('vrOverallMeter').max = total || 1; el('vrOverallMeter').value = results.length;
-    for (let s = 1; s <= 5; s++) {
-      const count = s >= 4 ? cards.filter(card => card.exercise.status === 'ready').length : cards.length;
-      const done = count > 0 && results.filter(row => row.stage === s).length === count;
-      const step = el(`vrStep${s}`);
-      const active = phase !== 'setup' && phase !== 'summary' && stage === s && !done;
-      step.classList.toggle('is-current', active);
-      step.classList.toggle('is-done', done);
-      step.classList.toggle('is-unavailable', phase !== 'setup' && s >= 4 && !count);
-      if (active) step.setAttribute('aria-current', 'step'); else step.removeAttribute('aria-current');
-    }
   }
 
   function stageResult(s) {
@@ -89,7 +84,8 @@
     available = shuffleArray(
       VisualEngine.getCards(level, getTopikVocab(level), window.visualImageMap, window.sentenceExercises)
     );
-    const limit = Math.min(Number(el('vrLimit').value), available.length);
+    el('vrLimit').max = String(available.length || 1);
+    const limit = getLimit(available.length);
     const ready = available.slice(0, limit).filter(card => card.exercise.status === 'ready').length;
     el('vrAvailable').textContent = available.length
       ? `มีภาพ ${available.length} คำ · รอบนี้ ${limit} คำ · Stage 4–5 พร้อม ${ready} คำ (ข้าม ${limit - ready} คำที่ยังไม่มีโจทย์พร้อมใช้)`
@@ -225,9 +221,12 @@
 
   el('vrLevel').addEventListener('change', prepare);
   el('vrLimit').addEventListener('change', prepare);
+  el('vrLimit').addEventListener('input', prepare);
   el('vrStart').addEventListener('click', () => {
     if (phase !== 'setup' || !available.length) return;
-    cards = available.slice(0, Number(el('vrLimit').value)); results = []; startStage(1);
+    const limit = getLimit(available.length);
+    if (!limit) return;
+    cards = available.slice(0, limit); results = []; startStage(1);
   });
   el('vrNext').addEventListener('click', () => {
     if (phase !== 'learn' && phase !== 'review') return;
@@ -266,12 +265,6 @@
     if (event.key === 'Enter' && (event.isComposing || event.keyCode === 229)) event.preventDefault();
   });
   el('vrSpeak').addEventListener('click', readCurrent);
-  el('vrAutoSpeak').addEventListener('click', () => {
-    autoSpeak = !autoSpeak;
-    el('vrAutoSpeak').setAttribute('aria-pressed', String(autoSpeak));
-    el('vrAutoSpeak').textContent = autoSpeak ? '🔊 อ่านอัตโนมัติ: เปิด' : '🔇 อ่านอัตโนมัติ: ปิด';
-    if (!autoSpeak) stopAudio();
-  });
   el('vrImage').addEventListener('error', () => { show('vrImage', false); show('vrImageError', true); });
   el('vrImage').addEventListener('load', () => { show('vrImage', true); show('vrImageError', false); });
   el('vrFinish').addEventListener('click', finish);
