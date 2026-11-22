@@ -11,8 +11,17 @@
     'เติมรูปคำตามประโยคที่เรียนใน Stage 4'];
   let available = [], cards = [], queue = [], results = [], stage = 0, index = 0, phase = 'setup';
   let retryCards = [], nextStage = 0;
+  let previousStageFirstId = null;
   const current = () => queue[index];
   let autoSpeak = true;
+  function shuffleArray(array) {
+    const shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
   function stopAudio() { window.speechSynthesis?.cancel(); }
   function readCurrent() {
     if (!current() || !['learn', 'answer', 'recognition', 'review'].includes(phase) ||
@@ -75,8 +84,11 @@
     stopAudio();
     phase = 'setup'; stage = 0;
     results = []; cards = []; retryCards = [];
+    previousStageFirstId = null;
     const level = el('vrLevel').value;
-    available = VisualEngine.getCards(level, getTopikVocab(level), window.visualImageMap, window.sentenceExercises);
+    available = shuffleArray(
+      VisualEngine.getCards(level, getTopikVocab(level), window.visualImageMap, window.sentenceExercises)
+    );
     const limit = Math.min(Number(el('vrLimit').value), available.length);
     const ready = available.slice(0, limit).filter(card => card.exercise.status === 'ready').length;
     el('vrAvailable').textContent = available.length
@@ -94,7 +106,16 @@
 
   function startStage(next) {
     stage = next; index = 0;
-    queue = stage >= 4 ? cards.filter(card => card.exercise.status === 'ready') : cards;
+    const stageCards = stage >= 4
+      ? cards.filter(card => card.exercise.status === 'ready')
+      : cards.slice();
+    queue = shuffleArray(stageCards);
+    if (queue.length > 1 && previousStageFirstId !== null &&
+        queue[0].imageId === previousStageFirstId) {
+      const alternateIndex = 1 + Math.floor(Math.random() * (queue.length - 1));
+      [queue[0], queue[alternateIndex]] = [queue[alternateIndex], queue[0]];
+    }
+    previousStageFirstId = queue.length ? queue[0].imageId : null;
     if (stage > 5 || !queue.length) return finish();
     render();
   }
@@ -220,7 +241,9 @@
   el('vrTransitionFinish').addEventListener('click', finish);
   el('vrRetry').addEventListener('click', () => {
     if (phase !== 'summary' || !retryCards.length) return;
-    cards = retryCards.slice(); results = []; retryCards = []; startStage(1);
+    cards = shuffleArray(retryCards.slice()); results = []; retryCards = [];
+    previousStageFirstId = null;
+    startStage(1);
   });
   el('vrReveal').addEventListener('click', () => {
     if (phase !== 'answer') return;
