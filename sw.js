@@ -5,7 +5,7 @@ importScripts('flashcard1.js', 'flashcard2.js', 'flashcard_en_a1.js', 'flashcard
 // Give each vocabulary revision its own cache, so a failed install cannot mix versions.
 const vocabularyRevision = JSON.stringify(Object.values(self.VocabularyCatalog.levels).map(key => self[key]))
   .split('').reduce((hash, char) => Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0, 2166136261).toString(16);
-const CACHE = "vocab-v5.4.20-" + vocabularyRevision;
+const CACHE = "vocab-v5.4.21-" + vocabularyRevision;
 const FILES = [
   "index.html","style.css","refresh-loading.css",
   "app.js","game.js","navigation.js",

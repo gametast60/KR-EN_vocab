@@ -250,7 +250,7 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   assert.equal(el('vrFinish').classList.contains('hidden'), true);
   audio.utterances.shift().onend();
   assert.equal(el('vrFinish').classList.contains('hidden'), true);
-  assert.deepEqual(runTimers(), [2000]);
+  assert.deepEqual(runTimers(), [1500]);
 
   fire('vrContinue');
   assert.match(el('vrStage').textContent, /Stage 4/);
@@ -267,6 +267,7 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   const exercise = stage5Card.exercise;
   el('vrAnswer').value = exercise.targetAnswer;
   fire('vrForm', 'submit');
+  assert.equal(el('vrAnswer').getAttribute('data-result'), 'correct');
   assert.deepEqual(audio.utterances.map(utterance => utterance.text), [exercise.targetAnswer]);
   const targetUtterance = audio.utterances.shift();
   assert.equal(targetUtterance.text, exercise.targetAnswer);
@@ -275,14 +276,14 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   assert.equal(el('vrFinish').classList.contains('hidden'), true);
   assert.deepEqual(audio.utterances.map(utterance => utterance.text), [exercise.sentence]);
   audio.utterances.shift().onend();
-  assert.deepEqual(runTimers(), [2000]);
+  assert.deepEqual(runTimers(), [1500]);
 
   const css = fs.readFileSync(path.join(root, 'visual/visual-recall.css'), 'utf8');
   assert.match(css, /#vrAnswer\[data-result="correct"\].*var\(--success-light\)/);
   assert.match(css, /#vrAnswer\[data-result="incorrect"\].*var\(--danger-light\)/);
 });
 
-test('Stage 2 advances after 1.5 seconds and Stage 3/5 wait 2 seconds after speech', () => {
+test('Stage 2 advances after 1.5 seconds and Stage 3/5 wait 1.5 seconds after speech', () => {
   const { el, fire, runTimers } = setup();
   el('vrLimit').value = '3';
   fire('vrLimit', 'input');
@@ -302,7 +303,7 @@ test('Stage 2 advances after 1.5 seconds and Stage 3/5 wait 2 seconds after spee
   fire('vrContinue');
   el('vrAnswer').value = el('vrMeaning').textContent;
   fire('vrForm', 'submit');
-  assert.deepEqual(runTimers(), [2000]);
+  assert.deepEqual(runTimers(), [1500]);
 
   const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
   assert.match(js, /if \(stage === 2\) advanceCard\(1500\)/);
@@ -387,6 +388,7 @@ test('English sentence learning uses the same form in Stage 5 and preserves guar
   assert.equal(el('vrSentence').textContent, 'I _____ home.');
   assert.equal(el('vrBaseWord').textContent, '');
   el('vrAnswer').value = 'go'; fire('vrForm', 'submit');
+  assert.equal(el('vrAnswer').getAttribute('data-result'), 'incorrect');
   const count = audio.calls.length;
   assert.equal(audio.calls.length, count);
   fire('vrSpeak'); assert.deepEqual(audio.calls.slice(-2).map(row => row.text), ['went', 'I went home.']);

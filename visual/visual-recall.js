@@ -271,15 +271,15 @@
     cancelAutoAdvance();
     phase = 'review';
     const card = current(); results.push({ stage, card, status, answer });
-    if (stage === 3) el('vrAnswer').setAttribute('data-result', status);
+    if (stage === 3 || stage === 5) el('vrAnswer').setAttribute('data-result', status);
     revealContent(); el('vrAnswer').disabled = true; el('vrCheck').disabled = true;
     for (const id of ['vrReveal', 'vrSkip', 'vrKnown', 'vrUnknown']) show(id, false);
     el('vrMeter').value = index + 1;
     updateJourney();
     if (stage === 2) advanceCard(1500);
     if (stage === 3 || stage === 5) {
-      if (autoSpeak) readCurrent(() => advanceCard(2000));
-      else advanceCard(2000);
+      if (autoSpeak) readCurrent(() => advanceCard(1500));
+      else advanceCard(1500);
     }
   }
 
@@ -368,7 +368,7 @@
   el('vrSpeak').addEventListener('click', () => {
     if ((stage === 3 || stage === 5) && phase === 'review') {
       cancelAutoAdvance();
-      readCurrent(() => advanceCard(2000));
+      readCurrent(() => advanceCard(1500));
     } else readCurrent();
   });
   el('vrImage').addEventListener('error', () => { show('vrImage', false); show('vrImageError', true); });
