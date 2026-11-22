@@ -107,7 +107,7 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   assert.ok(el('vrSpeak').classList.contains('hidden'));
   assert.equal(el('app').scrollTop, 0);
   assert.equal(el('vrAnswer').focusOptions.preventScroll, true);
-  assert.equal(el('vrAnswerReveal').textContent, 'ดูเลย');
+  assert.equal(el('vrAnswerReveal').textContent, 'ดูเฉลย');
   fire('vrForm', 'submit');
   for (let i = 0; i < 20; i++) {
     const stage3Card = w.VisualEngine.getCards('topik1', w.flashVocabData1, w.visualImageMap, w.sentenceExercises)

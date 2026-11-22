@@ -247,7 +247,7 @@
     if (stage === 4) el('vrSpeak').textContent = '🔊 ฟังคำฐาน รูปคำ และประโยค';
     show('vrReveal', phase === 'answer' && stage === 2);
     show('vrAnswerReveal', phase === 'answer' && (stage === 3 || stage === 5));
-    el('vrAnswerReveal').textContent = stage === 5 ? 'ดูเฉลย' : 'ดูเลย';
+    el('vrAnswerReveal').textContent = 'ดูเฉลย';
     show('vrKnown', false); show('vrUnknown', false);
     show('vrNextLearn', phase === 'learn');
     show('vrFinish', true);
