@@ -13,6 +13,8 @@
   let retryCards = [], nextStage = 0;
   let previousStageFirstId = null;
   let advanceTimer = null;
+  let speechBusy = false;
+  let speechGeneration = 0;
   const current = () => queue[index];
   let autoSpeak = true;
   function setAppTitleHidden(hidden) {
@@ -47,22 +49,86 @@
     return Math.min(Math.floor(raw), availableCount);
   }
   function stopAudio() {
+    speechGeneration++;
     window.speechSynthesis?.cancel();
   }
-  function readCurrent() {
+  function setSpeechBusy(busy) {
+    speechBusy = busy;
+    if (stage === 1 || stage === 4) el('vrNextLearn').disabled = busy;
+    if (stage === 2) el('vrReveal').disabled = busy;
+  }
+  function playSpeechSequence(texts, language, onComplete) {
+    const callback = typeof onComplete === 'function' ? onComplete : () => {};
+    if (!window.speechSynthesis ||
+        typeof window.SpeechSynthesisUtterance !== 'function') {
+      const cleanTexts = texts.filter(text => typeof text === 'string' && text.trim());
+      if (typeof speakSequence === 'function' && cleanTexts.length > 1) {
+        speakSequence(cleanTexts, language);
+      } else {
+        cleanTexts.forEach(text => {
+          if (typeof speak === 'function') speak(text, language);
+        });
+      }
+      callback();
+      return;
+    }
+    const generation = ++speechGeneration;
+    window.speechSynthesis.cancel();
+    const cleanTexts = texts.filter(text => typeof text === 'string' && text.trim());
+    if (!cleanTexts.length) {
+      callback();
+      return;
+    }
+    let position = 0;
+    const speakNext = () => {
+      if (generation !== speechGeneration) return;
+      if (position >= cleanTexts.length) {
+        callback();
+        return;
+      }
+      const utterance = new window.SpeechSynthesisUtterance(cleanTexts[position++]);
+      utterance.lang = language;
+      utterance.rate = 0.9;
+      utterance.onend = speakNext;
+      utterance.onerror = speakNext;
+      window.speechSynthesis.speak(utterance);
+    };
+    speakNext();
+  }
+  function readCurrent(onComplete) {
     if (!current() || !['learn', 'answer', 'recognition', 'review'].includes(phase) ||
         (stage >= 3 && phase === 'answer')) return;
     if (!window.speechSynthesis || typeof speak !== 'function') {
-      el('vrAudioNotice').textContent = 'เบราว์เซอร์นี้ยังไม่รองรับการอ่านเสียง'; return;
+      el('vrAudioNotice').textContent = 'เบราว์เซอร์นี้ยังไม่รองรับการอ่านเสียง';
+      setSpeechBusy(false);
+      if (typeof onComplete === 'function') onComplete();
+      return;
     }
     try {
       const language = current().language === 'en' ? 'en-US' : 'ko-KR';
+      setSpeechBusy(true);
       if (stage === 4) {
-        speakSequence([current().displayWord, current().exercise.targetAnswer, current().exercise.sentence], language);
+        playSpeechSequence([current().displayWord, current().exercise.targetAnswer, current().exercise.sentence], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
       } else if (stage === 5) {
-        speakSequence([current().exercise.targetAnswer, current().exercise.sentence], language);
-      } else speak(current().displayWord, language);
-    } catch (_) { el('vrAudioNotice').textContent = 'ยังเล่นเสียงไม่ได้ ลองกดฟังอีกครั้ง'; }
+        playSpeechSequence([current().exercise.targetAnswer, current().exercise.sentence], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
+      } else if (stage === 3) {
+        playSpeechSequence([current().displayWord, current().meaning], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
+      } else {
+        playSpeechSequence([current().displayWord], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
+      }
+    } catch (_) {
+      el('vrAudioNotice').textContent = 'ยังเล่นเสียงไม่ได้ ลองกดฟังอีกครั้ง';
+      setSpeechBusy(false);
+      if (typeof onComplete === 'function') onComplete();
+    }
   }
 
   const totalTasks = () => cards.length * 3 + 2 * cards.filter(card => card.exercise.status === 'ready').length;
@@ -172,8 +238,7 @@
     show('vrForm', stage === 3 || stage === 5);
     el('vrAnswerLabel').textContent = stage === 5 ? 'เติมรูปคำตามประโยคที่เรียน' : 'พิมพ์คำศัพท์จากภาพและความหมาย';
     el('vrAnswer').value = ''; el('vrAnswer').disabled = false; el('vrAnswer').lang = card.language;
-    el('vrCheck').disabled = false; el('vrFeedback').textContent = '';
-    el('vrFeedback').removeAttribute('data-result');
+    el('vrCheck').disabled = false;
     el('vrAudioNotice').textContent = '';
     el('vrSpeak').textContent = stage === 5 ? '🔊 ฟังคำตอบและประโยคอีกครั้ง' : '🔊 ฟังอีกครั้ง';
     if (stage === 4) el('vrSpeak').textContent = '🔊 ฟังคำฐาน รูปคำ และประโยค';
@@ -181,6 +246,8 @@
     show('vrKnown', false); show('vrUnknown', false);
     show('vrNextLearn', phase === 'learn');
     el('vrNextLearn').textContent = index + 1 === queue.length ? `สรุป Stage ${stage}` : 'คำถัดไป';
+    el('vrNextLearn').disabled = autoSpeak && (stage === 1 || stage === 4);
+    el('vrReveal').disabled = autoSpeak && stage === 2;
     updateJourney();
     if (stage === 3 || stage === 5) el('vrAnswer').focus(); else el(phase === 'learn' ? 'vrNextLearn' : 'vrReveal').focus();
     if (autoSpeak && (stage <= 2 || stage === 4)) readCurrent();
@@ -199,18 +266,15 @@
     if (!['answer', 'recognition'].includes(phase)) return;
     phase = 'review';
     const card = current(); results.push({ stage, card, status, answer });
-    const labels = { correct: 'ถูกต้อง', incorrect: 'ยังไม่ถูก', known: 'นึกออก', unknown: 'ยังนึกไม่ออก', revealed: 'เปิดเฉลย', skipped: 'ข้ามแล้ว' };
-    if (stage === 5) labels.incorrect = 'ยังไม่ตรงกับรูปที่เรียน';
-    const target = stage === 5 ? card.exercise.targetAnswer : stage === 2 ? card.meaning : card.displayWord;
-    el('vrFeedback').textContent = `${labels[status]} · ${target}`;
-    el('vrFeedback').setAttribute('data-result', status);
     revealContent(); el('vrAnswer').disabled = true; el('vrCheck').disabled = true;
     for (const id of ['vrReveal', 'vrSkip', 'vrKnown', 'vrUnknown']) show(id, false);
     el('vrMeter').value = index + 1;
     updateJourney();
-    if (autoSpeak && stage >= 3) readCurrent();
     if (stage === 2) advanceCard(1500);
-    if (stage === 3 || stage === 5) advanceCard(3000);
+    if (stage === 3 || stage === 5) {
+      if (autoSpeak) readCurrent(() => advanceCard(3000));
+      else advanceCard(3000);
+    }
   }
 
   function finish() {
@@ -258,6 +322,7 @@
     cards = available.slice(0, limit); results = []; startStage(1);
   });
   el('vrNextLearn').addEventListener('click', () => {
+    if (el('vrNextLearn').disabled) return;
     if (phase !== 'learn' && phase !== 'review') return;
     if (phase === 'learn') results.push({ stage, card: current(), status: 'learned' });
     index++;
@@ -274,6 +339,7 @@
     startStage(1);
   });
   el('vrReveal').addEventListener('click', () => {
+    if (el('vrReveal').disabled) return;
     if (phase !== 'answer') return;
     if (stage === 2) {
       phase = 'recognition'; revealContent(); show('vrReveal', false);
@@ -287,13 +353,13 @@
     event.preventDefault(); if (phase !== 'answer' || stage < 3) return;
     const answer = el('vrAnswer').value;
     const result = stage === 5 ? SentenceEngine.checkAnswer(current().exercise, answer) : VisualEngine.checkWord(current(), answer);
-    if (result.status === 'empty') { el('vrFeedback').textContent = 'พิมพ์คำตอบก่อน หรือเลือกข้าม'; return; }
+    if (result.status === 'empty') return;
     settle(result.status, answer);
   });
   el('vrAnswer').addEventListener('keydown', event => {
     if (event.key === 'Enter' && (event.isComposing || event.keyCode === 229)) event.preventDefault();
   });
-  el('vrSpeak').addEventListener('click', readCurrent);
+  el('vrSpeak').addEventListener('click', () => readCurrent());
   el('vrImage').addEventListener('error', () => { show('vrImage', false); show('vrImageError', true); });
   el('vrImage').addEventListener('load', () => { show('vrImage', true); show('vrImageError', false); });
   el('vrFinish').addEventListener('click', finish);

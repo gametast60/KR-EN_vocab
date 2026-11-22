@@ -98,7 +98,7 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   assert.match(el('vrStage').textContent, /Stage 3/);
   assert.equal(el('vrWord').textContent, '');
   assert.ok(el('vrSpeak').classList.contains('hidden'));
-  fire('vrForm', 'submit'); assert.match(el('vrFeedback').textContent, /พิมพ์คำตอบก่อน/);
+  fire('vrForm', 'submit');
   for (let i = 0; i < 20; i++) {
     const vocab = w.flashVocabData1.find(row => row.meaning === el('vrMeaning').textContent);
     el('vrAnswer').value = vocab.word;
@@ -199,6 +199,16 @@ test('Visual Recall accepts a custom number of cards', () => {
   assert.equal(el('vrProgress').textContent, 'คำที่ 1 / 7');
 });
 
+test('Visual Recall disables stage controls during speech and removes feedback text', () => {
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
+  assert.doesNotMatch(html, /id="vrFeedback"/);
+  assert.match(js, /if \(stage === 1 \|\| stage === 4\) el\('vrNextLearn'\)\.disabled = busy/);
+  assert.match(js, /if \(stage === 2\) el\('vrReveal'\)\.disabled = busy/);
+  assert.match(js, /utterance\.onend = speakNext/);
+  assert.match(js, /playSpeechSequence\(\[current\(\)\.exercise\.targetAnswer, current\(\)\.exercise\.sentence\]/);
+});
+
 test('Stage 2 advances after 1.5 seconds and Stage 3/5 advance after 3 seconds', () => {
   const { el, fire, runTimers } = setup();
   el('vrLimit').value = '3';
@@ -223,7 +233,6 @@ test('Stage 2 advances after 1.5 seconds and Stage 3/5 advance after 3 seconds',
 
   const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
   assert.match(js, /if \(stage === 2\) advanceCard\(1500\)/);
-  assert.match(js, /if \(stage === 3 \|\| stage === 5\) advanceCard\(3000\)/);
 });
 
 test('image failure recovery and IME composition are handled', () => {
@@ -251,7 +260,7 @@ test('automatic speech teaches Stage 4 then protects Stage 5 answers', () => {
   for (let i = 0; i < 5; i++) {
     const vocab = w.flashVocabData1.find(row => row.meaning === el('vrMeaning').textContent);
     el('vrAnswer').value = vocab.word; fire('vrForm', 'submit');
-    assert.equal(audio.calls.at(-1).text, vocab.word);
+    assert.equal(audio.calls.at(-1).text, vocab.meaning);
     fire('vrNext');
   }
   fire('vrContinue');
@@ -305,7 +314,6 @@ test('English sentence learning uses the same form in Stage 5 and preserves guar
   assert.equal(el('vrSentence').textContent, 'I _____ home.');
   assert.equal(el('vrBaseWord').textContent, '');
   el('vrAnswer').value = 'go'; fire('vrForm', 'submit');
-  assert.match(el('vrFeedback').textContent, /ยังไม่ตรงกับรูปที่เรียน/);
   const count = audio.calls.length;
   assert.equal(audio.calls.length, count);
   fire('vrSpeak'); assert.deepEqual(audio.calls.slice(-2).map(row => row.text), ['went', 'I went home.']);
