@@ -70,7 +70,6 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   fire('vrStart');
   for (let i = 0; i < 20; i++) fire('vrNext');
   assert.equal(el('vrTransition').classList.contains('hidden'), false);
-  assert.equal(el('vrOverallMeter').value, 20);
   fire('vrContinue');
   assert.match(el('vrStage').textContent, /Stage 2/);
   assert.equal(el('vrMeaning').textContent, '');
@@ -110,10 +109,10 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   }
   fire('vrContinue');
   assert.equal(el('vrSummary').classList.contains('hidden'), false);
+  assert.equal(el('appTitle').classList.contains('hidden'), true);
   assert.match(el('vrScores').children[2].textContent, /ถูก 20 · ผิด 0/);
   assert.match(el('vrScores').children[3].textContent, /เรียนแล้ว 20\/20 ประโยค/);
   assert.match(el('vrScores').children[4].textContent, /ถูก 20 · ผิด 0/);
-  assert.equal(el('vrOverallMeter').value, 100);
   assert.equal(el('vrSummaryTitle').textContent, 'เรียนครบทั้งรอบแล้ว');
   assert.ok(el('vrRetry').classList.contains('hidden'));
 });
@@ -163,6 +162,7 @@ test('Visual Recall reshuffles the same card pool whenever a stage starts', () =
   fire('vrLimit', 'change');
   fire('vrStart');
   const stage1Word = el('vrWord').textContent;
+  assert.equal(el('appTitle').classList.contains('hidden'), true);
 
   for (let i = 0; i < 5; i++) fire('vrNext');
   fire('vrContinue');
@@ -265,7 +265,6 @@ test('English sentence learning uses the same form in Stage 5 and preserves guar
   fire('vrSpeak'); assert.deepEqual(audio.calls.slice(-2).map(row => row.text), ['went', 'I went home.']);
   fire('vrNext'); fire('vrContinue');
   assert.equal(el('vrScores').children.length, 5);
-  assert.equal(el('vrOverallMeter').value, 5);
   assert.match(el('vrScores').children[3].textContent, /เรียนแล้ว 1\/1 ประโยค/);
   assert.match(el('vrScores').children[4].textContent, /ผิด 1/);
 });
@@ -274,9 +273,7 @@ test('transition waits for continuation and retry deduplicates words across stag
   const { el, fire, window: w } = setup();
   el('vrLimit').value = '5'; fire('vrLimit', 'change'); fire('vrStart');
   for (let i = 0; i < 5; i++) fire('vrNext');
-  assert.equal(el('vrOverallMeter').value, 5);
   fire('vrNext'); // Hidden old next action cannot bypass the transition.
-  assert.equal(el('vrOverallMeter').value, 5);
   fire('vrContinue'); fire('vrContinue');
   assert.match(el('vrProgress').textContent, /คำที่ 1 \/ 5/);
   for (let i = 0; i < 5; i++) {
@@ -293,10 +290,7 @@ test('transition waits for continuation and retry deduplicates words across stag
   fire('vrRetry');
   assert.match(el('vrStage').textContent, /Stage 1/);
   assert.equal(el('vrProgress').textContent, 'คำที่ 1 / 2');
-  assert.equal(el('vrOverallMeter').value, 0);
-  assert.equal(el('vrOverallMeter').max, 10);
   fire('vrFinish'); fire('vrAgain');
-  assert.ok(el('vrOverall').classList.contains('hidden'));
   assert.ok(el('vrTransition').classList.contains('hidden'));
 });
 

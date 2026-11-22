@@ -14,6 +14,9 @@
   let previousStageFirstId = null;
   const current = () => queue[index];
   let autoSpeak = true;
+  function setAppTitleHidden(hidden) {
+    el('appTitle').classList.toggle('hidden', hidden);
+  }
   function shuffleArray(array) {
     const shuffled = array.slice();
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -46,10 +49,6 @@
 
   const totalTasks = () => cards.length * 3 + 2 * cards.filter(card => card.exercise.status === 'ready').length;
   function updateJourney() {
-    const total = totalTasks();
-    show('vrOverall', phase !== 'setup');
-    el('vrOverallText').textContent = `ทำแล้ว ${results.length} / ${total} ข้อ · ${total ? Math.round(results.length / total * 100) : 0}% ของรอบ`;
-    el('vrOverallMeter').max = total || 1; el('vrOverallMeter').value = results.length;
   }
 
   function stageResult(s) {
@@ -63,6 +62,7 @@
 
   function stageComplete() {
     stopAudio();
+    setAppTitleHidden(true);
     phase = 'transition'; nextStage = stage + 1;
     const noSentences = nextStage === 4 && !cards.some(card => card.exercise.status === 'ready');
     show('vrPlay', false); show('vrTransition', true);
@@ -77,6 +77,7 @@
 
   function prepare() {
     stopAudio();
+    setAppTitleHidden(false);
     phase = 'setup'; stage = 0;
     results = []; cards = []; retryCards = [];
     previousStageFirstId = null;
@@ -97,10 +98,13 @@
 
   function open() {
     results = []; cards = [];
-    goTo('visualRecall'); el('appTitle').textContent = 'Visual Recall · เรียนศัพท์ด้วยภาพ'; prepare();
+    goTo('visualRecall'); el('appTitle').textContent = 'Visual Recall · เรียนศัพท์ด้วยภาพ';
+    setAppTitleHidden(false);
+    prepare();
   }
 
   function startStage(next) {
+    setAppTitleHidden(true);
     stage = next; index = 0;
     const stageCards = stage >= 4
       ? cards.filter(card => card.exercise.status === 'ready')
@@ -122,7 +126,6 @@
     show('vrSetup', false); show('vrSummary', false); show('vrPlay', true);
     show('vrTransition', false);
     el('vrStage').textContent = titles[stage];
-    el('vrStageHint').textContent = hints[stage];
     el('vrProgress').textContent = `คำที่ ${index + 1} / ${queue.length}`;
     el('vrMeter').max = queue.length; el('vrMeter').value = index;
     el('vrWord').textContent = stage < 3 ? card.displayWord : '';
@@ -188,6 +191,7 @@
 
   function finish() {
     stopAudio();
+    setAppTitleHidden(true);
     phase = 'summary';
     show('vrTransition', false); updateJourney();
     show('vrSetup', false); show('vrPlay', false); show('vrSummary', true);
