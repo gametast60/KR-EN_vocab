@@ -245,7 +245,8 @@
     el('vrAudioNotice').textContent = '';
     el('vrSpeak').textContent = stage === 5 ? '🔊 ฟังคำตอบและประโยคอีกครั้ง' : '🔊 ฟังอีกครั้ง';
     if (stage === 4) el('vrSpeak').textContent = '🔊 ฟังคำฐาน รูปคำ และประโยค';
-    show('vrReveal', phase === 'answer'); show('vrSkip', phase === 'answer');
+    show('vrReveal', phase === 'answer' && stage === 2);
+    show('vrAnswerReveal', phase === 'answer' && (stage === 3 || stage === 5));
     show('vrKnown', false); show('vrUnknown', false);
     show('vrNextLearn', phase === 'learn');
     show('vrFinish', true);
@@ -273,7 +274,7 @@
     const card = current(); results.push({ stage, card, status, answer });
     if (stage === 3 || stage === 5) el('vrAnswer').setAttribute('data-result', status);
     revealContent(); el('vrAnswer').disabled = true; el('vrCheck').disabled = true;
-    for (const id of ['vrReveal', 'vrSkip', 'vrKnown', 'vrUnknown']) show(id, false);
+    for (const id of ['vrReveal', 'vrAnswerReveal', 'vrKnown', 'vrUnknown']) show(id, false);
     el('vrMeter').value = index + 1;
     updateJourney();
     if (stage === 2) advanceCard(1500);
@@ -347,14 +348,14 @@
   el('vrReveal').addEventListener('click', () => {
     if (el('vrReveal').disabled) return;
     if (phase !== 'answer') return;
-    if (stage === 2) {
-      phase = 'recognition'; revealContent(); show('vrReveal', false);
-      show('vrKnown', true); show('vrUnknown', true); el('vrKnown').focus();
-    } else settle('revealed');
+    phase = 'recognition'; revealContent(); show('vrReveal', false);
+    show('vrKnown', true); show('vrUnknown', true); el('vrKnown').focus();
+  });
+  el('vrAnswerReveal').addEventListener('click', () => {
+    if (phase === 'answer' && (stage === 3 || stage === 5)) settle('revealed');
   });
   el('vrKnown').addEventListener('click', () => { if (phase === 'recognition') settle('known'); });
   el('vrUnknown').addEventListener('click', () => { if (phase === 'recognition') settle('unknown'); });
-  el('vrSkip').addEventListener('click', () => settle('skipped'));
   el('vrForm').addEventListener('submit', event => {
     event.preventDefault(); if (phase !== 'answer' || stage < 3) return;
     const answer = el('vrAnswer').value;

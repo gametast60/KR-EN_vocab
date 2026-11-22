@@ -144,7 +144,7 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   assert.ok(el('vrRetry').classList.contains('hidden'));
 });
 
-test('English completes without sentence stage; skip/reveal/wrong and early finish remain separate', () => {
+test('English completes without sentence stage; reveal/wrong and early finish remain separate', () => {
   const { el, fire, window: w } = setup();
   // Explicit no-sentence fixture keeps this behavior covered as production grows.
   w.flashVocabDataEnA2 = w.flashVocabDataEnA2.filter(row => ['furniture', 'light (not heavy)', 'middle'].includes(row.word)).map(row => ({ word: row.word, meaning: row.meaning, imageId: row.imageId, displayWord: row.displayWord }));
@@ -152,15 +152,16 @@ test('English completes without sentence stage; skip/reveal/wrong and early fini
   el('vrLevel').value = 'english_a2'; fire('vrLevel', 'change'); fire('vrStart');
   for (let i = 0; i < 3; i++) fire('vrNext');
   fire('vrContinue');
-  for (let i = 0; i < 3; i++) { fire('vrSkip'); fire('vrNext'); }
+  for (let i = 0; i < 3; i++) { fire('vrReveal'); fire('vrKnown'); fire('vrNext'); }
   fire('vrContinue');
   el('vrAnswer').value = 'wrong'; fire('vrForm', 'submit'); fire('vrNext');
-  fire('vrReveal'); fire('vrNext'); fire('vrSkip'); fire('vrNext');
+  fire('vrAnswerReveal'); fire('vrNext');
+  el('vrAnswer').value = 'wrong'; fire('vrForm', 'submit'); fire('vrNext');
   assert.match(el('vrTransitionHint').textContent, /ข้าม Stage 4/);
   fire('vrContinue');
   assert.equal(el('vrSummary').classList.contains('hidden'), false);
   assert.match(el('vrCoverage').textContent, /Stage 4–5 พร้อม 0/);
-  assert.match(el('vrScores').children[2].textContent, /ถูก 0 · ผิด 1 · เฉลย 1 · ข้าม 1/);
+  assert.match(el('vrScores').children[2].textContent, /ถูก 0 · ผิด 2 · เฉลย 1 · ข้าม 0/);
   fire('vrAgain'); el('vrLevel').value = 'topik2'; fire('vrLevel', 'change');
   assert.equal(el('vrStart').disabled, true);
   fire('vrStart'); assert.ok(el('vrPlay').classList.contains('hidden'));
@@ -345,11 +346,11 @@ test('automatic speech teaches Stage 4 then protects Stage 5 answers', () => {
   for (let i = 0; i < 5; i++) fire('vrNext');
   const beforeSentence = audio.calls.length;
   fire('vrContinue'); fire('vrSpeak'); assert.equal(audio.calls.length, beforeSentence);
-  for (let i = 0; i < 4; i++) { fire('vrReveal'); fire('vrNext'); }
+  for (let i = 0; i < 4; i++) { fire('vrAnswerReveal'); fire('vrNext'); }
   const finalVocab = w.flashVocabData1.find(row => row.translate === el('vrMeaning').textContent);
   const finalRecord = w.sentenceExercises.find(row =>
     row.levelId === 'topik1' && row.word === finalVocab.word);
-  fire('vrReveal');
+  fire('vrAnswerReveal');
   assert.equal(audio.calls.at(-2).text, finalRecord.targetAnswer);
   assert.equal(audio.calls.at(-1).text, finalRecord.sourceSentence);
   assert.equal(audio.calls.at(-1).language, 'ko-KR');
@@ -426,6 +427,11 @@ test('transition waits for continuation and retry deduplicates words across stag
 test('all referenced UI IDs and precached files exist', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
+  assert.doesNotMatch(html, /id="vrSkip"/);
+  assert.match(html, /id="vrKnown"[^>]*>จำได้</);
+  assert.match(html, /id="vrUnknown"[^>]*>จำไม่ได้</);
+  assert.match(html, /<div class="vr-stage-toolbar">\s*<p id="vrProgress"><\/p>\s*<button id="vrFinish"/);
+  assert.match(html, /<div class="vr-answer-actions">\s*<button id="vrCheck"[^>]*>ตรวจคำตอบ<\/button>\s*<button id="vrAnswerReveal"[^>]*>ดูเลย<\/button>/);
   for (const [, id] of js.matchAll(/(?:el|show)\('(vr\w+)'/g)) assert.ok(html.includes(`id="${id}"`), id);
   const context = vm.createContext({ self: { addEventListener() {} } });
   context.importScripts = (...files) => { for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context); };

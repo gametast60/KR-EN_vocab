@@ -145,7 +145,10 @@
       </div>
       <div id="vrPlay" class="hidden">
         <h3 id="vrStage"></h3>
-        <p id="vrProgress"></p>
+        <div class="vr-stage-toolbar">
+          <p id="vrProgress"></p>
+          <button id="vrFinish" type="button" class="vr-secondary">จบรอบและดูผล</button>
+        </div>
         <progress id="vrMeter" value="0" max="1" aria-label="ความคืบหน้าด่านนี้"></progress>
         <div class="vr-study-card">
         <div id="vrImageWrap"><img id="vrImage" alt="ภาพประกอบคำศัพท์" width="256" height="256"><p id="vrImageError" class="hidden" role="status">โหลดภาพไม่ได้ ใช้ความหมายประกอบการฝึกได้</p></div>
@@ -158,16 +161,17 @@
         <form id="vrForm" class="hidden">
           <label id="vrAnswerLabel" for="vrAnswer">พิมพ์คำศัพท์</label>
           <input id="vrAnswer" autocomplete="off" autocapitalize="none" spellcheck="false">
-          <button id="vrCheck" type="submit">ตรวจคำตอบ</button>
+          <div class="vr-answer-actions">
+            <button id="vrCheck" type="submit">ตรวจคำตอบ</button>
+            <button id="vrAnswerReveal" type="button" class="vr-secondary hidden">ดูเลย</button>
+          </div>
         </form>
         <div class="vr-actions">
           <button id="vrReveal" type="button">เปิดเฉลย</button>
-          <button id="vrKnown" type="button" class="hidden">นึกออก</button>
-          <button id="vrUnknown" type="button" class="hidden">ยังนึกไม่ออก</button>
-          <button id="vrSkip" type="button">ข้าม</button>
+          <button id="vrKnown" type="button" class="hidden">จำได้</button>
+          <button id="vrUnknown" type="button" class="hidden">จำไม่ได้</button>
           <button id="vrNextLearn" type="button" class="hidden">คำถัดไป</button>
         </div>
-        <button id="vrFinish" type="button" class="vr-secondary">จบรอบและดูผล</button>
       </div>
       <div id="vrSummary" class="hidden" tabindex="-1">
         <h3 id="vrSummaryTitle">ผลการเรียนรอบนี้</h3><p id="vrCoverage"></p><ul id="vrScores"></ul>

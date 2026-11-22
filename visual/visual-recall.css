@@ -9,7 +9,7 @@
 #visualRecall input { text-align:center; font-size:21px; }
 #visualRecall button { min-height:44px; margin-top:10px; background:linear-gradient(135deg,var(--primary),var(--primary-hover)); color:var(--button-text); font-size:14px; padding:12px 14px; }
 #visualRecall button:disabled { opacity:.5; cursor:default; }
-#visualRecall .vr-secondary, #visualRecall #vrSkip, #visualRecall #vrAgain { background:var(--card-bg-white); color:var(--text-secondary); border:1px solid var(--border-light); box-shadow:none; }
+#visualRecall .vr-secondary, #visualRecall #vrAgain { background:var(--card-bg-white); color:var(--text-secondary); border:1px solid var(--border-light); box-shadow:none; }
 #visualRecall #vrKnown { background:var(--success-light); color:var(--success); border:1px solid var(--success); }
 #visualRecall #vrUnknown { background:var(--danger-light); color:var(--danger); border:1px solid var(--danger); }
 #visualRecall #vrSpeak { width:auto; margin:8px auto 0; padding:8px 18px; border-radius:24px; background:var(--primary-light); border:1px solid var(--primary-hover); color:var(--primary-hover); font-size:13px; }
@@ -17,6 +17,13 @@
 #visualRecall .vr-audio-toggle[aria-pressed="false"] { border-color:var(--border-light); color:var(--text-secondary); }
 #visualRecall .vr-actions { display:flex; gap:8px; flex-wrap:wrap; }
 #visualRecall .vr-actions button { flex:1 1 110px; }
+#visualRecall .vr-stage-toolbar { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+#visualRecall #vrProgress { margin:4px 0 10px; }
+#visualRecall #vrFinish { flex:0 0 auto; width:auto; min-height:36px; margin:4px 0 10px; padding:7px 10px; font-size:12px; }
+#visualRecall .vr-answer-actions { display:flex; gap:8px; }
+#visualRecall .vr-answer-actions button { flex:1; }
+#visualRecall .vr-answer-actions #vrCheck,
+#visualRecall .vr-answer-actions #vrAnswerReveal { margin-top:10px; }
 #visualRecall .vr-study-card { text-align:center; background:linear-gradient(135deg,var(--card-bg-white),var(--card-bg)); border:1px solid var(--border-light); border-radius:24px; padding:18px 14px; margin:14px 0; box-shadow:0 12px 24px -12px rgba(0,0,0,.5); }
 #visualRecall .vr-word { font-size:clamp(28px,8vw,38px); font-weight:800; color:var(--warning-hover); margin:8px 0; line-height:1.35; overflow-wrap:anywhere; }
 #vrMeaning { font-size:18px; line-height:1.6; margin:8px 0; }
