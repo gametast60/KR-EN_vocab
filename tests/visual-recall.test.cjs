@@ -427,11 +427,14 @@ test('transition waits for continuation and retry deduplicates words across stag
 test('all referenced UI IDs and precached files exist', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const js = fs.readFileSync(path.join(root, 'visual/visual-recall.js'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'visual/visual-recall.css'), 'utf8');
   assert.doesNotMatch(html, /id="vrSkip"/);
   assert.match(html, /id="vrKnown"[^>]*>จำได้</);
   assert.match(html, /id="vrUnknown"[^>]*>จำไม่ได้</);
   assert.match(html, /<div class="vr-stage-toolbar">\s*<p id="vrProgress"><\/p>\s*<button id="vrFinish"/);
   assert.match(html, /<div class="vr-answer-actions">\s*<button id="vrCheck"[^>]*>ตรวจคำตอบ<\/button>\s*<button id="vrAnswerReveal"[^>]*>ดูเลย<\/button>/);
+  assert.match(css, /#visualRecall #vrForm \{ width:100%; min-width:0; \}/);
+  assert.match(css, /#visualRecall #vrAnswer \{[^}]*max-width:100%;[^}]*box-sizing:border-box/);
   for (const [, id] of js.matchAll(/(?:el|show)\('(vr\w+)'/g)) assert.ok(html.includes(`id="${id}"`), id);
   const context = vm.createContext({ self: { addEventListener() {} } });
   context.importScripts = (...files) => { for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context); };
