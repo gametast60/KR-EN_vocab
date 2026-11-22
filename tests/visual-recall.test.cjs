@@ -14,7 +14,7 @@ function setup(real = false, random = () => 0.999999, nativeSpeech = false) {
       elements.set(id, { value: id === 'vrLevel' ? 'topik1' : id === 'vrLimit' ? '10' : '',
         textContent: '', disabled: false, events: {}, children: [],
         classList: { toggle(name, value) { if (value) classes.add(name); else classes.delete(name); }, contains: name => classes.has(name) },
-        addEventListener(name, fn) { this.events[name] = fn; }, focus() {},
+        addEventListener(name, fn) { this.events[name] = fn; }, focus(options) { this.focusOptions = options; },
         setAttribute(name, value) { this[name] = value; }, getAttribute(name) { return this[name] ?? null; },
         removeAttribute(name) { delete this[name]; },
         replaceChildren(...children) { this.children = children; }, appendChild(child) { this.children.push(child); }
@@ -105,6 +105,9 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   assert.match(el('vrStage').textContent, /Stage 3/);
   assert.equal(el('vrWord').textContent, '');
   assert.ok(el('vrSpeak').classList.contains('hidden'));
+  assert.equal(el('app').scrollTop, 0);
+  assert.equal(el('vrAnswer').focusOptions.preventScroll, true);
+  assert.equal(el('vrAnswerReveal').textContent, 'ดูเลย');
   fire('vrForm', 'submit');
   for (let i = 0; i < 20; i++) {
     const stage3Card = w.VisualEngine.getCards('topik1', w.flashVocabData1, w.visualImageMap, w.sentenceExercises)
@@ -128,6 +131,7 @@ test('full Korean five-stage round learns sentence forms before testing and coun
   fire('vrContinue');
   assert.match(el('vrStage').textContent, /Stage 5/);
   assert.ok(el('vrConjugation').classList.contains('hidden'));
+  assert.equal(el('vrAnswerReveal').textContent, 'ดูเฉลย');
   assert.equal(el('vrInflectedWord').textContent, '');
   for (let i = 0; i < 20; i++) {
     const vocab = w.flashVocabData1.find(row => row.translate === el('vrMeaning').textContent);

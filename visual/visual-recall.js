@@ -247,6 +247,7 @@
     if (stage === 4) el('vrSpeak').textContent = '🔊 ฟังคำฐาน รูปคำ และประโยค';
     show('vrReveal', phase === 'answer' && stage === 2);
     show('vrAnswerReveal', phase === 'answer' && (stage === 3 || stage === 5));
+    el('vrAnswerReveal').textContent = stage === 5 ? 'ดูเฉลย' : 'ดูเลย';
     show('vrKnown', false); show('vrUnknown', false);
     show('vrNextLearn', phase === 'learn');
     show('vrFinish', true);
@@ -254,7 +255,10 @@
     el('vrNextLearn').disabled = autoSpeak && (stage === 1 || stage === 4);
     el('vrReveal').disabled = autoSpeak && stage === 2;
     updateJourney();
-    if (stage === 3 || stage === 5) el('vrAnswer').focus(); else el(phase === 'learn' ? 'vrNextLearn' : 'vrReveal').focus();
+    if (stage === 3 || stage === 5) {
+      if (stage === 3) el('app').scrollTop = 0;
+      el('vrAnswer').focus({ preventScroll: true });
+    } else el(phase === 'learn' ? 'vrNextLearn' : 'vrReveal').focus();
     if (autoSpeak && (stage <= 2 || stage === 4)) readCurrent();
   }
 
