@@ -25,11 +25,13 @@ function setup(real = false, random = () => 0.999999, nativeSpeech = false) {
   const audio = { calls: [], cancelled: 0, utterances: [] };
   const window = { speechSynthesis: {
     cancel() { audio.cancelled++; },
-    speak(utterance) { audio.utterances.push(utterance); }
+    speak(utterance) {
+      audio.calls.push({ text: utterance.text, language: utterance.lang });
+      if (nativeSpeech) audio.utterances.push(utterance);
+      else utterance.onend();
+    }
   } };
-  if (nativeSpeech) {
-    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
-  }
+  window.SpeechSynthesisUtterance = function (text) { this.text = text; };
   const math = Object.create(Math);
   math.random = random;
   const context = vm.createContext({ Math: math, window, document: { getElementById: el, createElement: () => ({}) },
@@ -218,7 +220,7 @@ test('Visual Recall disables stage controls during speech and removes feedback t
   assert.doesNotMatch(html, /id="vrFeedback"/);
   assert.match(js, /if \(stage === 1 \|\| stage === 4\) el\('vrNextLearn'\)\.disabled = busy/);
   assert.match(js, /if \(stage === 2\) el\('vrReveal'\)\.disabled = busy/);
-  assert.match(js, /utterance\.onend = speakNext/);
+  assert.match(js, /utterance\.onend = complete/);
   assert.match(js, /playSpeechSequence\(\[current\(\)\.exercise\.targetAnswer, current\(\)\.exercise\.sentence\]/);
 });
 
@@ -231,6 +233,8 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   assert.equal(el('vrNextLearn').disabled, true);
   assert.equal(el('vrFinish').classList.contains('hidden'), true);
   audio.utterances.shift().onend();
+  assert.equal(el('vrNextLearn').disabled, true);
+  audio.utterances.shift().onend();
   assert.equal(el('vrNextLearn').disabled, false);
   fire('vrNextLearn');
 
@@ -240,6 +244,8 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   audio.utterances.shift().onend();
   assert.equal(el('vrReveal').disabled, false);
   fire('vrReveal');
+  assert.equal(el('vrKnown').disabled, true);
+  audio.utterances.shift().onend();
   fire('vrKnown');
   assert.equal(el('vrFinish').classList.contains('hidden'), true);
   assert.deepEqual(runTimers(), [1500]);
@@ -288,6 +294,66 @@ test('answer tint and finish button respect speech and auto-advance timing', () 
   assert.match(css, /#vrAnswer\[data-result="incorrect"\].*var\(--danger-light\)/);
 });
 
+test('Stage 1 and 2 wait for Thai speech, reject repeated clicks, and ignore stale events', () => {
+  for (const level of ['topik1', 'english_a2']) {
+    const { el, fire, window: w, audio, runTimers } = setup(false, () => 0.999999, true);
+    el('vrLevel').value = level;
+    el('vrLimit').value = '1'; fire('vrLevel', 'change'); fire('vrStart');
+    const word = audio.utterances.shift();
+    assert.equal(word.lang, level === 'topik1' ? 'ko-KR' : 'en-US');
+    fire('vrNextLearn'); fire('vrSpeak'); fire('vrFinish');
+    assert.equal(audio.utterances.length, 0);
+    word.onend();
+    const meaning = audio.utterances.shift();
+    assert.equal(meaning.text, el('vrMeaning').textContent);
+    assert.equal(meaning.lang, 'th-TH');
+    word.onend(); // Duplicate browser events cannot unlock the Thai segment.
+    assert.equal(el('vrNextLearn').disabled, true);
+    fire('vrNextLearn');
+    assert.ok(el('vrTransition').classList.contains('hidden'));
+    meaning.onend(); fire('vrNextLearn'); fire('vrContinue');
+    audio.utterances.shift().onend(); fire('vrReveal');
+    const revealed = audio.utterances.shift();
+    assert.equal(revealed.text, el('vrMeaning').textContent);
+    assert.equal(revealed.lang, 'th-TH');
+    for (const id of ['vrKnown', 'vrUnknown', 'vrSpeak']) assert.equal(el(id).disabled, true);
+    fire('vrKnown'); fire('vrUnknown'); fire('vrSpeak'); fire('vrFinish');
+    assert.deepEqual(runTimers(), []);
+    revealed.onend();
+    assert.equal(el('vrKnown').disabled, false);
+    fire('vrSpeak');
+    assert.equal(audio.utterances[0].lang, 'th-TH');
+    audio.utterances.shift().onend();
+    fire('vrUnknown'); fire('vrKnown');
+    assert.deepEqual(runTimers(), [1500]);
+    assert.match(el('vrTransitionResult').textContent, /นึกออก 0 · นึกไม่ออก 1/);
+
+    w.VisualRecall.open(); fire('vrStart');
+    const stale = audio.utterances.shift();
+    w.VisualRecall.stopAudio();
+    w.VisualRecall.open(); fire('vrStart');
+    stale.onend(); stale.onerror();
+    assert.equal(audio.utterances.length, 1);
+    assert.equal(el('vrNextLearn').disabled, true);
+  }
+});
+
+test('speech errors and unavailable speech leave stage controls usable', () => {
+  const { el, fire, window: w, audio } = setup(false, () => 0.999999, true);
+  el('vrLimit').value = '1'; fire('vrLimit', 'change'); fire('vrStart');
+  w.speechSynthesis.speak = () => { throw Error('audio unavailable'); };
+  audio.utterances.shift().onend(); // Failure when starting the Thai segment.
+  assert.equal(el('vrNextLearn').disabled, false);
+  assert.match(el('vrAudioNotice').textContent, /ยังเล่นเสียงไม่ได้/);
+  fire('vrNextLearn'); fire('vrContinue'); fire('vrReveal');
+  assert.equal(el('vrKnown').disabled, false);
+  assert.equal(el('vrUnknown').disabled, false);
+  delete w.SpeechSynthesisUtterance;
+  fire('vrSpeak');
+  assert.match(el('vrAudioNotice').textContent, /ยังไม่รองรับ/);
+  assert.equal(el('vrKnown').disabled, false);
+});
+
 test('Stage 2 advances after 1.5 seconds and Stage 3/5 wait 1.5 seconds after speech', () => {
   const { el, fire, runTimers } = setup();
   el('vrLimit').value = '3';
@@ -326,8 +392,9 @@ test('image failure recovery and IME composition are handled', () => {
 test('automatic speech teaches Stage 4 then protects Stage 5 answers', () => {
   const { el, fire, window: w, audio } = setup();
   el('vrLimit').value = '5'; fire('vrLimit', 'change'); fire('vrStart');
-  assert.deepEqual(audio.calls.at(-1), { text: '가게', language: 'ko-KR' });
-  fire('vrNext'); assert.equal(audio.calls.at(-1).text, '가격');
+  assert.deepEqual(audio.calls.at(-2), { text: '가게', language: 'ko-KR' });
+  assert.equal(audio.calls.at(-1).language, 'th-TH');
+  fire('vrNext'); assert.equal(audio.calls.at(-2).text, '가격');
   for (let i = 1; i < 5; i++) fire('vrNext');
   fire('vrContinue');
   const stage2Word = el('vrWord').textContent;
@@ -366,10 +433,10 @@ test('automatic speech remains enabled while manual replay and unsupported speec
   const { el, fire, window: w, audio, context } = setup();
   const expected = w.VisualEngine.getCards('english_a2', context.getTopikVocab('english_a2'), w.visualImageMap, w.sentenceExercises);
   el('vrLevel').value = 'english_a2'; fire('vrLevel', 'change'); fire('vrStart');
-  assert.deepEqual(audio.calls.at(-1), { text: expected[0].displayWord, language: 'en-US' });
+  assert.deepEqual(audio.calls.at(-2), { text: expected[0].displayWord, language: 'en-US' });
   const count = audio.calls.length; fire('vrNext');
-  assert.equal(audio.calls.at(-1).text, expected[1].displayWord);
-  fire('vrSpeak'); assert.equal(audio.calls.at(-1).text, expected[1].displayWord);
+  assert.equal(audio.calls.at(-2).text, expected[1].displayWord);
+  fire('vrSpeak'); assert.equal(audio.calls.at(-2).text, expected[1].displayWord);
   delete w.speechSynthesis; fire('vrSpeak');
   assert.match(el('vrAudioNotice').textContent, /ยังไม่รองรับ/);
 });

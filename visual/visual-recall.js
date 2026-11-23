@@ -52,31 +52,23 @@
   function stopAudio() {
     speechGeneration++;
     window.speechSynthesis?.cancel();
+    setSpeechBusy(false);
   }
   function setSpeechBusy(busy) {
     speechBusy = busy;
+    el('vrSpeak').disabled = busy;
+    el('vrKnown').disabled = busy;
+    el('vrUnknown').disabled = busy;
     show('vrFinish', !busy && advanceTimer === null);
     if (stage === 1 || stage === 4) el('vrNextLearn').disabled = busy;
     if (stage === 2) el('vrReveal').disabled = busy;
   }
   function playSpeechSequence(texts, language, onComplete) {
     const callback = typeof onComplete === 'function' ? onComplete : () => {};
-    if (!window.speechSynthesis ||
-        typeof window.SpeechSynthesisUtterance !== 'function') {
-      const cleanTexts = texts.filter(text => typeof text === 'string' && text.trim());
-      if (typeof speakSequence === 'function' && cleanTexts.length > 1) {
-        speakSequence(cleanTexts, language);
-      } else {
-        cleanTexts.forEach(text => {
-          if (typeof speak === 'function') speak(text, language);
-        });
-      }
-      callback();
-      return;
-    }
     const generation = ++speechGeneration;
     window.speechSynthesis.cancel();
-    const cleanTexts = texts.filter(text => typeof text === 'string' && text.trim());
+    const cleanTexts = texts.map(item => typeof item === 'string' ? { text: item, language } : item)
+      .filter(item => typeof item.text === 'string' && item.text.trim());
     if (!cleanTexts.length) {
       callback();
       return;
@@ -88,19 +80,31 @@
         callback();
         return;
       }
-      const utterance = new window.SpeechSynthesisUtterance(cleanTexts[position++]);
-      utterance.lang = language;
+      const item = cleanTexts[position++];
+      const utterance = new window.SpeechSynthesisUtterance(item.text);
+      utterance.lang = item.language;
       utterance.rate = 0.9;
-      utterance.onend = speakNext;
-      utterance.onerror = speakNext;
-      window.speechSynthesis.speak(utterance);
+      let settled = false;
+      const complete = () => {
+        if (settled || generation !== speechGeneration) return;
+        settled = true;
+        speakNext();
+      };
+      utterance.onend = complete;
+      utterance.onerror = () => {
+        if (generation !== speechGeneration) return;
+        el('vrAudioNotice').textContent = 'ยังเล่นเสียงไม่ได้ ลองกดฟังอีกครั้ง';
+        complete();
+      };
+      try { window.speechSynthesis.speak(utterance); }
+      catch (_) { utterance.onerror(); }
     };
     speakNext();
   }
   function readCurrent(onComplete) {
     if (!current() || !['learn', 'answer', 'recognition', 'review'].includes(phase) ||
         (stage >= 3 && phase === 'answer')) return;
-    if (!window.speechSynthesis || typeof speak !== 'function') {
+    if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') {
       el('vrAudioNotice').textContent = 'เบราว์เซอร์นี้ยังไม่รองรับการอ่านเสียง';
       setSpeechBusy(false);
       if (typeof onComplete === 'function') onComplete();
@@ -115,6 +119,14 @@
         });
       } else if (stage === 5) {
         playSpeechSequence([current().exercise.targetAnswer, current().exercise.sentence], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
+      } else if (stage === 1) {
+        playSpeechSequence([current().displayWord, { text: current().meaning, language: 'th-TH' }], language, () => {
+          setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
+        });
+      } else if (stage === 2 && phase !== 'answer') {
+        playSpeechSequence([current().meaning], 'th-TH', () => {
           setSpeechBusy(false); if (typeof onComplete === 'function') onComplete();
         });
       } else if (stage === 3) {
@@ -272,6 +284,7 @@
   }
 
   function settle(status, answer = '') {
+    if (speechBusy) return;
     if (!['answer', 'recognition'].includes(phase)) return;
     cancelAutoAdvance();
     phase = 'review';
@@ -353,7 +366,8 @@
     if (el('vrReveal').disabled) return;
     if (phase !== 'answer') return;
     phase = 'recognition'; revealContent(); show('vrReveal', false);
-    show('vrKnown', true); show('vrUnknown', true); el('vrKnown').focus();
+    show('vrKnown', true); show('vrUnknown', true);
+    readCurrent(() => { if (phase === 'recognition') el('vrKnown').focus(); });
   });
   el('vrAnswerReveal').addEventListener('click', () => {
     if (phase === 'answer' && (stage === 3 || stage === 5)) settle('revealed');
@@ -371,7 +385,8 @@
     if (event.key === 'Enter' && (event.isComposing || event.keyCode === 229)) event.preventDefault();
   });
   el('vrSpeak').addEventListener('click', () => {
-    if ((stage === 3 || stage === 5) && phase === 'review') {
+    if (speechBusy) return;
+    if (stage >= 2 && phase === 'review') {
       cancelAutoAdvance();
       readCurrent(() => advanceCard(1500));
     } else readCurrent();
