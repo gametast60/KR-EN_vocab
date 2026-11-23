@@ -476,8 +476,12 @@ class StudioTests(unittest.TestCase):
         try:
             app=studio.Studio(root,self.root);app.set_batch(self.maps[:1]);root.update()
             self.assertIn('ยังไม่มีคำตอบ 1 ข้อ',app.batch_summary.get())
+            self.assertEqual(app.count_badges['missing'].cget('text'),'ยังไม่มีคำตอบ 1 ข้อ')
+            self.assertIn('missing',app.tree.item('0','tags'))
             app.answer.set('가지고')
             self.assertIn('ยังไม่มีคำตอบ 0 ข้อ',app.batch_summary.get())
+            self.assertEqual(app.count_badges['missing'].cget('text'),'ยังไม่มีคำตอบ 0 ข้อ')
+            self.assertIn('waiting',app.tree.item('0','tags'))
             with patch.object(app.tree,'wheel',return_value='break') as wheel:
                 self.assertEqual(app.scroll_review(SimpleNamespace(widget=app.sentence,delta=-120)),'break')
                 wheel.assert_called_once()

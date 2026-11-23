@@ -44,13 +44,14 @@ class ReviewCards(ttk.Frame):
             tree=ttk.Treeview(frame,columns=cols,show='headings',height=2,selectmode='browse',style='Review.Treeview')
             for col,title,width in zip(cols,('ID','ระดับ','คำศัพท์','ความหมาย','คำตอบ','สถานะ'),(60,90,130,220,140,220)):
                 tree.heading(col,text=title);tree.column(col,width=width,minwidth=45,stretch=True)
+            for tag,bg,fg in [('missing','#ffe0e0','#9b1c1c'),('waiting','#fff0bf','#775500'),('ready','#dcf4e3','#17633b')]:tree.tag_configure(tag,background=bg,foreground=fg)
             tree.pack(side='left',fill='both',expand=True)
             tree.bind('<<TreeviewSelect>>',lambda e,t=tree:self.chosen(t))
             tree.bind('<MouseWheel>',self.wheel)
             picture.bind('<MouseWheel>',self.wheel)
             self.groups[image_id]=(frame,tree)
         tree=self.groups[image_id][1]
-        tree.insert('','end',iid=iid,values=values)
+        tree.insert('','end',iid=iid,values=values,tags=(self.status_tag(values),))
         tree.configure(height=max(2,len(tree.get_children())))
         self.rows[iid]=tree
 
@@ -71,7 +72,14 @@ class ReviewCards(ttk.Frame):
     def selection(self):return self.active
     def get_children(self):return tuple(self.rows)
     def exists(self,iid):return str(iid) in self.rows
-    def item(self,iid,option=None,**kwargs):return self.rows[str(iid)].item(str(iid),option,**kwargs)
+    @staticmethod
+    def status_tag(values):
+        if not str(values[4]).strip():return 'missing'
+        return 'ready' if 'ประโยค ✓' in str(values[5]) else 'waiting'
+
+    def item(self,iid,option=None,**kwargs):
+        if 'values' in kwargs:kwargs['tags']=(self.status_tag(kwargs['values']),)
+        return self.rows[str(iid)].item(str(iid),option,**kwargs)
     def delete(self,*items):
         for frame,_ in self.groups.values():frame.destroy()
         self.groups.clear();self.rows.clear();self.active=()

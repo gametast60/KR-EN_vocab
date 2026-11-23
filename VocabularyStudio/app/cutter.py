@@ -21,7 +21,7 @@ class Cutter:
         self.clear_btn=ttk.Button(top,text='Clear Image',command=self.clear_image);self.clear_btn.pack(side='left',padx=2)
         for label,var,width in [('Columns',self.columns,3),('Rows',self.rows,3),('Size',self.size,5)]:
             ttk.Label(top,text=label).pack(side='left',padx=(10,2));ttk.Entry(top,textvariable=var,width=width).pack(side='left')
-        ttk.Button(top,text='Auto Grid / Reset',command=self.auto_grid).pack(side='left',padx=12)
+        ttk.Button(top,text='หาแนวตัดอัตโนมัติ',command=self.auto_grid).pack(side='left',padx=12)
         ttk.Checkbutton(top,text='Transparent outside card',variable=self.transparent).pack(side='left',padx=8)
         self.export_btn=ttk.Button(top,text='บันทึกภาพและไปตรวจคำศัพท์' if prepare_direct else 'Export ZIP',command=self.export);self.export_btn.pack(side='right',padx=8)
         middle=ttk.Frame(parent,padding=6);middle.pack(fill='both',expand=True)
@@ -77,7 +77,7 @@ class Cutter:
         path=filedialog.askopenfilename(filetypes=[('Images','*.png *.jpg *.jpeg *.webp *.bmp')])
         if not path:return
         try:
-            self.image=Image.open(path).convert('RGB');self.auto_grid();self.status.set('Image opened. Drag any green grid line to adjust cuts.')
+            self.image=Image.open(path).convert('RGB');self.auto_grid()
         except Exception as e:messagebox.showerror('Image error',str(e))
     def clear_image(self):
         if self.busy:return
@@ -100,7 +100,14 @@ class Cutter:
             c=int(self.columns.get());r=int(self.rows.get())
             if not (1<=c<=30 and 1<=r<=30):raise ValueError('Grid range 1–30')
         except Exception as e:messagebox.showerror('Grid',str(e));return
-        w,h=self.image.size;self.xs=[w*i/c for i in range(c+1)];self.ys=[h*i/r for i in range(r+1)];self.draw()
+        from grid_detection import detect_grid
+        self.root.configure(cursor='watch');self.root.update_idletasks()
+        try:
+            self.xs,self.ys,xok,yok=detect_grid(self.image,c,r)
+            axes=('แนวตั้ง ✓' if xok else 'แนวตั้ง: แบ่งเท่ากัน')+' • '+('แนวนอน ✓' if yok else 'แนวนอน: แบ่งเท่ากัน')
+            self.status.set('ตรวจช่องว่าง: '+axes+' • ตรวจเส้นก่อนบันทึก ลากแก้เส้นและขอบนอกได้')
+            self.draw()
+        finally:self.root.configure(cursor='')
     def draw(self):
         self.canvas.delete('all')
         if self.image is None:return

@@ -140,7 +140,13 @@ class Studio:
         self.batch_picker=ttk.Combobox(batchbar,textvariable=self.batch_var,state='readonly',width=28);self.batch_picker.pack(side='left')
         self.button(batchbar,'เปิดชุดที่เลือก',self.load_saved_batch)
         self.batch_summary=tk.StringVar(value='ยังไม่เปิดชุดงาน')
-        ttk.Label(batchbar,textvariable=self.batch_summary).pack(side='left',padx=10)
+        self.batch_range=tk.StringVar(value='ยังไม่เปิดชุดงาน')
+        ttk.Label(batchbar,textvariable=self.batch_range).pack(side='left',padx=10)
+        badges=ttk.Frame(self.review_tab);badges.pack(fill='x',padx=8,pady=5)
+        self.count_badges={}
+        for key,title,bg,fg in [('missing','ยังไม่มีคำตอบ','#ffe0e0','#9b1c1c'),('waiting','รอตรวจ','#fff0bf','#775500'),('ready','คำตอบพร้อม','#dcf4e3','#17633b')]:
+            label=tk.Label(badges,text=title+' 0 ข้อ',background=bg,foreground=fg,font=('Tahoma',12,'bold'),padx=14,pady=7)
+            label.pack(side='left',padx=(0,8));self.count_badges[key]=label
         self.tree=ReviewCards(self.review_tab,self)
         self.tree.pack(fill='both',expand=True,padx=8)
         self.tree.bind('<<TreeviewSelect>>',self.selected)
@@ -168,6 +174,7 @@ class Studio:
         self.preview_text=tk.StringVar();self.answer_hint=tk.StringVar()
         ttk.Label(editor,textvariable=self.preview_text,font=('Tahoma',11),wraplength=900).grid(row=6,column=0,columnspan=3,sticky='w',pady=(5,0))
         ttk.Label(editor,textvariable=self.answer_hint,foreground='#9a4b00',wraplength=900).grid(row=7,column=0,columnspan=3,sticky='w')
+        self.answer_ok.trace_add('write',lambda *args:self.update_summary() if not self.loading_editor else None)
         self.answer.trace_add('write',self.answer_changed)
         self.occurrence.trace_add('write',self.answer_changed)
         self.meaning.trace_add('write',self.meaning_changed)
@@ -371,10 +378,18 @@ class Studio:
 
     def update_summary(self):
         if not self.entries:
-            self.batch_summary.set('ยังไม่เปิดชุดงาน');return
+            self.batch_range.set('ยังไม่เปิดชุดงาน')
+            self.batch_summary.set('ยังไม่เปิดชุดงาน')
+            for key,title in [('missing','ยังไม่มีคำตอบ'),('waiting','รอตรวจ'),('ready','คำตอบพร้อม')]:self.count_badges[key].configure(text=title+' 0 ข้อ')
+            return
         ids=sorted({e['image_id'] for e in self.entries},key=int)
-        ready=sum(bool(e.get('confirmed') and not answer_preview(e)[1]) for e in self.entries)
+        self.batch_range.set(f'กำลังตรวจ {ids[0]}–{ids[-1]} • {len(self.entries)} คำ')
+        checked=[dict(e) for e in self.entries]
+        if self.current is not None:
+            checked[self.current].update(answer=self.answer.get(),confirmed=self.answer_ok.get())
+        ready=sum(bool(e.get('confirmed') and not answer_preview(e)[1]) for e in checked)
         missing=sum(not (self.answer.get() if i==self.current else e.get('answer','')).strip() for i,e in enumerate(self.entries))
+        for key,title,value in [('missing','ยังไม่มีคำตอบ',missing),('waiting','รอตรวจ',len(self.entries)-ready),('ready','คำตอบพร้อม',ready)]:self.count_badges[key].configure(text=f'{title} {value} ข้อ')
         self.batch_summary.set(f"กำลังตรวจ {ids[0]}–{ids[-1]} • {len(self.entries)} คำ • ยังไม่มีคำตอบ {missing} ข้อ • คำตอบพร้อม {ready} / รอตรวจ {len(self.entries)-ready}")
 
     def install_review_scroll(self,widget):
