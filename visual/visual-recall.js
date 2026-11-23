@@ -377,7 +377,7 @@
   el('vrForm').addEventListener('submit', event => {
     event.preventDefault(); if (phase !== 'answer' || stage < 3) return;
     const answer = el('vrAnswer').value;
-    const result = stage === 5 ? SentenceEngine.checkAnswer(current().exercise, answer) : VisualEngine.checkWord(current(), answer);
+    const result = stage === 5 ? VisualEngine.checkSentence(current().exercise, answer) : VisualEngine.checkWord(current(), answer);
     if (result.status === 'empty') return;
     settle(result.status, answer);
   });

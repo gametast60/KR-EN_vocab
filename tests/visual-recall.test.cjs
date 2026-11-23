@@ -88,7 +88,42 @@ test('real images share exact vocabulary bindings with ready KR/EN exercises', (
   const cards = w.VisualEngine.getCards('english_a2', context.getTopikVocab('english_a2'), w.visualImageMap, w.sentenceExercises);
   const light = cards.find(card => card.word === 'light (not heavy)');
   assert.equal(w.VisualEngine.checkWord(light, ' LIGHT ').status, 'correct');
-  assert.equal(w.VisualEngine.checkWord(light, 'light (from the sun/a lamp)').status, 'incorrect');
+  assert.equal(w.VisualEngine.checkWord(light, 'light (from the sun/a lamp)').status, 'correct');
+});
+
+test('five-stage word answers ignore notes in English and Korean without changing cards', () => {
+  const { window: w } = setup();
+  for (const [language, displayWord, answers, wrong] of [
+    ['en', 'bank (money)', ['bank', ' BANK ', 'bank (money)'], 'banks'],
+    ['ko', '은행 (금융 기관)', ['은행', ' 은행 (금융 기관) ', '은행'.normalize('NFD')], '은행에'],
+    ['en', 'take (verb) care (of someone)', ['take care', 'take   care'], 'takecare'],
+    ['ko', '눈（신체 (기관)）', ['눈', '눈（신체 (기관)）'], '눈이']
+  ]) {
+    const card = { language, displayWord };
+    for (const answer of answers) assert.equal(w.VisualEngine.checkWord(card, answer).status, 'correct', answer);
+    for (const answer of [wrong, 'money', '없는 단어']) assert.equal(w.VisualEngine.checkWord(card, answer).status, 'incorrect');
+    for (const answer of ['', '  ', '(money)', '（설명）']) assert.equal(w.VisualEngine.checkWord(card, answer).status, 'empty');
+    assert.equal(card.displayWord, displayWord);
+  }
+});
+
+test('five-stage sentences ignore notes but still require the learned English and Korean forms', () => {
+  const { window: w } = setup();
+  for (const [language, targetAnswer, base] of [['en', 'banks', 'bank'], ['ko', '가까워요', '가깝다']]) {
+    const exercise = { status: 'ready', language, targetAnswer,
+      acceptedAnswers: [targetAnswer + ' (คำอธิบาย)'] };
+    const before = JSON.stringify(exercise);
+    for (const answer of [targetAnswer, targetAnswer + ' (คำอธิบาย)', targetAnswer.normalize('NFD')]) {
+      const result = w.VisualEngine.checkSentence(exercise, answer);
+      assert.equal(result.status, 'correct');
+      assert.equal(result.targetAnswer, targetAnswer);
+    }
+    assert.equal(w.VisualEngine.checkSentence(exercise, base).status, 'incorrect');
+    assert.equal(w.VisualEngine.checkSentence(exercise, '(คำอธิบาย)').status, 'empty');
+    assert.equal(w.SentenceEngine.checkAnswer(exercise, targetAnswer).status, 'incorrect');
+    assert.equal(JSON.stringify(exercise), before);
+  }
+  assert.equal(w.VisualEngine.checkSentence(null, 'bank').status, 'unavailable');
 });
 
 test('full Korean five-stage round learns sentence forms before testing and counts each response once', () => {

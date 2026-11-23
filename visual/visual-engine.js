@@ -15,10 +15,26 @@
     }
     return cards;
   }
-  function checkWord(card, answer) {
-    const normalized = root.SentenceEngine.normalizeAnswer(answer, card.language);
-    if (!normalized) return { status: 'empty' };
-    return { status: normalized === root.SentenceEngine.normalizeAnswer(card.displayWord, card.language) ? 'correct' : 'incorrect' };
+  // Parenthetical notes are context, not part of a five-stage answer.
+  function withoutNotes(value) {
+    let text = String(value ?? '');
+    let previous;
+    do {
+      previous = text;
+      text = text.replace(/\([^()]*\)|（[^（）]*）/g, ' ');
+    } while (text !== previous);
+    return text.replace(/\s+/g, ' ').trim();
   }
-  root.VisualEngine = Object.freeze({ getCards, checkWord });
+  function checkWord(card, answer) {
+    const normalized = root.SentenceEngine.normalizeAnswer(withoutNotes(answer), card.language);
+    if (!normalized) return { status: 'empty' };
+    return { status: normalized === root.SentenceEngine.normalizeAnswer(withoutNotes(card.displayWord), card.language) ? 'correct' : 'incorrect' };
+  }
+  function checkSentence(exercise, answer) {
+    if (!exercise || exercise.status !== 'ready') return root.SentenceEngine.checkAnswer(exercise, answer);
+    return root.SentenceEngine.checkAnswer({ ...exercise,
+      acceptedAnswers: exercise.acceptedAnswers.map(withoutNotes)
+    }, withoutNotes(answer));
+  }
+  root.VisualEngine = Object.freeze({ getCards, checkWord, checkSentence });
 })(typeof window !== 'undefined' ? window : globalThis);
