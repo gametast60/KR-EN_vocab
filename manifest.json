@@ -1,11 +1,11 @@
 {
-  "name": "톤님",
-  "short_name": "톤님",
-  "version": "5.4.29",
+  "name": "5 Stage · Vocab by 톤님",
+  "short_name": "5 Stage",
+  "version": "6.0.0",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#f3f4f6",
-  "theme_color": "#2563eb",
+  "background_color": "#15151c",
+  "theme_color": "#15151c",
   "icons": [
     {
       "src": "icon-192.png",

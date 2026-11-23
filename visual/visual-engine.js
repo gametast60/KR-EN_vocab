@@ -2,16 +2,20 @@
   'use strict';
   function getCards(levelId, vocabulary, images, records) {
     const cards = [];
-    for (const image of images || []) {
-      for (const binding of image.bindings) {
-        if (binding.levelId !== levelId) continue;
-        const matches = vocabulary.filter(item => item.word === binding.word);
-        if (matches.length !== 1 || matches[0].meaning !== binding.sourceMeaning) continue;
-        cards.push({ imageId: image.id, file: image.file, meaning: binding.meaning,
-          word: binding.word, displayWord: binding.displayWord, levelId,
-          language: levelId.startsWith('english_') ? 'en' : 'ko',
-          exercise: root.SentenceEngine.createExercise(levelId, binding.word, vocabulary, records) });
-      }
+    const counts = new Map(), pictures = new Map();
+    for (const item of vocabulary || []) counts.set(item.word, (counts.get(item.word) || 0) + 1);
+    for (const image of images || []) for (const binding of image.bindings) {
+      if (binding.levelId === levelId) pictures.set(binding.word, { image, binding });
+    }
+    for (const item of vocabulary || []) {
+      if (typeof item.word !== 'string' || !item.word.trim() || typeof item.meaning !== 'string' || !item.meaning.trim() || counts.get(item.word) !== 1) continue;
+      const picture = pictures.get(item.word);
+      const validImage = picture && picture.binding.sourceMeaning === item.meaning;
+      cards.push({ id: item._id || `${levelId}|${encodeURIComponent(item.word)}`,
+        imageId: validImage ? picture.image.id : null, file: validImage ? picture.image.file : null,
+        meaning: item.meaning, word: item.word, displayWord: item.displayWord || item.word, levelId,
+        language: levelId.startsWith('english_') ? 'en' : 'ko',
+        exercise: root.SentenceEngine.createExercise(levelId, item.word, vocabulary, records) });
     }
     return cards;
   }
