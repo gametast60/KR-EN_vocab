@@ -1,0 +1,1216 @@
+{
+  "schemaVersion": 1,
+  "id": "topik-ii",
+  "title": "TOPIK II Grammar",
+  "filename": "TOPIK-Ⅱ-Grammar.pdf.pdf",
+  "sha256": "84f72cc05630c875260f81b1ca58db0a9e78ef729d7a55a76dfb42940f0a7b46",
+  "note": "Source inventory only. Original wording is retained, not validated lesson content. Page text preserves multi-line examples.",
+  "rows": [
+    {
+      "id": "topik-ii:001",
+      "number": 1,
+      "page": 1,
+      "form": "-( 으)ㄴ 채(로)",
+      "rawRow": "1 -( 으)ㄴ 채(로) while~ 버스  안에서  앉은  채로  잠자버렸다 . I fell asleep while sitting on the bus.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:002",
+      "number": 2,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 걸 보니 (까)",
+      "rawRow": "2 -( 으)ㄴ/는 걸 보니 (까) since~ 돈을  많이  쓰는  걸 보니  부자인가  봐. He must be rich since he is using a lot of money.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:003",
+      "number": 3,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 김에",
+      "rawRow": "3 -( 으)ㄴ/는 김에 On the way~ 마트에  가는  김에  친정에도  갔다 . On the way to the supermarket, I visited my parent's house.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:004",
+      "number": 4,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 만큼",
+      "rawRow": "4 -( 으)ㄴ/는 만큼 as much as (doing sth.) 웃는  만큼  인생은  행복해진다 . Life becomes more fun as much as you laugh.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:005",
+      "number": 5,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 반면 (에)",
+      "rawRow": "5 -( 으)ㄴ/는 반면 (에) Although ~ 택시는  편리한  반면에  지하철보다  비싸다 . Although a taxi is convenient, it is more expensive than a subway.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:006",
+      "number": 6,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 법이다",
+      "rawRow": "6 -( 으)ㄴ/는 법이다 (It) will~ 계속  노력한다면  개선되는  법이다 . If you keep making an effort, you will get better.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:007",
+      "number": 7,
+      "page": 1,
+      "form": "-( 으)ㄴ/는 탓에",
+      "rawRow": "7 -( 으)ㄴ/는 탓에 Because~ (negative) 운동  안 한 탓에  살이  많이  쪘어요 . Because I did not work out, I gained a lot of weight.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:008",
+      "number": 8,
+      "page": 1,
+      "form": "-( 으)ㄴ/는/( 으)ㄹ 모양이다",
+      "rawRow": "8 -( 으)ㄴ/는/( 으)ㄹ 모양이다 seems like~ 비가  오는  모양이다 . It seems like it is raining.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:009",
+      "number": 9,
+      "page": 1,
+      "form": "-( 으)ㄴ/는/( 으)ㄹ 셈이다",
+      "rawRow": "9 -( 으)ㄴ/는/( 으)ㄹ 셈이다 going to do~ 어떻게  할 셈이야 ? What are you going to do?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:010",
+      "number": 10,
+      "page": 1,
+      "form": "-( 으)ㄴ/는/( 으)ㄹ 줄 몰랐다",
+      "rawRow": "10 -( 으)ㄴ/는/( 으)ㄹ 줄 몰랐다 did not know~ 공무원  시험에  합격할  줄 몰랐다 . I did not know that I passed the civil servant examination.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:011",
+      "number": 11,
+      "page": 1,
+      "form": "-( 으)ㄴ/는/( 으)ㄹ 줄 알았다",
+      "rawRow": "11 -( 으)ㄴ/는/( 으)ㄹ 줄 알았다 thought~ 아저씨는  연예인이  된 줄 알았는데 . I thought he became a celebrity.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:012",
+      "number": 12,
+      "page": 1,
+      "form": "-( 으)ㄴ/는/( 으)ㄹ지",
+      "rawRow": "12 -( 으)ㄴ/는/( 으)ㄹ지 what/who/where~ 지갑을  어디서  잃어버렸는지  모르겠다 . I don't know where I lost my wallet.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:013",
+      "number": 13,
+      "page": 1,
+      "form": "-( 으)ㄴ/는걸 (요) ~",
+      "rawRow": "13 -( 으)ㄴ/는걸 (요) ~ though. 아직  졸린걸요 . I am still sleepy though.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:014",
+      "number": 14,
+      "page": 1,
+      "form": "-( 으)ㄴ/는데 (요)",
+      "rawRow": "14 -( 으)ㄴ/는데 (요) But ~ 이 요리는  생각보다  맛있는데요 . But this dish is more delicious than I thought.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:015",
+      "number": 15,
+      "page": 1,
+      "form": "-( 으)ㄴ/는들",
+      "rawRow": "15 -( 으)ㄴ/는들 Even if~ 내가  간들  소용없다 . Even if I go, it won't help much.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:016",
+      "number": 16,
+      "page": 1,
+      "form": "-( 으)ㄴ가  보다",
+      "rawRow": "16 -( 으)ㄴ가  보다 assume ~ 그 사람은  선생님인가  봐요 . I assume he is a teacher.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:017",
+      "number": 17,
+      "page": 1,
+      "form": "-( 으)ㄴ가 (요)?",
+      "rawRow": "17 -( 으)ㄴ가 (요)? Is ~? 여자  친구는  예쁜가요 ? Is your girlfriend pretty?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:018",
+      "number": 18,
+      "page": 1,
+      "form": "-( 으)나 마나",
+      "rawRow": "18 -( 으)나 마나 no use to- 길을  물어보나  마나예요 . It is no use to ask him the direction.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:019",
+      "number": 19,
+      "page": 1,
+      "form": "-( 으)니까 (요)",
+      "rawRow": "19 -( 으)니까 (요) Because~ (neutral) 열심히  공부하니까  성적이  우수하다 . Because he studies hard, his grades are excellent.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:020",
+      "number": 20,
+      "page": 1,
+      "form": "-( 으)니만큼",
+      "rawRow": "20 -( 으)니만큼 As~ 노력하니만큼  결과가  기대된다 . As I tried hard, I am looking forward to the result.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:021",
+      "number": 21,
+      "page": 1,
+      "form": "-( 으)ㄹ 겸  ( 해서 )",
+      "rawRow": "21 -( 으)ㄹ 겸  ( 해서 ) And also 그에게  사과할  겸 해서  편지를  썼어요 . I wrote a letter and also apologize.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:022",
+      "number": 22,
+      "page": 1,
+      "form": "-( 으)ㄹ 리가  없다",
+      "rawRow": "22 -( 으)ㄹ 리가  없다 There is no way~ 돈이  부족할  리가  없어요 . There is no way the money is not enough.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:023",
+      "number": 23,
+      "page": 1,
+      "form": "-( 으)ㄹ 만하다",
+      "rawRow": "23 -( 으)ㄹ 만하다 It is worth~ 타개책을  시도할  만합니다 . It is worth attempting a breakthrough.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:024",
+      "number": 24,
+      "page": 1,
+      "form": "-( 으)ㄹ 뻔하다",
+      "rawRow": "24 -( 으)ㄹ 뻔하다 almost ~ 과음해서  의식을  잃어버릴  뻔했어요 . I almost lost consciousness from overdrinking.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:025",
+      "number": 25,
+      "page": 1,
+      "form": "-( 으)ㄹ 뿐만  아니라",
+      "rawRow": "25 -( 으)ㄹ 뿐만  아니라 not only 그 애기는  걸을  뿐만  아니라  잘 달린다 . That baby not only walks well but also runs well.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:026",
+      "number": 26,
+      "page": 1,
+      "form": "-( 으)ㄹ 뿐이다",
+      "rawRow": "26 -( 으)ㄹ 뿐이다 just~ 국적이  다를  뿐이지  같은  인간이에요 . We just have different nationalities, but we're the same human beings.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:027",
+      "number": 27,
+      "page": 1,
+      "form": "-( 으)ㄹ 수밖에  ( 없다 )",
+      "rawRow": "27 -( 으)ㄹ 수밖에  ( 없다 ) no other choice than~ 시간이  없으니까  뛰어갈  수밖에  없다 . We don't have much time, so there is no other choice than running.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:028",
+      "number": 28,
+      "page": 1,
+      "form": "-( 으)ㄹ 정도 (로)",
+      "rawRow": "28 -( 으)ㄹ 정도 (로) (verb)ingly 놀라울  정도로  크게  외쳤다 . He shouted surprisingly loud.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:029",
+      "number": 29,
+      "page": 1,
+      "form": "-( 으)ㄹ 지경이다",
+      "rawRow": "29 -( 으)ㄹ 지경이다 almost~ 그녀가  화낼  지경이에요 . She's almost mad.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:030",
+      "number": 30,
+      "page": 1,
+      "form": "-( 으)ㄹ 테니 (까)",
+      "rawRow": "30 -( 으)ㄹ 테니 (까) will~ so~ 빨래를  널 테니까  애기를  봐줘 . I will dry the laundry, so please look after the child.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:031",
+      "number": 31,
+      "page": 1,
+      "form": "-( 으)ㄹ 텐데",
+      "rawRow": "31 -( 으)ㄹ 텐데 should be~ 거기에  있을  텐데 . It should be there.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:032",
+      "number": 32,
+      "page": 1,
+      "form": "-( 으)ㄹ걸  ( 그랬다 )",
+      "rawRow": "32 -( 으)ㄹ걸  ( 그랬다 ) should have~ 우산  가져올  걸. I should have brought an umbrella.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:033",
+      "number": 33,
+      "page": 1,
+      "form": "-( 으)ㄹ까  말까",
+      "rawRow": "33 -( 으)ㄹ까  말까 whether~ or not 길을  건널까  말까  고민했다 . I wondered whether I should cross the street or not.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:034",
+      "number": 34,
+      "page": 2,
+      "form": "-( 으)ㄹ수록",
+      "rawRow": "34 -( 으)ㄹ수록 (adj.)er as~ 가면  갈수록  그 산길은  힘들어져요 . The mountain road is getting harder as you go further.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:035",
+      "number": 35,
+      "page": 2,
+      "form": "-( 으)ㄹ지 (도) 모르다",
+      "rawRow": "35 -( 으)ㄹ지 (도) 모르다 don't know~ 어떻게  편집해야할지  잘 모르겠어요 . I don't know how I should edit it.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:036",
+      "number": 36,
+      "page": 2,
+      "form": "-( 으)ㄹ지라도",
+      "rawRow": "36 -( 으)ㄹ지라도 no matter~ 아무리  어려울지라도  저는  해냅니다 . No matter how tough it is, I will complete it.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:037",
+      "number": 37,
+      "page": 2,
+      "form": "-( 으)라고  하다",
+      "rawRow": "37 -( 으)라고  하다 told me to~ 아버지가  빨리  손을  씻으라고  했어요 . Dad told me to wash my hands quickly.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:038",
+      "number": 38,
+      "page": 2,
+      "form": "-( 으)려다가",
+      "rawRow": "38 -( 으)려다가 is about to~ 외출하려다가  누나가  찾아왔다 . When I was about to go out, my sister came in.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:039",
+      "number": 39,
+      "page": 2,
+      "form": "-( 으)려던  참이다",
+      "rawRow": "39 -( 으)려던  참이다 is about to 학교에  가려던  참이에요 . I was about to go to school.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:040",
+      "number": 40,
+      "page": 2,
+      "form": "-( 으)려면",
+      "rawRow": "40 -( 으)려면 in order to~ 기념사진을  찍으려면  배경은  아름다워야한다 . In order to take a memorial picture, the background has to be beautiful.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:041",
+      "number": 41,
+      "page": 2,
+      "form": "-( 으)로 인해 (서)",
+      "rawRow": "41 -( 으)로 인해 (서) due to~ 그 이야기는  인터넷으로  인해  확산되었다 . The story is widespread due to the Internet.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:042",
+      "number": 42,
+      "page": 2,
+      "form": "-( 으)로서",
+      "rawRow": "42 -( 으)로서 as a~ 선배로서  충고  하나  할게 . Let me give you some advice as a senior.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:043",
+      "number": 43,
+      "page": 2,
+      "form": "-( 으)며",
+      "rawRow": "43 -( 으)며 and~ 내 남자친구는  피아노도  잘 치며  노래도  잘한다 . My boyfriend is good at playing piano and singing.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:044",
+      "number": 44,
+      "page": 2,
+      "form": "-( 으)면 되다",
+      "rawRow": "44 -( 으)면 되다 should be okay~ 웹사이트에서  접수하시면  됩니다 . It should be okay if you apply on the website.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:045",
+      "number": 45,
+      "page": 2,
+      "form": "-( 으)므로",
+      "rawRow": "45 -( 으)므로 as (sub.) needs to~ 아침  일찍  일어나야  하므로  이제  잡니다 . As I need to wake up early in the morning, I am going to sleep now.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:046",
+      "number": 46,
+      "page": 2,
+      "form": "-( 이)나 -( 이)나 할 것 없이",
+      "rawRow": "46 -( 이)나 -( 이)나 할 것 없이 regardless of~ 아이나  어른이나  할 것 없이  건강은  중요하다 . Regardless of whether you are a child or an adult, health is important.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:047",
+      "number": 47,
+      "page": 2,
+      "form": "- 거든",
+      "rawRow": "47 - 거든 because 어려보여도  제가  상사거든요 . Because I am your boss even though I look young.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:048",
+      "number": 48,
+      "page": 2,
+      "form": "- 게 하다",
+      "rawRow": "48 - 게 하다 makes~ 동생은  나를  짜증나게  한다 . My younger brother makes me annoyed.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:049",
+      "number": 49,
+      "page": 2,
+      "form": "- 고 나니 (까)",
+      "rawRow": "49 - 고 나니 (까) after~ 푹 쉬고  나니  열이  내려갔어요 . After resting well, the fever got better.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:050",
+      "number": 50,
+      "page": 2,
+      "form": "- 고 나면",
+      "rawRow": "50 - 고 나면 after~ 청소하고  나면  기분이  상쾌해진다 . After cleaning the house, I feel refreshed.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:051",
+      "number": 51,
+      "page": 2,
+      "form": "- 고 나서",
+      "rawRow": "51 - 고 나서 after~ 이메일  먼저  확인하고  나서  연락드릴게요 . After checking the e-mail first, I will contact with you.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:052",
+      "number": 52,
+      "page": 2,
+      "form": "- 고 말고 (요)",
+      "rawRow": "52 - 고 말고 (요) of course~ 한국여행은  재미있고  말고요 . Of course, traveling to Korea is fun.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:053",
+      "number": 53,
+      "page": 2,
+      "form": "- 고 말다",
+      "rawRow": "53 - 고 말다 ended up~ 밤늦게까지  게임하고  말았어요 . I ended up playing a game until late at night.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:054",
+      "number": 54,
+      "page": 2,
+      "form": "- 고 보면",
+      "rawRow": "54 - 고 보면 actually~ once~ 배우고  보면  한국어는  쉬워요 . Korean is actually easy to learn once you start learning.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:055",
+      "number": 55,
+      "page": 2,
+      "form": "- 곤 하다",
+      "rawRow": "55 - 곤 하다 used to often~ 우리는  분식점  앞에서  만나곤  했다 . We used to meet often in front of the cafeteria.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:056",
+      "number": 56,
+      "page": 2,
+      "form": "- 기 쉽다",
+      "rawRow": "56 - 기 쉽다 easy to~ 저 선생님의  수업은  이해하기  쉬워요 . That teacher's class is easy to understand.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:057",
+      "number": 57,
+      "page": 2,
+      "form": "- 기 십상이다",
+      "rawRow": "57 - 기 십상이다 tend to~ 젊은  운전자는  실수하기  십상이다 . Young drivers tend to make mistakes.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:058",
+      "number": 58,
+      "page": 2,
+      "form": "- 기 어렵다",
+      "rawRow": "58 - 기 어렵다 difficult to~ 작은  신발로는  걷기  어렵다 . It is difficult to walk in small shoes.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:059",
+      "number": 59,
+      "page": 2,
+      "form": "- 기 위해 (서)",
+      "rawRow": "59 - 기 위해 (서) to~ 문제를  해결하기  위해서  다같이  모였다 . We gathered together to resolve the issue.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:060",
+      "number": 60,
+      "page": 2,
+      "form": "- 기/게 마련이다",
+      "rawRow": "60 - 기/게 마련이다 will~ 준비  안 하면  후회하기  마련이다 . If you don't prepare, you will regret it.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:061",
+      "number": 61,
+      "page": 2,
+      "form": "- 기는  하지만",
+      "rawRow": "61 - 기는  하지만 but~ 한국어는  어렵기는  하지만  재미도  있어요 . Korean is difficult but fun to learn.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:062",
+      "number": 62,
+      "page": 2,
+      "form": "- 기는 (요)",
+      "rawRow": "62 - 기는 (요) no need to~ 고맙기는요 . 별말씀을요 . No need to thank me. (No problem.)",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:063",
+      "number": 63,
+      "page": 2,
+      "form": "- 기만  하면  ( 되다 )",
+      "rawRow": "63 - 기만  하면  ( 되다 ) as long as~ 단어를  외우기만  하면  100 점이다 . As long as you memorize the vocabulary, you will get a full score.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:064",
+      "number": 64,
+      "page": 2,
+      "form": "- 기에 (는)",
+      "rawRow": "64 - 기에 (는) not good for~ 축구하기에는  날씨가  안 좋아요 . The weather is not good for playing soccer.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:065",
+      "number": 65,
+      "page": 2,
+      "form": "- 길래",
+      "rawRow": "65 - 길래 since~ 남편이  레스토랑에  안 오길래  난 바람맞은  줄 알았다 . Since my husband did not come to a restaurant, I thought he cancel the plan at the last minute.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:066",
+      "number": 66,
+      "page": 2,
+      "form": "- ㄴ/는 척하다",
+      "rawRow": "66 - ㄴ/는 척하다 pretend to~ 그 후배는  착한  척한다 . He is pretending to be nice.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:067",
+      "number": 67,
+      "page": 3,
+      "form": "- ㄴ/는다",
+      "rawRow": "67 - ㄴ/는다 is~ 후식에  딸기를  먹는다 . I am eating strawberries for dessert.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:068",
+      "number": 68,
+      "page": 3,
+      "form": "- ㄴ/는다거나",
+      "rawRow": "68 - ㄴ/는다거나 or~ 독서한다거나  영화를  보러  간다 . I read some books or go watch a movie.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:069",
+      "number": 69,
+      "page": 3,
+      "form": "- ㄴ/는다고  치다",
+      "rawRow": "69 - ㄴ/는다고  치다 if~ 일본에  간다고  치면  어디로  갈까요 ? If I go to Japan, where should I visit?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:070",
+      "number": 70,
+      "page": 3,
+      "form": "- ㄴ/는다고  하다",
+      "rawRow": "70 - ㄴ/는다고  하다 say~  제 친구는  병원에  안 다닌다고  했어요 . My friend said that he didn't go to the hospital.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:071",
+      "number": 71,
+      "page": 3,
+      "form": "- ㄴ/는다고  해도",
+      "rawRow": "71 - ㄴ/는다고  해도 even if~ 금연한다고  해도  잘 안 된다 . Even if I am trying to quit smoking, it is difficult.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:072",
+      "number": 72,
+      "page": 3,
+      "form": "- ㄴ/는다고 (요)",
+      "rawRow": "72 - ㄴ/는다고 (요) seems like~ 내일은  비가  온다고  해요 . It seems like tomorrow is going to rain.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:073",
+      "number": 73,
+      "page": 3,
+      "form": "- ㄴ/는다니",
+      "rawRow": "73 - ㄴ/는다니 that~ 5개국어를  한다니  대단합니다 . It's amazing that you can speak 5 languages.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:074",
+      "number": 74,
+      "page": 3,
+      "form": "- ㄴ/는다니까",
+      "rawRow": "74 - ㄴ/는다니까 I'm telling you~ 아무리  이유를  설명해도  화를  낸다니까 . I'm telling you no matter how many times I explain the reason, he is still angry.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:075",
+      "number": 75,
+      "page": 3,
+      "form": "- ㄴ/는다더니",
+      "rawRow": "75 - ㄴ/는다더니 but~ 우리  남편은  일찍  돌아온다더니  아직도  집에  안 왔다 . My husband said he will be back soon, but he was still not home.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:076",
+      "number": 76,
+      "page": 3,
+      "form": "- ㄴ/는다더라",
+      "rawRow": "76 - ㄴ/는다더라 seems like~ 내일은  눈이  온다더라 . It seems like tomorrow is going to snow.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:077",
+      "number": 77,
+      "page": 3,
+      "form": "- ㄴ/는다던데",
+      "rawRow": "77 - ㄴ/는다던데 heard~ 잘 생겼다던데  정말이야 ? I heard he is handsome, is that true?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:078",
+      "number": 78,
+      "page": 3,
+      "form": "- ㄴ/는다면",
+      "rawRow": "78 - ㄴ/는다면 if~ 운동선수가  되고  싶다면  전문학원에  등록해야  돼. If you want to be an athlete, you need to register for a professional academy.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:079",
+      "number": 79,
+      "page": 3,
+      "form": "- ㄴ/는다면서 (요)?",
+      "rawRow": "79 - ㄴ/는다면서 (요)? heard~ 너 영어  잘한다면서 ? I heard you are good at English?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:080",
+      "number": 80,
+      "page": 3,
+      "form": "- 나 보다",
+      "rawRow": "80 - 나 보다 seem to~ 둘이  사귀나  보다 . They seem to be dating.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:081",
+      "number": 81,
+      "page": 3,
+      "form": "- 나(요)?",
+      "rawRow": "81 - 나(요)? is it? 여기서  타면  되나 ? Is it here where we ride?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:082",
+      "number": 82,
+      "page": 3,
+      "form": "- 냐고  하다",
+      "rawRow": "82 - 냐고  하다 ask 엄마가  시험은  언제냐고  저한테  물어봤어요 . My mom asked me when the exam was.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:083",
+      "number": 83,
+      "page": 3,
+      "form": "- 느라고",
+      "rawRow": "83 - 느라고 for~ 숙제하느라고  삼촌을  만날  시간이  없었다 . I was busy with homework that I didn't have time to meet my uncle.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:084",
+      "number": 84,
+      "page": 3,
+      "form": "- 는 ( 도)중에",
+      "rawRow": "84 - 는 ( 도)중에 in the middle of~ 연기하는  중에  기침해버렸다 . I accidentally coughed when I was in the middle of acting.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:085",
+      "number": 85,
+      "page": 3,
+      "form": "- 는 길에",
+      "rawRow": "85 - 는 길에 on the way~ 집에  가는  길에  빵을  사 왔어요 . I bought bread on my way home.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:086",
+      "number": 86,
+      "page": 3,
+      "form": "- 는 대로",
+      "rawRow": "86 - 는 대로 as~ 바라는  대로  이루어진다 . You can become as you wish.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:087",
+      "number": 87,
+      "page": 3,
+      "form": "- 는 대신 (에)",
+      "rawRow": "87 - 는 대신 (에) instead of~ 술을  마시는  대신에  녹차를  마시자 . Let's drink green tea instead of alcohol.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:088",
+      "number": 88,
+      "page": 3,
+      "form": "- 는 덕분에",
+      "rawRow": "88 - 는 덕분에 thanks to~ 버스가  늦게  온 덕분에  탈 수 있었다 . I was able to ride the bus thanks to the fact that it was delayed.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:089",
+      "number": 89,
+      "page": 3,
+      "form": "- 는 바람에",
+      "rawRow": "89 - 는 바람에 because~ 공부를  안 하는  바람에  성적이  떨어졌어요 . My grade dropped because I did not study.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:090",
+      "number": 90,
+      "page": 3,
+      "form": "- 는 사이에",
+      "rawRow": "90 - 는 사이에 when~ 제가  없는  사이에  택배가  오면  받아주세요 . If the delivery comes when I am not home, please take it for me.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:091",
+      "number": 91,
+      "page": 3,
+      "form": "- 는 셈 치다",
+      "rawRow": "91 - 는 셈 치다 considering~ 연습하는  셈 치고  오디션에  간다 . I take auditions considering them as practices.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:092",
+      "number": 92,
+      "page": 3,
+      "form": "- 는 수(가) 있다",
+      "rawRow": "92 - 는 수(가) 있다 can~ 전문가라고  해도  실패하는  수가  있어요 . Even an expert can fail.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:093",
+      "number": 93,
+      "page": 3,
+      "form": "- 는 수밖에  ( 없다 )",
+      "rawRow": "93 - 는 수밖에  ( 없다 ) no other choice than~ 가족으로부터  돈을  빌리는  수밖에  없다 . There is no other choice than to borrow money from my family.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:094",
+      "number": 94,
+      "page": 3,
+      "form": "- 는 중이다",
+      "rawRow": "94 - 는 중이다 on the way~ 지금  직장에  가는  중이에요 . I am on the way going to my office.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:095",
+      "number": 95,
+      "page": 3,
+      "form": "- 는 통에",
+      "rawRow": "95 - 는 통에 because~ 아이들이  떠드는  통에  집중할  수 없었어요 . I was not able to concentrate because the children were too noisy.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:096",
+      "number": 96,
+      "page": 3,
+      "form": "- 는 편이다",
+      "rawRow": "96 - 는 편이다 tend to~ 저는  돈을  아끼는  편이에요 . I tend to save money.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:097",
+      "number": 97,
+      "page": 3,
+      "form": "- 는 한",
+      "rawRow": "97 - 는 한 as far as~ 내가  아는  한 그것은  사실이에요 . As far as I know, it is true.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:098",
+      "number": 98,
+      "page": 3,
+      "form": "- 는 한편",
+      "rawRow": "98 - 는 한편 also~ 회사에  다니는  한편  부업도  한다 . I am working at a company and also doing a side job.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:099",
+      "number": 99,
+      "page": 3,
+      "form": "- 는/은커녕",
+      "rawRow": "99 - 는/은커녕 even~ 술은커녕  차도  못 마셨어요 . I could not drink alcohol, not even tea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:100",
+      "number": 100,
+      "page": 4,
+      "form": "- 는구나",
+      "rawRow": "100 - 는구나 I see~ 이 애기는  벌써  걷는구나 . The baby is already walking.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:101",
+      "number": 101,
+      "page": 4,
+      "form": "- 니/냐?",
+      "rawRow": "101 - 니/냐? do you~? 기분  나쁘니 ? Do you feel uncomfortable?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:102",
+      "number": 102,
+      "page": 4,
+      "form": "- 다(가) 보니 (까)",
+      "rawRow": "102 - 다(가) 보니 (까) while focusing~ already~ 작업하다  보니까  새벽이  됐어요 . While I was focusing on my work, it was already morning.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:103",
+      "number": 103,
+      "page": 4,
+      "form": "- 다(가) 보면",
+      "rawRow": "103 - 다(가) 보면 when focusing~ 심호흡하다  보면  마음이  차분해집니다 . When you focus on breathing deeply, you will feel calmer.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:104",
+      "number": 104,
+      "page": 4,
+      "form": "- 다가",
+      "rawRow": "104 - 다가 while~ 스마트폰을  사용하다가  모르면  물어보세요 . When you don't know something while using a smartphone, please come and ask.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:105",
+      "number": 105,
+      "page": 4,
+      "form": "- 다시피",
+      "rawRow": "105 - 다시피 as~ 보다시피  요즘  직장인들은  바빠요 . As you can see, employees these days are busy.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:106",
+      "number": 106,
+      "page": 4,
+      "form": "- 대로",
+      "rawRow": "106 - 대로 as~ 교수님의  말씀대로  하자 . Let's do as the professor told us.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:107",
+      "number": 107,
+      "page": 4,
+      "form": "- 더군 (요)",
+      "rawRow": "107 - 더군 (요) I heard~ 따님에게  귀여운  이름을  지었더군요 . I heard that you have given your daughter a very cute name.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:108",
+      "number": 108,
+      "page": 4,
+      "form": "- 더니 ~",
+      "rawRow": "108 - 더니 ~and then 강의에  늦었더니  강사님이  야단치셨다 . I was late for class and then the teacher scolded me.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:109",
+      "number": 109,
+      "page": 4,
+      "form": "- 더라",
+      "rawRow": "109 - 더라 I heard~ 그 남자는  경찰에  잡혔더라 . I heard the guy was caught by the police.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:110",
+      "number": 110,
+      "page": 4,
+      "form": "- 더라고 (요)",
+      "rawRow": "110 - 더라고 (요) was~ 서울은  도쿄보다  춥더라고요 . Seoul was colder than Tokyo.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:111",
+      "number": 111,
+      "page": 4,
+      "form": "- 더라도",
+      "rawRow": "111 - 더라도 even~ 힘겨운  일이  있더라도  참는다 . I endure even when I am having a hard time.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:112",
+      "number": 112,
+      "page": 4,
+      "form": "- 던",
+      "rawRow": "112 - 던 used to~ 내가  다니던  중학교는  지금은  없어요 . The middle school I used to go to is not there anymore.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:113",
+      "number": 113,
+      "page": 4,
+      "form": "- 던가 (요)?",
+      "rawRow": "113 - 던가 (요)? Is~? 오늘  결혼기념일이던가 ? Is today our wedding anniversary?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:114",
+      "number": 114,
+      "page": 4,
+      "form": "- 던데",
+      "rawRow": "114 - 던데 I found (that) 길이  막히던데  사고라도  났나 ? I found a traffic jam. Was there an accident?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:115",
+      "number": 115,
+      "page": 4,
+      "form": "- 도록",
+      "rawRow": "115 - 도록 so that~ 이 은혜를  갚도록  항상  최선을  다하겠습니다 . I will try my best to return this favor.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:116",
+      "number": 116,
+      "page": 4,
+      "form": "- 든지",
+      "rawRow": "116 - 든지 no matter~ 좋든지  싫든지  수능  봐야  한다 . No matter I wish or not, I need to take the university entrance examination.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:117",
+      "number": 117,
+      "page": 4,
+      "form": "- 듯이",
+      "rawRow": "117 - 듯이 like~ 미친  듯이  춤췄다 . I danced like a crazy person.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:118",
+      "number": 118,
+      "page": 4,
+      "form": "( 이)라도",
+      "rawRow": "118 ( 이)라도 rather~ 이 문제지라도  풀어볼래요 ? Would you like to rather solve this problem?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:119",
+      "number": 119,
+      "page": 4,
+      "form": "- 만 못하다",
+      "rawRow": "119 - 만 못하다 not as~ 중고는  신제품만  못해요 . Second-hand is not as good as a new product.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:120",
+      "number": 120,
+      "page": 4,
+      "form": "- 아/어 보이다",
+      "rawRow": "120 - 아/어 보이다 seem~ 얼굴표정이  어제보다  밝아  보여요 . You seem to feel better than yesterday.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:121",
+      "number": 121,
+      "page": 4,
+      "form": "- 아/어서  그런지",
+      "rawRow": "121 - 아/어서  그런지 probably becase~ 나이가  들어서  그런지  몸이  예전같지  않다 . I feel not as strong as before probably because I am getting old.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:122",
+      "number": 122,
+      "page": 4,
+      "form": "- 아/어도",
+      "rawRow": "122 - 아/어도 even~ 설명  들어도  이해  못 하겠어요 . I can't understand even after listening to the explanation.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:123",
+      "number": 123,
+      "page": 4,
+      "form": "- 아/어라",
+      "rawRow": "123 - 아/어라 please~ 공을  던져라 . Please throw the ball.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:124",
+      "number": 124,
+      "page": 4,
+      "form": "- 아/어야",
+      "rawRow": "124 - 아/어야 when~ 술자리에는  친한  친구가  있어야  재미있다 . Drinking is fun when you have a close friend.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:125",
+      "number": 125,
+      "page": 4,
+      "form": "- 아/어야지",
+      "rawRow": "125 - 아/어야지 should~ 일찍  결혼해야지 . You should marry quickly.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:126",
+      "number": 126,
+      "page": 4,
+      "form": "- 아/어지다",
+      "rawRow": "126 - 아/어지다 becoming~ 인터넷으로  세계는  가까워지고  있어요 . The world is becoming closer through the Internet.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:127",
+      "number": 127,
+      "page": 4,
+      "form": "- 았/었더라면",
+      "rawRow": "127 - 았/었더라면 would have~ 은행에서  돈을  찾았더라면  좋았을  텐데 . It would have been better if I withdrew the money from a bank.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:128",
+      "number": 128,
+      "page": 4,
+      "form": "- 았/었던  것 같다",
+      "rawRow": "128 - 았/었던  것 같다 think~ 걔는  취업했던  것 같다 . I think he got a job.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:129",
+      "number": 129,
+      "page": 4,
+      "form": "- 았/었으면  하다",
+      "rawRow": "129 - 았/었으면  하다 wish~ 점심은  라면이었으면  해. I wish the lunch menu is ramen.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:130",
+      "number": 130,
+      "page": 4,
+      "form": "( 이)야말로",
+      "rawRow": "130 ( 이)야말로 the~ 지금이야말로  역사적인  순간입니다 . This is the historical moment.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:131",
+      "number": 131,
+      "page": 4,
+      "form": "- 에 관해 (서)",
+      "rawRow": "131 - 에 관해 (서) about~ 인기  가수에  관해서  새로운  뉴스가  나왔어요 . The latest news about a famous singer got released.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:132",
+      "number": 132,
+      "page": 4,
+      "form": "- 에 대해 (서)",
+      "rawRow": "132 - 에 대해 (서) to~ 부부는  서로에  대해서  배려해야  한다 . Married couples have to show respect to each other.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:133",
+      "number": 133,
+      "page": 5,
+      "form": "- 에 따라 (서)",
+      "rawRow": "133 - 에 따라 (서) depending on~ 예산에  따라  여행일정도  달라져요 . The travel plan changes depending on the budget.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:134",
+      "number": 134,
+      "page": 5,
+      "form": "- 에 의해 (서)",
+      "rawRow": "134 - 에 의해 (서) by~ 역경은  희망에  의해서  극복할  수 있다 . Hardship can be overcome by hope.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:135",
+      "number": 135,
+      "page": 5,
+      "form": "- 에다 (가)",
+      "rawRow": "135 - 에다 (가) in(to)~ / at~ 우유는  냉장고에다가  넣었어요 . I put milk into the refrigerator.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:136",
+      "number": 136,
+      "page": 5,
+      "form": "- 을/를 비롯한",
+      "rawRow": "136 - 을/를 비롯한 including~ 나를  비롯한  모든  사람들이  그 아이디어에  찬성한다 . Everybody including me agreed on the idea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:137",
+      "number": 137,
+      "page": 5,
+      "form": "- 을/를 통해 (서)",
+      "rawRow": "137 - 을/를 통해 (서) from~ 그 배우는  드라마를  통해서  알게  되었어요 . I got to know that actor from a TV series.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:138",
+      "number": 138,
+      "page": 5,
+      "form": "- 자",
+      "rawRow": "138 - 자 let's 이제  문 닫자 . Let's close the door.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:139",
+      "number": 139,
+      "page": 5,
+      "form": "- 자고  하다",
+      "rawRow": "139 - 자고  하다 (He/she) said to~ 동료가  포기하지  말자고  했다 . My colleague said not to give up.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:140",
+      "number": 140,
+      "page": 5,
+      "form": "- 자마자",
+      "rawRow": "140 - 자마자 as soon as~ 사장님은  좋은  소식을  듣자마자  미소  지었다 . The boss smiled as soon as he heard the good news.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:141",
+      "number": 141,
+      "page": 5,
+      "form": "- 잖아 (요) ~",
+      "rawRow": "141 - 잖아 (요) ~right? 내가  많이  사줬잖아 . I treated you many times, right?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:142",
+      "number": 142,
+      "page": 5,
+      "form": "마저",
+      "rawRow": "142 마저 even~ 숙제가  많은  데다가  시간마저  부족하다 . I have a lot of homework, but even the time is running out.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:143",
+      "number": 143,
+      "page": 5,
+      "form": "만큼",
+      "rawRow": "143 만큼 as~ 가족만큼  중요한  것은  없다 . There is nothing as important as family.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:144",
+      "number": 144,
+      "page": 5,
+      "form": "아무  -( 이)나",
+      "rawRow": "144 아무  -( 이)나 any~ 아무  옷이나  가져오세요 . Bring any kind of clothes.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:145",
+      "number": 145,
+      "page": 5,
+      "form": "아무  - 도",
+      "rawRow": "145 아무  - 도 no~ 아무  걱정도  없어요 . I have no worries at all.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:146",
+      "number": 146,
+      "page": 5,
+      "form": "얼마나  -( 으)ㄴ/는지",
+      "rawRow": "146 얼마나  -( 으)ㄴ/는지 how~ 그 당시에는  얼마나  가난했는지  몰라요 . You can't imagine how poor we were at the time.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:147",
+      "number": 147,
+      "page": 5,
+      "form": "조차",
+      "rawRow": "147 조차 even~ 기다림조차  설렙니다 . Even the waiting time is exciting for me.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-ii:148",
+      "number": 148,
+      "page": 5,
+      "form": "치고 (는)",
+      "rawRow": "148 치고 (는) for~ 아이돌치고는  나이가  많다 . He is old for an idol.",
+      "status": "source-only"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "text": "TOPIK Ⅱ Grammar (Intermediate) \nNo. 한글 English 예문 Example \n1 -( 으)ㄴ 채(로) while~ 버스  안에서  앉은  채로  잠자버렸다 . I fell asleep while sitting on the bus. \n2 -( 으)ㄴ/는 걸 보니 (까) since~ 돈을  많이  쓰는  걸 보니  부자인가  봐. He must be rich since he is using a lot of money. \n3 -( 으)ㄴ/는 김에 On the way~ 마트에  가는  김에  친정에도  갔다 . On the way to the supermarket, I visited my parent's house. \n4 -( 으)ㄴ/는 만큼 as much as (doing sth.) 웃는  만큼  인생은  행복해진다 . Life becomes more fun as much as you laugh. \n5 -( 으)ㄴ/는 반면 (에) Although ~ 택시는  편리한  반면에  지하철보다  비싸다 . Although a taxi is convenient, it is more expensive than a subway. \n6 -( 으)ㄴ/는 법이다 (It) will~ 계속  노력한다면  개선되는  법이다 . If you keep making an effort, you will get better. \n7 -( 으)ㄴ/는 탓에 Because~ (negative) 운동  안 한 탓에  살이  많이  쪘어요 . Because I did not work out, I gained a lot of weight. \n8 -( 으)ㄴ/는/( 으)ㄹ 모양이다 seems like~ 비가  오는  모양이다 . It seems like it is raining. \n9 -( 으)ㄴ/는/( 으)ㄹ 셈이다 going to do~ 어떻게  할 셈이야 ? What are you going to do? \n10 -( 으)ㄴ/는/( 으)ㄹ 줄 몰랐다 did not know~ 공무원  시험에  합격할  줄 몰랐다 . I did not know that I passed the civil servant examination. \n11 -( 으)ㄴ/는/( 으)ㄹ 줄 알았다 thought~ 아저씨는  연예인이  된 줄 알았는데 . I thought he became a celebrity. \n12 -( 으)ㄴ/는/( 으)ㄹ지 what/who/where~ 지갑을  어디서  잃어버렸는지  모르겠다 . I don't know where I lost my wallet. \n13 -( 으)ㄴ/는걸 (요) ~ though. 아직  졸린걸요 . I am still sleepy though. \n14 -( 으)ㄴ/는데 (요) But ~ 이 요리는  생각보다  맛있는데요 . But this dish is more delicious than I thought. \n15 -( 으)ㄴ/는들 Even if~ 내가  간들  소용없다 . Even if I go, it won't help much. \n16 -( 으)ㄴ가  보다 assume ~ 그 사람은  선생님인가  봐요 . I assume he is a teacher. \n17 -( 으)ㄴ가 (요)? Is ~? 여자  친구는  예쁜가요 ? Is your girlfriend pretty? \n18 -( 으)나 마나 no use to- 길을  물어보나  마나예요 . It is no use to ask him the direction. \n19 -( 으)니까 (요) Because~ (neutral) 열심히  공부하니까  성적이  우수하다 . Because he studies hard, his grades are excellent. \n20 -( 으)니만큼 As~ 노력하니만큼  결과가  기대된다 . As I tried hard, I am looking forward to the result. \n21 -( 으)ㄹ 겸  ( 해서 ) And also 그에게  사과할  겸 해서  편지를  썼어요 . I wrote a letter and also apologize. \n22 -( 으)ㄹ 리가  없다 There is no way~ 돈이  부족할  리가  없어요 . There is no way the money is not enough. \n23 -( 으)ㄹ 만하다 It is worth~ 타개책을  시도할  만합니다 . It is worth attempting a breakthrough. \n24 -( 으)ㄹ 뻔하다 almost ~ 과음해서  의식을  잃어버릴  뻔했어요 . I almost lost consciousness from overdrinking. \n25 -( 으)ㄹ 뿐만  아니라 not only 그 애기는  걸을  뿐만  아니라  잘 달린다 . That baby not only walks well but also runs well. \n26 -( 으)ㄹ 뿐이다 just~ 국적이  다를  뿐이지  같은  인간이에요 . We just have different nationalities, but we're the same human beings. \n27 -( 으)ㄹ 수밖에  ( 없다 ) no other choice than~ 시간이  없으니까  뛰어갈  수밖에  없다 . We don't have much time, so there is no other choice than running. \n28 -( 으)ㄹ 정도 (로) (verb)ingly 놀라울  정도로  크게  외쳤다 . He shouted surprisingly loud. \n29 -( 으)ㄹ 지경이다 almost~ 그녀가  화낼  지경이에요 . She's almost mad. \n30 -( 으)ㄹ 테니 (까) will~ so~ 빨래를  널 테니까  애기를  봐줘 . I will dry the laundry, so please look after the child. \n31 -( 으)ㄹ 텐데 should be~ 거기에  있을  텐데 . It should be there. \n32 -( 으)ㄹ걸  ( 그랬다 ) should have~ 우산  가져올  걸. I should have brought an umbrella. \n33 -( 으)ㄹ까  말까 whether~ or not 길을  건널까  말까  고민했다 . I wondered whether I should cross the street or not. \n1"
+    },
+    {
+      "page": 2,
+      "text": "TOPIK Ⅱ Grammar (Intermediate) \nNo. 한글 English 예문 Example \n34 -( 으)ㄹ수록 (adj.)er as~ 가면  갈수록  그 산길은  힘들어져요 . The mountain road is getting harder as you go further. \n35 -( 으)ㄹ지 (도) 모르다 don't know~ 어떻게  편집해야할지  잘 모르겠어요 . I don't know how I should edit it. \n36 -( 으)ㄹ지라도 no matter~ 아무리  어려울지라도  저는  해냅니다 . No matter how tough it is, I will complete it. \n37 -( 으)라고  하다 told me to~ 아버지가  빨리  손을  씻으라고  했어요 . Dad told me to wash my hands quickly. \n38 -( 으)려다가 is about to~ 외출하려다가  누나가  찾아왔다 . When I was about to go out, my sister came in. \n39 -( 으)려던  참이다 is about to 학교에  가려던  참이에요 . I was about to go to school. \n40 -( 으)려면 in order to~ 기념사진을  찍으려면  배경은  아름다워야한다 . In order to take a memorial picture, the background has to be beautiful. \n41 -( 으)로 인해 (서) due to~ 그 이야기는  인터넷으로  인해  확산되었다 . The story is widespread due to the Internet. \n42 -( 으)로서 as a~ 선배로서  충고  하나  할게 . Let me give you some advice as a senior. \n43 -( 으)며 and~ 내 남자친구는  피아노도  잘 치며  노래도  잘한다 . My boyfriend is good at playing piano and singing. \n44 -( 으)면 되다 should be okay~ 웹사이트에서  접수하시면  됩니다 . It should be okay if you apply on the website. \n45 -( 으)므로 as (sub.) needs to~ 아침  일찍  일어나야  하므로  이제  잡니다 . As I need to wake up early in the morning, I am going to sleep now. \n46 -( 이)나 -( 이)나 할 것 없이 regardless of~ 아이나  어른이나  할 것 없이  건강은  중요하다 . Regardless of whether you are a child or an adult, health is important. \n47 - 거든 because 어려보여도  제가  상사거든요 . Because I am your boss even though I look young. \n48 - 게 하다 makes~ 동생은  나를  짜증나게  한다 . My younger brother makes me annoyed. \n49 - 고 나니 (까) after~ 푹 쉬고  나니  열이  내려갔어요 . After resting well, the fever got better. \n50 - 고 나면 after~ 청소하고  나면  기분이  상쾌해진다 . After cleaning the house, I feel refreshed. \n51 - 고 나서 after~ 이메일  먼저  확인하고  나서  연락드릴게요 . After checking the e-mail first, I will contact with you. \n52 - 고 말고 (요) of course~ 한국여행은  재미있고  말고요 . Of course, traveling to Korea is fun. \n53 - 고 말다 ended up~ 밤늦게까지  게임하고  말았어요 . I ended up playing a game until late at night. \n54 - 고 보면 actually~ once~ 배우고  보면  한국어는  쉬워요 . Korean is actually easy to learn once you start learning. \n55 - 곤 하다 used to often~ 우리는  분식점  앞에서  만나곤  했다 . We used to meet often in front of the cafeteria. \n56 - 기 쉽다 easy to~ 저 선생님의  수업은  이해하기  쉬워요 . That teacher's class is easy to understand. \n57 - 기 십상이다 tend to~ 젊은  운전자는  실수하기  십상이다 . Young drivers tend to make mistakes. \n58 - 기 어렵다 difficult to~ 작은  신발로는  걷기  어렵다 . It is difficult to walk in small shoes. \n59 - 기 위해 (서) to~ 문제를  해결하기  위해서  다같이  모였다 . We gathered together to resolve the issue. \n60 - 기/게 마련이다 will~ 준비  안 하면  후회하기  마련이다 . If you don't prepare, you will regret it. \n61 - 기는  하지만 but~ 한국어는  어렵기는  하지만  재미도  있어요 . Korean is difficult but fun to learn. \n62 - 기는 (요) no need to~ 고맙기는요 . 별말씀을요 . No need to thank me. (No problem.) \n63 - 기만  하면  ( 되다 ) as long as~ 단어를  외우기만  하면  100 점이다 . As long as you memorize the vocabulary, you will get a full score. \n64 - 기에 (는) not good for~ 축구하기에는  날씨가  안 좋아요 . The weather is not good for playing soccer. \n65 - 길래 since~ 남편이  레스토랑에  안 오길래  난 바람맞은  줄 알았다 . Since my husband did not come to a restaurant, I thought he cancel the plan at the last minute. \n66 - ㄴ/는 척하다 pretend to~ 그 후배는  착한  척한다 . He is pretending to be nice. \n2"
+    },
+    {
+      "page": 3,
+      "text": "TOPIK Ⅱ Grammar (Intermediate) \nNo. 한글 English 예문 Example \n67 - ㄴ/는다 is~ 후식에  딸기를  먹는다 . I am eating strawberries for dessert. \n68 - ㄴ/는다거나 or~ 독서한다거나  영화를  보러  간다 . I read some books or go watch a movie. \n69 - ㄴ/는다고  치다 if~ 일본에  간다고  치면  어디로  갈까요 ? If I go to Japan, where should I visit? \n70 - ㄴ/는다고  하다 say~  제 친구는  병원에  안 다닌다고  했어요 . My friend said that he didn't go to the hospital. \n71 - ㄴ/는다고  해도 even if~ 금연한다고  해도  잘 안 된다 . Even if I am trying to quit smoking, it is difficult. \n72 - ㄴ/는다고 (요) seems like~ 내일은  비가  온다고  해요 . It seems like tomorrow is going to rain. \n73 - ㄴ/는다니 that~ 5개국어를  한다니  대단합니다 . It's amazing that you can speak 5 languages. \n74 - ㄴ/는다니까 I'm telling you~ 아무리  이유를  설명해도  화를  낸다니까 . I'm telling you no matter how many times I explain the reason, he is still angry. \n75 - ㄴ/는다더니 but~ 우리  남편은  일찍  돌아온다더니  아직도  집에  안 왔다 . My husband said he will be back soon, but he was still not home. \n76 - ㄴ/는다더라 seems like~ 내일은  눈이  온다더라 . It seems like tomorrow is going to snow. \n77 - ㄴ/는다던데 heard~ 잘 생겼다던데  정말이야 ? I heard he is handsome, is that true? \n78 - ㄴ/는다면 if~ 운동선수가  되고  싶다면  전문학원에  등록해야  돼. If you want to be an athlete, you need to register for a professional academy. \n79 - ㄴ/는다면서 (요)? heard~ 너 영어  잘한다면서 ? I heard you are good at English? \n80 - 나 보다 seem to~ 둘이  사귀나  보다 . They seem to be dating. \n81 - 나(요)? is it? 여기서  타면  되나 ? Is it here where we ride? \n82 - 냐고  하다 ask 엄마가  시험은  언제냐고  저한테  물어봤어요 . My mom asked me when the exam was. \n83 - 느라고 for~ 숙제하느라고  삼촌을  만날  시간이  없었다 . I was busy with homework that I didn't have time to meet my uncle. \n84 - 는 ( 도)중에 in the middle of~ 연기하는  중에  기침해버렸다 . I accidentally coughed when I was in the middle of acting. \n85 - 는 길에 on the way~ 집에  가는  길에  빵을  사 왔어요 . I bought bread on my way home. \n86 - 는 대로 as~ 바라는  대로  이루어진다 . You can become as you wish. \n87 - 는 대신 (에) instead of~ 술을  마시는  대신에  녹차를  마시자 . Let's drink green tea instead of alcohol. \n88 - 는 덕분에 thanks to~ 버스가  늦게  온 덕분에  탈 수 있었다 . I was able to ride the bus thanks to the fact that it was delayed. \n89 - 는 바람에 because~ 공부를  안 하는  바람에  성적이  떨어졌어요 . My grade dropped because I did not study. \n90 - 는 사이에 when~ 제가  없는  사이에  택배가  오면  받아주세요 . If the delivery comes when I am not home, please take it for me. \n91 - 는 셈 치다 considering~ 연습하는  셈 치고  오디션에  간다 . I take auditions considering them as practices. \n92 - 는 수(가) 있다 can~ 전문가라고  해도  실패하는  수가  있어요 . Even an expert can fail. \n93 - 는 수밖에  ( 없다 ) no other choice than~ 가족으로부터  돈을  빌리는  수밖에  없다 . There is no other choice than to borrow money from my family. \n94 - 는 중이다 on the way~ 지금  직장에  가는  중이에요 . I am on the way going to my office. \n95 - 는 통에 because~ 아이들이  떠드는  통에  집중할  수 없었어요 . I was not able to concentrate because the children were too noisy. \n96 - 는 편이다 tend to~ 저는  돈을  아끼는  편이에요 . I tend to save money. \n97 - 는 한 as far as~ 내가  아는  한 그것은  사실이에요 . As far as I know, it is true. \n98 - 는 한편 also~ 회사에  다니는  한편  부업도  한다 . I am working at a company and also doing a side job. \n99 - 는/은커녕 even~ 술은커녕  차도  못 마셨어요 . I could not drink alcohol, not even tea. \n3"
+    },
+    {
+      "page": 4,
+      "text": "TOPIK Ⅱ Grammar (Intermediate) \nNo. 한글 English 예문 Example \n100 - 는구나 I see~ 이 애기는  벌써  걷는구나 . The baby is already walking. \n101 - 니/냐? do you~? 기분  나쁘니 ? Do you feel uncomfortable? \n102 - 다(가) 보니 (까) while focusing~ already~ 작업하다  보니까  새벽이  됐어요 . While I was focusing on my work, it was already morning. \n103 - 다(가) 보면 when focusing~ 심호흡하다  보면  마음이  차분해집니다 . When you focus on breathing deeply, you will feel calmer. \n104 - 다가 while~ 스마트폰을  사용하다가  모르면  물어보세요 . When you don't know something while using a smartphone, please come and ask. \n105 - 다시피 as~ 보다시피  요즘  직장인들은  바빠요 . As you can see, employees these days are busy. \n106 - 대로 as~ 교수님의  말씀대로  하자 . Let's do as the professor told us. \n107 - 더군 (요) I heard~ 따님에게  귀여운  이름을  지었더군요 . I heard that you have given your daughter a very cute name. \n108 - 더니 ~and then 강의에  늦었더니  강사님이  야단치셨다 . I was late for class and then the teacher scolded me. \n109 - 더라 I heard~ 그 남자는  경찰에  잡혔더라 . I heard the guy was caught by the police. \n110 - 더라고 (요) was~ 서울은  도쿄보다  춥더라고요 . Seoul was colder than Tokyo. \n111 - 더라도 even~ 힘겨운  일이  있더라도  참는다 . I endure even when I am having a hard time. \n112 - 던 used to~ 내가  다니던  중학교는  지금은  없어요 . The middle school I used to go to is not there anymore. \n113 - 던가 (요)? Is~? 오늘  결혼기념일이던가 ? Is today our wedding anniversary? \n114 - 던데 I found (that) 길이  막히던데  사고라도  났나 ? I found a traffic jam. Was there an accident? \n115 - 도록 so that~ 이 은혜를  갚도록  항상  최선을  다하겠습니다 . I will try my best to return this favor. \n116 - 든지 no matter~ 좋든지  싫든지  수능  봐야  한다 . No matter I wish or not, I need to take the university entrance examination. \n117 - 듯이 like~ 미친  듯이  춤췄다 . I danced like a crazy person. \n118 ( 이)라도 rather~ 이 문제지라도  풀어볼래요 ? Would you like to rather solve this problem? \n119 - 만 못하다 not as~ 중고는  신제품만  못해요 . Second-hand is not as good as a new product. \n120 - 아/어 보이다 seem~ 얼굴표정이  어제보다  밝아  보여요 . You seem to feel better than yesterday. \n121 - 아/어서  그런지 probably becase~ 나이가  들어서  그런지  몸이  예전같지  않다 . I feel not as strong as before probably because I am getting old. \n122 - 아/어도 even~ 설명  들어도  이해  못 하겠어요 . I can't understand even after listening to the explanation. \n123 - 아/어라 please~ 공을  던져라 . Please throw the ball. \n124 - 아/어야 when~ 술자리에는  친한  친구가  있어야  재미있다 . Drinking is fun when you have a close friend. \n125 - 아/어야지 should~ 일찍  결혼해야지 . You should marry quickly. \n126 - 아/어지다 becoming~ 인터넷으로  세계는  가까워지고  있어요 . The world is becoming closer through the Internet. \n127 - 았/었더라면 would have~ 은행에서  돈을  찾았더라면  좋았을  텐데 . It would have been better if I withdrew the money from a bank. \n128 - 았/었던  것 같다 think~ 걔는  취업했던  것 같다 . I think he got a job. \n129 - 았/었으면  하다 wish~ 점심은  라면이었으면  해. I wish the lunch menu is ramen. \n130 ( 이)야말로 the~ 지금이야말로  역사적인  순간입니다 . This is the historical moment. \n131 - 에 관해 (서) about~ 인기  가수에  관해서  새로운  뉴스가  나왔어요 . The latest news about a famous singer got released.\n132 - 에 대해 (서) to~ 부부는  서로에  대해서  배려해야  한다 . Married couples have to show respect to each other.\n4"
+    },
+    {
+      "page": 5,
+      "text": "TOPIK Ⅱ Grammar (Intermediate) \nNo. 한글 English 예문 Example \n133 - 에 따라 (서) depending on~ 예산에  따라  여행일정도  달라져요 . The travel plan changes depending on the budget. \n134 - 에 의해 (서) by~ 역경은  희망에  의해서  극복할  수 있다 . Hardship can be overcome by hope. \n135 - 에다 (가) in(to)~ / at~ 우유는  냉장고에다가  넣었어요 . I put milk into the refrigerator. \n136 - 을/를 비롯한 including~ 나를  비롯한  모든  사람들이  그 아이디어에  찬성한다 . Everybody including me agreed on the idea. \n137 - 을/를 통해 (서) from~ 그 배우는  드라마를  통해서  알게  되었어요 . I got to know that actor from a TV series. \n138 - 자 let's 이제  문 닫자 . Let's close the door. \n139 - 자고  하다 (He/she) said to~ 동료가  포기하지  말자고  했다 . My colleague said not to give up. \n140 - 자마자 as soon as~ 사장님은  좋은  소식을  듣자마자  미소  지었다 . The boss smiled as soon as he heard the good news. \n141 - 잖아 (요) ~right? 내가  많이  사줬잖아 . I treated you many times, right? \n142 마저 even~ 숙제가  많은  데다가  시간마저  부족하다 . I have a lot of homework, but even the time is running out. \n143 만큼 as~ 가족만큼  중요한  것은  없다 . There is nothing as important as family. \n144 아무  -( 이)나 any~ 아무  옷이나  가져오세요 . Bring any kind of clothes. \n145 아무  - 도 no~ 아무  걱정도  없어요 . I have no worries at all. \n146 얼마나  -( 으)ㄴ/는지 how~ 그 당시에는  얼마나  가난했는지  몰라요 . You can't imagine how poor we were at the time. \n147 조차 even~ 기다림조차  설렙니다 . Even the waiting time is exciting for me. \n148 치고 (는) for~ 아이돌치고는  나이가  많다 . He is old for an idol. \n5"
+    }
+  ]
+}

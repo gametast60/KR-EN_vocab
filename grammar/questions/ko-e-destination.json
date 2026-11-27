@@ -1,0 +1,1147 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.e.destination",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.e.destination.q01",
+      "contextId": "ko.e.destination.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปบ้าน”",
+      "sentence": "오늘 집___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "집에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "집",
+          "th": "บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q02",
+      "contextId": "ko.e.destination.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปโรงเรียน”",
+      "sentence": "오늘 학교___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "학교에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "학교",
+          "th": "โรงเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q03",
+      "contextId": "ko.e.destination.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปห้องสมุด”",
+      "sentence": "오늘 도서관___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "도서관에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "도서관",
+          "th": "ห้องสมุด"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q04",
+      "contextId": "ko.e.destination.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปร้านอาหาร”",
+      "sentence": "오늘 식당___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "식당에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "식당",
+          "th": "ร้านอาหาร"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q05",
+      "contextId": "ko.e.destination.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปร้านกาแฟ”",
+      "sentence": "오늘 카페___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "카페에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "카페",
+          "th": "ร้านกาแฟ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q06",
+      "contextId": "ko.e.destination.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปบริษัท”",
+      "sentence": "오늘 회사___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "회사에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "회사",
+          "th": "บริษัท"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q07",
+      "contextId": "ko.e.destination.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปสวนสาธารณะ”",
+      "sentence": "오늘 공원___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "공원에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "공원",
+          "th": "สวนสาธารณะ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q08",
+      "contextId": "ko.e.destination.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปห้อง”",
+      "sentence": "오늘 방___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "방에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "방",
+          "th": "ห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q09",
+      "contextId": "ko.e.destination.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปห้องเรียน”",
+      "sentence": "오늘 교실___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "교실에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "교실",
+          "th": "ห้องเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q10",
+      "contextId": "ko.e.destination.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปสำนักงาน”",
+      "sentence": "오늘 사무실___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "사무실에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "사무실",
+          "th": "สำนักงาน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q11",
+      "contextId": "ko.e.destination.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 호텔에 가요.",
+      "accepted": [
+        "วันนี้ไปโรงแรม"
+      ],
+      "choices": [
+        "วันนี้อยู่ที่โรงแรม",
+        "วันนี้ทำงานที่โรงแรม",
+        "วันนี้ไปโรงแรม"
+      ],
+      "explanation": "호텔에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "호텔",
+          "th": "โรงแรม"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q12",
+      "contextId": "ko.e.destination.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 은행에 가요.",
+      "accepted": [
+        "วันนี้ไปธนาคาร"
+      ],
+      "choices": [
+        "วันนี้ทำงานที่ธนาคาร",
+        "วันนี้ไปธนาคาร",
+        "วันนี้อยู่ที่ธนาคาร"
+      ],
+      "explanation": "은행에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "은행",
+          "th": "ธนาคาร"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q13",
+      "contextId": "ko.e.destination.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 병원에 가요.",
+      "accepted": [
+        "วันนี้ไปโรงพยาบาล"
+      ],
+      "choices": [
+        "วันนี้ไปโรงพยาบาล",
+        "วันนี้อยู่ที่โรงพยาบาล",
+        "วันนี้ทำงานที่โรงพยาบาล"
+      ],
+      "explanation": "병원에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "병원",
+          "th": "โรงพยาบาล"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q14",
+      "contextId": "ko.e.destination.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 가게에 가요.",
+      "accepted": [
+        "วันนี้ไปร้านค้า"
+      ],
+      "choices": [
+        "วันนี้อยู่ที่ร้านค้า",
+        "วันนี้ทำงานที่ร้านค้า",
+        "วันนี้ไปร้านค้า"
+      ],
+      "explanation": "가게에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "가게",
+          "th": "ร้านค้า"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q15",
+      "contextId": "ko.e.destination.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 시장에 가요.",
+      "accepted": [
+        "วันนี้ไปตลาด"
+      ],
+      "choices": [
+        "วันนี้ทำงานที่ตลาด",
+        "วันนี้ไปตลาด",
+        "วันนี้อยู่ที่ตลาด"
+      ],
+      "explanation": "시장에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "시장",
+          "th": "ตลาด"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q16",
+      "contextId": "ko.e.destination.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 공항에 가요.",
+      "accepted": [
+        "วันนี้ไปสนามบิน"
+      ],
+      "choices": [
+        "วันนี้ไปสนามบิน",
+        "วันนี้อยู่ที่สนามบิน",
+        "วันนี้ทำงานที่สนามบิน"
+      ],
+      "explanation": "공항에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "공항",
+          "th": "สนามบิน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q17",
+      "contextId": "ko.e.destination.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 역에 가요.",
+      "accepted": [
+        "วันนี้ไปสถานี"
+      ],
+      "choices": [
+        "วันนี้อยู่ที่สถานี",
+        "วันนี้ทำงานที่สถานี",
+        "วันนี้ไปสถานี"
+      ],
+      "explanation": "역에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "역",
+          "th": "สถานี"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q18",
+      "contextId": "ko.e.destination.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 서점에 가요.",
+      "accepted": [
+        "วันนี้ไปร้านหนังสือ"
+      ],
+      "choices": [
+        "วันนี้ทำงานที่ร้านหนังสือ",
+        "วันนี้ไปร้านหนังสือ",
+        "วันนี้อยู่ที่ร้านหนังสือ"
+      ],
+      "explanation": "서점에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "서점",
+          "th": "ร้านหนังสือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q19",
+      "contextId": "ko.e.destination.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 박물관에 가요.",
+      "accepted": [
+        "วันนี้ไปพิพิธภัณฑ์"
+      ],
+      "choices": [
+        "วันนี้ไปพิพิธภัณฑ์",
+        "วันนี้อยู่ที่พิพิธภัณฑ์",
+        "วันนี้ทำงานที่พิพิธภัณฑ์"
+      ],
+      "explanation": "박물관에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "박물관",
+          "th": "พิพิธภัณฑ์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q20",
+      "contextId": "ko.e.destination.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 학교 앞에 가요.",
+      "accepted": [
+        "วันนี้ไปหน้าโรงเรียน"
+      ],
+      "choices": [
+        "วันนี้อยู่ที่หน้าโรงเรียน",
+        "วันนี้ทำงานที่หน้าโรงเรียน",
+        "วันนี้ไปหน้าโรงเรียน"
+      ],
+      "explanation": "학교 앞에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "학교 앞",
+          "th": "หน้าโรงเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q21",
+      "contextId": "ko.e.destination.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปบ้าน”",
+      "sentence": "주말에 집___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "집에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "집",
+          "th": "บ้าน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q22",
+      "contextId": "ko.e.destination.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปโรงเรียน”",
+      "sentence": "주말에 학교___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "학교에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "학교",
+          "th": "โรงเรียน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q23",
+      "contextId": "ko.e.destination.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปห้องสมุด”",
+      "sentence": "주말에 도서관___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "도서관에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "도서관",
+          "th": "ห้องสมุด"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q24",
+      "contextId": "ko.e.destination.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปร้านอาหาร”",
+      "sentence": "주말에 식당___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "식당에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "식당",
+          "th": "ร้านอาหาร"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q25",
+      "contextId": "ko.e.destination.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปร้านกาแฟ”",
+      "sentence": "주말에 카페___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "카페에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "카페",
+          "th": "ร้านกาแฟ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q26",
+      "contextId": "ko.e.destination.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปบริษัท”",
+      "sentence": "주말에 회사___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "회사에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "회사",
+          "th": "บริษัท"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q27",
+      "contextId": "ko.e.destination.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปสวนสาธารณะ”",
+      "sentence": "주말에 공원___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "공원에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "공원",
+          "th": "สวนสาธารณะ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q28",
+      "contextId": "ko.e.destination.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปห้อง”",
+      "sentence": "주말에 방___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "방에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "방",
+          "th": "ห้อง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q29",
+      "contextId": "ko.e.destination.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 교실에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปห้องเรียน"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยู่ที่ห้องเรียน",
+        "ช่วงสุดสัปดาห์ทำงานที่ห้องเรียน",
+        "ช่วงสุดสัปดาห์ไปห้องเรียน"
+      ],
+      "explanation": "교실에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "교실",
+          "th": "ห้องเรียน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q30",
+      "contextId": "ko.e.destination.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 사무실에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปสำนักงาน"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ทำงานที่สำนักงาน",
+        "ช่วงสุดสัปดาห์ไปสำนักงาน",
+        "ช่วงสุดสัปดาห์อยู่ที่สำนักงาน"
+      ],
+      "explanation": "사무실에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "사무실",
+          "th": "สำนักงาน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q31",
+      "contextId": "ko.e.destination.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 호텔에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปโรงแรม"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ไปโรงแรม",
+        "ช่วงสุดสัปดาห์อยู่ที่โรงแรม",
+        "ช่วงสุดสัปดาห์ทำงานที่โรงแรม"
+      ],
+      "explanation": "호텔에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "호텔",
+          "th": "โรงแรม"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q32",
+      "contextId": "ko.e.destination.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 은행에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปธนาคาร"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยู่ที่ธนาคาร",
+        "ช่วงสุดสัปดาห์ทำงานที่ธนาคาร",
+        "ช่วงสุดสัปดาห์ไปธนาคาร"
+      ],
+      "explanation": "은행에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "은행",
+          "th": "ธนาคาร"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q33",
+      "contextId": "ko.e.destination.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 병원에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปโรงพยาบาล"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ทำงานที่โรงพยาบาล",
+        "ช่วงสุดสัปดาห์ไปโรงพยาบาล",
+        "ช่วงสุดสัปดาห์อยู่ที่โรงพยาบาล"
+      ],
+      "explanation": "병원에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "병원",
+          "th": "โรงพยาบาล"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q34",
+      "contextId": "ko.e.destination.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 가게에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปร้านค้า"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ไปร้านค้า",
+        "ช่วงสุดสัปดาห์อยู่ที่ร้านค้า",
+        "ช่วงสุดสัปดาห์ทำงานที่ร้านค้า"
+      ],
+      "explanation": "가게에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "가게",
+          "th": "ร้านค้า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q35",
+      "contextId": "ko.e.destination.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 시장에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปตลาด"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยู่ที่ตลาด",
+        "ช่วงสุดสัปดาห์ทำงานที่ตลาด",
+        "ช่วงสุดสัปดาห์ไปตลาด"
+      ],
+      "explanation": "시장에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "시장",
+          "th": "ตลาด"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q36",
+      "contextId": "ko.e.destination.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 공항에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปสนามบิน"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ทำงานที่สนามบิน",
+        "ช่วงสุดสัปดาห์ไปสนามบิน",
+        "ช่วงสุดสัปดาห์อยู่ที่สนามบิน"
+      ],
+      "explanation": "공항에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "공항",
+          "th": "สนามบิน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q37",
+      "contextId": "ko.e.destination.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไปสถานี”",
+      "sentence": "주말에 역___ 가요.",
+      "accepted": [
+        "에"
+      ],
+      "choices": [],
+      "explanation": "역에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "역",
+          "th": "สถานี"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    },
+    {
+      "id": "ko.e.destination.q38",
+      "contextId": "ko.e.destination.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 서점에 가요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไปร้านหนังสือ"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยู่ที่ร้านหนังสือ",
+        "ช่วงสุดสัปดาห์ทำงานที่ร้านหนังสือ",
+        "ช่วงสุดสัปดาห์ไปร้านหนังสือ"
+      ],
+      "explanation": "서점에 เป็นจุดหมายของ 가요 (ไป)",
+      "glossary": [
+        {
+          "ko": "서점",
+          "th": "ร้านหนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        },
+        {
+          "ko": "가다",
+          "th": "ไป"
+        }
+      ]
+    }
+  ]
+}

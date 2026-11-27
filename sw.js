@@ -1,14 +1,16 @@
 // Imported vocabulary updates also trigger the browser's service-worker update check.
 const window = self;
 importScripts('flashcard1.js', 'flashcard2.js', 'flashcard_en_a1.js', 'flashcard_en_a2.js',
-  'flashcard_en_b1.js', 'flashcard_en_b2.js', 'vocabulary-catalog.js');
+  'flashcard_en_b1.js', 'flashcard_en_b2.js', 'vocabulary-catalog.js', 'grammar/generated/content.js');
 // Give each vocabulary revision its own cache, so a failed install cannot mix versions.
 const vocabularyRevision = JSON.stringify(Object.values(self.VocabularyCatalog.levels).map(key => self[key]))
   .split('').reduce((hash, char) => Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0, 2166136261).toString(16);
-const CACHE = "vocab-v6.0.0-" + vocabularyRevision;
+const grammarRevision=JSON.stringify(self.GrammarContent).split('').reduce((hash,char)=>Math.imul(hash^char.charCodeAt(0),16777619)>>>0,2166136261).toString(16);
+const CACHE = "vocab-v6.1.1-" + vocabularyRevision + '-' + grammarRevision;
 const FILES = [
   "index.html","five-stage/app.css","five-stage/app.js",
   "five-stage/scheduler.js","five-stage/store.js","five-stage/session.js","five-stage/audio.js",
+  "grammar/generated/content.js","grammar/catalog.js","grammar/scheduler.js","grammar/session.js","grammar/integration.js","grammar/ui.js",
   "sentence-engine.js","vocabulary-catalog.js",
   "visual/visual-engine.js",
   ...self.visualImageMap.map(image => image.file),

@@ -2,12 +2,13 @@
 <html lang="th">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#15151c">
-<meta name="description" content="เรียนคำศัพท์อังกฤษและเกาหลี พร้อมทวนแบบเว้นระยะใน 5 Stage">
+<meta name="description" content="เรียนคำศัพท์และไวยากรณ์เกาหลี พร้อมทวนแบบเว้นระยะใน 5 Stage">
 <title>5 Stage · Vocab by 톤님</title><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="stylesheet" href="five-stage/app.css">
 </head>
 <body>
 <div id="shell">
 <header class="app-header"><a href="#today" class="brand" aria-label="5 Stage หน้าวันนี้"><span class="brand-mark">5</span><span>STAGE<small>Vocab by 톤님</small></span></a><label class="level-picker"><span class="sr-only">ชุดคำศัพท์</span><select id="level"><option value="topik1">KR · TOPIK 1</option><option value="topik2">KR · TOPIK 2</option><option value="english_a1">EN · A1</option><option value="english_a2">EN · A2</option><option value="english_b1">EN · B1</option><option value="english_b2">EN · B2</option></select></label></header>
+<div id="mode-switch" class="mode-switch" role="navigation" aria-label="เลือกวิชา"><a href="#today" data-mode="vocabulary">คำศัพท์</a><a href="#grammar-today" data-mode="grammar">ไวยากรณ์</a></div>
 <main id="main" tabindex="-1"><p>กำลังเปิดคลังคำศัพท์…</p></main>
 <nav id="nav" aria-label="หน้าหลัก"><a href="#today" data-page="today"><span aria-hidden="true">◷</span>วันนี้</a><a href="#library" data-page="library"><span aria-hidden="true">▤</span>คลังคำศัพท์</a><a href="#progress" data-page="progress"><span aria-hidden="true">▥</span>ความก้าวหน้า</a><a href="#settings" data-page="settings"><span aria-hidden="true">⚙</span>ตั้งค่า</a></nav>
 </div>
@@ -15,6 +16,6 @@
 <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-heading"><h2 id="dialog-title"></h2><button type="button" data-action="close-dialog" class="icon-button" aria-label="ปิด">✕</button></div><div id="dialog-body"></div></dialog>
 <input id="restore-file" type="file" accept=".json,application/json" hidden>
 <script src="flashcard1.js"></script><script src="flashcard2.js"></script><script src="flashcard_en_a1.js"></script><script src="flashcard_en_a2.js"></script><script src="flashcard_en_b1.js"></script><script src="flashcard_en_b2.js"></script>
-<script src="vocabulary-catalog.js"></script><script src="sentence-engine.js"></script><script src="visual/visual-engine.js"></script><script src="five-stage/scheduler.js"></script><script src="five-stage/store.js"></script><script src="five-stage/session.js"></script><script src="five-stage/audio.js"></script><script src="five-stage/app.js"></script>
+<script src="vocabulary-catalog.js"></script><script src="sentence-engine.js"></script><script src="visual/visual-engine.js"></script><script src="five-stage/scheduler.js"></script><script src="grammar/scheduler.js"></script><script src="five-stage/store.js"></script><script src="five-stage/session.js"></script><script src="five-stage/audio.js"></script><script src="grammar/generated/content.js"></script><script src="grammar/catalog.js"></script><script src="grammar/session.js"></script><script src="grammar/integration.js"></script><script src="grammar/ui.js"></script><script src="five-stage/app.js"></script>
 <noscript>กรุณาเปิด JavaScript เพื่อใช้งานแอป</noscript>
 </body></html>

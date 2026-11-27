@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.go.progressive",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.go.progressive.q01",
+      "contextId": "ko.go.progressive.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังไปโรงเรียน”",
+      "sentence": "지금 저는 학교에 가___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "가- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q02",
+      "contextId": "ko.go.progressive.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังมาที่บ้าน”",
+      "sentence": "지금 저는 집에 오___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "오- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q03",
+      "contextId": "ko.go.progressive.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังดูหนัง”",
+      "sentence": "지금 저는 영화를 보___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "보- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q04",
+      "contextId": "ko.go.progressive.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังกินข้าว”",
+      "sentence": "지금 저는 밥을 먹___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "먹- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q05",
+      "contextId": "ko.go.progressive.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังอ่านหนังสือ”",
+      "sentence": "지금 저는 책을 읽___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "읽- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q06",
+      "contextId": "ko.go.progressive.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังเขียนจดหมาย”",
+      "sentence": "지금 저는 편지를 쓰___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "쓰- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q07",
+      "contextId": "ko.go.progressive.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังดื่มน้ำ”",
+      "sentence": "지금 저는 물을 마시___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "마시- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q08",
+      "contextId": "ko.go.progressive.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังเรียนภาษาเกาหลี”",
+      "sentence": "지금 저는 한국어를 배우___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "배우- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q09",
+      "contextId": "ko.go.progressive.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังพบเพื่อน”",
+      "sentence": "지금 저는 친구를 만나___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "만나- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q10",
+      "contextId": "ko.go.progressive.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันกำลังรอรถเมล์”",
+      "sentence": "지금 저는 버스를 기다리___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "기다리- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q11",
+      "contextId": "ko.go.progressive.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 과일을 사고 있어요.",
+      "accepted": [
+        "ฉันกำลังซื้อผลไม้"
+      ],
+      "choices": [
+        "ฉันอยากซื้อผลไม้",
+        "ฉันซื้อผลไม้เสร็จแล้ว",
+        "ฉันกำลังซื้อผลไม้"
+      ],
+      "explanation": "사- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q12",
+      "contextId": "ko.go.progressive.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 집에서 쉬고 있어요.",
+      "accepted": [
+        "ฉันกำลังพักที่บ้าน"
+      ],
+      "choices": [
+        "ฉันพักที่บ้านเสร็จแล้ว",
+        "ฉันกำลังพักที่บ้าน",
+        "ฉันอยากพักที่บ้าน"
+      ],
+      "explanation": "쉬- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "집에서 쉬다",
+          "th": "พักที่บ้าน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q13",
+      "contextId": "ko.go.progressive.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 회사에서 일하고 있어요.",
+      "accepted": [
+        "ฉันกำลังทำงานที่บริษัท"
+      ],
+      "choices": [
+        "ฉันกำลังทำงานที่บริษัท",
+        "ฉันอยากทำงานที่บริษัท",
+        "ฉันทำงานที่บริษัทเสร็จแล้ว"
+      ],
+      "explanation": "일하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "회사에서 일하다",
+          "th": "ทำงานที่บริษัท"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q14",
+      "contextId": "ko.go.progressive.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 도서관에서 공부하고 있어요.",
+      "accepted": [
+        "ฉันกำลังเรียนที่ห้องสมุด"
+      ],
+      "choices": [
+        "ฉันอยากเรียนที่ห้องสมุด",
+        "ฉันเรียนที่ห้องสมุดเสร็จแล้ว",
+        "ฉันกำลังเรียนที่ห้องสมุด"
+      ],
+      "explanation": "공부하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "도서관에서 공부하다",
+          "th": "เรียนที่ห้องสมุด"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q15",
+      "contextId": "ko.go.progressive.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 공원에서 운동하고 있어요.",
+      "accepted": [
+        "ฉันกำลังออกกำลังกายที่สวน"
+      ],
+      "choices": [
+        "ฉันออกกำลังกายที่สวนเสร็จแล้ว",
+        "ฉันกำลังออกกำลังกายที่สวน",
+        "ฉันอยากออกกำลังกายที่สวน"
+      ],
+      "explanation": "운동하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "공원에서 운동하다",
+          "th": "ออกกำลังกายที่สวน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q16",
+      "contextId": "ko.go.progressive.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 집에서 요리하고 있어요.",
+      "accepted": [
+        "ฉันกำลังทำอาหารที่บ้าน"
+      ],
+      "choices": [
+        "ฉันกำลังทำอาหารที่บ้าน",
+        "ฉันอยากทำอาหารที่บ้าน",
+        "ฉันทำอาหารที่บ้านเสร็จแล้ว"
+      ],
+      "explanation": "요리하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "집에서 요리하다",
+          "th": "ทำอาหารที่บ้าน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q17",
+      "contextId": "ko.go.progressive.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 친구에게 전화하고 있어요.",
+      "accepted": [
+        "ฉันกำลังโทรหาเพื่อน"
+      ],
+      "choices": [
+        "ฉันอยากโทรหาเพื่อน",
+        "ฉันโทรหาเพื่อนเสร็จแล้ว",
+        "ฉันกำลังโทรหาเพื่อน"
+      ],
+      "explanation": "전화하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "친구에게 전화하다",
+          "th": "โทรหาเพื่อน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q18",
+      "contextId": "ko.go.progressive.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 방을 청소하고 있어요.",
+      "accepted": [
+        "ฉันกำลังทำความสะอาดห้อง"
+      ],
+      "choices": [
+        "ฉันทำความสะอาดห้องเสร็จแล้ว",
+        "ฉันกำลังทำความสะอาดห้อง",
+        "ฉันอยากทำความสะอาดห้อง"
+      ],
+      "explanation": "청소하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "방을 청소하다",
+          "th": "ทำความสะอาดห้อง"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q19",
+      "contextId": "ko.go.progressive.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 사진을 찍고 있어요.",
+      "accepted": [
+        "ฉันกำลังถ่ายรูป"
+      ],
+      "choices": [
+        "ฉันกำลังถ่ายรูป",
+        "ฉันอยากถ่ายรูป",
+        "ฉันถ่ายรูปเสร็จแล้ว"
+      ],
+      "explanation": "찍- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "사진을 찍다",
+          "th": "ถ่ายรูป"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q20",
+      "contextId": "ko.go.progressive.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 저는 가방을 찾고 있어요.",
+      "accepted": [
+        "ฉันกำลังหากระเป๋า"
+      ],
+      "choices": [
+        "ฉันอยากหากระเป๋า",
+        "ฉันหากระเป๋าเสร็จแล้ว",
+        "ฉันกำลังหากระเป๋า"
+      ],
+      "explanation": "찾- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "가방을 찾다",
+          "th": "หากระเป๋า"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q21",
+      "contextId": "ko.go.progressive.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังล้างมือ”",
+      "sentence": "지금 친구는 손을 씻___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "씻- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "손을 씻다",
+          "th": "ล้างมือ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q22",
+      "contextId": "ko.go.progressive.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังขายผลไม้”",
+      "sentence": "지금 친구는 과일을 팔___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "팔- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "과일을 팔다",
+          "th": "ขายผลไม้"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q23",
+      "contextId": "ko.go.progressive.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังทำอาหาร”",
+      "sentence": "지금 친구는 음식을 만들___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "만들- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "음식을 만들다",
+          "th": "ทำอาหาร"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q24",
+      "contextId": "ko.go.progressive.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังยืมหนังสือ”",
+      "sentence": "지금 친구는 책을 빌리___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "빌리- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "책을 빌리다",
+          "th": "ยืมหนังสือ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q25",
+      "contextId": "ko.go.progressive.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังส่งจดหมาย”",
+      "sentence": "지금 친구는 편지를 보내___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "보내- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "편지를 보내다",
+          "th": "ส่งจดหมาย"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q26",
+      "contextId": "ko.go.progressive.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังขึ้นรถเมล์”",
+      "sentence": "지금 친구는 버스를 타___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "타- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "버스를 타다",
+          "th": "ขึ้นรถเมล์"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q27",
+      "contextId": "ko.go.progressive.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังลงจากรถเมล์”",
+      "sentence": "지금 친구는 버스에서 내리___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "내리- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "버스에서 내리다",
+          "th": "ลงจากรถเมล์"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q28",
+      "contextId": "ko.go.progressive.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังเตรียมการเดินทาง”",
+      "sentence": "지금 친구는 여행을 준비하___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "준비하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "여행을 준비하다",
+          "th": "เตรียมการเดินทาง"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q29",
+      "contextId": "ko.go.progressive.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 한국어를 연습하고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังฝึกภาษาเกาหลี"
+      ],
+      "choices": [
+        "เพื่อนอยากฝึกภาษาเกาหลี",
+        "เพื่อนฝึกภาษาเกาหลีเสร็จแล้ว",
+        "เพื่อนกำลังฝึกภาษาเกาหลี"
+      ],
+      "explanation": "연습하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "한국어를 연습하다",
+          "th": "ฝึกภาษาเกาหลี"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q30",
+      "contextId": "ko.go.progressive.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 수영장에서 수영하고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังว่ายน้ำที่สระ"
+      ],
+      "choices": [
+        "เพื่อนว่ายน้ำที่สระเสร็จแล้ว",
+        "เพื่อนกำลังว่ายน้ำที่สระ",
+        "เพื่อนอยากว่ายน้ำที่สระ"
+      ],
+      "explanation": "수영하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "수영장에서 수영하다",
+          "th": "ว่ายน้ำที่สระ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q31",
+      "contextId": "ko.go.progressive.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 공원에서 산책하고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังเดินเล่นในสวน"
+      ],
+      "choices": [
+        "เพื่อนกำลังเดินเล่นในสวน",
+        "เพื่อนอยากเดินเล่นในสวน",
+        "เพื่อนเดินเล่นในสวนเสร็จแล้ว"
+      ],
+      "explanation": "산책하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "공원에서 산책하다",
+          "th": "เดินเล่นในสวน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q32",
+      "contextId": "ko.go.progressive.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 호텔을 예약하고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังจองโรงแรม"
+      ],
+      "choices": [
+        "เพื่อนอยากจองโรงแรม",
+        "เพื่อนจองโรงแรมเสร็จแล้ว",
+        "เพื่อนกำลังจองโรงแรม"
+      ],
+      "explanation": "예약하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "호텔을 예약하다",
+          "th": "จองโรงแรม"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q33",
+      "contextId": "ko.go.progressive.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 집에서 출발하고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังออกเดินทางจากบ้าน"
+      ],
+      "choices": [
+        "เพื่อนออกเดินทางจากบ้านเสร็จแล้ว",
+        "เพื่อนกำลังออกเดินทางจากบ้าน",
+        "เพื่อนอยากออกเดินทางจากบ้าน"
+      ],
+      "explanation": "출발하- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "집에서 출발하다",
+          "th": "ออกเดินทางจากบ้าน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q34",
+      "contextId": "ko.go.progressive.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 학교에 가고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังไปโรงเรียน"
+      ],
+      "choices": [
+        "เพื่อนกำลังไปโรงเรียน",
+        "เพื่อนอยากไปโรงเรียน",
+        "เพื่อนไปโรงเรียนเสร็จแล้ว"
+      ],
+      "explanation": "가- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q35",
+      "contextId": "ko.go.progressive.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 집에 오고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังมาที่บ้าน"
+      ],
+      "choices": [
+        "เพื่อนอยากมาที่บ้าน",
+        "เพื่อนมาที่บ้านเสร็จแล้ว",
+        "เพื่อนกำลังมาที่บ้าน"
+      ],
+      "explanation": "오- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q36",
+      "contextId": "ko.go.progressive.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 영화를 보고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังดูหนัง"
+      ],
+      "choices": [
+        "เพื่อนดูหนังเสร็จแล้ว",
+        "เพื่อนกำลังดูหนัง",
+        "เพื่อนอยากดูหนัง"
+      ],
+      "explanation": "보- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q37",
+      "contextId": "ko.go.progressive.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “เพื่อนกำลังกินข้าว”",
+      "sentence": "지금 친구는 밥을 먹___ .",
+      "accepted": [
+        "고 있어요",
+        "고있어요"
+      ],
+      "choices": [],
+      "explanation": "먹- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "ko.go.progressive.q38",
+      "contextId": "ko.go.progressive.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "지금 친구는 책을 읽고 있어요.",
+      "accepted": [
+        "เพื่อนกำลังอ่านหนังสือ"
+      ],
+      "choices": [
+        "เพื่อนอยากอ่านหนังสือ",
+        "เพื่อนอ่านหนังสือเสร็จแล้ว",
+        "เพื่อนกำลังอ่านหนังสือ"
+      ],
+      "explanation": "읽- + 고 있어요 บอกว่ากำลังทำกิจกรรมอยู่",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "지금",
+          "th": "ตอนนี้"
+        },
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        }
+      ]
+    }
+  ]
+}

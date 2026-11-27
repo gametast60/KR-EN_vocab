@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-11-27.1",
+  "sources": [
+    "sources/topik-i.json",
+    "sources/topik-ii.json"
+  ],
+  "lessons": [
+    {
+      "lesson": "lessons/ko-stem-basic.json",
+      "questions": "questions/ko-stem-basic.json"
+    },
+    {
+      "lesson": "lessons/ko-polite-present.json",
+      "questions": "questions/ko-polite-present.json"
+    },
+    {
+      "lesson": "lessons/ko-e-location.json",
+      "questions": "questions/ko-e-location.json"
+    },
+    {
+      "lesson": "lessons/ko-e-destination.json",
+      "questions": "questions/ko-e-destination.json"
+    },
+    {
+      "lesson": "lessons/ko-eseo-action.json",
+      "questions": "questions/ko-eseo-action.json"
+    },
+    {
+      "lesson": "lessons/ko-object-particle.json",
+      "questions": "questions/ko-object-particle.json"
+    },
+    {
+      "lesson": "lessons/ko-an-negation.json",
+      "questions": "questions/ko-an-negation.json"
+    },
+    {
+      "lesson": "lessons/ko-past-polite.json",
+      "questions": "questions/ko-past-polite.json"
+    },
+    {
+      "lesson": "lessons/ko-go-want.json",
+      "questions": "questions/ko-go-want.json"
+    },
+    {
+      "lesson": "lessons/ko-go-progressive.json",
+      "questions": "questions/ko-go-progressive.json"
+    },
+    {
+      "lesson": "lessons/ko-future-plan.json",
+      "questions": "questions/ko-future-plan.json"
+    },
+    {
+      "lesson": "lessons/ko-go-connect.json",
+      "questions": "questions/ko-go-connect.json"
+    }
+  ]
+}

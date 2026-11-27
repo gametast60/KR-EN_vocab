@@ -1,0 +1,995 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.object.particle",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.object.particle.q01",
+      "contextId": "ko.object.particle.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 책___ 읽어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "책을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "책",
+          "th": "หนังสือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q02",
+      "contextId": "ko.object.particle.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 커피___ 마셔요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "커피를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "커피",
+          "th": "กาแฟ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q03",
+      "contextId": "ko.object.particle.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 물___ 마셔요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "물을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "물",
+          "th": "น้ำ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q04",
+      "contextId": "ko.object.particle.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 밥___ 먹어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "밥을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "밥",
+          "th": "ข้าว"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q05",
+      "contextId": "ko.object.particle.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 한국어___ 배워요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "한국어를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "한국어",
+          "th": "ภาษาเกาหลี"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q06",
+      "contextId": "ko.object.particle.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 영화___ 봐요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "영화를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "영화",
+          "th": "หนัง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q07",
+      "contextId": "ko.object.particle.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 편지___ 써요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "편지를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "편지",
+          "th": "จดหมาย"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q08",
+      "contextId": "ko.object.particle.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 사진___ 찍어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "사진을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "사진",
+          "th": "รูปถ่าย"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q09",
+      "contextId": "ko.object.particle.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 과일___ 사요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "과일을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "과일",
+          "th": "ผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q10",
+      "contextId": "ko.object.particle.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "오늘 친구___ 만나요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "친구를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q11",
+      "contextId": "ko.object.particle.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 버스를 기다려요.",
+      "accepted": [
+        "버스 เป็นกรรมของ 기다려요"
+      ],
+      "choices": [
+        "버스 เป็นสถานที่ทำกิจกรรม",
+        "버스 เป็นจุดหมายที่เดินทางไป",
+        "버스 เป็นกรรมของ 기다려요"
+      ],
+      "explanation": "버스를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "버스",
+          "th": "รถเมล์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q12",
+      "contextId": "ko.object.particle.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 옷을 입어요.",
+      "accepted": [
+        "옷 เป็นกรรมของ 입어요"
+      ],
+      "choices": [
+        "옷 เป็นจุดหมายที่เดินทางไป",
+        "옷 เป็นกรรมของ 입어요",
+        "옷 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "옷을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "옷",
+          "th": "เสื้อผ้า"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q13",
+      "contextId": "ko.object.particle.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 문을 닫아요.",
+      "accepted": [
+        "문 เป็นกรรมของ 닫아요"
+      ],
+      "choices": [
+        "문 เป็นกรรมของ 닫아요",
+        "문 เป็นสถานที่ทำกิจกรรม",
+        "문 เป็นจุดหมายที่เดินทางไป"
+      ],
+      "explanation": "문을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "문",
+          "th": "ประตู"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q14",
+      "contextId": "ko.object.particle.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 손을 씻어요.",
+      "accepted": [
+        "손 เป็นกรรมของ 씻어요"
+      ],
+      "choices": [
+        "손 เป็นสถานที่ทำกิจกรรม",
+        "손 เป็นจุดหมายที่เดินทางไป",
+        "손 เป็นกรรมของ 씻어요"
+      ],
+      "explanation": "손을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "손",
+          "th": "มือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q15",
+      "contextId": "ko.object.particle.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 창문을 열어요.",
+      "accepted": [
+        "창문 เป็นกรรมของ 열어요"
+      ],
+      "choices": [
+        "창문 เป็นจุดหมายที่เดินทางไป",
+        "창문 เป็นกรรมของ 열어요",
+        "창문 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "창문을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "창문",
+          "th": "หน้าต่าง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q16",
+      "contextId": "ko.object.particle.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 가방을 찾아요.",
+      "accepted": [
+        "가방 เป็นกรรมของ 찾아요"
+      ],
+      "choices": [
+        "가방 เป็นกรรมของ 찾아요",
+        "가방 เป็นสถานที่ทำกิจกรรม",
+        "가방 เป็นจุดหมายที่เดินทางไป"
+      ],
+      "explanation": "가방을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "가방",
+          "th": "กระเป๋า"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q17",
+      "contextId": "ko.object.particle.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 주스를 마셔요.",
+      "accepted": [
+        "주스 เป็นกรรมของ 마셔요"
+      ],
+      "choices": [
+        "주스 เป็นสถานที่ทำกิจกรรม",
+        "주스 เป็นจุดหมายที่เดินทางไป",
+        "주스 เป็นกรรมของ 마셔요"
+      ],
+      "explanation": "주스를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "주스",
+          "th": "น้ำผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q18",
+      "contextId": "ko.object.particle.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 빵을 먹어요.",
+      "accepted": [
+        "빵 เป็นกรรมของ 먹어요"
+      ],
+      "choices": [
+        "빵 เป็นจุดหมายที่เดินทางไป",
+        "빵 เป็นกรรมของ 먹어요",
+        "빵 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "빵을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "빵",
+          "th": "ขนมปัง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q19",
+      "contextId": "ko.object.particle.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 신문을 읽어요.",
+      "accepted": [
+        "신문 เป็นกรรมของ 읽어요"
+      ],
+      "choices": [
+        "신문 เป็นกรรมของ 읽어요",
+        "신문 เป็นสถานที่ทำกิจกรรม",
+        "신문 เป็นจุดหมายที่เดินทางไป"
+      ],
+      "explanation": "신문을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "신문",
+          "th": "หนังสือพิมพ์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q20",
+      "contextId": "ko.object.particle.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 우유를 마셔요.",
+      "accepted": [
+        "우유 เป็นกรรมของ 마셔요"
+      ],
+      "choices": [
+        "우유 เป็นสถานที่ทำกิจกรรม",
+        "우유 เป็นจุดหมายที่เดินทางไป",
+        "우유 เป็นกรรมของ 마셔요"
+      ],
+      "explanation": "우유를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "우유",
+          "th": "นม"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q21",
+      "contextId": "ko.object.particle.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 책___ 읽어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "책을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "책",
+          "th": "หนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q22",
+      "contextId": "ko.object.particle.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 커피___ 마셔요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "커피를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "커피",
+          "th": "กาแฟ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q23",
+      "contextId": "ko.object.particle.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 물___ 마셔요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "물을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "물",
+          "th": "น้ำ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q24",
+      "contextId": "ko.object.particle.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 밥___ 먹어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "밥을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "밥",
+          "th": "ข้าว"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q25",
+      "contextId": "ko.object.particle.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 한국어___ 배워요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "한국어를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "한국어",
+          "th": "ภาษาเกาหลี"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q26",
+      "contextId": "ko.object.particle.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 영화___ 봐요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "영화를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "영화",
+          "th": "หนัง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q27",
+      "contextId": "ko.object.particle.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 편지___ 써요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "편지를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "편지",
+          "th": "จดหมาย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q28",
+      "contextId": "ko.object.particle.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 사진___ 찍어요.",
+      "accepted": [
+        "을"
+      ],
+      "choices": [],
+      "explanation": "사진을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "사진",
+          "th": "รูปถ่าย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q29",
+      "contextId": "ko.object.particle.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 과일을 사요.",
+      "accepted": [
+        "과일 เป็นกรรมของ 사요"
+      ],
+      "choices": [
+        "과일 เป็นสถานที่ทำกิจกรรม",
+        "과일 เป็นจุดหมายที่เดินทางไป",
+        "과일 เป็นกรรมของ 사요"
+      ],
+      "explanation": "과일을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "과일",
+          "th": "ผลไม้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q30",
+      "contextId": "ko.object.particle.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 친구를 만나요.",
+      "accepted": [
+        "친구 เป็นกรรมของ 만나요"
+      ],
+      "choices": [
+        "친구 เป็นจุดหมายที่เดินทางไป",
+        "친구 เป็นกรรมของ 만나요",
+        "친구 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "친구를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "친구",
+          "th": "เพื่อน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q31",
+      "contextId": "ko.object.particle.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 버스를 기다려요.",
+      "accepted": [
+        "버스 เป็นกรรมของ 기다려요"
+      ],
+      "choices": [
+        "버스 เป็นกรรมของ 기다려요",
+        "버스 เป็นสถานที่ทำกิจกรรม",
+        "버스 เป็นจุดหมายที่เดินทางไป"
+      ],
+      "explanation": "버스를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "버스",
+          "th": "รถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q32",
+      "contextId": "ko.object.particle.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 옷을 입어요.",
+      "accepted": [
+        "옷 เป็นกรรมของ 입어요"
+      ],
+      "choices": [
+        "옷 เป็นสถานที่ทำกิจกรรม",
+        "옷 เป็นจุดหมายที่เดินทางไป",
+        "옷 เป็นกรรมของ 입어요"
+      ],
+      "explanation": "옷을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "옷",
+          "th": "เสื้อผ้า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q33",
+      "contextId": "ko.object.particle.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 문을 닫아요.",
+      "accepted": [
+        "문 เป็นกรรมของ 닫아요"
+      ],
+      "choices": [
+        "문 เป็นจุดหมายที่เดินทางไป",
+        "문 เป็นกรรมของ 닫아요",
+        "문 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "문을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "문",
+          "th": "ประตู"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q34",
+      "contextId": "ko.object.particle.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 손을 씻어요.",
+      "accepted": [
+        "손 เป็นกรรมของ 씻어요"
+      ],
+      "choices": [
+        "손 เป็นกรรมของ 씻어요",
+        "손 เป็นสถานที่ทำกิจกรรม",
+        "손 เป็นจุดหมายที่เดินทางไป"
+      ],
+      "explanation": "손을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "손",
+          "th": "มือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q35",
+      "contextId": "ko.object.particle.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 창문을 열어요.",
+      "accepted": [
+        "창문 เป็นกรรมของ 열어요"
+      ],
+      "choices": [
+        "창문 เป็นสถานที่ทำกิจกรรม",
+        "창문 เป็นจุดหมายที่เดินทางไป",
+        "창문 เป็นกรรมของ 열어요"
+      ],
+      "explanation": "창문을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "창문",
+          "th": "หน้าต่าง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q36",
+      "contextId": "ko.object.particle.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 가방을 찾아요.",
+      "accepted": [
+        "가방 เป็นกรรมของ 찾아요"
+      ],
+      "choices": [
+        "가방 เป็นจุดหมายที่เดินทางไป",
+        "가방 เป็นกรรมของ 찾아요",
+        "가방 เป็นสถานที่ทำกิจกรรม"
+      ],
+      "explanation": "가방을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "가방",
+          "th": "กระเป๋า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q37",
+      "contextId": "ko.object.particle.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมคำช่วยกรรมให้เหมาะกับคำนามและกริยา",
+      "sentence": "주말에 주스___ 마셔요.",
+      "accepted": [
+        "를"
+      ],
+      "choices": [],
+      "explanation": "주스를 เป็นกรรม คำนามไม่มีตัวสะกดจึงใช้ 를",
+      "glossary": [
+        {
+          "ko": "주스",
+          "th": "น้ำผลไม้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.object.particle.q38",
+      "contextId": "ko.object.particle.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 빵을 먹어요.",
+      "accepted": [
+        "빵 เป็นกรรมของ 먹어요"
+      ],
+      "choices": [
+        "빵 เป็นสถานที่ทำกิจกรรม",
+        "빵 เป็นจุดหมายที่เดินทางไป",
+        "빵 เป็นกรรมของ 먹어요"
+      ],
+      "explanation": "빵을 เป็นกรรม คำนามมีตัวสะกดจึงใช้ 을",
+      "glossary": [
+        {
+          "ko": "빵",
+          "th": "ขนมปัง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    }
+  ]
+}

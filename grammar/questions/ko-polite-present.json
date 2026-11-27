@@ -1,0 +1,995 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.polite.present",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.polite.present.q01",
+      "contextId": "ko.polite.present.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไปโรงเรียน”",
+      "sentence": "오늘 학교에 ___ . (가다)",
+      "accepted": [
+        "가요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 가다 คือ 가요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q02",
+      "contextId": "ko.polite.present.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้มาที่บ้าน”",
+      "sentence": "오늘 집에 ___ . (오다)",
+      "accepted": [
+        "와요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 오다 คือ 와요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q03",
+      "contextId": "ko.polite.present.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ดูหนัง”",
+      "sentence": "오늘 영화를 ___ . (보다)",
+      "accepted": [
+        "봐요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 보다 คือ 봐요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q04",
+      "contextId": "ko.polite.present.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้กินข้าว”",
+      "sentence": "오늘 밥을 ___ . (먹다)",
+      "accepted": [
+        "먹어요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 먹다 คือ 먹어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q05",
+      "contextId": "ko.polite.present.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้อ่านหนังสือ”",
+      "sentence": "오늘 책을 ___ . (읽다)",
+      "accepted": [
+        "읽어요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 읽다 คือ 읽어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q06",
+      "contextId": "ko.polite.present.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้เขียนจดหมาย”",
+      "sentence": "오늘 편지를 ___ . (쓰다)",
+      "accepted": [
+        "써요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 쓰다 คือ 써요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q07",
+      "contextId": "ko.polite.present.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ดื่มน้ำ”",
+      "sentence": "오늘 물을 ___ . (마시다)",
+      "accepted": [
+        "마셔요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 마시다 คือ 마셔요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q08",
+      "contextId": "ko.polite.present.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้เรียนภาษาเกาหลี”",
+      "sentence": "오늘 한국어를 ___ . (배우다)",
+      "accepted": [
+        "배워요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 배우다 คือ 배워요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q09",
+      "contextId": "ko.polite.present.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้พบเพื่อน”",
+      "sentence": "오늘 친구를 ___ . (만나다)",
+      "accepted": [
+        "만나요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 만나다 คือ 만나요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q10",
+      "contextId": "ko.polite.present.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้รอรถเมล์”",
+      "sentence": "오늘 버스를 ___ . (기다리다)",
+      "accepted": [
+        "기다려요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 기다리다 คือ 기다려요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q11",
+      "contextId": "ko.polite.present.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 과일을 사요.",
+      "accepted": [
+        "วันนี้ซื้อผลไม้ (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากซื้อผลไม้",
+        "ซื้อผลไม้ไปแล้ว (อดีต)",
+        "วันนี้ซื้อผลไม้ (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 사다 คือ 사요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q12",
+      "contextId": "ko.polite.present.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 방에서 자요.",
+      "accepted": [
+        "วันนี้นอนในห้อง (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "นอนในห้องไปแล้ว (อดีต)",
+        "วันนี้นอนในห้อง (รูปสุภาพทั่วไป)",
+        "อยากนอนในห้อง"
+      ],
+      "explanation": "รูปสุภาพของ 자다 คือ 자요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "방에서 자다",
+          "th": "นอนในห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q13",
+      "contextId": "ko.polite.present.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 집에서 쉬어요.",
+      "accepted": [
+        "วันนี้พักที่บ้าน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "วันนี้พักที่บ้าน (รูปสุภาพทั่วไป)",
+        "อยากพักที่บ้าน",
+        "พักที่บ้านไปแล้ว (อดีต)"
+      ],
+      "explanation": "รูปสุภาพของ 쉬다 คือ 쉬어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "집에서 쉬다",
+          "th": "พักที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q14",
+      "contextId": "ko.polite.present.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 회사에서 일해요.",
+      "accepted": [
+        "วันนี้ทำงานที่บริษัท (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากทำงานที่บริษัท",
+        "ทำงานที่บริษัทไปแล้ว (อดีต)",
+        "วันนี้ทำงานที่บริษัท (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 일하다 คือ 일해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "회사에서 일하다",
+          "th": "ทำงานที่บริษัท"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q15",
+      "contextId": "ko.polite.present.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 도서관에서 공부해요.",
+      "accepted": [
+        "วันนี้เรียนที่ห้องสมุด (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "เรียนที่ห้องสมุดไปแล้ว (อดีต)",
+        "วันนี้เรียนที่ห้องสมุด (รูปสุภาพทั่วไป)",
+        "อยากเรียนที่ห้องสมุด"
+      ],
+      "explanation": "รูปสุภาพของ 공부하다 คือ 공부해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "도서관에서 공부하다",
+          "th": "เรียนที่ห้องสมุด"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q16",
+      "contextId": "ko.polite.present.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 공원에서 운동해요.",
+      "accepted": [
+        "วันนี้ออกกำลังกายที่สวน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "วันนี้ออกกำลังกายที่สวน (รูปสุภาพทั่วไป)",
+        "อยากออกกำลังกายที่สวน",
+        "ออกกำลังกายที่สวนไปแล้ว (อดีต)"
+      ],
+      "explanation": "รูปสุภาพของ 운동하다 คือ 운동해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "공원에서 운동하다",
+          "th": "ออกกำลังกายที่สวน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q17",
+      "contextId": "ko.polite.present.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 집에서 요리해요.",
+      "accepted": [
+        "วันนี้ทำอาหารที่บ้าน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากทำอาหารที่บ้าน",
+        "ทำอาหารที่บ้านไปแล้ว (อดีต)",
+        "วันนี้ทำอาหารที่บ้าน (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 요리하다 คือ 요리해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "집에서 요리하다",
+          "th": "ทำอาหารที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q18",
+      "contextId": "ko.polite.present.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 친구에게 전화해요.",
+      "accepted": [
+        "วันนี้โทรหาเพื่อน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "โทรหาเพื่อนไปแล้ว (อดีต)",
+        "วันนี้โทรหาเพื่อน (รูปสุภาพทั่วไป)",
+        "อยากโทรหาเพื่อน"
+      ],
+      "explanation": "รูปสุภาพของ 전화하다 คือ 전화해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "친구에게 전화하다",
+          "th": "โทรหาเพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q19",
+      "contextId": "ko.polite.present.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 방을 청소해요.",
+      "accepted": [
+        "วันนี้ทำความสะอาดห้อง (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "วันนี้ทำความสะอาดห้อง (รูปสุภาพทั่วไป)",
+        "อยากทำความสะอาดห้อง",
+        "ทำความสะอาดห้องไปแล้ว (อดีต)"
+      ],
+      "explanation": "รูปสุภาพของ 청소하다 คือ 청소해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "방을 청소하다",
+          "th": "ทำความสะอาดห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q20",
+      "contextId": "ko.polite.present.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 사진을 찍어요.",
+      "accepted": [
+        "วันนี้ถ่ายรูป (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากถ่ายรูป",
+        "ถ่ายรูปไปแล้ว (อดีต)",
+        "วันนี้ถ่ายรูป (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 찍다 คือ 찍어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "사진을 찍다",
+          "th": "ถ่ายรูป"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q21",
+      "contextId": "ko.polite.present.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์สวมเสื้อผ้า”",
+      "sentence": "주말에 옷을 ___ . (입다)",
+      "accepted": [
+        "입어요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 입다 คือ 입어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "옷을 입다",
+          "th": "สวมเสื้อผ้า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q22",
+      "contextId": "ko.polite.present.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์หากระเป๋า”",
+      "sentence": "주말에 가방을 ___ . (찾다)",
+      "accepted": [
+        "찾아요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 찾다 คือ 찾아요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "가방을 찾다",
+          "th": "หากระเป๋า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q23",
+      "contextId": "ko.polite.present.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ปิดประตู”",
+      "sentence": "주말에 문을 ___ . (닫다)",
+      "accepted": [
+        "닫아요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 닫다 คือ 닫아요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "문을 닫다",
+          "th": "ปิดประตู"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q24",
+      "contextId": "ko.polite.present.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ล้างมือ”",
+      "sentence": "주말에 손을 ___ . (씻다)",
+      "accepted": [
+        "씻어요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 씻다 คือ 씻어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "손을 씻다",
+          "th": "ล้างมือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q25",
+      "contextId": "ko.polite.present.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ขายผลไม้”",
+      "sentence": "주말에 과일을 ___ . (팔다)",
+      "accepted": [
+        "팔아요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 팔다 คือ 팔아요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "과일을 팔다",
+          "th": "ขายผลไม้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q26",
+      "contextId": "ko.polite.present.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ทำอาหาร”",
+      "sentence": "주말에 음식을 ___ . (만들다)",
+      "accepted": [
+        "만들어요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 만들다 คือ 만들어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "음식을 만들다",
+          "th": "ทำอาหาร"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q27",
+      "contextId": "ko.polite.present.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ยืมหนังสือ”",
+      "sentence": "주말에 책을 ___ . (빌리다)",
+      "accepted": [
+        "빌려요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 빌리다 คือ 빌려요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "책을 빌리다",
+          "th": "ยืมหนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q28",
+      "contextId": "ko.polite.present.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ส่งจดหมาย”",
+      "sentence": "주말에 편지를 ___ . (보내다)",
+      "accepted": [
+        "보내요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 보내다 คือ 보내요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "편지를 보내다",
+          "th": "ส่งจดหมาย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q29",
+      "contextId": "ko.polite.present.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 버스를 타요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ขึ้นรถเมล์ (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากขึ้นรถเมล์",
+        "ขึ้นรถเมล์ไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์ขึ้นรถเมล์ (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 타다 คือ 타요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "버스를 타다",
+          "th": "ขึ้นรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q30",
+      "contextId": "ko.polite.present.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 버스에서 내려요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ลงจากรถเมล์ (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "ลงจากรถเมล์ไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์ลงจากรถเมล์ (รูปสุภาพทั่วไป)",
+        "อยากลงจากรถเมล์"
+      ],
+      "explanation": "รูปสุภาพของ 내리다 คือ 내려요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "버스에서 내리다",
+          "th": "ลงจากรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q31",
+      "contextId": "ko.polite.present.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 창문을 열어요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์เปิดหน้าต่าง (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์เปิดหน้าต่าง (รูปสุภาพทั่วไป)",
+        "อยากเปิดหน้าต่าง",
+        "เปิดหน้าต่างไปแล้ว (อดีต)"
+      ],
+      "explanation": "รูปสุภาพของ 열다 คือ 열어요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "창문을 열다",
+          "th": "เปิดหน้าต่าง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q32",
+      "contextId": "ko.polite.present.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 의자에 앉아요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์นั่งบนเก้าอี้ (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากนั่งบนเก้าอี้",
+        "นั่งบนเก้าอี้ไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์นั่งบนเก้าอี้ (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 앉다 คือ 앉아요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "의자에 앉다",
+          "th": "นั่งบนเก้าอี้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q33",
+      "contextId": "ko.polite.present.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 여행을 준비해요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์เตรียมการเดินทาง (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "เตรียมการเดินทางไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์เตรียมการเดินทาง (รูปสุภาพทั่วไป)",
+        "อยากเตรียมการเดินทาง"
+      ],
+      "explanation": "รูปสุภาพของ 준비하다 คือ 준비해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "여행을 준비하다",
+          "th": "เตรียมการเดินทาง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q34",
+      "contextId": "ko.polite.present.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 한국어를 연습해요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ฝึกภาษาเกาหลี (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ฝึกภาษาเกาหลี (รูปสุภาพทั่วไป)",
+        "อยากฝึกภาษาเกาหลี",
+        "ฝึกภาษาเกาหลีไปแล้ว (อดีต)"
+      ],
+      "explanation": "รูปสุภาพของ 연습하다 คือ 연습해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "한국어를 연습하다",
+          "th": "ฝึกภาษาเกาหลี"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q35",
+      "contextId": "ko.polite.present.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 수영장에서 수영해요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ว่ายน้ำที่สระ (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากว่ายน้ำที่สระ",
+        "ว่ายน้ำที่สระไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์ว่ายน้ำที่สระ (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 수영하다 คือ 수영해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "수영장에서 수영하다",
+          "th": "ว่ายน้ำที่สระ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q36",
+      "contextId": "ko.polite.present.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 공원에서 산책해요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์เดินเล่นในสวน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "เดินเล่นในสวนไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์เดินเล่นในสวน (รูปสุภาพทั่วไป)",
+        "อยากเดินเล่นในสวน"
+      ],
+      "explanation": "รูปสุภาพของ 산책하다 คือ 산책해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "공원에서 산책하다",
+          "th": "เดินเล่นในสวน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q37",
+      "contextId": "ko.polite.present.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์จองโรงแรม”",
+      "sentence": "주말에 호텔을 ___ . (예약하다)",
+      "accepted": [
+        "예약해요"
+      ],
+      "choices": [],
+      "explanation": "รูปสุภาพของ 예약하다 คือ 예약해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "호텔을 예약하다",
+          "th": "จองโรงแรม"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.polite.present.q38",
+      "contextId": "ko.polite.present.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 집에서 출발해요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ออกเดินทางจากบ้าน (รูปสุภาพทั่วไป)"
+      ],
+      "choices": [
+        "อยากออกเดินทางจากบ้าน",
+        "ออกเดินทางจากบ้านไปแล้ว (อดีต)",
+        "ช่วงสุดสัปดาห์ออกเดินทางจากบ้าน (รูปสุภาพทั่วไป)"
+      ],
+      "explanation": "รูปสุภาพของ 출발하다 คือ 출발해요 ประโยคนี้เล่าสิ่งที่ทำ",
+      "glossary": [
+        {
+          "ko": "집에서 출발하다",
+          "th": "ออกเดินทางจากบ้าน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    }
+  ]
+}

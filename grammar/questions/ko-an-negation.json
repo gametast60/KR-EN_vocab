@@ -1,0 +1,995 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.an.negation",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.an.negation.q01",
+      "contextId": "ko.an.negation.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่ไปโรงเรียน”",
+      "sentence": "오늘 학교에 ___ 가요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 가요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q02",
+      "contextId": "ko.an.negation.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่มาที่บ้าน”",
+      "sentence": "오늘 집에 ___ 와요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 와요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q03",
+      "contextId": "ko.an.negation.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่ดูหนัง”",
+      "sentence": "오늘 영화를 ___ 봐요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 봐요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q04",
+      "contextId": "ko.an.negation.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่กินข้าว”",
+      "sentence": "오늘 밥을 ___ 먹어요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 먹어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q05",
+      "contextId": "ko.an.negation.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่อ่านหนังสือ”",
+      "sentence": "오늘 책을 ___ 읽어요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 읽어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q06",
+      "contextId": "ko.an.negation.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่เขียนจดหมาย”",
+      "sentence": "오늘 편지를 ___ 써요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 써요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q07",
+      "contextId": "ko.an.negation.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่ดื่มน้ำ”",
+      "sentence": "오늘 물을 ___ 마셔요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 마셔요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q08",
+      "contextId": "ko.an.negation.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่เรียนภาษาเกาหลี”",
+      "sentence": "오늘 한국어를 ___ 배워요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 배워요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q09",
+      "contextId": "ko.an.negation.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่พบเพื่อน”",
+      "sentence": "오늘 친구를 ___ 만나요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 만나요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q10",
+      "contextId": "ko.an.negation.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “วันนี้ไม่รอรถเมล์”",
+      "sentence": "오늘 버스를 ___ 기다려요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 기다려요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q11",
+      "contextId": "ko.an.negation.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 과일을 안 사요.",
+      "accepted": [
+        "วันนี้ไม่ซื้อผลไม้"
+      ],
+      "choices": [
+        "วันนี้อยากซื้อผลไม้",
+        "วันนี้กำลังซื้อผลไม้",
+        "วันนี้ไม่ซื้อผลไม้"
+      ],
+      "explanation": "안 วางหน้ากริยา 사요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q12",
+      "contextId": "ko.an.negation.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 방에서 안 자요.",
+      "accepted": [
+        "วันนี้ไม่นอนในห้อง"
+      ],
+      "choices": [
+        "วันนี้กำลังนอนในห้อง",
+        "วันนี้ไม่นอนในห้อง",
+        "วันนี้อยากนอนในห้อง"
+      ],
+      "explanation": "안 วางหน้ากริยา 자요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "방에서 자다",
+          "th": "นอนในห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q13",
+      "contextId": "ko.an.negation.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 집에서 안 쉬어요.",
+      "accepted": [
+        "วันนี้ไม่พักที่บ้าน"
+      ],
+      "choices": [
+        "วันนี้ไม่พักที่บ้าน",
+        "วันนี้อยากพักที่บ้าน",
+        "วันนี้กำลังพักที่บ้าน"
+      ],
+      "explanation": "안 วางหน้ากริยา 쉬어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "집에서 쉬다",
+          "th": "พักที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q14",
+      "contextId": "ko.an.negation.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 사진을 안 찍어요.",
+      "accepted": [
+        "วันนี้ไม่ถ่ายรูป"
+      ],
+      "choices": [
+        "วันนี้อยากถ่ายรูป",
+        "วันนี้กำลังถ่ายรูป",
+        "วันนี้ไม่ถ่ายรูป"
+      ],
+      "explanation": "안 วางหน้ากริยา 찍어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "사진을 찍다",
+          "th": "ถ่ายรูป"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q15",
+      "contextId": "ko.an.negation.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 옷을 안 입어요.",
+      "accepted": [
+        "วันนี้ไม่สวมเสื้อผ้า"
+      ],
+      "choices": [
+        "วันนี้กำลังสวมเสื้อผ้า",
+        "วันนี้ไม่สวมเสื้อผ้า",
+        "วันนี้อยากสวมเสื้อผ้า"
+      ],
+      "explanation": "안 วางหน้ากริยา 입어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "옷을 입다",
+          "th": "สวมเสื้อผ้า"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q16",
+      "contextId": "ko.an.negation.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 가방을 안 찾아요.",
+      "accepted": [
+        "วันนี้ไม่หากระเป๋า"
+      ],
+      "choices": [
+        "วันนี้ไม่หากระเป๋า",
+        "วันนี้อยากหากระเป๋า",
+        "วันนี้กำลังหากระเป๋า"
+      ],
+      "explanation": "안 วางหน้ากริยา 찾아요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "가방을 찾다",
+          "th": "หากระเป๋า"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q17",
+      "contextId": "ko.an.negation.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 문을 안 닫아요.",
+      "accepted": [
+        "วันนี้ไม่ปิดประตู"
+      ],
+      "choices": [
+        "วันนี้อยากปิดประตู",
+        "วันนี้กำลังปิดประตู",
+        "วันนี้ไม่ปิดประตู"
+      ],
+      "explanation": "안 วางหน้ากริยา 닫아요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "문을 닫다",
+          "th": "ปิดประตู"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q18",
+      "contextId": "ko.an.negation.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 손을 안 씻어요.",
+      "accepted": [
+        "วันนี้ไม่ล้างมือ"
+      ],
+      "choices": [
+        "วันนี้กำลังล้างมือ",
+        "วันนี้ไม่ล้างมือ",
+        "วันนี้อยากล้างมือ"
+      ],
+      "explanation": "안 วางหน้ากริยา 씻어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "손을 씻다",
+          "th": "ล้างมือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q19",
+      "contextId": "ko.an.negation.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 과일을 안 팔아요.",
+      "accepted": [
+        "วันนี้ไม่ขายผลไม้"
+      ],
+      "choices": [
+        "วันนี้ไม่ขายผลไม้",
+        "วันนี้อยากขายผลไม้",
+        "วันนี้กำลังขายผลไม้"
+      ],
+      "explanation": "안 วางหน้ากริยา 팔아요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "과일을 팔다",
+          "th": "ขายผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q20",
+      "contextId": "ko.an.negation.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "오늘 음식을 안 만들어요.",
+      "accepted": [
+        "วันนี้ไม่ทำอาหาร"
+      ],
+      "choices": [
+        "วันนี้อยากทำอาหาร",
+        "วันนี้กำลังทำอาหาร",
+        "วันนี้ไม่ทำอาหาร"
+      ],
+      "explanation": "안 วางหน้ากริยา 만들어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "음식을 만들다",
+          "th": "ทำอาหาร"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q21",
+      "contextId": "ko.an.negation.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ยืมหนังสือ”",
+      "sentence": "주말에 책을 ___ 빌려요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 빌려요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "책을 빌리다",
+          "th": "ยืมหนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q22",
+      "contextId": "ko.an.negation.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ส่งจดหมาย”",
+      "sentence": "주말에 편지를 ___ 보내요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 보내요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "편지를 보내다",
+          "th": "ส่งจดหมาย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q23",
+      "contextId": "ko.an.negation.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ขึ้นรถเมล์”",
+      "sentence": "주말에 버스를 ___ 타요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 타요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "버스를 타다",
+          "th": "ขึ้นรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q24",
+      "contextId": "ko.an.negation.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ลงจากรถเมล์”",
+      "sentence": "주말에 버스에서 ___ 내려요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 내려요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "버스에서 내리다",
+          "th": "ลงจากรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q25",
+      "contextId": "ko.an.negation.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่เปิดหน้าต่าง”",
+      "sentence": "주말에 창문을 ___ 열어요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 열어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "창문을 열다",
+          "th": "เปิดหน้าต่าง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q26",
+      "contextId": "ko.an.negation.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่นั่งบนเก้าอี้”",
+      "sentence": "주말에 의자에 ___ 앉아요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 앉아요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "의자에 앉다",
+          "th": "นั่งบนเก้าอี้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q27",
+      "contextId": "ko.an.negation.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ไปโรงเรียน”",
+      "sentence": "주말에 학교에 ___ 가요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 가요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q28",
+      "contextId": "ko.an.negation.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่มาที่บ้าน”",
+      "sentence": "주말에 집에 ___ 와요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 와요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q29",
+      "contextId": "ko.an.negation.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 영화를 안 봐요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่ดูหนัง"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยากดูหนัง",
+        "ช่วงสุดสัปดาห์กำลังดูหนัง",
+        "ช่วงสุดสัปดาห์ไม่ดูหนัง"
+      ],
+      "explanation": "안 วางหน้ากริยา 봐요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q30",
+      "contextId": "ko.an.negation.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 밥을 안 먹어요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่กินข้าว"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์กำลังกินข้าว",
+        "ช่วงสุดสัปดาห์ไม่กินข้าว",
+        "ช่วงสุดสัปดาห์อยากกินข้าว"
+      ],
+      "explanation": "안 วางหน้ากริยา 먹어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q31",
+      "contextId": "ko.an.negation.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 책을 안 읽어요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่อ่านหนังสือ"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ไม่อ่านหนังสือ",
+        "ช่วงสุดสัปดาห์อยากอ่านหนังสือ",
+        "ช่วงสุดสัปดาห์กำลังอ่านหนังสือ"
+      ],
+      "explanation": "안 วางหน้ากริยา 읽어요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q32",
+      "contextId": "ko.an.negation.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 편지를 안 써요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่เขียนจดหมาย"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยากเขียนจดหมาย",
+        "ช่วงสุดสัปดาห์กำลังเขียนจดหมาย",
+        "ช่วงสุดสัปดาห์ไม่เขียนจดหมาย"
+      ],
+      "explanation": "안 วางหน้ากริยา 써요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q33",
+      "contextId": "ko.an.negation.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 물을 안 마셔요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่ดื่มน้ำ"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์กำลังดื่มน้ำ",
+        "ช่วงสุดสัปดาห์ไม่ดื่มน้ำ",
+        "ช่วงสุดสัปดาห์อยากดื่มน้ำ"
+      ],
+      "explanation": "안 วางหน้ากริยา 마셔요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q34",
+      "contextId": "ko.an.negation.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 한국어를 안 배워요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่เรียนภาษาเกาหลี"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์ไม่เรียนภาษาเกาหลี",
+        "ช่วงสุดสัปดาห์อยากเรียนภาษาเกาหลี",
+        "ช่วงสุดสัปดาห์กำลังเรียนภาษาเกาหลี"
+      ],
+      "explanation": "안 วางหน้ากริยา 배워요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q35",
+      "contextId": "ko.an.negation.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 친구를 안 만나요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่พบเพื่อน"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยากพบเพื่อน",
+        "ช่วงสุดสัปดาห์กำลังพบเพื่อน",
+        "ช่วงสุดสัปดาห์ไม่พบเพื่อน"
+      ],
+      "explanation": "안 วางหน้ากริยา 만나요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q36",
+      "contextId": "ko.an.negation.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 버스를 안 기다려요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่รอรถเมล์"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์กำลังรอรถเมล์",
+        "ช่วงสุดสัปดาห์ไม่รอรถเมล์",
+        "ช่วงสุดสัปดาห์อยากรอรถเมล์"
+      ],
+      "explanation": "안 วางหน้ากริยา 기다려요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q37",
+      "contextId": "ko.an.negation.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ช่วงสุดสัปดาห์ไม่ซื้อผลไม้”",
+      "sentence": "주말에 과일을 ___ 사요.",
+      "accepted": [
+        "안"
+      ],
+      "choices": [],
+      "explanation": "안 วางหน้ากริยา 사요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.an.negation.q38",
+      "contextId": "ko.an.negation.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "주말에 방에서 안 자요.",
+      "accepted": [
+        "ช่วงสุดสัปดาห์ไม่นอนในห้อง"
+      ],
+      "choices": [
+        "ช่วงสุดสัปดาห์อยากนอนในห้อง",
+        "ช่วงสุดสัปดาห์กำลังนอนในห้อง",
+        "ช่วงสุดสัปดาห์ไม่นอนในห้อง"
+      ],
+      "explanation": "안 วางหน้ากริยา 자요 เพื่อปฏิเสธว่าไม่ทำ",
+      "glossary": [
+        {
+          "ko": "방에서 자다",
+          "th": "นอนในห้อง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    }
+  ]
+}

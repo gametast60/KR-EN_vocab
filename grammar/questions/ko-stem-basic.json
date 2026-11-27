@@ -1,0 +1,995 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.stem.basic",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.stem.basic.q01",
+      "contextId": "ko.stem.basic.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "가다 → ___",
+      "accepted": [
+        "가"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 가다 เหลือ 가-",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q02",
+      "contextId": "ko.stem.basic.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "오다 → ___",
+      "accepted": [
+        "오"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 오다 เหลือ 오-",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q03",
+      "contextId": "ko.stem.basic.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "보다 → ___",
+      "accepted": [
+        "보"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 보다 เหลือ 보-",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q04",
+      "contextId": "ko.stem.basic.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "먹다 → ___",
+      "accepted": [
+        "먹"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 먹다 เหลือ 먹-",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q05",
+      "contextId": "ko.stem.basic.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "읽다 → ___",
+      "accepted": [
+        "읽"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 읽다 เหลือ 읽-",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q06",
+      "contextId": "ko.stem.basic.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "쓰다 → ___",
+      "accepted": [
+        "쓰"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 쓰다 เหลือ 쓰-",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q07",
+      "contextId": "ko.stem.basic.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "마시다 → ___",
+      "accepted": [
+        "마시"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 마시다 เหลือ 마시-",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q08",
+      "contextId": "ko.stem.basic.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "배우다 → ___",
+      "accepted": [
+        "배우"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 배우다 เหลือ 배우-",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q09",
+      "contextId": "ko.stem.basic.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "만나다 → ___",
+      "accepted": [
+        "만나"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 만나다 เหลือ 만나-",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q10",
+      "contextId": "ko.stem.basic.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "기다리다 → ___",
+      "accepted": [
+        "기다리"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 기다리다 เหลือ 기다리-",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q11",
+      "contextId": "ko.stem.basic.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "사다",
+      "accepted": [
+        "사 คือรากศัพท์"
+      ],
+      "choices": [
+        "사다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "사 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 사다 เหลือ 사-",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q12",
+      "contextId": "ko.stem.basic.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "자다",
+      "accepted": [
+        "자 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "자 คือรากศัพท์",
+        "자다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 자다 เหลือ 자-",
+      "glossary": [
+        {
+          "ko": "방에서 자다",
+          "th": "นอนในห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q13",
+      "contextId": "ko.stem.basic.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "쉬다",
+      "accepted": [
+        "쉬 คือรากศัพท์"
+      ],
+      "choices": [
+        "쉬 คือรากศัพท์",
+        "쉬다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 쉬다 เหลือ 쉬-",
+      "glossary": [
+        {
+          "ko": "집에서 쉬다",
+          "th": "พักที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q14",
+      "contextId": "ko.stem.basic.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "일하다",
+      "accepted": [
+        "일하 คือรากศัพท์"
+      ],
+      "choices": [
+        "일하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "일하 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 일하다 เหลือ 일하-",
+      "glossary": [
+        {
+          "ko": "회사에서 일하다",
+          "th": "ทำงานที่บริษัท"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q15",
+      "contextId": "ko.stem.basic.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "공부하다",
+      "accepted": [
+        "공부하 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "공부하 คือรากศัพท์",
+        "공부하다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 공부하다 เหลือ 공부하-",
+      "glossary": [
+        {
+          "ko": "도서관에서 공부하다",
+          "th": "เรียนที่ห้องสมุด"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q16",
+      "contextId": "ko.stem.basic.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "운동하다",
+      "accepted": [
+        "운동하 คือรากศัพท์"
+      ],
+      "choices": [
+        "운동하 คือรากศัพท์",
+        "운동하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 운동하다 เหลือ 운동하-",
+      "glossary": [
+        {
+          "ko": "공원에서 운동하다",
+          "th": "ออกกำลังกายที่สวน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q17",
+      "contextId": "ko.stem.basic.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "요리하다",
+      "accepted": [
+        "요리하 คือรากศัพท์"
+      ],
+      "choices": [
+        "요리하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "요리하 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 요리하다 เหลือ 요리하-",
+      "glossary": [
+        {
+          "ko": "집에서 요리하다",
+          "th": "ทำอาหารที่บ้าน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q18",
+      "contextId": "ko.stem.basic.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "전화하다",
+      "accepted": [
+        "전화하 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "전화하 คือรากศัพท์",
+        "전화하다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 전화하다 เหลือ 전화하-",
+      "glossary": [
+        {
+          "ko": "친구에게 전화하다",
+          "th": "โทรหาเพื่อน"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q19",
+      "contextId": "ko.stem.basic.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "청소하다",
+      "accepted": [
+        "청소하 คือรากศัพท์"
+      ],
+      "choices": [
+        "청소하 คือรากศัพท์",
+        "청소하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 청소하다 เหลือ 청소하-",
+      "glossary": [
+        {
+          "ko": "방을 청소하다",
+          "th": "ทำความสะอาดห้อง"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q20",
+      "contextId": "ko.stem.basic.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "찍다",
+      "accepted": [
+        "찍 คือรากศัพท์"
+      ],
+      "choices": [
+        "찍다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "찍 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 찍다 เหลือ 찍-",
+      "glossary": [
+        {
+          "ko": "사진을 찍다",
+          "th": "ถ่ายรูป"
+        },
+        {
+          "ko": "오늘",
+          "th": "วันนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q21",
+      "contextId": "ko.stem.basic.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "입다 → ___",
+      "accepted": [
+        "입"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 입다 เหลือ 입-",
+      "glossary": [
+        {
+          "ko": "옷을 입다",
+          "th": "สวมเสื้อผ้า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q22",
+      "contextId": "ko.stem.basic.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "찾다 → ___",
+      "accepted": [
+        "찾"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 찾다 เหลือ 찾-",
+      "glossary": [
+        {
+          "ko": "가방을 찾다",
+          "th": "หากระเป๋า"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q23",
+      "contextId": "ko.stem.basic.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "닫다 → ___",
+      "accepted": [
+        "닫"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 닫다 เหลือ 닫-",
+      "glossary": [
+        {
+          "ko": "문을 닫다",
+          "th": "ปิดประตู"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q24",
+      "contextId": "ko.stem.basic.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "씻다 → ___",
+      "accepted": [
+        "씻"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 씻다 เหลือ 씻-",
+      "glossary": [
+        {
+          "ko": "손을 씻다",
+          "th": "ล้างมือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q25",
+      "contextId": "ko.stem.basic.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "팔다 → ___",
+      "accepted": [
+        "팔"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 팔다 เหลือ 팔-",
+      "glossary": [
+        {
+          "ko": "과일을 팔다",
+          "th": "ขายผลไม้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q26",
+      "contextId": "ko.stem.basic.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "만들다 → ___",
+      "accepted": [
+        "만들"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 만들다 เหลือ 만들-",
+      "glossary": [
+        {
+          "ko": "음식을 만들다",
+          "th": "ทำอาหาร"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q27",
+      "contextId": "ko.stem.basic.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "빌리다 → ___",
+      "accepted": [
+        "빌리"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 빌리다 เหลือ 빌리-",
+      "glossary": [
+        {
+          "ko": "책을 빌리다",
+          "th": "ยืมหนังสือ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q28",
+      "contextId": "ko.stem.basic.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "보내다 → ___",
+      "accepted": [
+        "보내"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 보내다 เหลือ 보내-",
+      "glossary": [
+        {
+          "ko": "편지를 보내다",
+          "th": "ส่งจดหมาย"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q29",
+      "contextId": "ko.stem.basic.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "타다",
+      "accepted": [
+        "타 คือรากศัพท์"
+      ],
+      "choices": [
+        "타다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "타 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 타다 เหลือ 타-",
+      "glossary": [
+        {
+          "ko": "버스를 타다",
+          "th": "ขึ้นรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q30",
+      "contextId": "ko.stem.basic.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "내리다",
+      "accepted": [
+        "내리 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "내리 คือรากศัพท์",
+        "내리다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 내리다 เหลือ 내리-",
+      "glossary": [
+        {
+          "ko": "버스에서 내리다",
+          "th": "ลงจากรถเมล์"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q31",
+      "contextId": "ko.stem.basic.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "열다",
+      "accepted": [
+        "열 คือรากศัพท์"
+      ],
+      "choices": [
+        "열 คือรากศัพท์",
+        "열다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 열다 เหลือ 열-",
+      "glossary": [
+        {
+          "ko": "창문을 열다",
+          "th": "เปิดหน้าต่าง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q32",
+      "contextId": "ko.stem.basic.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "앉다",
+      "accepted": [
+        "앉 คือรากศัพท์"
+      ],
+      "choices": [
+        "앉다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "앉 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 앉다 เหลือ 앉-",
+      "glossary": [
+        {
+          "ko": "의자에 앉다",
+          "th": "นั่งบนเก้าอี้"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q33",
+      "contextId": "ko.stem.basic.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "준비하다",
+      "accepted": [
+        "준비하 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "준비하 คือรากศัพท์",
+        "준비하다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 준비하다 เหลือ 준비하-",
+      "glossary": [
+        {
+          "ko": "여행을 준비하다",
+          "th": "เตรียมการเดินทาง"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q34",
+      "contextId": "ko.stem.basic.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "연습하다",
+      "accepted": [
+        "연습하 คือรากศัพท์"
+      ],
+      "choices": [
+        "연습하 คือรากศัพท์",
+        "연습하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 연습하다 เหลือ 연습하-",
+      "glossary": [
+        {
+          "ko": "한국어를 연습하다",
+          "th": "ฝึกภาษาเกาหลี"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q35",
+      "contextId": "ko.stem.basic.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "수영하다",
+      "accepted": [
+        "수영하 คือรากศัพท์"
+      ],
+      "choices": [
+        "수영하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "수영하 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 수영하다 เหลือ 수영하-",
+      "glossary": [
+        {
+          "ko": "수영장에서 수영하다",
+          "th": "ว่ายน้ำที่สระ"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q36",
+      "contextId": "ko.stem.basic.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "산책하다",
+      "accepted": [
+        "산책하 คือรากศัพท์"
+      ],
+      "choices": [
+        "다 คือรากศัพท์",
+        "산책하 คือรากศัพท์",
+        "산책하다 ทั้งคำคือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 산책하다 เหลือ 산책하-",
+      "glossary": [
+        {
+          "ko": "공원에서 산책하다",
+          "th": "เดินเล่นในสวน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q37",
+      "contextId": "ko.stem.basic.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "ตัด 다 ออก แล้วพิมพ์เฉพาะรากศัพท์",
+      "sentence": "예약하다 → ___",
+      "accepted": [
+        "예약하"
+      ],
+      "choices": [],
+      "explanation": "ตัด 다 จาก 예약하다 เหลือ 예약하-",
+      "glossary": [
+        {
+          "ko": "호텔을 예약하다",
+          "th": "จองโรงแรม"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    },
+    {
+      "id": "ko.stem.basic.q38",
+      "contextId": "ko.stem.basic.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "ส่วนใดคือรากศัพท์ของคำนี้",
+      "sentence": "출발하다",
+      "accepted": [
+        "출발하 คือรากศัพท์"
+      ],
+      "choices": [
+        "출발하다 ทั้งคำคือรากศัพท์",
+        "다 คือรากศัพท์",
+        "출발하 คือรากศัพท์"
+      ],
+      "explanation": "ตัด 다 จาก 출발하다 เหลือ 출발하-",
+      "glossary": [
+        {
+          "ko": "집에서 출발하다",
+          "th": "ออกเดินทางจากบ้าน"
+        },
+        {
+          "ko": "주말에",
+          "th": "ช่วงสุดสัปดาห์"
+        }
+      ]
+    }
+  ]
+}

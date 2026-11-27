@@ -9,6 +9,7 @@
   function validate(data) {
     function safe(value) { if(!value || typeof value!=='object')return;for(const key of Object.keys(value)){if(['__proto__','constructor','prototype'].includes(key))throw Error('ไฟล์มีคีย์ที่ไม่รองรับ');safe(value[key]);} }
     safe(data);
+    if(data && root.GrammarScheduler){if(data.grammar===undefined)data.grammar=root.GrammarScheduler.defaults();root.GrammarScheduler.validate(data.grammar);}
     if (!data || data.version !== 1 || !data.settings || !levels.includes(data.settings.level) || !Number.isInteger(data.settings.count) || data.settings.count < 1 || data.settings.count > 200) throw Error('ไฟล์ข้อมูลหรือการตั้งค่าไม่ถูกต้อง');
     if(!Number.isInteger(data.revision)||data.revision<0||!Array.isArray(data.migrationNotes)||!data.migrationNotes.every(x=>typeof x==='string')||!Array.isArray(data.settings.practiceBoxes)||!data.settings.practiceBoxes.every(n=>Number.isInteger(n)&&n>=0&&n<=5)||!Number.isInteger(data.settings.warning)||data.settings.warning<1||data.settings.warning>9999||typeof data.settings.autoAudio!=='boolean'||typeof data.settings.autoNext!=='boolean')throw Error('การตั้งค่าหรือเวอร์ชันข้อมูลไม่ถูกต้อง');
     const eventOK = e => e && typeof e.id==='string' && Number.isFinite(e.at) && ['word','context',undefined].includes(e.skill) && ['correct','incorrect','revealed','skipped','invalidated','learned','known','unknown'].includes(e.status) && (e.answer===undefined||typeof e.answer==='string');
@@ -64,13 +65,14 @@ function previewBackup(payload, now = Date.now(), shift = false) {
         else if (payload?.localStorage && typeof payload.localStorage === 'object' && (!payload.backupFormat || payload.backupFormat <= 3)) {
           const legacy = { ...payload.localStorage };
           for (const [level, edits] of Object.entries(payload.vocabEdits || {})) legacy[`${level}_vocab_edits`] = edits;
-          next = migrate(legacy, now);
+          next = legacy[KEY] ? clone(validate(typeof legacy[KEY]==='string'?JSON.parse(legacy[KEY]):legacy[KEY])) : migrate(legacy, now);
         } else throw Error('ไฟล์นี้ไม่ใช่ไฟล์สำรองของแอป');
         if (shift) {
           const backupDay = (payload.createdAt || payload.backupDate || root.FiveStageScheduler.date(now)).slice(0,10);
           const today = root.FiveStageScheduler.date(now);
           const delta = Math.max(0, Math.round((Date.parse(today)-Date.parse(backupDay))/86400000));
           for (const item of Object.values(next.items)) for (const field of ['nextReview','contextDue']) if (item[field]) item[field] = root.FiveStageScheduler.addDays(new Date(item[field]+'T12:00:00').getTime(),delta);
+          if(next.grammar)for(const item of Object.values(next.grammar.items))if(item.dueAt)item.dueAt+=delta*86400000;
         }
         return validate(next);
       }

@@ -1,4 +1,6 @@
-# 5 Stage MVP 6.0
+# 5 Stage MVP 6.1
+
+Grammar MVP is available from the subject switch. See [the grammar content guide](../grammar/README.md) for the 12 pilot objectives, separate lesson/question JSON files, source inventory, SRS policy, game adapter, and update workflow. Grammar progress is stored and backed up alongside vocabulary under a separately versioned `grammar` field. Run `node tools/build-grammar.cjs --check` when verifying source changes.
 
 Mobile-first static application for Korean and English vocabulary. The four tabs are Today, Library, Progress and Settings. The original six vocabulary files and VocabularyStudio remain the source content; images are optional.
 

@@ -1,0 +1,1014 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "ko.future.plan",
+  "revision": 1,
+  "questions": [
+    {
+      "id": "ko.future.plan.q01",
+      "contextId": "ko.future.plan.context0",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะไปโรงเรียนพรุ่งนี้”",
+      "sentence": "저는 내일 학교에 ___ . (가다)",
+      "accepted": [
+        "갈 거예요",
+        "갈거예요"
+      ],
+      "choices": [],
+      "explanation": "가다 → 갈 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "학교에 가다",
+          "th": "ไปโรงเรียน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q02",
+      "contextId": "ko.future.plan.context1",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะมาที่บ้านพรุ่งนี้”",
+      "sentence": "저는 내일 집에 ___ . (오다)",
+      "accepted": [
+        "올 거예요",
+        "올거예요"
+      ],
+      "choices": [],
+      "explanation": "오다 → 올 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "집에 오다",
+          "th": "มาที่บ้าน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q03",
+      "contextId": "ko.future.plan.context2",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะดูหนังพรุ่งนี้”",
+      "sentence": "저는 내일 영화를 ___ . (보다)",
+      "accepted": [
+        "볼 거예요",
+        "볼거예요"
+      ],
+      "choices": [],
+      "explanation": "보다 → 볼 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "영화를 보다",
+          "th": "ดูหนัง"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q04",
+      "contextId": "ko.future.plan.context3",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะกินข้าวพรุ่งนี้”",
+      "sentence": "저는 내일 밥을 ___ . (먹다)",
+      "accepted": [
+        "먹을 거예요",
+        "먹을거예요"
+      ],
+      "choices": [],
+      "explanation": "먹다 → 먹을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "밥을 먹다",
+          "th": "กินข้าว"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q05",
+      "contextId": "ko.future.plan.context4",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะอ่านหนังสือพรุ่งนี้”",
+      "sentence": "저는 내일 책을 ___ . (읽다)",
+      "accepted": [
+        "읽을 거예요",
+        "읽을거예요"
+      ],
+      "choices": [],
+      "explanation": "읽다 → 읽을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "책을 읽다",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q06",
+      "contextId": "ko.future.plan.context5",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะเขียนจดหมายพรุ่งนี้”",
+      "sentence": "저는 내일 편지를 ___ . (쓰다)",
+      "accepted": [
+        "쓸 거예요",
+        "쓸거예요"
+      ],
+      "choices": [],
+      "explanation": "쓰다 → 쓸 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "편지를 쓰다",
+          "th": "เขียนจดหมาย"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q07",
+      "contextId": "ko.future.plan.context6",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะดื่มน้ำพรุ่งนี้”",
+      "sentence": "저는 내일 물을 ___ . (마시다)",
+      "accepted": [
+        "마실 거예요",
+        "마실거예요"
+      ],
+      "choices": [],
+      "explanation": "마시다 → 마실 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "물을 마시다",
+          "th": "ดื่มน้ำ"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q08",
+      "contextId": "ko.future.plan.context7",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะเรียนภาษาเกาหลีพรุ่งนี้”",
+      "sentence": "저는 내일 한국어를 ___ . (배우다)",
+      "accepted": [
+        "배울 거예요",
+        "배울거예요"
+      ],
+      "choices": [],
+      "explanation": "배우다 → 배울 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "한국어를 배우다",
+          "th": "เรียนภาษาเกาหลี"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q09",
+      "contextId": "ko.future.plan.context8",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะพบเพื่อนพรุ่งนี้”",
+      "sentence": "저는 내일 친구를 ___ . (만나다)",
+      "accepted": [
+        "만날 거예요",
+        "만날거예요"
+      ],
+      "choices": [],
+      "explanation": "만나다 → 만날 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "친구를 만나다",
+          "th": "พบเพื่อน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q10",
+      "contextId": "ko.future.plan.context9",
+      "pool": "checkpoint",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะรอรถเมล์พรุ่งนี้”",
+      "sentence": "저는 내일 버스를 ___ . (기다리다)",
+      "accepted": [
+        "기다릴 거예요",
+        "기다릴거예요"
+      ],
+      "choices": [],
+      "explanation": "기다리다 → 기다릴 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "버스를 기다리다",
+          "th": "รอรถเมล์"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q11",
+      "contextId": "ko.future.plan.context10",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 과일을 살 거예요.",
+      "accepted": [
+        "ฉันจะซื้อผลไม้พรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันซื้อผลไม้แล้วเมื่อวาน",
+        "ฉันไม่ซื้อผลไม้",
+        "ฉันจะซื้อผลไม้พรุ่งนี้"
+      ],
+      "explanation": "사다 → 살 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "과일을 사다",
+          "th": "ซื้อผลไม้"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q12",
+      "contextId": "ko.future.plan.context11",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 방에서 잘 거예요.",
+      "accepted": [
+        "ฉันจะนอนในห้องพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันไม่นอนในห้อง",
+        "ฉันจะนอนในห้องพรุ่งนี้",
+        "ฉันนอนในห้องแล้วเมื่อวาน"
+      ],
+      "explanation": "자다 → 잘 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "방에서 자다",
+          "th": "นอนในห้อง"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q13",
+      "contextId": "ko.future.plan.context12",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 집에서 쉴 거예요.",
+      "accepted": [
+        "ฉันจะพักที่บ้านพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันจะพักที่บ้านพรุ่งนี้",
+        "ฉันพักที่บ้านแล้วเมื่อวาน",
+        "ฉันไม่พักที่บ้าน"
+      ],
+      "explanation": "쉬다 → 쉴 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "집에서 쉬다",
+          "th": "พักที่บ้าน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q14",
+      "contextId": "ko.future.plan.context13",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 회사에서 일할 거예요.",
+      "accepted": [
+        "ฉันจะทำงานที่บริษัทพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันทำงานที่บริษัทแล้วเมื่อวาน",
+        "ฉันไม่ทำงานที่บริษัท",
+        "ฉันจะทำงานที่บริษัทพรุ่งนี้"
+      ],
+      "explanation": "일하다 → 일할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "회사에서 일하다",
+          "th": "ทำงานที่บริษัท"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q15",
+      "contextId": "ko.future.plan.context14",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 도서관에서 공부할 거예요.",
+      "accepted": [
+        "ฉันจะเรียนที่ห้องสมุดพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันไม่เรียนที่ห้องสมุด",
+        "ฉันจะเรียนที่ห้องสมุดพรุ่งนี้",
+        "ฉันเรียนที่ห้องสมุดแล้วเมื่อวาน"
+      ],
+      "explanation": "공부하다 → 공부할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "도서관에서 공부하다",
+          "th": "เรียนที่ห้องสมุด"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q16",
+      "contextId": "ko.future.plan.context15",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 공원에서 운동할 거예요.",
+      "accepted": [
+        "ฉันจะออกกำลังกายที่สวนพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันจะออกกำลังกายที่สวนพรุ่งนี้",
+        "ฉันออกกำลังกายที่สวนแล้วเมื่อวาน",
+        "ฉันไม่ออกกำลังกายที่สวน"
+      ],
+      "explanation": "운동하다 → 운동할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "공원에서 운동하다",
+          "th": "ออกกำลังกายที่สวน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q17",
+      "contextId": "ko.future.plan.context16",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 집에서 요리할 거예요.",
+      "accepted": [
+        "ฉันจะทำอาหารที่บ้านพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันทำอาหารที่บ้านแล้วเมื่อวาน",
+        "ฉันไม่ทำอาหารที่บ้าน",
+        "ฉันจะทำอาหารที่บ้านพรุ่งนี้"
+      ],
+      "explanation": "요리하다 → 요리할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "집에서 요리하다",
+          "th": "ทำอาหารที่บ้าน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q18",
+      "contextId": "ko.future.plan.context17",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 친구에게 전화할 거예요.",
+      "accepted": [
+        "ฉันจะโทรหาเพื่อนพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันไม่โทรหาเพื่อน",
+        "ฉันจะโทรหาเพื่อนพรุ่งนี้",
+        "ฉันโทรหาเพื่อนแล้วเมื่อวาน"
+      ],
+      "explanation": "전화하다 → 전화할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "친구에게 전화하다",
+          "th": "โทรหาเพื่อน"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q19",
+      "contextId": "ko.future.plan.context18",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 방을 청소할 거예요.",
+      "accepted": [
+        "ฉันจะทำความสะอาดห้องพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันจะทำความสะอาดห้องพรุ่งนี้",
+        "ฉันทำความสะอาดห้องแล้วเมื่อวาน",
+        "ฉันไม่ทำความสะอาดห้อง"
+      ],
+      "explanation": "청소하다 → 청소할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "방을 청소하다",
+          "th": "ทำความสะอาดห้อง"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q20",
+      "contextId": "ko.future.plan.context19",
+      "pool": "checkpoint",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 내일 사진을 찍을 거예요.",
+      "accepted": [
+        "ฉันจะถ่ายรูปพรุ่งนี้"
+      ],
+      "choices": [
+        "ฉันถ่ายรูปแล้วเมื่อวาน",
+        "ฉันไม่ถ่ายรูป",
+        "ฉันจะถ่ายรูปพรุ่งนี้"
+      ],
+      "explanation": "찍다 → 찍을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "사진을 찍다",
+          "th": "ถ่ายรูป"
+        },
+        {
+          "ko": "내일",
+          "th": "พรุ่งนี้"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q21",
+      "contextId": "ko.future.plan.context20",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะสวมเสื้อผ้าสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 옷을 ___ . (입다)",
+      "accepted": [
+        "입을 거예요",
+        "입을거예요"
+      ],
+      "choices": [],
+      "explanation": "입다 → 입을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "옷을 입다",
+          "th": "สวมเสื้อผ้า"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q22",
+      "contextId": "ko.future.plan.context21",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะหากระเป๋าสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 가방을 ___ . (찾다)",
+      "accepted": [
+        "찾을 거예요",
+        "찾을거예요"
+      ],
+      "choices": [],
+      "explanation": "찾다 → 찾을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "가방을 찾다",
+          "th": "หากระเป๋า"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q23",
+      "contextId": "ko.future.plan.context22",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะปิดประตูสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 문을 ___ . (닫다)",
+      "accepted": [
+        "닫을 거예요",
+        "닫을거예요"
+      ],
+      "choices": [],
+      "explanation": "닫다 → 닫을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "문을 닫다",
+          "th": "ปิดประตู"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q24",
+      "contextId": "ko.future.plan.context23",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะล้างมือสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 손을 ___ . (씻다)",
+      "accepted": [
+        "씻을 거예요",
+        "씻을거예요"
+      ],
+      "choices": [],
+      "explanation": "씻다 → 씻을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "손을 씻다",
+          "th": "ล้างมือ"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q25",
+      "contextId": "ko.future.plan.context24",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะขายผลไม้สัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 과일을 ___ . (팔다)",
+      "accepted": [
+        "팔 거예요",
+        "팔거예요"
+      ],
+      "choices": [],
+      "explanation": "팔다 → 팔 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "과일을 팔다",
+          "th": "ขายผลไม้"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q26",
+      "contextId": "ko.future.plan.context25",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะทำอาหารสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 음식을 ___ . (만들다)",
+      "accepted": [
+        "만들 거예요",
+        "만들거예요"
+      ],
+      "choices": [],
+      "explanation": "만들다 → 만들 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "음식을 만들다",
+          "th": "ทำอาหาร"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q27",
+      "contextId": "ko.future.plan.context26",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะยืมหนังสือสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 책을 ___ . (빌리다)",
+      "accepted": [
+        "빌릴 거예요",
+        "빌릴거예요"
+      ],
+      "choices": [],
+      "explanation": "빌리다 → 빌릴 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "책을 빌리다",
+          "th": "ยืมหนังสือ"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q28",
+      "contextId": "ko.future.plan.context27",
+      "pool": "review",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะส่งจดหมายสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 편지를 ___ . (보내다)",
+      "accepted": [
+        "보낼 거예요",
+        "보낼거예요"
+      ],
+      "choices": [],
+      "explanation": "보내다 → 보낼 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "편지를 보내다",
+          "th": "ส่งจดหมาย"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q29",
+      "contextId": "ko.future.plan.context28",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 버스를 탈 거예요.",
+      "accepted": [
+        "ฉันจะขึ้นรถเมล์สัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันขึ้นรถเมล์แล้วเมื่อวาน",
+        "ฉันไม่ขึ้นรถเมล์",
+        "ฉันจะขึ้นรถเมล์สัปดาห์หน้า"
+      ],
+      "explanation": "타다 → 탈 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "버스를 타다",
+          "th": "ขึ้นรถเมล์"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q30",
+      "contextId": "ko.future.plan.context29",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 버스에서 내릴 거예요.",
+      "accepted": [
+        "ฉันจะลงจากรถเมล์สัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันไม่ลงจากรถเมล์",
+        "ฉันจะลงจากรถเมล์สัปดาห์หน้า",
+        "ฉันลงจากรถเมล์แล้วเมื่อวาน"
+      ],
+      "explanation": "내리다 → 내릴 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "버스에서 내리다",
+          "th": "ลงจากรถเมล์"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q31",
+      "contextId": "ko.future.plan.context30",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 창문을 열 거예요.",
+      "accepted": [
+        "ฉันจะเปิดหน้าต่างสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันจะเปิดหน้าต่างสัปดาห์หน้า",
+        "ฉันเปิดหน้าต่างแล้วเมื่อวาน",
+        "ฉันไม่เปิดหน้าต่าง"
+      ],
+      "explanation": "열다 → 열 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "창문을 열다",
+          "th": "เปิดหน้าต่าง"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q32",
+      "contextId": "ko.future.plan.context31",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 의자에 앉을 거예요.",
+      "accepted": [
+        "ฉันจะนั่งบนเก้าอี้สัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันนั่งบนเก้าอี้แล้วเมื่อวาน",
+        "ฉันไม่นั่งบนเก้าอี้",
+        "ฉันจะนั่งบนเก้าอี้สัปดาห์หน้า"
+      ],
+      "explanation": "앉다 → 앉을 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "의자에 앉다",
+          "th": "นั่งบนเก้าอี้"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q33",
+      "contextId": "ko.future.plan.context32",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 여행을 준비할 거예요.",
+      "accepted": [
+        "ฉันจะเตรียมการเดินทางสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันไม่เตรียมการเดินทาง",
+        "ฉันจะเตรียมการเดินทางสัปดาห์หน้า",
+        "ฉันเตรียมการเดินทางแล้วเมื่อวาน"
+      ],
+      "explanation": "준비하다 → 준비할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "여행을 준비하다",
+          "th": "เตรียมการเดินทาง"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q34",
+      "contextId": "ko.future.plan.context33",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 한국어를 연습할 거예요.",
+      "accepted": [
+        "ฉันจะฝึกภาษาเกาหลีสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันจะฝึกภาษาเกาหลีสัปดาห์หน้า",
+        "ฉันฝึกภาษาเกาหลีแล้วเมื่อวาน",
+        "ฉันไม่ฝึกภาษาเกาหลี"
+      ],
+      "explanation": "연습하다 → 연습할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "한국어를 연습하다",
+          "th": "ฝึกภาษาเกาหลี"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q35",
+      "contextId": "ko.future.plan.context34",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 수영장에서 수영할 거예요.",
+      "accepted": [
+        "ฉันจะว่ายน้ำที่สระสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันว่ายน้ำที่สระแล้วเมื่อวาน",
+        "ฉันไม่ว่ายน้ำที่สระ",
+        "ฉันจะว่ายน้ำที่สระสัปดาห์หน้า"
+      ],
+      "explanation": "수영하다 → 수영할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "수영장에서 수영하다",
+          "th": "ว่ายน้ำที่สระ"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q36",
+      "contextId": "ko.future.plan.context35",
+      "pool": "review",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 공원에서 산책할 거예요.",
+      "accepted": [
+        "ฉันจะเดินเล่นในสวนสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันไม่เดินเล่นในสวน",
+        "ฉันจะเดินเล่นในสวนสัปดาห์หน้า",
+        "ฉันเดินเล่นในสวนแล้วเมื่อวาน"
+      ],
+      "explanation": "산책하다 → 산책할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "공원에서 산책하다",
+          "th": "เดินเล่นในสวน"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q37",
+      "contextId": "ko.future.plan.context36",
+      "pool": "guided",
+      "skill": "use",
+      "type": "type",
+      "prompt": "เติมเฉพาะช่องว่างให้สื่อว่า “ฉันจะจองโรงแรมสัปดาห์หน้า”",
+      "sentence": "저는 다음 주에 호텔을 ___ . (예약하다)",
+      "accepted": [
+        "예약할 거예요",
+        "예약할거예요"
+      ],
+      "choices": [],
+      "explanation": "예약하다 → 예약할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "호텔을 예약하다",
+          "th": "จองโรงแรม"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    },
+    {
+      "id": "ko.future.plan.q38",
+      "contextId": "ko.future.plan.context37",
+      "pool": "guided",
+      "skill": "understand",
+      "type": "choice",
+      "prompt": "เลือกคำอธิบายที่ตรงกับประโยค",
+      "sentence": "저는 다음 주에 집에서 출발할 거예요.",
+      "accepted": [
+        "ฉันจะออกเดินทางจากบ้านสัปดาห์หน้า"
+      ],
+      "choices": [
+        "ฉันออกเดินทางจากบ้านแล้วเมื่อวาน",
+        "ฉันไม่ออกเดินทางจากบ้าน",
+        "ฉันจะออกเดินทางจากบ้านสัปดาห์หน้า"
+      ],
+      "explanation": "출발하다 → 출발할 거예요 ใช้บอกแผนของผู้พูด",
+      "glossary": [
+        {
+          "ko": "집에서 출발하다",
+          "th": "ออกเดินทางจากบ้าน"
+        },
+        {
+          "ko": "다음 주에",
+          "th": "สัปดาห์หน้า"
+        }
+      ]
+    }
+  ]
+}

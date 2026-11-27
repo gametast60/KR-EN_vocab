@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "ko.e.destination",
+  "revision": 1,
+  "track": "topik1",
+  "order": 4,
+  "status": "ready",
+  "title": "บอกว่าจะไปที่ไหน",
+  "form": "N + 에 가요",
+  "prerequisites": [
+    "ko.e.location"
+  ],
+  "sourceRefs": [
+    "topik-i:009"
+  ],
+  "origin": "adapted-with-original-exercises",
+  "scope": "บทนำร่อง: ฝึกเขียนแบบมีโจทย์กำหนดและเข้าใจประโยค ไม่วัดการพูดสด",
+  "rules": [
+    "เติม 에 หลังสถานที่ที่เป็นจุดหมาย แล้วใช้ 가요 หรือ 와요",
+    "학교에 가요 คือไปโรงเรียน ส่วน 학교에 있어요 คืออยู่ที่โรงเรียน ต้องอ่านกริยาทั้งประโยค"
+  ],
+  "examples": [
+    {
+      "ko": "학교에 가요.",
+      "th": "ไปโรงเรียน"
+    }
+  ]
+}

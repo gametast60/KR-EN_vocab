@@ -1,0 +1,704 @@
+{
+  "schemaVersion": 1,
+  "id": "topik-i",
+  "title": "TOPIK I Grammar",
+  "filename": "TOPIK-I-Grammar.pdf",
+  "sha256": "fb7522feeac5b2826e5c4059204f94c701f144c5858a8c552c3e2ef0f491813c",
+  "note": "Source inventory only. Original wording is retained, not validated lesson content. Page text preserves multi-line examples.",
+  "rows": [
+    {
+      "id": "topik-i:001",
+      "number": 1,
+      "page": 1,
+      "form": "이/가",
+      "rawRow": "1                이/가                        is [subject particle]",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:002",
+      "number": 2,
+      "page": 1,
+      "form": "은/는",
+      "rawRow": "2                은/는                      is / am [topic particle]",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:003",
+      "number": 3,
+      "page": 1,
+      "form": "을/를",
+      "rawRow": "3                을/를                           [object particle]",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:004",
+      "number": 4,
+      "page": 1,
+      "form": "와/과",
+      "rawRow": "4                와/과                                      and",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:005",
+      "number": 5,
+      "page": 1,
+      "form": "(이)랑",
+      "rawRow": "5                      (이)랑                                      and               설렁탕이랑 김밥 주세요.                                             Please, give me seoulleongtang  and kimbap.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:006",
+      "number": 6,
+      "page": 1,
+      "form": "(이)랑",
+      "rawRow": "6                      (이)랑                                     with              친구랑 같이 왔어요.                                                    I came with a friend.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:007",
+      "number": 7,
+      "page": 1,
+      "form": "하고",
+      "rawRow": "7          하고                                       and               양념 치킨하고 맥주 주세요.                                         Please, give me yangnyeom  chicken and beer.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:008",
+      "number": 8,
+      "page": 1,
+      "form": "도",
+      "rawRow": "8           도                                 also / as well          내일도 오늘도 비가 와요.                                            It is raining also today and tomorrow.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:009",
+      "number": 9,
+      "page": 1,
+      "form": "에",
+      "rawRow": "9           에                                          to                남대문 시장에 가고 싶어요.                                         I want to go to Namdaemun  market.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:010",
+      "number": 10,
+      "page": 1,
+      "form": "에서",
+      "rawRow": "10          에서                                      from              공항에서 지하철 타고 왔어요.                                     I came by subway from the airport.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:011",
+      "number": 11,
+      "page": 1,
+      "form": "까지",
+      "rawRow": "11          까지                                      until               강남까지 가고 싶어요.                                                 I want to go until Gangnam .",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:012",
+      "number": 12,
+      "page": 1,
+      "form": "부터",
+      "rawRow": "12          부터                                      from              지하철은 아침 5시부터 운영해요.                                The subway operates from 5 am in the morning.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:013",
+      "number": 13,
+      "page": 1,
+      "form": "(으)로",
+      "rawRow": "13                (으)로                                       to",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:014",
+      "number": 14,
+      "page": 2,
+      "form": "께",
+      "rawRow": "14           께                               to [polite form]          부모님께 드리고 싶어요.                                             I want to give it to my parents.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:015",
+      "number": 15,
+      "page": 2,
+      "form": "께서",
+      "rawRow": "15          께서                       [honorific nominativemarker]             할머니께서 부탁하셨어요.                                          My grandmother has asked me to.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:016",
+      "number": 16,
+      "page": 2,
+      "form": "에게",
+      "rawRow": "16          에게                                        to                우리 엄마에게 주고 싶어요.                                         I want to give it to my mother.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:017",
+      "number": 17,
+      "page": 2,
+      "form": "에게서",
+      "rawRow": "17         에게서                                    from              호텔 직원에게서 받았어요.                                          I got it from the hotel staff.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:018",
+      "number": 18,
+      "page": 2,
+      "form": "한테",
+      "rawRow": "18          한테                                        to                백화점 안내원한테 물어보세요.                                  Please ask it to the department store receptionist.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:019",
+      "number": 19,
+      "page": 2,
+      "form": "한테서",
+      "rawRow": "19         한테서                                    from              이거는 친구한테서 선물로 받은 거예요.                      I got this as a present from my friend.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:020",
+      "number": 20,
+      "page": 2,
+      "form": "(이)나",
+      "rawRow": "20  (이)나                                       or               교환이나 환불 원하시면 연락주세요.                          Please, contact us for an exchange or refund.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:021",
+      "number": 21,
+      "page": 2,
+      "form": "(이)나",
+      "rawRow": "21                     (이)나                                   rather              밥이나 먹으러 가고 싶어요.                                         I want to rather go eat.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:022",
+      "number": 22,
+      "page": 2,
+      "form": "(이)나",
+      "rawRow": "22                     (이)나                                    even              쇼핑하는데 열 시간이나 걸렸어요.                              It took even ten hours to shop.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:023",
+      "number": 23,
+      "page": 2,
+      "form": "만",
+      "rawRow": "23           만                                        only               지금 5000원만 있어요.                                                I have only 5000 won now.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:024",
+      "number": 24,
+      "page": 2,
+      "form": "의",
+      "rawRow": "24           의                                  [subject]'s            내 친구의 그림은 아주 멋져요.                                    My friend's drawing is so awesome.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:025",
+      "number": 25,
+      "page": 2,
+      "form": "마다",
+      "rawRow": "25          마다                                 whenever            한국에 올 때마다 이 가게를 찾아요.                            I visit this shop whenever I come to Korea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:026",
+      "number": 26,
+      "page": 2,
+      "form": "밖에",
+      "rawRow": "26          밖에                                      only               시간이 한 시간밖에 없어요.                                         There is only one hour of time.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:027",
+      "number": 27,
+      "page": 2,
+      "form": "보다",
+      "rawRow": "27          보다                          more / better than        이것보다 이게 더 어울려요.                                         This goes better than this.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:028",
+      "number": 28,
+      "page": 2,
+      "form": "처럼",
+      "rawRow": "28          처럼                             like / similar to          배우처럼 생기셨네요.                                                 You look like an actor.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:029",
+      "number": 29,
+      "page": 2,
+      "form": "(으)ㄴ 것 같다",
+      "rawRow": "29             (으)ㄴ 것 같다                        I think / feel           택시 비용이 좀 비싼 것 같아요.                                    I think the taxi's price is a bit expensive.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:030",
+      "number": 30,
+      "page": 2,
+      "form": "(으)ㄹ 것 같다",
+      "rawRow": "30             (으)ㄹ 것 같다                    I guess / assume         이 화장품은 인기가 많을 것 같아요.                            I guess this cosmetic will be popular.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:031",
+      "number": 31,
+      "page": 3,
+      "form": "(으)ㄴ 적이 있다",
+      "rawRow": "31           (으)ㄴ 적이 있다                           I have              이 가게에 와 본 적이 있어요.                                       I have been to this store.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:032",
+      "number": 32,
+      "page": 3,
+      "form": "(으)ㄴ 적이 없다",
+      "rawRow": "32           (으)ㄴ 적이 없다                        I have not            저는 한국에 가본 적이 없어요.                                    I have not been to Korea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:033",
+      "number": 33,
+      "page": 3,
+      "form": "(으)ㄴ 지",
+      "rawRow": "33                  (으)ㄴ 지                         How long since         이 가게가 생긴 지 얼마나 됐어요?                               How long has it been since this store has opened?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:034",
+      "number": 34,
+      "page": 3,
+      "form": "(으)ㄴ 지",
+      "rawRow": "34                  (으)ㄴ 지                                  since              한국에 온 지 3일이 지났습니다.                                  Three days have passed since I came to Korea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:035",
+      "number": 35,
+      "page": 3,
+      "form": "(으)ㄴ 후에",
+      "rawRow": "35                (으)ㄴ 후에                                 after              쇼핑한 후에 밥 먹었습니다.                                         I ate after shopping.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:036",
+      "number": 36,
+      "page": 3,
+      "form": "(으)ㄴ데(요)",
+      "rawRow": "36               (으)ㄴ데(요)                            although            역에서 좀 먼데요,                                                        Although it is a little far from the station,",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:037",
+      "number": 37,
+      "page": 3,
+      "form": "(으)ㄴ데(요)",
+      "rawRow": "37               (으)ㄴ데(요)                                 but               죄송한데요, 길 좀 알려줄 수 있어요?                           Excuse me, but can you tell me the way?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:038",
+      "number": 38,
+      "page": 3,
+      "form": "(으)니까",
+      "rawRow": "38                   (으)니까                         because / since         달러 밖에 없으니까 환전해야 돼요.                             I need to exchange money because I only have dollars.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:039",
+      "number": 39,
+      "page": 3,
+      "form": "(으)ㄹ 것이다",
+      "rawRow": "39              (으)ㄹ 것이다                             will be              여기 식당은 맛있을 거예요.                                         The restaurant here will be delicious.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:040",
+      "number": 40,
+      "page": 3,
+      "form": "(으)ㄹ 때",
+      "rawRow": "40                  (으)ㄹ 때                                  when              내가 버스타고 있었을 때 잃어버렸어요.                      I lost it when I was on the bus.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:041",
+      "number": 41,
+      "page": 3,
+      "form": "(으)ㄹ 수 있다",
+      "rawRow": "41             (으)ㄹ 수 있다                               can               저는 한국말 조금 할 수 있어요.                                    I can speak Korean a little bit.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:042",
+      "number": 42,
+      "page": 3,
+      "form": "(으)ㄹ 수 없다",
+      "rawRow": "42             (으)ㄹ 수 없다                            can not             여기서는 사진을 찍을 수 없어요.                                 You can't take a photo here.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:043",
+      "number": 43,
+      "page": 3,
+      "form": "(으)ㄹ게요",
+      "rawRow": "43                (으)ㄹ게요                                  will               제가 할게요.                                                                I will do it.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:044",
+      "number": 44,
+      "page": 3,
+      "form": "(으)ㄹ까 하다",
+      "rawRow": "44              (으)ㄹ까 하다                   is / am thinking of        명동에 갈까 해요.                                                        I am thinking of going to Myeongdong .",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:045",
+      "number": 45,
+      "page": 3,
+      "form": "(으)ㄹ까 봐",
+      "rawRow": "45                (으)ㄹ까 봐                  thinking / worried that      여행가는데 현금이 모자랄까봐 걱정했어요.                I was worried that there won't be enough cash for the travel.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:046",
+      "number": 46,
+      "page": 3,
+      "form": "(으)ㄹ까요?",
+      "rawRow": "46               (으)ㄹ까요?                           Should we            여기서 걸어갈까요?                                                    Should we walk from here?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:047",
+      "number": 47,
+      "page": 3,
+      "form": "(으)ㄹ래요",
+      "rawRow": "47                (으)ㄹ래요                                  will               저는 이걸로 할래요.                                                    I will go with this one.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:048",
+      "number": 48,
+      "page": 3,
+      "form": "(으)ㄹ래요?",
+      "rawRow": "48               (으)ㄹ래요?                           would you            이걸로 계산하실래요?                                                 Would you like to pay with this?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:049",
+      "number": 49,
+      "page": 4,
+      "form": "(으)러 가다",
+      "rawRow": "49                (으)러 가다                        go (in order) to          한국에 관광하러 갈 거예요.                                         I will go to Korea to travel.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:050",
+      "number": 50,
+      "page": 4,
+      "form": "(으)러 오다",
+      "rawRow": "50                (으)러 오다                     come (in order) to        여기에 예약하러 왔어요.                                             I came here to make a reservation.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:051",
+      "number": 51,
+      "page": 4,
+      "form": "(으)려고",
+      "rawRow": "51                   (으)려고                                going to             한국말을 공부하려고 해요.                                          I am going to study Korean.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:052",
+      "number": 52,
+      "page": 4,
+      "form": "(으)려고요",
+      "rawRow": "52                (으)려고요                     going / planning to        아이돌 콘서트에 가려고요.                                          I am going to go to a singer's concert.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:053",
+      "number": 53,
+      "page": 4,
+      "form": "(으)면",
+      "rawRow": "53                     (으)면                                       if                부산에 가면 뭘 볼 수 있을까요?                                   What can I see if I go to Busan?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:054",
+      "number": 54,
+      "page": 4,
+      "form": "(으)면서",
+      "rawRow": "54                   (으)면서                                  while              핸드폰을 보면서 걷지 마세요.                                     Do not walk while watching your phone.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:055",
+      "number": 55,
+      "page": 4,
+      "form": "(으)ㅂ시다",
+      "rawRow": "55                (으)ㅂ시다                                 Let's              순두부를 주문해 봅시다.                                             Let's order sundubu .",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:056",
+      "number": 56,
+      "page": 4,
+      "form": "(으)세요",
+      "rawRow": "56                   (으)세요                                 Please             삼겹살 2인분 주세요.                                                  Please, give us 2 servings of samgyeopsal .",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:057",
+      "number": 57,
+      "page": 4,
+      "form": "(으)십시오",
+      "rawRow": "57                (으)십시오                               Please             또 놀러 오십시오.                                                        Please, visit us again.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:058",
+      "number": 58,
+      "page": 4,
+      "form": "(이)지요?",
+      "rawRow": "58                 (이)지요?                                 right?              카드로 계산 되지요?                                                    I can pay with a credit card, right?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:059",
+      "number": 59,
+      "page": 4,
+      "form": "거나",
+      "rawRow": "59          거나                                     and/or             시장에 가거나 카페에 가고 싶어요.                             I want to go to a market or a café.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:060",
+      "number": 60,
+      "page": 4,
+      "form": "게",
+      "rawRow": "60           게                                  make [adj]            싸게 해 주세요.                                                           Please, make the price cheaper.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:061",
+      "number": 61,
+      "page": 4,
+      "form": "게 되다",
+      "rawRow": "61         게 되다                               happen to            한국에 오게 됐어요.                                                    I happened to come to Korea.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:062",
+      "number": 62,
+      "page": 4,
+      "form": "고",
+      "rawRow": "62           고                                   and (then)            밥 먹고 자요.                                                               I will eat food and sleep.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:063",
+      "number": 63,
+      "page": 4,
+      "form": "고 싶다",
+      "rawRow": "63         고 싶다                                 want to             약국에 가고 싶어요.                                                    I want to go to the pharmacy.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:064",
+      "number": 64,
+      "page": 4,
+      "form": "고 있다",
+      "rawRow": "64         고 있다                            is / am [v]ing           지금 무슨 말 할까 생각하고 있어요.                            I am thinking about what to say right now.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:065",
+      "number": 65,
+      "page": 4,
+      "form": "군요",
+      "rawRow": "65          군요                                     right?              병원에 가려면 여기 쭉 가면 되는군요.                         I can go this way straight to go to the hospital, right?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:066",
+      "number": 66,
+      "page": 4,
+      "form": "기 때문에",
+      "rawRow": "66        기 때문에                            because of           너무 많이 걸었기 때문에 다리가 아파요.                     My leg hurts because of walking too much.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:067",
+      "number": 67,
+      "page": 5,
+      "form": "기 전에",
+      "rawRow": "67         기 전에                                  before              결제하기 전에 확인하고 싶은 게 있는데요.                  I want to check something before making the payment.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:068",
+      "number": 68,
+      "page": 5,
+      "form": "기로 하다",
+      "rawRow": "68        기로 하다                             decided to            오늘은 쇼핑하기로 했어요.                                          I decided to go shopping today.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:069",
+      "number": 69,
+      "page": 5,
+      "form": "네요",
+      "rawRow": "69          네요                                     right?              그럼 다 합쳐서 4000원이네요.                                     So, it is 4000won all together, right?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:070",
+      "number": 70,
+      "page": 5,
+      "form": "는 게 좋겠다",
+      "rawRow": "70       는 게 좋겠다                            better to             시간이 없으니까 빨리 가는 게 좋겠어요.                     It is better to hurry since we don't have much time.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:071",
+      "number": 71,
+      "page": 5,
+      "form": "는데",
+      "rawRow": "71          는데                                       for               입국심사하는데 별로 많이 안 기다렸어요.                  I didn't wait much for immigration.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:072",
+      "number": 72,
+      "page": 5,
+      "form": "ㅂ/습니까?",
+      "rawRow": "72       ㅂ/습니까?           [interrogative forms of formalpolite style]           언제 한국에 갑니까?                                                    When are you going to Korea?",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:073",
+      "number": 73,
+      "page": 5,
+      "form": "ㅂ/습니다",
+      "rawRow": "73        ㅂ/습니다                      formal polite style        내일 한국에 갑니다.                                                    I am going to Korea tomorrow.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:074",
+      "number": 74,
+      "page": 5,
+      "form": "아/어/여 보다",
+      "rawRow": "74      아/어/여 보다                                try               이것도 시식해 보세요.                                                 Please, try eating this as well.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:075",
+      "number": 75,
+      "page": 5,
+      "form": "아/어/여 주다",
+      "rawRow": "75      아/어/여 주다                     [v] (for) me / us         알려줘서 고마워요.                                                     Thank you for telling me.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:076",
+      "number": 76,
+      "page": 5,
+      "form": "아/어/여야 되다",
+      "rawRow": "76     아/어/여야 되다                    need to / must          한국어를 공부해야 돼요.                                             I need to study Korean.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:077",
+      "number": 77,
+      "page": 5,
+      "form": "아/어/여야 하다",
+      "rawRow": "77     아/어/여야 하다                    need to / must          차 타고 가야 해요.                                                       I need to ride a car.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:078",
+      "number": 78,
+      "page": 5,
+      "form": "아/어요",
+      "rawRow": "78         아/어요                      informal polite style       좋아요.                                                                        That is good.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:079",
+      "number": 79,
+      "page": 5,
+      "form": "았/었/였으면 좋겠다",
+      "rawRow": "79   았/었/였으면 좋겠다                   wish / hope           빨리 배달 왔으면 좋겠어요.                                         I hope the delivery arrives soon.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:080",
+      "number": 80,
+      "page": 5,
+      "form": "지 말다",
+      "rawRow": "80         지 말다                                  do not              담배 피우지 마세요.                                                    Please, do not smoke.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:081",
+      "number": 81,
+      "page": 5,
+      "form": "지 못하다",
+      "rawRow": "81        지 못하다                               can not             도와주지 못 해서 죄송해요.                                         I am sorry that I can't help much.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:082",
+      "number": 82,
+      "page": 5,
+      "form": "지 않다",
+      "rawRow": "82         지 않다                                     not               지하철 타지 않고 걸어갈게요.                                     I will not take a subway and instead I will walk.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:083",
+      "number": 83,
+      "page": 5,
+      "form": "지만",
+      "rawRow": "83          지만                              but / however          오래 전에 주문했지만 요리가 아직 안 왔어요.             We have ordered the dishes a while ago, but they are not here yet.",
+      "status": "source-only"
+    },
+    {
+      "id": "topik-i:084",
+      "number": 84,
+      "page": 5,
+      "form": "이/가 아니다",
+      "rawRow": "84      이/가 아니다                                not               제 물건이 아니에요.                                                    That is not mine.",
+      "status": "source-only"
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "text": "                                                                                                  TOPIKⅠ Grammar (Beginner)\n\n\nNo.        한글                               English            예문                                                                     Example\n\n                                                                                      이름이 뭐예요?                                                            What is your name?\n 1                이/가                        is [subject particle]\n                                                                                      날씨가 좋아요.                                                            The weather is good.\n\n\n                                                                                      선생님은 지금 안 계세요.                                            The teacher is not here now.\n 2                은/는                      is / am [topic particle]\n                                                                                      저는 미국사람이에요.                                                 I am an American.\n\n\n                                                                                      책을 읽어요.                                                                I am reading a book.\n 3                을/를                           [object particle]\n                                                                                      택시를 불러 주세요.                                                    Please, call a taxi.\n\n\n                                                                                      토미 씨와 친구예요.                                                    Tommy and I are friends.\n 4                와/과                                      and\n                                                                                      소설책과 교과서를 가져왔어요.                                  I brought a novel and a textbook.\n\n 5                      (이)랑                                      and               설렁탕이랑 김밥 주세요.                                             Please, give me seoulleongtang  and kimbap.\n\n\n 6                      (이)랑                                     with              친구랑 같이 왔어요.                                                    I came with a friend.\n\n 7          하고                                       and               양념 치킨하고 맥주 주세요.                                         Please, give me yangnyeom  chicken and beer.\n\n\n 8           도                                 also / as well          내일도 오늘도 비가 와요.                                            It is raining also today and tomorrow.\n\n 9           에                                          to                남대문 시장에 가고 싶어요.                                         I want to go to Namdaemun  market.\n\n\n10          에서                                      from              공항에서 지하철 타고 왔어요.                                     I came by subway from the airport.\n\n11          까지                                      until               강남까지 가고 싶어요.                                                 I want to go until Gangnam .\n\n\n12          부터                                      from              지하철은 아침 5시부터 운영해요.                                The subway operates from 5 am in the morning.\n\n                                                                                      저는 학교로 가는 길이에요.                                         I am on my way to school.\n13                (으)로                                       to\n                                                                                      저는 부산으로 가요.                                                    I am going to Busan.\n\n\n\n\n                                                                                                                                1"
+    },
+    {
+      "page": 2,
+      "text": "                                                                                              TOPIKⅠ Grammar (Beginner)\n\n\nNo.        한글                               English            예문                                                                     Example\n\n14           께                               to [polite form]          부모님께 드리고 싶어요.                                             I want to give it to my parents.\n\n15          께서                       [honorific nominativemarker]             할머니께서 부탁하셨어요.                                          My grandmother has asked me to.\n\n\n16          에게                                        to                우리 엄마에게 주고 싶어요.                                         I want to give it to my mother.\n\n17         에게서                                    from              호텔 직원에게서 받았어요.                                          I got it from the hotel staff.\n\n\n18          한테                                        to                백화점 안내원한테 물어보세요.                                  Please ask it to the department store receptionist.\n\n19         한테서                                    from              이거는 친구한테서 선물로 받은 거예요.                      I got this as a present from my friend.\n\n\n                 (이)나                                       or               버스나 지하철 타고 갈게요.                                         I will take a bus or a subway.\n20\n                 (이)나                                       or               교환이나 환불 원하시면 연락주세요.                          Please, contact us for an exchange or refund.\n\n21                     (이)나                                   rather              밥이나 먹으러 가고 싶어요.                                         I want to rather go eat.\n\n\n22                     (이)나                                    even              쇼핑하는데 열 시간이나 걸렸어요.                              It took even ten hours to shop.\n\n23           만                                        only               지금 5000원만 있어요.                                                I have only 5000 won now.\n\n\n24           의                                  [subject]'s            내 친구의 그림은 아주 멋져요.                                    My friend's drawing is so awesome.\n\n25          마다                                 whenever            한국에 올 때마다 이 가게를 찾아요.                            I visit this shop whenever I come to Korea.\n\n\n26          밖에                                      only               시간이 한 시간밖에 없어요.                                         There is only one hour of time.\n\n27          보다                          more / better than        이것보다 이게 더 어울려요.                                         This goes better than this.\n\n\n28          처럼                             like / similar to          배우처럼 생기셨네요.                                                 You look like an actor.\n\n29             (으)ㄴ 것 같다                        I think / feel           택시 비용이 좀 비싼 것 같아요.                                    I think the taxi's price is a bit expensive.\n\n30             (으)ㄹ 것 같다                    I guess / assume         이 화장품은 인기가 많을 것 같아요.                            I guess this cosmetic will be popular.\n\n\n\n\n                                                                                                                           2"
+    },
+    {
+      "page": 3,
+      "text": "                                                                                                TOPIKⅠ Grammar (Beginner)\n\n\nNo.        한글                               English            예문                                                                     Example\n\n31           (으)ㄴ 적이 있다                           I have              이 가게에 와 본 적이 있어요.                                       I have been to this store.\n\n32           (으)ㄴ 적이 없다                        I have not            저는 한국에 가본 적이 없어요.                                    I have not been to Korea.\n\n\n33                  (으)ㄴ 지                         How long since         이 가게가 생긴 지 얼마나 됐어요?                               How long has it been since this store has opened?\n\n34                  (으)ㄴ 지                                  since              한국에 온 지 3일이 지났습니다.                                  Three days have passed since I came to Korea.\n\n\n35                (으)ㄴ 후에                                 after              쇼핑한 후에 밥 먹었습니다.                                         I ate after shopping.\n\n36               (으)ㄴ데(요)                            although            역에서 좀 먼데요,                                                        Although it is a little far from the station,\n\n\n37               (으)ㄴ데(요)                                 but               죄송한데요, 길 좀 알려줄 수 있어요?                           Excuse me, but can you tell me the way?\n\n38                   (으)니까                         because / since         달러 밖에 없으니까 환전해야 돼요.                             I need to exchange money because I only have dollars.\n\n39              (으)ㄹ 것이다                             will be              여기 식당은 맛있을 거예요.                                         The restaurant here will be delicious.\n\n\n40                  (으)ㄹ 때                                  when              내가 버스타고 있었을 때 잃어버렸어요.                      I lost it when I was on the bus.\n\n41             (으)ㄹ 수 있다                               can               저는 한국말 조금 할 수 있어요.                                    I can speak Korean a little bit.\n\n\n42             (으)ㄹ 수 없다                            can not             여기서는 사진을 찍을 수 없어요.                                 You can't take a photo here.\n\n43                (으)ㄹ게요                                  will               제가 할게요.                                                                I will do it.\n\n\n44              (으)ㄹ까 하다                   is / am thinking of        명동에 갈까 해요.                                                        I am thinking of going to Myeongdong .\n\n45                (으)ㄹ까 봐                  thinking / worried that      여행가는데 현금이 모자랄까봐 걱정했어요.                I was worried that there won't be enough cash for the travel.\n\n\n46               (으)ㄹ까요?                           Should we            여기서 걸어갈까요?                                                    Should we walk from here?\n\n47                (으)ㄹ래요                                  will               저는 이걸로 할래요.                                                    I will go with this one.\n\n48               (으)ㄹ래요?                           would you            이걸로 계산하실래요?                                                 Would you like to pay with this?\n\n\n\n\n                                                                                                                              3"
+    },
+    {
+      "page": 4,
+      "text": "                                                                                                 TOPIKⅠ Grammar (Beginner)\n\n\nNo.        한글                               English            예문                                                                     Example\n\n49                (으)러 가다                        go (in order) to          한국에 관광하러 갈 거예요.                                         I will go to Korea to travel.\n\n50                (으)러 오다                     come (in order) to        여기에 예약하러 왔어요.                                             I came here to make a reservation.\n\n\n51                   (으)려고                                going to             한국말을 공부하려고 해요.                                          I am going to study Korean.\n\n52                (으)려고요                     going / planning to        아이돌 콘서트에 가려고요.                                          I am going to go to a singer's concert.\n\n\n53                     (으)면                                       if                부산에 가면 뭘 볼 수 있을까요?                                   What can I see if I go to Busan?\n\n54                   (으)면서                                  while              핸드폰을 보면서 걷지 마세요.                                     Do not walk while watching your phone.\n\n\n55                (으)ㅂ시다                                 Let's              순두부를 주문해 봅시다.                                             Let's order sundubu .\n\n56                   (으)세요                                 Please             삼겹살 2인분 주세요.                                                  Please, give us 2 servings of samgyeopsal .\n\n57                (으)십시오                               Please             또 놀러 오십시오.                                                        Please, visit us again.\n\n\n58                 (이)지요?                                 right?              카드로 계산 되지요?                                                    I can pay with a credit card, right?\n\n59          거나                                     and/or             시장에 가거나 카페에 가고 싶어요.                             I want to go to a market or a café.\n\n\n60           게                                  make [adj]            싸게 해 주세요.                                                           Please, make the price cheaper.\n\n61         게 되다                               happen to            한국에 오게 됐어요.                                                    I happened to come to Korea.\n\n\n62           고                                   and (then)            밥 먹고 자요.                                                               I will eat food and sleep.\n\n63         고 싶다                                 want to             약국에 가고 싶어요.                                                    I want to go to the pharmacy.\n\n\n64         고 있다                            is / am [v]ing           지금 무슨 말 할까 생각하고 있어요.                            I am thinking about what to say right now.\n\n65          군요                                     right?              병원에 가려면 여기 쭉 가면 되는군요.                         I can go this way straight to go to the hospital, right?\n\n66        기 때문에                            because of           너무 많이 걸었기 때문에 다리가 아파요.                     My leg hurts because of walking too much.\n\n\n\n\n                                                                                                                               4"
+    },
+    {
+      "page": 5,
+      "text": "                                                                                            TOPIKⅠ Grammar (Beginner)\n\n\nNo.        한글                               English            예문                                                                     Example\n\n67         기 전에                                  before              결제하기 전에 확인하고 싶은 게 있는데요.                  I want to check something before making the payment.\n\n68        기로 하다                             decided to            오늘은 쇼핑하기로 했어요.                                          I decided to go shopping today.\n\n\n69          네요                                     right?              그럼 다 합쳐서 4000원이네요.                                     So, it is 4000won all together, right?\n\n70       는 게 좋겠다                            better to             시간이 없으니까 빨리 가는 게 좋겠어요.                     It is better to hurry since we don't have much time.\n\n\n71          는데                                       for               입국심사하는데 별로 많이 안 기다렸어요.                  I didn't wait much for immigration.\n\n72       ㅂ/습니까?           [interrogative forms of formalpolite style]           언제 한국에 갑니까?                                                    When are you going to Korea?\n\n\n73        ㅂ/습니다                      formal polite style        내일 한국에 갑니다.                                                    I am going to Korea tomorrow.\n\n74      아/어/여 보다                                try               이것도 시식해 보세요.                                                 Please, try eating this as well.\n\n75      아/어/여 주다                     [v] (for) me / us         알려줘서 고마워요.                                                     Thank you for telling me.\n\n\n76     아/어/여야 되다                    need to / must          한국어를 공부해야 돼요.                                             I need to study Korean.\n\n77     아/어/여야 하다                    need to / must          차 타고 가야 해요.                                                       I need to ride a car.\n\n\n78         아/어요                      informal polite style       좋아요.                                                                        That is good.\n\n79   았/었/였으면 좋겠다                   wish / hope           빨리 배달 왔으면 좋겠어요.                                         I hope the delivery arrives soon.\n\n\n80         지 말다                                  do not              담배 피우지 마세요.                                                    Please, do not smoke.\n\n81        지 못하다                               can not             도와주지 못 해서 죄송해요.                                         I am sorry that I can't help much.\n\n\n82         지 않다                                     not               지하철 타지 않고 걸어갈게요.                                     I will not take a subway and instead I will walk.\n\n83          지만                              but / however          오래 전에 주문했지만 요리가 아직 안 왔어요.             We have ordered the dishes a while ago, but they are not here yet.\n\n84      이/가 아니다                                not               제 물건이 아니에요.                                                    That is not mine.\n\n\n\n\n                                                                                                                         5"
+    }
+  ]
+}
